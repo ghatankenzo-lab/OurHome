@@ -3,26 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Our Homey Space : The Private Archive</title>
+    <title>Our Homey Space : Private Ghibli Capsule</title>
     
-    <!-- Premium Google Fonts -->
+    <!-- Google Fonts for High End Typography -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-    <!-- Firebase Core & Database SDK (v8 Classic) -->
+    <!-- Firebase Core & Database SDK -->
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
 
     <style>
         :root {
-            --bg-base: #f3f7fa; /* Soft Baby Blue Tint */
-            --bg-panel: #ffffff; /* Crisp White */
-            --accent-blue: #d6e6f2; /* Pastel Baby Blue Accent */
-            --text-primary: #2c3e50; /* Deep Slate Blue */
-            --text-muted: #7f8c8d;
-            --border-light: #e3edf7;
-            --transition-smooth: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            --bg-base: #ecf4f9; 
+            --bg-glass: rgba(255, 255, 255, 0.75); 
+            --bg-panel: #ffffff; 
+            --accent-blue: #bcd4e6; 
+            --text-primary: #2c3e50; 
+            --text-muted: #7f95a8;
+            --border-light: rgba(214, 228, 237, 0.8);
+            --shadow-premium: 0 30px 60px rgba(188, 212, 230, 0.25);
+            --transition-bounce: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
         * {
@@ -39,10 +41,9 @@
             -webkit-font-smoothing: antialiased;
         }
 
-        /* Premium Custom Scrollbar */
         ::-webkit-scrollbar { width: 5px; height: 5px; }
         ::-webkit-scrollbar-track { background: var(--bg-base); }
-        ::-webkit-scrollbar-thumb { background: #b0cddb; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb { background: var(--accent-blue); border-radius: 10px; }
 
         /* -----------------------------------------
            SECURE GATEWAY
@@ -50,16 +51,16 @@
         #login-screen {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: #e1ecf4;
+            background: linear-gradient(135deg, #ecf4f9 0%, #d6e6f2 100%);
             display: flex; justify-content: center; align-items: center;
             z-index: 99999;
-            transition: var(--transition-smooth);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
         }
         .login-box {
             background: var(--bg-panel);
             padding: 60px;
             border-radius: 40px;
-            box-shadow: 0 40px 80px rgba(176, 205, 219, 0.3);
+            box-shadow: var(--shadow-premium);
             text-align: center;
             max-width: 450px;
             width: 90%;
@@ -91,7 +92,7 @@
             background: #f7fafc;
             transition: all 0.3s;
         }
-        .login-box input:focus { border-color: #9cbcdb; background: #ffffff; }
+        .login-box input:focus { border-color: var(--accent-blue); background: #ffffff; }
         .login-box button {
             background: var(--text-primary);
             color: #ffffff;
@@ -104,22 +105,20 @@
             font-weight: 600;
             letter-spacing: 1.5px;
             text-transform: uppercase;
-            transition: background 0.3s;
         }
-        .login-box button:hover { background: #34495e; }
 
         /* -----------------------------------------
-           AWWWARDS EDITORIAL HEADER & DROPDOWN
+           NAVBAR NAVIGATION & DROPDOWN
         ----------------------------------------- */
         header {
             position: fixed;
             top: 0; left: 0; width: 100%;
-            padding: 25px 50px;
+            padding: 30px 60px;
             display: flex; justify-content: space-between; align-items: center;
             z-index: 999;
-            background: rgba(243, 247, 250, 0.85);
+            background: rgba(236, 244, 249, 0.8);
             backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(227, 237, 247, 0.6);
+            border-bottom: 1px solid rgba(214, 228, 237, 0.4);
         }
         .brand-logo {
             font-family: 'Playfair Display', serif;
@@ -129,30 +128,11 @@
             cursor: pointer;
             color: var(--text-primary);
         }
-        .menu-right {
-            display: flex;
-            align-items: center;
-            gap: 30px;
-            position: relative;
-        }
-        .menu-right a {
-            text-decoration: none;
-            color: var(--text-muted);
-            font-size: 11px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            transition: color 0.3s;
-        }
-        .menu-right a:hover { color: var(--text-primary); }
-        
-        /* Features Dropdown Vault Styling */
-        .vault-dropdown-wrapper { position: relative; }
         .vault-trigger-btn {
             background: var(--bg-panel);
             color: var(--text-primary);
             border: 1px solid var(--border-light);
-            padding: 12px 24px;
+            padding: 12px 26px;
             border-radius: 30px;
             font-size: 11px;
             font-weight: 700;
@@ -160,496 +140,672 @@
             letter-spacing: 1.5px;
             cursor: pointer;
             display: flex; align-items: center; gap: 8px;
-            transition: var(--transition-smooth);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+            transition: var(--transition-bounce);
         }
-        .vault-trigger-btn:hover { background: var(--accent-blue); }
+        .vault-trigger-btn:hover { transform: scale(1.05); background: var(--bg-base); }
         .vault-dropdown-menu {
             position: absolute;
             top: 130%; right: 0;
             background: var(--bg-panel);
             border: 1px solid var(--border-light);
-            border-radius: 20px;
-            width: 280px;
-            padding: 15px;
-            box-shadow: 0 20px 50px rgba(176,205,219,0.25);
+            border-radius: 24px;
+            width: 320px;
+            padding: 20px;
+            box-shadow: 0 30px 60px rgba(44,62,80,0.1);
             display: none;
             flex-direction: column;
-            gap: 6px;
+            gap: 8px;
             animation: softEntrance 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
         .vault-dropdown-menu a {
-            padding: 10px 16px;
-            border-radius: 10px;
+            padding: 12px 18px;
+            border-radius: 12px;
             font-size: 13px;
             color: var(--text-primary);
-            text-transform: none;
-            letter-spacing: 0;
+            text-decoration: none;
             font-weight: 500;
             display: flex; justify-content: space-between; align-items: center;
             transition: background 0.2s;
         }
-        .vault-dropdown-menu a:hover { background: var(--bg-base); color: var(--text-primary); }
-        .vault-dropdown-menu a span { font-size: 14px; }
+        .vault-dropdown-menu a:hover { background: var(--bg-base); }
 
         /* -----------------------------------------
-           TRUE PURE HOMEPAGE STRUCTURE
+           MULTIPAGE FRAMEWORK SYSTEM WITH GHIBLI GIF
         ----------------------------------------- */
         #main-content { display: none; }
-        
         .view-frame {
             min-height: 100vh;
             width: 100%;
-            padding: 120px 50px 60px 50px;
+            padding: 140px 60px 80px 60px;
             display: none;
+            position: relative;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        .view-frame::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(236, 244, 249, 0.4); 
+            z-index: 1;
         }
         .view-frame.active-view {
             display: block;
             animation: viewFadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1);
         }
+        .view-container-inner {
+            position: relative;
+            z-index: 2;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
         @keyframes viewFadeIn {
-            from { opacity: 0; transform: translateY(15px); }
-            to { opacity: 1; transform: translateY(0); }
+            from { opacity: 0; transform: scale(0.98) translateY(10px); }
+            to { opacity: 1; transform: scale(1) translateY(0); }
         }
 
-        /* Pure Landing Content */
-        .hero-narrative-box {
-            height: calc(100vh - 180px);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
+        /* BACKGROUND GIF ALLOCATION PER PAGE */
+        #home-view { background-image: url('https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExM3N5bHd0M3g4N3hxcjZzeG1mZ3VwYWw3Nmx6amR4dnEwM3N3Znd5NCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/V0IdVIIWWMGGA/giphy.gif'); }
+        #view-counter { background-image: url('https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExMmV0NThrbDkzb3g3MHNkaXBoMXh6bWx3MG95azV6YW04bXQycnNveSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/14uXQbPS73Y3qU/giphy.gif'); }
+        #view-status { background-image: url('https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExbDNscnd5NXRmZ3pldXl6Z3N2OHFnaGptMGY4OGdtcHdpeXR3Nzg0dyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/wdaW9H0BH42Mo/giphy.gif'); }
+        #view-countdown { background-image: url('https://media.giphy.com/media/xm0xsnIDf0fAI/giphy.gif'); }
+        #view-notes { background-image: url('https://media.giphy.com/media/11vDNL197Sno1q/giphy.gif'); }
+        #view-roulette { background-image: url('https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExbjdwaHZ6ZmF1dHh5ZDRwdXowd3o5djZzbmY1dmN2Mm4yZjh4YnMwZiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/Z3CunHwN2I1CE/giphy.gif'); }
+        #view-soundtrack { background-image: url('https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExbDVtcHloOWV6M3R2NHoxdzFwdXdwMmszcmgzdXZ6a3p0eDZobWoxbiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/9AI3DOykf70fS/giphy.gif'); }
+        #view-bucket { background-image: url('https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHBlM2U1NnR4amY3NHI0aTNnM2Mwb212bW0zNGQ3MHppZ3c0ODJhYSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/ho0xBIzv3f9Yc/giphy.gif'); }
+        #view-gallery { background-image: url('https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExYnJ2MXNqdWpyaDhrNnd2MTU2azBrMW5iZHJ0Mm4xazh0N3VobzhveSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/B0f059T1BO44U/giphy.gif'); }
+        #view-timeline { background-image: url('https://media.giphy.com/media/玉/giphy.gif'), url('https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExZ3g5YTB6MW40Zmd6NThidXphbjZ3YWl5cTBpeW11ZHJvNzB1MTJ0NSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/PZ87wAAnwPjLa/giphy.gif'); }
+        #view-care { background-image: url('https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExN3Y1ZXl2cDZqamg5bjh0M253c3Z2cXN1NHVrcDR1NWN6ejFpNmQ3eCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/VvO6fIPY6S0eI/giphy.gif'); }
+
+        /* -----------------------------------------
+           HOMEPAGE DESIGN (PURE EDITORIAL NO BORING)
+        ----------------------------------------- */
+        .hero-layout {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 60px;
             align-items: center;
-            text-align: center;
-            position: relative;
+            min-height: calc(100vh - 220px);
         }
-        .ghibli-aesthetic-container {
-            width: 100%; max-width: 900px;
-            height: 380px;
+        .hero-text-side {
+            background: var(--bg-glass);
+            padding: 50px;
             border-radius: 32px;
-            overflow: hidden;
-            margin-bottom: 45px;
+            backdrop-filter: blur(12px);
             border: 1px solid var(--border-light);
-            box-shadow: 0 30px 60px rgba(176, 205, 219, 0.2);
+            box-shadow: var(--shadow-premium);
         }
-        .ghibli-aesthetic-container img {
-            width: 100%; height: 100%; object-fit: cover;
-            filter: saturate(95%) brightness(98%);
+        .hero-tag {
+            font-size: 11px; text-transform: uppercase; letter-spacing: 4px;
+            color: var(--text-muted); margin-bottom: 20px; font-weight: 700;
         }
-        .editorial-title {
+        .hero-text-side h1 {
             font-family: 'Playfair Display', serif;
-            font-size: 58px;
-            font-weight: 400;
-            line-height: 1.2;
-            max-width: 850px;
-            margin-bottom: 20px;
+            font-size: 52px; font-weight: 400; line-height: 1.2;
+            color: var(--text-primary); margin-bottom: 25px;
         }
-        .editorial-title span { font-style: italic; font-weight: 300; color: #7f8c8d; }
-        .editorial-desc {
-            font-size: 15px; color: var(--text-muted);
-            max-width: 600px; line-height: 1.7; margin-bottom: 35px;
+        .hero-text-side h1 span { font-style: italic; font-weight: 300; color: var(--text-muted); }
+        .hero-paragraph { font-size: 14px; line-height: 1.8; color: var(--text-primary); }
+        
+        .interactive-welcome-card {
+            background: var(--bg-panel);
+            border-radius: 24px;
+            padding: 30px;
+            margin-top: 30px;
+            border: 1px solid var(--border-light);
+            display: flex; align-items: center; gap: 20px;
+        }
+        .welcome-avatar {
+            width: 60px; height: 60px; border-radius: 50%;
+            background: #cbdfe3; display: flex; justify-content: center; align-items: center; font-size: 24px;
         }
 
         /* -----------------------------------------
-           DEDICATED FULL PAGE VIEWS COMPONENT LAYOUT
+           GLASS COMPONENT LAYOUT FOR FULLPAGES
         ----------------------------------------- */
-        .page-back-nav {
-            margin-bottom: 40px; display: inline-flex; align-items: center;
-            gap: 8px; font-size: 12px; font-weight: 700; text-transform: uppercase;
-            letter-spacing: 1px; color: var(--text-muted); cursor: pointer; text-decoration: none;
+        .back-nav-btn {
+            display: inline-flex; align-items: center; gap: 8px;
+            font-size: 11px; font-weight: 700; text-transform: uppercase;
+            letter-spacing: 1.5px; color: var(--text-primary); cursor: pointer;
+            background: var(--bg-panel); padding: 10px 20px; border-radius: 20px;
+            margin-bottom: 30px; border: 1px solid var(--border-light);
+            transition: var(--transition-bounce);
         }
-        .page-back-nav:hover { color: var(--text-primary); }
+        .back-nav-btn:hover { transform: translateX(-5px); }
         
-        .feature-page-header { margin-bottom: 50px; }
-        .feature-page-header h2 { font-family: 'Playfair Display', serif; font-size: 48px; font-weight: 400; margin-bottom: 10px; }
-        .feature-page-header p { font-size: 12px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 2px; }
+        .page-meta-header {
+            margin-bottom: 40px; background: var(--bg-glass);
+            padding: 25px 40px; border-radius: 24px; display: inline-block;
+            backdrop-filter: blur(10px); border: 1px solid var(--border-light);
+        }
+        .page-meta-header h2 { font-family: 'Playfair Display', serif; font-size: 38px; font-weight: 400; color: var(--text-primary); }
+        .page-meta-header p { font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 3px; margin-top: 4px; }
 
-        .packed-content-layout {
-            background: var(--bg-panel);
+        .luxury-packed-layout {
+            background: var(--bg-glass);
             border-radius: 32px;
             padding: 50px;
             border: 1px solid var(--border-light);
-            box-shadow: 0 20px 50px rgba(176,205,219,0.1);
+            backdrop-filter: blur(16px);
+            box-shadow: var(--shadow-premium);
         }
 
-        /* Flat Inputs */
-        .flat-interactive-field {
+        .clean-inline-input {
             width: 100%; border: 1px solid transparent; background: transparent;
             font-size: 16px; color: var(--text-primary); padding: 12px 16px;
             border-radius: 12px; outline: none; transition: all 0.2s;
         }
-        .flat-interactive-field:hover { background: var(--bg-base); border-color: var(--border-light); }
-        .flat-interactive-field:focus { background: #ffffff; border-color: var(--text-primary); }
-
-        /* Feature Sub-components */
-        .giant-display-number { font-family: 'Playfair Display', serif; font-size: 110px; text-align: center; color: var(--text-primary); line-height: 1; font-weight: 300; margin: 20px 0; }
-        .status-card-box { display: flex; flex-direction: column; gap: 20px; max-width: 500px; margin: 0 auto; }
-        .status-row-node { display: flex; align-items: center; background: var(--bg-base); padding: 10px 20px; border-radius: 16px; }
-        .status-row-label { font-weight: 700; font-size: 13px; color: var(--text-muted); min-width: 90px; text-transform: uppercase; }
-
-        .note-pad-area {
-            width: 100%; height: 200px; border: 1px solid transparent; background: #fffdf9;
-            padding: 25px; font-size: 16px; color: #333; line-height: 1.7;
-            border-left: 4px solid var(--text-primary); resize: none; outline: none;
-            border-radius: 0 20px 20px 0; transition: all 0.3s;
-        }
-        .note-pad-area:focus { background: #ffffff; border-color: var(--text-primary); }
-
-        /* Ghibli Photo Stream Layout */
-        .album-stream-grid {
-            display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 30px;
-        }
-        .ghibli-polaroid-frame {
-            background: var(--bg-panel); padding: 20px 20px 35px 20px;
-            border: 1px solid var(--border-light); border-radius: 8px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.01); text-align: center;
-            transition: transform 0.3s;
-        }
-        .ghibli-polaroid-frame:hover { transform: translateY(-5px) rotate(0.5deg); }
-        .ghibli-polaroid-frame img { width: 100%; height: 240px; object-fit: cover; border-radius: 4px; margin-bottom: 15px; background: #edf2f7;}
-
-        /* Form Controls */
-        .dock-flex-form { display: flex; gap: 10px; margin-top: 30px; border-top: 1px dashed var(--border-light); padding-top: 30px; }
-        .dock-input-text { flex: 1; padding: 16px 20px; border: 1px solid var(--border-light); border-radius: 14px; font-size: 14px; outline: none; background: var(--bg-base); }
-        .dock-input-text:focus { border-color: var(--text-primary); background: #ffffff; }
-        .dock-action-btn { background: var(--text-primary); color: white; border: none; padding: 16px 28px; border-radius: 14px; font-size: 13px; font-weight: 600; cursor: pointer; }
-
-        .item-data-list { list-style: none; max-height: 350px; overflow-y: auto; }
-        .item-data-row { display: flex; align-items: center; padding: 15px 12px; border-radius: 12px; font-size: 15px; }
-        .item-data-row:hover { background: var(--bg-base); }
-        .item-data-row input[type="checkbox"] { margin-right: 15px; accent-color: var(--text-primary); width: 20px; height: 20px; cursor: pointer; }
-        
-        .timeline-vertical-stream { max-height: 400px; overflow-y: auto; padding-left: 10px; }
-        .timeline-editorial-node { padding-left: 25px; border-left: 2px solid var(--text-primary); position: relative; margin-bottom: 30px; }
-        .timeline-editorial-node::before { content: ""; position: absolute; left: -6px; top: 4px; width: 10px; height: 10px; border-radius: 50%; background: var(--bg-panel); border: 2px solid var(--text-primary); }
-
-        /* Roulette Core */
-        .roulette-panel { text-align: center; background: var(--bg-base); padding: 40px; border-radius: 24px; border: 2px dashed var(--border-light); }
-        .roulette-screen-text { font-family: 'Playfair Display', serif; font-size: 24px; font-style: italic; margin-bottom: 30px; }
-
-        /* Extended Period Component Design */
-        .cycle-horizontal-tabs { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 15px; margin-bottom: 25px; border-bottom: 1px solid var(--border-light); }
-        .cycle-tab-trigger { background: var(--bg-panel); border: 1px solid var(--border-light); padding: 12px 22px; font-size: 12px; font-weight: 700; border-radius: 30px; cursor: pointer; white-space: nowrap; transition: all 0.2s; }
-        .cycle-tab-trigger.active-tab, .cycle-tab-trigger:hover { background: var(--text-primary); color: white; border-color: var(--text-primary); }
-        .cycle-editorial-content { display: none; background: #fffcfb; padding: 40px; border-radius: 24px; border: 1px solid #f3e5dd; animation: softEntrance 0.5s ease; }
-        .cycle-editorial-content.active-content { display: block; }
-        .badge-grid-matrix { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 15px; margin-top: 25px; }
-        .pack-badge { background: #ffffff; padding: 15px 20px; border-radius: 12px; font-size: 13px; font-weight: 600; border: 1px solid rgba(0,0,0,0.02); display: flex; align-items: center; gap: 10px; }
+        .clean-inline-input:hover { background: rgba(255,255,255,0.5); border-color: var(--border-light); }
+        .clean-inline-input:focus { background: #ffffff; border-color: var(--text-primary); box-shadow: 0 4px 15px rgba(0,0,0,0.02); }
 
         /* -----------------------------------------
-           PURE EDITORIAL FOOTER
+           FITUR MAKSIMAL SUB COMPONENTS
         ----------------------------------------- */
+        
+        /* 1. Day Counter */
+        .giant-metric-number {
+            font-family: 'Playfair Display', serif; font-size: 130px;
+            text-align: center; color: var(--text-primary); font-weight: 300; line-height: 1;
+            text-shadow: 0 10px 30px rgba(176,205,219,0.2);
+        }
+        .counter-milestone-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; margin-top: 40px;
+        }
+        .milestone-node-card {
+            background: var(--bg-panel); padding: 25px; border-radius: 20px; text-align: center; border: 1px solid var(--border-light);
+        }
+        .milestone-title { font-size: 11px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
+        .milestone-value { font-family: 'Playfair Display', serif; font-size: 26px; font-weight: 600; margin-top: 8px; color: var(--text-primary); }
+
+        /* 2. Mood Stream */
+        .mood-dashboard { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+        .mood-user-block { background: var(--bg-panel); padding: 35px; border-radius: 28px; border: 1px solid var(--border-light); }
+        .mood-user-title { font-weight: 700; font-size: 13px; text-transform: uppercase; color: var(--text-muted); margin-bottom: 20px; letter-spacing: 1px; }
+        .mood-selector-container { display: flex; gap: 10px; margin-bottom: 15px; background: var(--bg-base); padding: 10px; border-radius: 14px; justify-content: space-around; }
+        .mood-emoji-btn { font-size: 22px; cursor: pointer; transition: transform 0.2s; border: none; background: none; opacity: 0.5; }
+        .mood-emoji-btn.active-emoji { transform: scale(1.25); opacity: 1; filter: drop-shadow(0 4px 8px rgba(0,0,0,0.1)); }
+
+        /* 3. Adventure Countdown */
+        .countdown-center-node { text-align: center; max-width: 650px; margin: 0 auto; }
+        .pack-list-box { text-align: left; background: var(--bg-panel); padding: 30px; border-radius: 24px; margin-top: 40px; border: 1px solid var(--border-light); }
+
+        /* 4. Sticky Board */
+        .board-canvas-notes { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 25px; }
+        .individual-sticky-card {
+            background: #fffef0; border-left: 5px solid #e3d3b4; padding: 25px;
+            border-radius: 0 20px 20px 0; min-height: 180px; display: flex; flex-direction: column;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.02);
+        }
+        .sticky-card-textarea {
+            width: 100%; flex: 1; background: transparent; border: none; outline: none;
+            resize: none; font-size: 14px; line-height: 1.7; color: #3a3a3a;
+        }
+
+        /* 5. Date Roulette */
+        .wheel-display-screen {
+            background: var(--bg-panel); padding: 50px; border-radius: 28px;
+            font-family: 'Playfair Display', serif; font-size: 26px; font-style: italic; margin-bottom: 35px;
+            border: 2px dashed var(--accent-blue); text-align: center;
+        }
+
+        /* 7. Bucket List Progress */
+        .bucket-progress-wrapper { background: var(--bg-panel); padding: 25px; border-radius: 20px; margin-bottom: 35px; border: 1px solid var(--border-light); }
+        .progress-bar-container { background: var(--bg-base); height: 10px; border-radius: 10px; margin-top: 12px; overflow: hidden; }
+        .progress-bar-fill { background: var(--text-primary); height: 100%; width: 0%; transition: width 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
+
+        /* 8. Polaroid Framing */
+        .album-stream-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(310px, 1fr)); gap: 40px; }
+        .ghibli-polaroid-frame {
+            background: var(--bg-panel); padding: 20px 20px 35px 20px;
+            border: 1px solid var(--border-light); border-radius: 4px;
+            box-shadow: 0 15px 40px rgba(44,62,80,0.04); text-align: center;
+        }
+        .ghibli-polaroid-frame img { width: 100%; height: 260px; object-fit: cover; border-radius: 2px; margin-bottom: 20px; background: #fafbfc; }
+
+        /* 9. Timeline Backbone */
+        .timeline-vertical-backbone { padding-left: 10px; max-height: 450px; overflow-y: auto; }
+        .timeline-editorial-node { padding-left: 30px; border-left: 2px solid var(--text-primary); position: relative; margin-bottom: 35px; }
+        .timeline-editorial-node::before { content: ""; position: absolute; left: -6px; top: 4px; width: 10px; height: 10px; border-radius: 50%; background: var(--bg-panel); border: 2px solid var(--text-primary); }
+
+        /* 10. Period Care Dynamic */
+        .cycle-tabs-row { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 15px; margin-bottom: 30px; border-bottom: 1px solid var(--border-light); }
+        .cycle-tab-btn { background: var(--bg-panel); border: 1px solid var(--border-light); padding: 12px 24px; font-size: 12px; font-weight: 700; border-radius: 30px; cursor: pointer; white-space: nowrap; transition: var(--transition-bounce); }
+        .cycle-tab-btn.active-tab, .cycle-tab-btn:hover { background: var(--text-primary); color: white; border-color: var(--text-primary); }
+        .cycle-view-panel { display: none; background: #fffcfb; padding: 45px; border-radius: 28px; border: 1px solid #f3e5dd; animation: softEntrance 0.5s ease; }
+        .cycle-view-panel.active-panel { display: block; }
+        .badge-matrix-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 15px; margin-top: 30px; }
+        .luxury-badge-node { background: var(--bg-panel); padding: 16px 22px; border-radius: 14px; font-size: 13px; font-weight: 600; border: 1px solid var(--border-light); display: flex; align-items: center; gap: 10px; }
+
+        /* Shared Flex Docks */
+        .dock-flex-submission { display: flex; gap: 12px; margin-top: 30px; border-top: 1px dashed var(--border-light); padding-top: 30px; }
+        .dock-text-field { flex: 1; padding: 16px 20px; border: 1px solid var(--border-light); border-radius: 14px; font-size: 14px; outline: none; background: var(--bg-base); }
+        .dock-text-field:focus { border-color: var(--text-primary); background: #ffffff; }
+        .dock-btn-trigger { background: var(--text-primary); color: white; border: none; padding: 16px 32px; border-radius: 14px; font-size: 13px; font-weight: 600; cursor: pointer; transition: background 0.2s; }
+        
+        .item-data-list { list-style: none; max-height: 350px; overflow-y: auto; }
+        .item-row-node { display: flex; align-items: center; padding: 16px 12px; border-radius: 14px; font-size: 15px; background: var(--bg-panel); margin-bottom: 8px; border: 1px solid var(--border-light); }
+        .item-row-node input[type="checkbox"] { margin-right: 16px; accent-color: var(--text-primary); width: 20px; height: 20px; cursor: pointer; }
+        .node-erasure { margin-left: auto; cursor: pointer; opacity: 0.3; transition: opacity 0.2s; }
+        .node-erasure:hover { opacity: 1; color: #c0392b; }
+
+        /* EDITORIAL FOOTER */
         footer {
             max-width: 1200px; margin: 100px auto 0 auto;
             padding: 50px 0; border-top: 1px solid var(--border-light);
             display: flex; justify-content: space-between; align-items: center;
             color: var(--text-muted); font-size: 11px; text-transform: uppercase; letter-spacing: 2px;
+            position: relative; z-index: 10;
         }
 
         @keyframes softEntrance {
-            from { opacity: 0; transform: translateY(8px); }
+            from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
 <body>
 
-    <!-- SECURE GATEWAY SYSTEM -->
+    <!-- VAULT SECURE SYSTEM GATEWAY -->
     <div id="login-screen">
         <div class="login-box">
             <h2>Our Homey Space</h2>
-            <p>Vault Access Authentication</p>
-            <input type="password" id="password-input" placeholder="Passcode...">
-            <button onclick="verifikasi()">Unlock Platform</button>
+            <p>Cloud Access Authorization Protocol</p>
+            <input type="password" id="password-input" placeholder="Passcode Security...">
+            <button onclick="verifikasi()">Unlock Interface</button>
         </div>
     </div>
 
-    <!-- MAIN INTERFACE STRUCUTRE -->
+    <!-- MAIN PLATFORM NODE -->
     <div id="main-content">
         
-        <!-- EDITORIAL NAVIGATION -->
+        <!-- EDITORIAL HEADER BAR NAVIGATION -->
         <header>
             <div class="brand-logo" onclick="navigateTo('home-view')">Syallu & Ghatan.</div>
-            <div class="menu-right">
-                <div class="vault-dropdown-wrapper">
-                    <button class="vault-trigger-btn" onclick="toggleVaultDropdown()">Features Vault ⚡</button>
-                    <div id="vault-dropdown" class="vault-dropdown-menu">
-                        <a href="#" onclick="navigateTo('view-counter')">Day Counter <span>⏳</span></a>
-                        <a href="#" onclick="navigateTo('view-status')">Mood Indicators <span>🌱</span></a>
-                        <a href="#" onclick="navigateTo('view-countdown')">Adventure Target <span>🎯</span></a>
-                        <a href="#" onclick="navigateTo('view-notes')">Sticky Notes <span>📝</span></a>
-                        <a href="#" onclick="navigateTo('view-roulette')">Date Roulette <span>🎲</span></a>
-                        <a href="#" onclick="navigateTo('view-soundtrack')">Audio Soundtrack <span>🎵</span></a>
-                        <a href="#" onclick="navigateTo('view-bucket')">Bucket List <span>✈️</span></a>
-                        <a href="#" onclick="navigateTo('view-gallery')">Photo Album <span>📸</span></a>
-                        <a href="#" onclick="navigateTo('view-timeline')">Story Timeline <span>📌</span></a>
-                        <a href="#" onclick="navigateTo('view-care')">Cycle Care Plan <span>❤️🩹</span></a>
-                    </div>
+            <div class="vault-dropdown-wrapper">
+                <button class="vault-trigger-btn" onclick="toggleVaultDropdown()">Features Vault ⚡</button>
+                <div id="vault-dropdown" class="vault-dropdown-menu">
+                    <a href="#" onclick="navigateTo('view-counter')">Day Counter <span>⏳</span></a>
+                    <a href="#" onclick="navigateTo('view-status')">Mood Indicators <span>🌱</span></a>
+                    <a href="#" onclick="navigateTo('view-countdown')">Adventure Target <span>🎯</span></a>
+                    <a href="#" onclick="navigateTo('view-notes')">Sticky Notes <span>📝</span></a>
+                    <a href="#" onclick="navigateTo('view-roulette')">Date Roulette <span>🎲</span></a>
+                    <a href="#" onclick="navigateTo('view-soundtrack')">Audio Soundtrack <span>🎵</span></a>
+                    <a href="#" onclick="navigateTo('view-bucket')">Bucket List <span>✈️</span></a>
+                    <a href="#" onclick="navigateTo('view-gallery')">Photo Album <span>📸</span></a>
+                    <a href="#" onclick="navigateTo('view-timeline')">Story Timeline <span>📌</span></a>
+                    <a href="#" onclick="navigateTo('view-care')">Cycle Care Plan <span>❤️🩹</span></a>
                 </div>
             </div>
         </header>
 
-        <!-- VIEW 0: PURE ARCHIVE BERANDA LANDING PAGE -->
+        <!-- VIEW 0: PURE ARCHIVE LANDING HOMEPAGE (EDITORIAL & COZY) -->
         <main id="home-view" class="view-frame active-view">
-            <div class="hero-narrative-box">
-                <div class="ghibli-aesthetic-container">
-                    <!-- Ghibli Soft Sky Aesthetic Placeholder Image -->
-                    <img src="https://images.unsplash.com/photo-1578632767115-351597cf2477?w=1000" alt="Studio Ghibli Sky Aesthetic">
+            <div class="view-container-inner">
+                <div class="hero-layout">
+                    <div class="hero-text-side">
+                        <p class="hero-tag">System Node Ecosystem v5.0</p>
+                        <h1>A serene cloud room curated to preserve our <span>shared milestones.</span></h1>
+                        <p class="hero-paragraph">Selamat datang di ruang penyimpanan digital terenkripsi milik Ghatan dan Syallu. Dikembangkan dengan arsitektur Single Page modern berstandar Awwwards, platform ini murni berfungsi sebagai kapsul waktu naratif tanpa dekorasi fitur yang berserakan. Silakan gunakan direktori berkas di pojok kanan atas untuk membuka gerbang memori dan manajemen rencana berkala kita.</p>
+                        
+                        <div class="interactive-welcome-card">
+                            <div class="welcome-avatar">☁️</div>
+                            <div>
+                                <div style="font-size:14px; font-weight:700;">Status Koneksi Aman</div>
+                                <div style="font-size:12px; color:var(--text-muted);">Database Realtime terhubung secara instan</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div></div> <!-- Empty right column to show off looping Ghibli background GIF -->
                 </div>
-                <h1 class="editorial-title">Welcome to our private cloud. A quiet room built to archive <span>every documented path.</span></h1>
-                <p class="editorial-desc">Ini adalah ruang beranda aman milik Ghatan & Syallu. Tidak ada fitur yang berserakan di sini, murni arsip perjalanan pribadi kita yang bisa diakses melalu menu berkas di kanan atas.</p>
             </div>
         </main>
 
-        <!-- VIEW 1: DEDICATED DAY COUNTER PAGE -->
+        <!-- VIEW 1: DAY COUNTER DEDICATED PAGE (PACKED) -->
         <section id="view-counter" class="view-frame">
-            <a class="page-back-nav" onclick="navigateTo('home-view')">← Back to Beranda</a>
-            <div class="feature-page-header">
-                <h2>Day Counter</h2>
-                <p>Time capsule integration matrix</p>
-            </div>
-            <div class="packed-content-layout">
-                <div class="panel-heading" style="font-size: 11px; text-transform: uppercase; color: var(--text-muted); letter-spacing: 1px;">Total Operational Time</div>
-                <div class="giant-display-number" id="days-counter">0</div>
-                <p style="text-align: center; font-size: 14px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 2px;">Days Spent In Harmony and Counting</p>
+            <div class="view-container-inner">
+                <div class="back-nav-btn" onclick="navigateTo('home-view')">← Back to Index</div>
+                <div class="page-meta-header">
+                    <h2>Day Counter</h2>
+                    <p>Union timeline matrix clock parameter</p>
+                </div>
+                <div class="luxury-packed-layout">
+                    <div class="giant-metric-number" id="days-counter">0</div>
+                    <p style="text-align: center; font-size: 13px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 2px; margin-top: 15px;">Days Spent In Harmony And Counting</p>
+                    
+                    <div class="counter-milestone-grid">
+                        <div class="milestone-node-card">
+                            <div class="milestone-title">Next Milestone Goal</div>
+                            <div id="m-next" class="milestone-value">...</div>
+                        </div>
+                        <div class="milestone-node-card">
+                            <div class="milestone-title">Days Remaining Towards Goal</div>
+                            <div id="m-rem" class="milestone-value">...</div>
+                        </div>
+                        <div class="milestone-node-card">
+                            <div class="milestone-title">Ecosystem System Health</div>
+                            <div class="milestone-value" style="color: #27ae60;">100% Secure</div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
 
-        <!-- VIEW 2: DEDICATED MOOD INDICATORS PAGE -->
+        <!-- VIEW 2: MOOD INDICATORS DEDICATED PAGE (PACKED SELECTORS) -->
         <section id="view-status" class="view-frame">
-            <a class="page-back-nav" onclick="navigateTo('home-view')">← Back to Beranda</a>
-            <div class="feature-page-header">
-                <h2>Mood Stream Indicators</h2>
-                <p>Real-time emotional status synchronization</p>
-            </div>
-            <div class="packed-content-layout">
-                <div class="status-card-box">
-                    <div class="status-row-node">
-                        <span class="status-row-label">Syallu :</span>
-                        <input type="text" id="status-syallu" class="flat-interactive-field" onblur="sendDirectField(this, 'status/syallu')" onkeydown="handleFieldEnter(event, this)">
-                    </div>
-                    <div class="status-row-node">
-                        <span class="status-row-label">Ghatan :</span>
-                        <input type="text" id="status-ghatan" class="flat-interactive-field" onblur="sendDirectField(this, 'status/ghatan')" onkeydown="handleFieldEnter(event, this)">
+            <div class="view-container-inner">
+                <div class="back-nav-btn" onclick="navigateTo('home-view')">← Back to Index</div>
+                <div class="page-meta-header">
+                    <h2>Mood Stream Indicators</h2>
+                    <p>Synchronize live individual energy level parameters and quick emoji states</p>
+                </div>
+                <div class="luxury-packed-layout">
+                    <div class="mood-dashboard">
+                        <div class="mood-user-block">
+                            <div class="mood-user-title">Syallu Core State</div>
+                            <div class="mood-selector-container">
+                                <button class="mood-emoji-btn" id="emoji-s-1" onclick="selectMoodEmoji('syallu', 1, '😊')">😊</button>
+                                <button class="mood-emoji-btn" id="emoji-s-2" onclick="selectMoodEmoji('syallu', 2, '🍰')">🍰</button>
+                                <button class="mood-emoji-btn" id="emoji-s-3" onclick="selectMoodEmoji('syallu', 3, '😴')">😴</button>
+                                <button class="mood-emoji-btn" id="emoji-s-4" onclick="selectMoodEmoji('syallu', 4, ' Penat 😣')">😣</button>
+                            </div>
+                            <input type="text" id="status-syallu" class="clean-inline-input" style="font-weight: 600;" placeholder="Describe current condition..." onblur="sendDirectField(this, 'status/syallu')" onkeydown="handleFieldEnter(event, this)">
+                            <input type="text" id="battery-syallu" class="clean-inline-input" style="font-size:13px; color:var(--text-muted); margin-top:10px;" placeholder="Energy Battery Indicator (e.g. 90%)" onblur="sendDirectField(this, 'status/batSyallu')" onkeydown="handleFieldEnter(event, this)">
+                        </div>
+                        <div class="mood-user-block">
+                            <div class="mood-user-title">Ghatan Core State</div>
+                            <div class="mood-selector-container">
+                                <button class="mood-emoji-btn" id="emoji-g-1" onclick="selectMoodEmoji('ghatan', 1, '😊')">😊</button>
+                                <button class="mood-emoji-btn" id="emoji-g-2" onclick="selectMoodEmoji('ghatan', 2, '☕')">☕</button>
+                                <button class="mood-emoji-btn" id="emoji-g-3" onclick="selectMoodEmoji('ghatan', 3, '💻')">💻</button>
+                                <button class="mood-emoji-btn" id="emoji-g-4" onclick="selectMoodEmoji('ghatan', 4, '😴')">😴</button>
+                            </div>
+                            <input type="text" id="status-ghatan" class="clean-inline-input" style="font-weight: 600;" placeholder="Describe current condition..." onblur="sendDirectField(this, 'status/ghatan')" onkeydown="handleFieldEnter(event, this)">
+                            <input type="text" id="battery-ghatan" class="clean-inline-input" style="font-size:13px; color:var(--text-muted); margin-top:10px;" placeholder="Energy Battery Indicator (e.g. 50%)" onblur="sendDirectField(this, 'status/batGhatan')" onkeydown="handleFieldEnter(event, this)">
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- VIEW 3: DEDICATED NEXT TARGET COUNTDOWN PAGE -->
+        <!-- VIEW 3: ADVENTURE COUNTDOWN DEDICATED PAGE (PACKED PACKLIST) -->
         <section id="view-countdown" class="view-frame">
-            <a class="page-back-nav" onclick="navigateTo('home-view')">← Back to Beranda</a>
-            <div class="feature-page-header">
-                <h2>Adventure Objective Target</h2>
-                <p>Countdown tracker for incoming joint plans</p>
-            </div>
-            <div class="packed-content-layout" style="max-width: 600px; margin: 0 auto; text-align: center;">
-                <input type="text" id="next-title" class="flat-interactive-field" style="text-align:center; font-weight:700; font-size:22px; margin-bottom: 10px;" onblur="sendDirectField(this, 'nextPlan/title')" onkeydown="handleFieldEnter(event, this)">
-                <div id="countdown-timer" class="giant-display-number" style="font-size: 64px; margin: 10px 0;">0 Days</div>
-                <input type="text" id="next-date" class="flat-interactive-field" style="text-align:center; font-size:13px; color:var(--text-muted);" onblur="sendDateDirect(this)" onkeydown="handleFieldEnter(event, this)">
+            <div class="view-container-inner">
+                <div class="back-nav-btn" onclick="navigateTo('home-view')">← Back to Index</div>
+                <div class="page-meta-header">
+                    <h2>Adventure Objective Target</h2>
+                    <p>Chronological countdown tracking with built in journey luggage sub parameters</p>
+                </div>
+                <div class="luxury-packed-layout">
+                    <div class="countdown-center-node">
+                        <input type="text" id="next-title" class="clean-inline-input" style="text-align:center; font-weight:700; font-size:26px;" onblur="sendDirectField(this, 'nextPlan/title')" onkeydown="handleFieldEnter(event, this)">
+                        <div id="countdown-timer" class="giant-metric-number" style="font-size: 72px; margin: 15px 0;">0 Days Left</div>
+                        <input type="text" id="next-date" class="clean-inline-input" style="text-align:center; font-size:13px; color:var(--text-muted);" onblur="sendDateDirect(this)" onkeydown="handleFieldEnter(event, this)">
+                        <input type="text" id="next-loc" class="clean-inline-input" style="text-align:center; font-size:13px; color:var(--text-muted); margin-top:10px;" placeholder="Add Location Link or Venue Address Name" onblur="sendDirectField(this, 'nextPlan/location')" onkeydown="handleFieldEnter(event, this)">
+                        
+                        <div class="pack-list-box">
+                            <div style="font-size:12px; font-weight:700; color:var(--text-muted); text-transform:uppercase; margin-bottom:15px; letter-spacing:1px;">Trip Checklist Prep Sub Node :</div>
+                            <ul id="trip-checklist-frame" class="item-data-list"></ul>
+                            <div class="dock-flex-submission" style="margin-top:15px; padding-top:15px;">
+                                <input type="text" id="trip-item-input" class="dock-text-field" style="padding:12px 16px;" placeholder="Add luggage list parameter...">
+                                <button class="dock-btn-trigger" style="padding:12px 24px;" onclick="pushTripChecklistNode()">Add</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
 
-        <!-- VIEW 4: DEDICATED STICKY NOTES PAGE -->
+        <!-- VIEW 4: STICKY NOTES DEDICATED PAGE -->
         <section id="view-notes" class="view-frame">
-            <a class="page-back-nav" onclick="navigateTo('home-view')">← Back to Beranda</a>
-            <div class="feature-page-header">
-                <h2>Digital Sticky Notes</h2>
-                <p>Direct live micro message injection vault</p>
-            </div>
-            <div class="packed-content-layout" style="max-width: 700px; margin: 0 auto;">
-                <textarea id="sticky-text" class="note-pad-area" onblur="sendDirectField(this, 'stickyNote')" placeholder="Type your message direct to canvas board..."></textarea>
+            <div class="view-container-inner">
+                <div class="back-nav-btn" onclick="navigateTo('home-view')">← Back to Index</div>
+                <div class="page-meta-header">
+                    <h2>Multi Sticky Board Notes</h2>
+                    <p>Simultaneous matrix cloud canvas message injection</p>
+                </div>
+                <div class="luxury-packed-layout">
+                    <div class="board-canvas-notes">
+                        <div class="individual-sticky-card">
+                            <div style="font-size: 11px; font-weight:700; color:var(--text-muted); margin-bottom:12px;">Mading Note 01</div>
+                            <textarea id="sticky-text-1" class="sticky-card-textarea" onblur="sendDirectField(this, 'memos/m1')" placeholder="Type direct to write..."></textarea>
+                        </div>
+                        <div class="individual-sticky-card">
+                            <div style="font-size: 11px; font-weight:700; color:var(--text-muted); margin-bottom:12px;">Mading Note 02</div>
+                            <textarea id="sticky-text-2" class="sticky-card-textarea" onblur="sendDirectField(this, 'memos/m2')" placeholder="Type direct to write..."></textarea>
+                        </div>
+                        <div class="individual-sticky-card">
+                            <div style="font-size: 11px; font-weight:700; color:var(--text-muted); margin-bottom:12px;">Mading Note 03</div>
+                            <textarea id="sticky-text-3" class="sticky-card-textarea" onblur="sendDirectField(this, 'memos/m3')" placeholder="Type direct to write..."></textarea>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
 
-        <!-- VIEW 5: DEDICATED DATE ROULETTE PAGE -->
+        <!-- VIEW 5: DATE ROULETTE DEDICATED PAGE -->
         <section id="view-roulette" class="view-frame">
-            <a class="page-back-nav" onclick="navigateTo('home-view')">← Back to Beranda</a>
-            <div class="feature-page-header">
-                <h2>The "Terserah" Roulette Decider</h2>
-                <p>Randomization decision array generator</p>
-            </div>
-            <div class="packed-content-layout" style="max-width: 600px; margin: 0 auto;">
-                <div class="roulette-panel">
-                    <div id="roulette-display" class="roulette-screen-text">Awaiting spin execution array command...</div>
-                    <button class="dock-action-btn" style="border-radius: 30px; padding: 14px 35px;" onclick="triggerRouletteEngine()">Spin Option Array</button>
+            <div class="view-container-inner">
+                <div class="back-nav-btn" onclick="navigateTo('home-view')">← Back to Index</div>
+                <div class="page-meta-header">
+                    <h2>The "Terserah" Roulette Decision Engine</h2>
+                    <p>Algorithmic strategy pathway randomization solution choice generator</p>
+                </div>
+                <div class="luxury-packed-layout">
+                    <div class="roulette-container-box">
+                        <div id="roulette-display" class="wheel-display-screen">Awaiting spin execution array command...</div>
+                        <button class="dock-btn-trigger" style="border-radius:30px; padding:16px 44px; font-size:14px;" onclick="triggerRouletteEngine()">Spin Strategy Array</button>
+                        
+                        <div class="custom-roulette-list">
+                            <div style="font-size:11px; font-weight:700; color:var(--text-muted); text-transform:uppercase; margin-bottom:15px; letter-spacing:1px;">Configured Operational Choices Database :</div>
+                            <p style="font-size:14px; color:var(--text-primary); line-height:1.8; background:var(--bg-panel); padding:20px; border-radius:16px; border:1px solid var(--border-light);">1. Nonton Movie Bareng | 2. Keliling Kota Bandar Lampung | 3. Cafe Hopping Unila | 4. Berburu Jajanan Pastry | 5. Sesi Deep Talk Intim | 6. Delivery McD Pizza Terdekat</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <!-- VIEW 6: DEDICATED SPOTIFY SOUNDTRACK PAGE -->
+        <!-- VIEW 6: AUDIO SOUNDTRACK DEDICATED PAGE -->
         <section id="view-soundtrack" class="view-frame">
-            <a class="page-back-nav" onclick="navigateTo('home-view')">← Back to Beranda</a>
-            <div class="feature-page-header">
-                <h2>Connected Soundtrack Stream</h2>
-                <p>Shared audio mix tape connection core</p>
-            </div>
-            <div class="packed-content-layout" style="max-width: 600px; margin: 0 auto;">
-                <div class="spotify-bar-luxury">
-                    <div style="font-size: 36px; margin-right: 25px; filter: grayscale(100%);">💿</div>
-                    <div>
-                        <div style="font-size: 15px; font-weight: 600; margin-bottom: 5px; color: var(--text-primary);">Our Shared Mixtape Core</div>
-                        <a href="https://open.spotify.com" target="_blank" class="spotify-anchor">Launch Linked Spotify Application</a>
+            <div class="view-container-inner">
+                <div class="back-nav-btn" onclick="navigateTo('home-view')">← Back to Index</div>
+                <div class="page-meta-header">
+                    <h2>Soundtrack Core Stream Archive</h2>
+                    <p>Linked audio mix tape database framework data sync</p>
+                </div>
+                <div class="luxury-packed-layout">
+                    <div class="audio-luxury-vault">
+                        <div class="item-row-node" style="padding:25px; gap:10px;">
+                            <div style="font-size:36px; filter:grayscale(100%);">💿</div>
+                            <div>
+                                <div style="font-size:15px; font-weight:600; color:var(--text-primary);">Main Linked Spotify Ecosystem</div>
+                                <a href="https://open.spotify.com" target="_blank" style="font-size:12px; color:var(--text-muted); text-decoration:underline;">Launch Connected Anchor</a>
+                            </div>
+                        </div>
+                        <div class="item-row-node" style="padding:25px; background:#fffdfc; flex-direction:column; align-items:flex-start; gap:10px;">
+                            <div style="font-size:11px; font-weight:700; color:var(--text-muted); text-transform:uppercase; letter-spacing:1px;">Song Tracking Focus Of The Week :</div>
+                            <input type="text" id="song-week" class="clean-inline-input" style="font-size:16px; font-weight:600; padding:6px 0;" placeholder="Type track name link parameter here..." onblur="sendDirectField(this, 'audio/songWeek')">
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- VIEW 7: DEDICATED BUCKET LIST PAGE -->
+        <!-- VIEW 7: BUCKET LIST DEDICATED PAGE -->
         <section id="view-bucket" class="view-frame">
-            <a class="page-back-nav" onclick="navigateTo('home-view')">← Back to Beranda</a>
-            <div class="feature-page-header">
-                <h2>Collective Future Bucket List</h2>
-                <p>Target goals and adventure pathway ledgers</p>
-            </div>
-            <div class="packed-content-layout" style="max-width: 700px; margin: 0 auto;">
-                <ul id="bucket-list-frame" class="item-data-list"></ul>
-                <div class="dock-flex-form">
-                    <input type="text" id="bucket-input-field" class="dock-input-text" placeholder="Append new target data objective...">
-                    <button class="dock-action-btn" onclick="pushBucketNode()">Deploy Plan</button>
+            <div class="view-container-inner">
+                <div class="back-nav-btn" onclick="navigateTo('home-view')">← Back to Index</div>
+                <div class="page-meta-header">
+                    <h2>Collective Future Bucket List</h2>
+                    <p>Target goals pathway registry development progress tracker metrics</p>
+                </div>
+                <div class="luxury-packed-layout" style="max-width: 850px; margin: 0 auto;">
+                    <div class="bucket-progress-wrapper">
+                        <div style="display:flex; justify-content:space-between; font-size:12px; font-weight:700; color:var(--text-muted); letter-spacing:0.5px;">
+                            <span>COMPLETION RATIO LEDGER DETECTOR</span>
+                            <span id="bucket-ratio-text">0% Completed</span>
+                        </div>
+                        <div class="progress-bar-container"><div id="bucket-bar-fill" class="progress-bar-fill"></div></div>
+                    </div>
+
+                    <ul id="bucket-list-frame" class="item-data-list"></ul>
+                    
+                    <div class="dock-flex-submission">
+                        <input type="text" id="bucket-input-field" class="dock-text-field" placeholder="Append new dream map ledger data...">
+                        <button class="dock-btn-trigger" onclick="pushBucketNode()">Deploy Plan</button>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <!-- VIEW 8: DEDICATED PHOTO GALLERY ALBUM PAGE -->
+        <!-- VIEW 8: PHOTO GALLERY ALBUM DEDICATED PAGE -->
         <section id="view-gallery" class="view-frame">
-            <a class="page-back-nav" onclick="navigateTo('home-view')">← Back to Beranda</a>
-            <div class="feature-page-header">
-                <h2>Captured Polaroid Frames</h2>
-                <p>Visual log files archive module (Supports Shareable Google Drive Links)</p>
-            </div>
-            <div class="packed-content-layout">
-                <div class="album-stream-grid">
-                    <div class="ghibli-polaroid-frame">
-                        <img id="p1-img" src="" alt="Album Node Image">
-                        <div class="polaroid-meta" style="display:flex; flex-direction:column; gap:6px;">
-                            <input type="text" id="p1-cap" class="flat-interactive-field" style="font-size:13px; font-weight:700; text-align:center;" onblur="commitPolaroidNode(1)" onkeydown="handleFieldEnter(event, this)">
-                            <input type="text" id="p1-url" class="flat-interactive-field" style="font-size:10px; color:#bbb; text-align:center;" placeholder="Paste Direct Image/GDrive URL" onblur="commitPolaroidNode(1)" onkeydown="handleFieldEnter(event, this)">
+            <div class="view-container-inner">
+                <div class="back-nav-btn" onclick="navigateTo('home-view')">← Back to Index</div>
+                <div class="page-meta-header">
+                    <h2>Captured Polaroid Frames</h2>
+                    <p>Visual logs vault configuration node (Equipped with automated protection system)</p>
+                </div>
+                <div class="luxury-packed-layout">
+                    <div class="album-stream-grid">
+                        <div class="ghibli-polaroid-frame">
+                            <img id="p1-img" src="https://images.unsplash.com/photo-1542856391-010fb87dcfed?w=500" alt="Visual Frame Log Node" onerror="this.src='https://images.unsplash.com/photo-1542856391-010fb87dcfed?w=500'">
+                            <div class="polaroid-inputs">
+                                <input type="text" id="p1-cap" class="clean-inline-input" style="font-weight:700; text-align:center; font-size:14px;" placeholder="Add Title Description" onblur="commitPolaroidNode(1)" onkeydown="handleFieldEnter(event, this)">
+                                <input type="text" id="p1-url" class="clean-inline-input" style="font-size:10px; color:var(--text-muted); text-align:center;" placeholder="Paste Photo Direct / GDrive Share Link Address" onblur="commitPolaroidNode(1)" onkeydown="handleFieldEnter(event, this)">
+                            </div>
                         </div>
-                    </div>
-                    <div class="ghibli-polaroid-frame">
-                        <img id="p2-img" src="" alt="Album Node Image">
-                        <div class="polaroid-meta" style="display:flex; flex-direction:column; gap:6px;">
-                            <input type="text" id="p2-cap" class="flat-interactive-field" style="font-size:13px; font-weight:700; text-align:center;" onblur="commitPolaroidNode(2)" onkeydown="handleFieldEnter(event, this)">
-                            <input type="text" id="p2-url" class="flat-interactive-field" style="font-size:10px; color:#bbb; text-align:center;" placeholder="Paste Direct Image/GDrive URL" onblur="commitPolaroidNode(2)" onkeydown="handleFieldEnter(event, this)">
+                        <div class="ghibli-polaroid-frame">
+                            <img id="p2-img" src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=500" alt="Visual Frame Log Node" onerror="this.src='https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=500'">
+                            <div class="polaroid-inputs">
+                                <input type="text" id="p2-cap" class="clean-inline-input" style="font-weight:700; text-align:center; font-size:14px;" placeholder="Add Title Description" onblur="commitPolaroidNode(2)" onkeydown="handleFieldEnter(event, this)">
+                                <input type="text" id="p2-url" class="clean-inline-input" style="font-size:10px; color:var(--text-muted); text-align:center;" placeholder="Paste Photo Direct / GDrive Share Link Address" onblur="commitPolaroidNode(2)" onkeydown="handleFieldEnter(event, this)">
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- VIEW 9: DEDICATED STORY TIMELINE PAGE -->
+        <!-- VIEW 9: STORY TIMELINE DEDICATED PAGE -->
         <section id="view-timeline" class="view-frame">
-            <a class="page-back-nav" onclick="navigateTo('home-view')">← Back to Beranda</a>
-            <div class="feature-page-header">
-                <h2>Historical Milestone Chain Log</h2>
-                <p>Chronological relationship index mapping</p>
-            </div>
-            <div class="packed-content-layout" style="max-width: 800px; margin: 0 auto;">
-                <div id="timeline-node-frame" class="timeline-vertical-stream"></div>
-                <div class="dock-flex-form" style="flex-direction: column; gap: 10px;">
-                    <input type="text" id="milestone-date-field" class="dock-input-text" placeholder="Date Parameter (e.g. 11 Juni 2026)">
-                    <div style="display:flex; gap:10px; width:100%;">
-                        <input type="text" id="milestone-desc-field" class="dock-input-text" placeholder="What happened description...">
-                        <button class="dock-action-btn" onclick="pushTimelineNode()">Record Event</button>
+            <div class="view-container-inner">
+                <div class="back-nav-btn" onclick="navigateTo('home-view')">← Back to Index</div>
+                <div class="page-meta-header">
+                    <h2>Historical Milestone Chain Log</h2>
+                    <p>Chronological relationship index tracking structural ledger mapping</p>
+                </div>
+                <div class="luxury-packed-layout" style="max-width: 850px; margin: 0 auto;">
+                    <div id="timeline-node-frame" class="timeline-vertical-backbone"></div>
+                    <div class="dock-flex-submission" style="flex-direction: column; gap: 12px;">
+                        <input type="text" id="milestone-date-field" class="dock-text-field" placeholder="Date Parameter Setup (e.g. 11 Juni 2026)">
+                        <div style="display:flex; gap:12px; width:100%;">
+                            <input type="text" id="milestone-desc-field" class="dock-text-field" placeholder="Describe unique memory historical element node text...">
+                            <button class="dock-btn-trigger" onclick="pushTimelineNode()">Record Event</button>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- VIEW 10: DEDICATED PERIOD CARE PLAN PAGE -->
+        <!-- VIEW 10: PERIOD CARE PLAN DEDICATED PAGE (PACKED & ACTIONABLE) -->
         <section id="view-care" class="view-frame">
-            <a class="page-back-nav" onclick="navigateTo('home-view')">← Back to Beranda</a>
-            <div class="feature-page-header">
-                <h2>Biomedical Comfort Protocol</h2>
-                <p>Exhaustive 7-day care matrix architecture</p>
-            </div>
-            <div class="packed-content-layout">
-                <div class="cycle-horizontal-tabs">
-                    <button class="cycle-tab-trigger active-tab" onclick="switchCareTab(event, 'day1')">Day 1</button>
-                    <button class="cycle-tab-trigger" onclick="switchCareTab(event, 'day2')">Day 2</button>
-                    <button class="cycle-tab-trigger" onclick="switchCareTab(event, 'day3')">Day 3</button>
-                    <button class="cycle-tab-trigger" onclick="switchCareTab(event, 'day4')">Day 4</button>
-                    <button class="cycle-tab-trigger" onclick="switchCareTab(event, 'day5')">Day 5</button>
-                    <button class="cycle-tab-trigger" onclick="switchCareTab(event, 'day6')">Day 6</button>
-                    <button class="cycle-tab-trigger" onclick="switchCareTab(event, 'day7')">Day 7</button>
+            <div class="view-container-inner">
+                <div class="back-nav-btn" onclick="navigateTo('home-view')">← Back to Index</div>
+                <div class="page-meta-header">
+                    <h2>Biomedical Cycle Comfort Protocol</h2>
+                    <p>Actionable tactical 7-day care matrix structural parameter guide dashboard</p>
                 </div>
-                
-                <div id="day1" class="cycle-editorial-content active-content">
-                    <div style="font-size: 20px; font-weight: 700; margin-bottom: 15px; font-family:'Playfair Display', serif; font-style:italic;">🩸 Day 01 : Peak Contraction Matrix</div>
-                    <p style="font-size:14px; line-height:1.7; color:#555;">Fase awal peluruhan dinding rahim. Kram perut (dysmenorrhea) berada di level tertinggi akibat pelepasan hormon prostaglandin. Kondisi tubuh Syallu cenderung sangat lemas dan sensitif nyeri.</p>
-                    <div class="badge-grid-matrix">
-                        <div class="pack-badge">🚨 Nyeri: Sangat Tinggi</div>
-                        <div class="pack-badge">🔥 Tindakan: Kompres Air Hangat di Perut</div>
-                        <div class="pack-badge">🥤 Nutrisi: Air Putih Hangat</div>
-                        <div class="pack-badge">🧸 Ghatan: Dengarkan keluhannya & temani bedrest</div>
+                <div class="luxury-packed-layout">
+                    <div class="cycle-tabs-row">
+                        <button class="cycle-tab-btn active-tab" onclick="switchCareTab(event, 'day1')">Day 1</button>
+                        <button class="cycle-tab-btn" onclick="switchCareTab(event, 'day2')">Day 2</button>
+                        <button class="cycle-tab-btn" onclick="switchCareTab(event, 'day3')">Day 3</button>
+                        <button class="cycle-tab-btn" onclick="switchCareTab(event, 'day4')">Day 4</button>
+                        <button class="cycle-tab-btn" onclick="switchCareTab(event, 'day5')">Day 5</button>
+                        <button class="cycle-tab-btn" onclick="switchCareTab(event, 'day6')">Day 6</button>
+                        <button class="cycle-tab-btn" onclick="switchCareTab(event, 'day7')">Day 7</button>
                     </div>
-                </div>
-                <div id="day2" class="cycle-editorial-content">
-                    <div style="font-size: 20px; font-weight: 700; margin-bottom: 15px; font-family:'Playfair Display', serif; font-style:italic;">🌊 Day 02 : Heavy Flow Overflow</div>
-                    <p style="font-size:14px; line-height:1.7; color:#555;">Volume pelepasan darah haid mencapai puncak maksimal. Hilangnya zat besi dalam jumlah masif dapat memicu lemas, pusing kepala, serta nyeri pinggang bawah.</p>
-                    <div class="badge-grid-matrix">
-                        <div class="pack-badge">📢 Volume: Maksimal & Pusing</div>
-                        <div class="pack-badge">🔄 Tindakan: Ganti Pembalut Berkala (3 Jam)</div>
-                        <div class="pack-badge">🥩 Makanan: Tinggi Zat Besi (Daging/Bayam)</div>
-                        <div class="pack-badge">🛌 Ghatan: Tangani tugas fisik, biarkan dia istirahat</div>
+                    
+                    <div id="day1" class="cycle-view-panel active-panel">
+                        <div style="font-size: 22px; font-weight:700; margin-bottom:15px; font-family:'Playfair Display', serif; font-style:italic;">🩸 Day 01 : Peak Contraction Matrix</div>
+                        <p style="font-size:14px; line-height:1.8; color:#4a5568;">Fase peluruhan rahim awal dimulai. Sekresi prostaglandin memicu kontraksi saraf perut bawah secara intensif. Kondisi fisik Syallu cenderung sangat lemas disertai tingkat sensitivitas nyeri tinggi.</p>
+                        <div class="badge-matrix-container">
+                            <div class="luxury-badge-node">🛑 Pain Level: Kram Tinggi & Lemas</div>
+                            <div class="luxury-badge-node">🔥 Care Action: Kompres Air Hangat di Perut Bawah</div>
+                            <div class="luxury-badge-node">🥤 Nutrition Link: Suplai Air Putih Hangat Teratur</div>
+                            <div class="luxury-badge-node">🛌 Ghatan Task: Handle tugas berat dan temani bedrest</div>
+                        </div>
                     </div>
-                </div>
-                <div id="day3" class="cycle-editorial-content">
-                    <div style="font-size: 20px; font-weight: 700; margin-bottom: 15px; font-family:'Playfair Display', serif; font-style:italic;">🍫 Day 03 : Hormonal Shift & Fatigue</div>
-                    <p style="font-size:14px; line-height:1.7; color:#555;">Nyeri rahim luar mulai melandai secara bertahap. Namun fluktuasi level estrogen berada di titik terendah yang memicu kelelahan psikis mendadak atau mood swing.</p>
-                    <div class="badge-grid-matrix">
-                        <div class="pack-badge">⚡ Kondisi: Nyeri Reda, Emosi Sensitif</div>
-                        <div class="pack-badge">🍰 Care: Kirimkan Kue Pastry / Cokelat Manis</div>
-                        <div class="pack-badge">🍵 Minuman: Teh Chamomile Hangat</div>
-                        <div class="pack-badge">🎬 Ghatan: Tonton bersama tontonan cozy favorit</div>
+                    <div id="day2" class="cycle-view-panel">
+                        <div style="font-size: 22px; font-weight:700; margin-bottom:15px; font-family:'Playfair Display', serif; font-style:italic;">🌊 Day 02 : Maximum Heavy Flow Stream</div>
+                        <p style="font-size:14px; line-height:1.8; color:#4a5568;">Volume pelepasan darah haid mencapai titik puncak tertinggi. Kehilangan zat besi yang masif dalam waktu cepat memicu pusing keliling, pegal linu sendi pinggang, dan migrain ringan.</p>
+                        <div class="badge-matrix-container">
+                            <div class="luxury-badge-node">📢 Flow Level: Sangat Banyak & Migrain</div>
+                            <div class="luxury-badge-node">🔄 Care Action: Rutin Ganti Pembalut per 3 Jam</div>
+                            <div class="luxury-badge-node">🥩 Nutrition Link: Konsumsi Daging Merah / Bayam</div>
+                            <div class="luxury-badge-node">🛌 Ghatan Task: Larang aktivitas fisik berlebih atau jalan jauh</div>
+                        </div>
                     </div>
-                </div>
-                <div id="day4" class="cycle-editorial-content">
-                    <div style="font-size: 20px; font-weight: 700; margin-bottom: 15px; font-family:'Playfair Display', serif; font-style:italic;">🌿 Day 04 : System Stabilization Node</div>
-                    <p style="font-size:14px; line-height:1.7; color:#555;">Pendarahan melambat drastis menjadi bercak flek tipis. Keseimbangan metabolisme tubuh internal Syallu mulai pulih kembali secara bertahap.</p>
-                    <div class="badge-grid-matrix">
-                        <div class="pack-badge">📈 Status: Energi Tubuh Mulai Kembali</div>
-                        <div class="pack-badge">🥗 Menu: Makanan Berserat & Buah Segar</div>
-                        <div class="pack-badge">🧘‍♀️ Gerak: Peregangan Tubuh / Yoga Ringan</div>
+                    <div id="day3" class="cycle-view-panel">
+                        <div style="font-size: 22px; font-weight:700; margin-bottom:15px; font-family:'Playfair Display', serif; font-style:italic;">🍫 Day 03 : Hormonal Deprivation Mood Shift</div>
+                        <p style="font-size:14px; line-height:1.8; color:#4a5568;">Nyeri perut utama melandai secara perlahan. Namun level estrogen turun drastis ke titik terendah sebelum proses pemulihan sel telur baru, memicu kelelahan psikologis atau mood swing sensitif.</p>
+                        <div class="badge-matrix-container">
+                            <div class="luxury-badge-node">⚡ Status Core: Nyeri Reda, Emosi Sensitif</div>
+                            <div class="luxury-badge-node">🍰 Sugar Treat: Belikan Kue Pastry Hangat / Es Krim</div>
+                            <div class="luxury-badge-node">🍵 Care Drink: Seduh Teh Chamomile Hangat</div>
+                            <div class="luxury-badge-node">🎬 Ghatan Task: Jaga pembicaraan dan tonton series cozy bareng</div>
+                        </div>
                     </div>
-                </div>
-                <div id="day5" class="cycle-editorial-content">
-                    <div style="font-size: 20px; font-weight: 700; margin-bottom: 15px; font-family:'Playfair Display', serif; font-style:italic;">✨ Day 05 : Estrogen Renaissance</div>
-                    <p style="font-size:14px; line-height:1.7; color:#555;">Level hormon estrogen naik konstan. Suasana hati membaik signifikan dan sirkulasi stamina tubuh kembali normal. Siklus mendekati bersih total.</p>
-                    <div class="badge-grid-matrix">
-                        <div class="pack-badge">🔆 Vibe: Bersih Total & Ceria</div>
-                        <div class="pack-badge">💅 Kondisi: Kulit Lebih Segar & Fokus Naik</div>
-                        <div class="pack-badge">💬 Ghatan: Momen tepat untuk obrolan deep talk intim</div>
+                    <div id="day4" class="cycle-view-panel">
+                        <div style="font-size: 22px; font-weight:700; margin-bottom:15px; font-family:'Playfair Display', serif; font-style:italic;">🌿 Day 04 : Internal System Stabilization Phase</div>
+                        <p style="font-size:14px; line-height:1.8; color:#4a5568;">Pendarahan melambat konstan menjadi bercak flek tipis. Keseimbangan metabolisme organ reproduksi internal Syallu mulai mengisi ulang pasokan energi fisik baru.</p>
+                        <div class="badge-matrix-container">
+                            <div class="luxury-badge-node">📈 Status Core: Energi Stamina Mulai Pulih</div>
+                            <div class="luxury-badge-node">🥗 Nutrition Link: Konsumsi Serat Sayur & Buah Segar</div>
+                            <div class="luxury-badge-node">🧘‍♀️ Move Care: Sesi Yoga Ringan / Peregangan Otot</div>
+                        </div>
                     </div>
-                </div>
-                <div id="day6" class="cycle-editorial-content">
-                    <div style="font-size: 20px; font-weight: 700; margin-bottom: 15px; font-family:'Playfair Display', serif; font-style:italic;">🏃‍♀️ Day 06 : Total Recharged State</div>
-                    <p style="font-size:14px; line-height:1.7; color:#555;">Siklus pendarahan selesai seutuhnya. Stamina fisik bekerja penuh, memberikan dorongan motivasi dan kesegaran mental optimal untuk berkegiatan luar.</p>
-                    <div class="badge-grid-matrix">
-                        <div class="pack-badge">🔋 Stamina: 100% Kapsitas Puncak</div>
-                        <div class="pack-badge">🗺️ Agenda: Waktu ideal merancang kencan keluar</div>
+                    <div id="day5" class="cycle-view-panel">
+                        <div style="font-size: 22px; font-weight:700; margin-bottom:15px; font-family:'Playfair Display', serif; font-style:italic;">✨ Day 05 : Estrogen Surge Renaissance</div>
+                        <p style="font-size:14px; line-height:1.8; color:#4a5568;">Hormon estrogen meningkat konstan, mempercepat hidrasi jaringan kulit wajah dan mengembalikan kecerahan emosional. Siklus peluruhan berada di fase bersih total.</p>
+                        <div class="badge-matrix-container">
+                            <div class="luxury-badge-node">🔆 Vibe Level: Bersih Total, Ceria & Nyaman</div>
+                            <div class="luxury-badge-node">💅 Status Core: Hidrasi Wajah Membaik, Fokus Naik</div>
+                            <div class="luxury-badge-node">💬 Ghatan Task: Momen paling ideal untuk deep talk intim</div>
+                        </div>
                     </div>
-                </div>
-                <div id="day7" class="cycle-editorial-content">
-                    <div style="font-size: 20px; font-weight: 700; margin-bottom: 15px; font-family:'Playfair Display', serif; font-style:italic;">🕊️ Day 07 : Reset Protocol Complete</div>
-                    <p style="font-size:14px; line-height:1.7; color:#555;">Sistem reproduksi kembali berputar ke siklus reguler bulanan baru. Fase penat bulanan Syallu berhasil terlewati dengan sangat sehat dan penuh perhatian.</p>
-                    <div class="badge-grid-matrix">
-                        <div class="pack-badge">✅ Siklus: Normal Reguler Baru</div>
-                        <div class="pack-badge">🏆 Ghatan Status: Caretaker Protocol Success</div>
+                    <div id="day6" class="cycle-view-panel">
+                        <div style="font-size: 22px; font-weight:700; margin-bottom:15px; font-family:'Playfair Display', serif; font-style:italic;">🏃‍♀️ Day 06 : Fully Recharged Battery Capacity</div>
+                        <p style="font-size:14px; line-height:1.8; color:#4a5568;">Siklus menstrual selesai seutuhnya. Seluruh kapasitas metabolisme tubuh kembali beroperasi optimal, mendongkrak motivasi berkegiatan luar ruangan dan stamina mental.</p>
+                        <div class="badge-matrix-container">
+                            <div class="luxury-badge-node">🔋 Stamina: 100% Berfungsi Normal Maksimal</div>
+                            <div class="luxury-badge-node">🗺️ Agenda Target: Sesi paling tepat eksekusi kencan luar</div>
+                        </div>
+                    </div>
+                    <div id="day7" class="cycle-view-panel">
+                        <div style="font-size: 22px; font-weight:700; margin-bottom:15px; font-family:'Playfair Display', serif; font-style:italic;">🕊️ Day 07 : System Loop Reset Success</div>
+                        <p style="font-size:14px; line-height:1.8; color:#4a5568;">Rotasi hormonal berganti masuk ke siklus reguler bulanan baru. Fase penat bulanan Syallu berhasil terlewati dengan sangat aman, bersih, sehat, dan penuh perhatian konsisten.</p>
+                        <div class="badge-matrix-container">
+                            <div class="luxury-badge-node">✅ Siklus Loop: Sirkulasi Normal Baru</div>
+                            <div class="luxury-badge-node">🏆 Ghatan Reward: Caretaker Protocol Perfect Executed</div>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- EDITORIAL PURE FOOTER -->
+        <!-- PURE EDITORIAL FOOTER COMPONENT -->
         <footer>
-            <div>Secure System Node v3.5</div>
+            <div>Secure Capsule Node : Connected Live</div>
             <div>Curated by Ghatan & Syallu &copy; 2026</div>
         </footer>
 
     </div>
 
     <script>
-        // ORIGINAL FIREBASE MATRIX ROUTING LINK
+        // CORE FIREBASE ROUTING MATRIX CONFIGURATION
         const firebaseConfig = {
             apiKey: "AIzaSyBXL3eBi9s3-amUxSv5s4m4EM-BSuzp-rs",
             authDomain: "ourhomey.firebaseapp.com",
@@ -664,7 +820,7 @@
         const db = firebase.database();
 
         const anniversaryAnchor = new Date(2026, 5, 11); 
-        const arrayDecider = ["Nonton Movie/Netflix bareng 🎬", "Berburu Sunset Keliling Kota Bandar Lampung 🚗", "Nongkrong di Cafe Baru Unila ☕", "Berburu Jajan Pastry & Bakery Terdekat 🍰", "Sesi Deep Talk malam hari 💬", "Pesan delivery Pizza/McD di kasur 🍕"];
+        const arrayDecider = ["Nonton Movie/Netflix bareng 🎬", "Berburu Sunset Keliling Bandar Lampung 🚗", "Nongkrong di Cafe Baru dekat Unila ☕", "Berburu Jajan Pastry & Bakery Hangat 🍰", "Sesi Deep Talk malam hari 💬", "Pesan delivery Pizza/McD di kasur 🍕"];
 
         function verifikasi() {
             const inputUser = document.getElementById("password-input").value;
@@ -680,18 +836,15 @@
                     runEcosystemDashboard();
                 }, 500);
             } else {
-                alert("Security Core Verification Error: Access Denied.");
+                alert("Vault Security Control Verification Error: Access Denied.");
             }
         }
 
-        // NAVIGATION SWITCH LOGIC FOR MULTIPAGE
         function navigateTo(viewId) {
             const allFrames = document.getElementsByClassName("view-frame");
-            for(let frame of allFrames) {
-                frame.classList.remove("active-view");
-            }
+            for(let frame of allFrames) frame.classList.remove("active-view");
             document.getElementById(viewId).classList.add("active-view");
-            document.getElementById("vault-dropdown").style.display = "none"; // Close dropdown automatically
+            document.getElementById("vault-dropdown").style.display = "none";
             window.scrollTo(0,0);
         }
 
@@ -700,14 +853,12 @@
             dropdown.style.display = (dropdown.style.display === "flex") ? "none" : "flex";
         }
 
-        // Close dropdown when clicking outside
         window.addEventListener("click", function(e) {
             if (!e.target.matches('.vault-trigger-btn')) {
                 document.getElementById("vault-dropdown").style.display = "none";
             }
         });
 
-        // AUTO GDRIVE IMAGE LINK CONVERTER
         function reformatDriveUrl(url) {
             let processed = url.trim();
             if (processed.includes("drive.google.com")) {
@@ -728,11 +879,23 @@
         function runEcosystemDashboard() {
             calculateTimeMetrics();
             
-            // Sync Core Text Nodes Live
+            // Sync Core Nodes Text Realtime
             db.ref('status/syallu').on('value', snap => { document.getElementById('status-syallu').value = snap.val() || ""; });
             db.ref('status/ghatan').on('value', snap => { document.getElementById('status-ghatan').value = snap.val() || ""; });
-            db.ref('stickyNote').on('value', snap => { document.getElementById('sticky-text').value = snap.val() || ""; });
+            db.ref('status/batSyallu').on('value', snap => { document.getElementById('battery-syallu').value = snap.val() || ""; });
+            db.ref('status/batGhatan').on('value', snap => { document.getElementById('battery-ghatan').value = snap.val() || ""; });
+            
+            // Sync Active Emoji States
+            db.ref('status/emojiSyalluIdx').on('value', snap => { resetEmojiSelection('syallu', snap.val()); });
+            db.ref('status/emojiGhatanIdx').on('value', snap => { resetEmojiSelection('ghatan', snap.val()); });
+
+            db.ref('memos/m1').on('value', snap => { document.getElementById('sticky-text-1').value = snap.val() || ""; });
+            db.ref('memos/m2').on('value', snap => { document.getElementById('sticky-text-2').value = snap.val() || ""; });
+            db.ref('memos/m3').on('value', snap => { document.getElementById('sticky-text-3').value = snap.val() || ""; });
+            
+            db.ref('audio/songWeek').on('value', snap => { document.getElementById('song-week').value = snap.val() || ""; });
             db.ref('nextPlan/title').on('value', snap => { document.getElementById('next-title').value = snap.val() || ""; });
+            db.ref('nextPlan/location').on('value', snap => { document.getElementById('next-loc').value = snap.val() || ""; });
             
             db.ref('nextPlan/date').on('value', snap => { 
                 const dateParam = snap.val() || "2026-12-31";
@@ -740,36 +903,58 @@
                 computeTargetCountdown(dateParam);
             });
 
-            // Sync Visual Frame Modules
+            // Sync Visual Photo Album Frame Modules
             db.ref('polaroid/p1').on('value', snap => {
-                const node = snap.val() || { img: "", cap: "Moment Slate 1" };
-                document.getElementById('p1-img').src = node.img || "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=500";
+                const node = snap.val() || { img: "", cap: "First Moment" };
+                document.getElementById('p1-img').src = node.img || "https://images.unsplash.com/photo-1542856391-010fb87dcfed?w=500";
                 document.getElementById('p1-cap').value = node.cap;
                 document.getElementById('p1-url').value = node.img;
             });
             db.ref('polaroid/p2').on('value', snap => {
-                const node = snap.val() || { img: "", cap: "Moment Slate 2" };
-                document.getElementById('p2-img').src = node.img || "https://images.unsplash.com/photo-1544816155-12df9643f363?w=500";
+                const node = snap.val() || { img: "", cap: "Second Moment" };
+                document.getElementById('p2-img').src = node.img || "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=500";
                 document.getElementById('p2-cap').value = node.cap;
                 document.getElementById('p2-url').value = node.img;
             });
 
-            // Sync Bucket Array Storage
+            // Sync Main Bucket Ledger List Progress Data
             db.ref('bucketList').on('value', snap => {
                 const listWrapper = document.getElementById('bucket-list-frame');
                 listWrapper.innerHTML = "";
                 const dataset = snap.val() || {};
+                let totalItems = 0; let completedItems = 0;
+                
+                for (let key in dataset) {
+                    totalItems++; if(dataset[key].done) completedItems++;
+                    const row = document.createElement('li');
+                    row.className = "item-row-node";
+                    row.innerHTML = `<input type="checkbox" ${dataset[key].done ? 'checked' : ''} onclick="invertBucketState('bucketList/${key}', ${dataset[key].done})"> 
+                                    <span style="${dataset[key].done ? 'text-decoration: line-through; color: var(--text-muted);' : ''}">${dataset[key].text}</span>
+                                    <span class="node-erasure" onclick="purgeNode('bucketList/${key}')">❌</span>`;
+                    listWrapper.appendChild(row);
+                }
+                let ratio = totalItems > 0 ? Math.round((completedItems / totalItems) * 100) : 0;
+                document.getElementById('bucket-ratio-text').innerText = `${ratio}% Completed (${completedItems}/${totalItems})`;
+                document.getElementById('bucket-bar-fill').style.width = `${ratio}%`;
+            });
+
+            // Sync Sub Feature Checklist Prep Node Trip Packlist
+            db.ref('tripChecklist').on('value', snap => {
+                const wrapper = document.getElementById('trip-checklist-frame');
+                wrapper.innerHTML = "";
+                const dataset = snap.val() || {};
                 for (let key in dataset) {
                     const row = document.createElement('li');
-                    row.className = "item-data-row";
-                    row.innerHTML = `<input type="checkbox" ${dataset[key].done ? 'checked' : ''} onclick="invertBucketState('${key}', ${dataset[key].done})"> 
+                    row.className = "item-row-node";
+                    row.style.background = "#fafbfc";
+                    row.innerHTML = `<input type="checkbox" ${dataset[key].done ? 'checked' : ''} onclick="invertBucketState('tripChecklist/${key}', ${dataset[key].done})"> 
                                     <span style="${dataset[key].done ? 'text-decoration: line-through; color: var(--text-muted);' : ''}">${dataset[key].text}</span>
-                                    <span style="margin-left:auto; cursor:pointer; opacity:0.4;" onclick="purgeBucketNode('${key}')">❌</span>`;
-                    listWrapper.appendChild(row);
+                                    <span class="node-erasure" onclick="purgeNode('tripChecklist/${key}')">❌</span>`;
+                    wrapper.appendChild(row);
                 }
             });
 
-            // Sync Historical Milestone Nodes
+            // Sync Story Milestone Historical Chronology Elements
             db.ref('timeline').on('value', snap => {
                 const streamWrapper = document.getElementById('timeline-node-frame');
                 streamWrapper.innerHTML = "";
@@ -777,84 +962,92 @@
                 for (let key in dataset) {
                     const node = document.createElement('div');
                     node.className = "timeline-editorial-node";
-                    node.innerHTML = `<div class="node-timestamp" style="font-weight:700; font-size:12px; display:flex; justify-content:space-between;"><span>${dataset[key].date}</span><span style="cursor:pointer; opacity:0.3;" onclick="purgeTimelineNode('${key}')">❌</span></div>
-                                     <div class="node-content-text">${dataset[key].text}</div>`;
+                    node.innerHTML = `<div style="font-weight:700; font-size:12px; display:flex; justify-content:space-between;"><span>${dataset[key].date}</span><span style="cursor:pointer; opacity:0.3;" onclick="purgeNode('timeline/${key}')">❌</span></div>
+                                     <div style="font-size:14px; margin-top:5px; line-height:1.6;">${dataset[key].text}</div>`;
                     streamWrapper.appendChild(node);
                 }
             });
         }
 
-        // TRUE INLINE ENGINE BROADCAST SINK
+        // MOOD EMOJI SELECTION INJECT OPERATIONS
+        function selectMoodEmoji(user, idx, emojiChar) {
+            db.ref(`status/emoji${user === 'syallu' ? 'Syallu' : 'Ghatan'}Idx`).set(idx);
+            // Append emoji parameter text value automatically to status log line if empty
+            const field = document.getElementById(`status-${user}`);
+            if(field.value.trim() === "") { field.value = `Feeling ${emojiChar}`; field.blur(); }
+        }
+        function resetEmojiSelection(user, activeIdx) {
+            const prefix = user === 'syallu' ? 'emoji-s-' : 'emoji-g-';
+            for(let i=1; i<=4; i++) {
+                const btn = document.getElementById(prefix + i);
+                if(btn) btn.classList.remove('active-emoji');
+            }
+            if(activeIdx) {
+                const activeBtn = document.getElementById(prefix + activeIdx);
+                if(activeBtn) activeBtn.classList.add('active-emoji');
+            }
+        }
+
+        // INLINE ENGINE BROADCAST CONTEXT SINK
         function sendDirectField(element, path) {
             const cleanVal = element.value.trim();
             if(cleanVal !== "") db.ref(path).set(cleanVal);
         }
-
         function sendDateDirect(element) {
             const cleanVal = element.value.trim();
-            if(cleanVal !== "") {
-                db.ref('nextPlan/date').set(cleanVal);
-                computeTargetCountdown(cleanVal);
-            }
+            if(cleanVal !== "") { db.ref('nextPlan/date').set(cleanVal); computeTargetCountdown(cleanVal); }
         }
-
         function commitPolaroidNode(id) {
             const descriptiveCap = document.getElementById(`p${id}-cap`).value.trim();
             const sourceUrlRaw = document.getElementById(`p${id}-url`).value.trim();
             const conversionUrlClean = reformatDriveUrl(sourceUrlRaw);
-            if(descriptiveCap && conversionUrlClean) {
-                db.ref(`polaroid/p${id}`).set({ img: conversionUrlClean, cap: descriptiveCap });
-            }
+            if(descriptiveCap && conversionUrlClean) { db.ref(`polaroid/p${id}`).set({ img: conversionUrlClean, cap: descriptiveCap }); }
         }
+        function handleFieldEnter(evt, element) { if (evt.key === "Enter") element.blur(); }
 
-        function handleFieldEnter(evt, element) {
-            if (evt.key === "Enter") element.blur();
-        }
-
-        // DATABASE OPERATION PIPELINES
+        // CORE STORAGE INPUT OPERATIONS
         function pushBucketNode() {
-            const inputField = document.getElementById('bucket-input-field');
-            const dataText = inputField.value.trim();
-            if (dataText) {
-                db.ref('bucketList').push({ text: dataText, done: false });
-                inputField.value = "";
-            }
+            const field = document.getElementById('bucket-input-field');
+            const txt = field.value.trim();
+            if (txt) { db.ref('bucketList').push({ text: txt, done: false }); field.value = ""; }
         }
-        function invertBucketState(key, status) { db.ref(`bucketList/${key}/done`).set(!status); }
-        function purgeBucketNode(key) { db.ref(`bucketList/${key}`).remove(); }
-
-        document.getElementById('bucket-input-field')?.addEventListener('keypress', function(e){
-            if(e.key === 'Enter') pushBucketNode();
-        });
+        function pushTripChecklistNode() {
+            const field = document.getElementById('trip-item-input');
+            const txt = field.value.trim();
+            if (txt) { db.ref('tripChecklist').push({ text: txt, done: false }); field.value = ""; }
+        }
+        function invertBucketState(fullPath, currentStatus) { db.ref(`${fullPath}/done`).set(!currentStatus); }
+        function purgeNode(fullPath) { db.ref(fullPath).remove(); }
 
         function pushTimelineNode() {
-            const dateNode = document.getElementById('milestone-date-field');
-            const descNode = document.getElementById('milestone-desc-field');
-            const txtDate = dateNode.value.trim();
-            const txtDesc = descNode.value.trim();
-            if (txtDate && txtDesc) {
-                db.ref('timeline').push({ date: txtDate, text: txtDesc });
-                dateNode.value = "";
-                descNode.value = "";
-            }
+            const dNode = document.getElementById('milestone-date-field');
+            const tNode = document.getElementById('milestone-desc-field');
+            const txtDate = dNode.value.trim(); const txtDesc = tNode.value.trim();
+            if (txtDate && txtDesc) { db.ref('timeline').push({ date: txtDate, text: txtDesc }); dNode.value = ""; tNode.value = ""; }
         }
-        function purgeTimelineNode(key) { db.ref(`timeline/${key}`).remove(); }
 
-        // ALGORITHMIC TELEMETRY COMPILERS
+        // TIME ARCHIVE COMPILERS
         function calculateTimeMetrics() {
             const currentMoment = new Date();
             const differenceTime = currentMoment - anniversaryAnchor;
             const absoluteDaysSum = Math.floor(differenceTime / (1000 * 60 * 60 * 24));
             document.getElementById("days-counter").innerText = absoluteDaysSum;
+            
+            let nextMilestone = 100;
+            if (absoluteDaysSum >= 100) nextMilestone = 365;
+            if (absoluteDaysSum >= 365) nextMilestone = 500;
+            if (absoluteDaysSum >= 500) nextMilestone = 1000;
+            
+            document.getElementById("m-next").innerText = `${nextMilestone} Days`;
+            let remaining = nextMilestone - absoluteDaysSum;
+            document.getElementById("m-rem").innerText = remaining > 0 ? `${remaining} Days` : "Achieved! ✨";
         }
 
         function computeTargetCountdown(targetStr) {
-            const calculatedTarget = new Date(targetStr);
-            const todayBoundary = new Date();
-            todayBoundary.setHours(0,0,0,0);
-            const absoluteDifference = calculatedTarget - todayBoundary;
+            const calculatedTarget = new Date(targetStr); const todayBoundary = new Date();
+            todayBoundary.setHours(0,0,0,0); const absoluteDifference = calculatedTarget - todayBoundary;
             const metricDaysLeft = Math.ceil(absoluteDifference / (1000 * 60 * 60 * 24));
-            document.getElementById("countdown-timer").innerText = metricDaysLeft > 0 ? `${metricDaysLeft} Days Left` : (metricDaysLeft === 0 ? "Today! ✨" : "Archived Target");
+            document.getElementById("countdown-timer").innerText = metricDaysLeft > 0 ? `${metricDaysLeft} Days Left` : (metricDaysLeft === 0 ? "Today! ✨" : "Archived");
         }
 
         function triggerRouletteEngine() {
@@ -863,23 +1056,21 @@
                 document.getElementById('roulette-display').innerText = arrayDecider[Math.floor(Math.random() * arrayDecider.length)];
                 if (++ticker > 14) {
                     clearInterval(processingInterval);
-                    document.getElementById('roulette-display').innerText = `✨ Verified Strategy: ${arrayDecider[Math.floor(Math.random() * arrayDecider.length)]} ✨`;
+                    document.getElementById('roulette-display').innerText = `✨ Strategy Choice Selected: ${arrayDecider[Math.floor(Math.random() * arrayDecider.length)]} ✨`;
                 }
             }, 75);
         }
 
         function switchCareTab(evt, matrixId) {
-            const targetPanels = document.getElementsByClassName("cycle-editorial-content");
-            for (let i = 0; i < targetPanels.length; i++) targetPanels[i].classList.remove("active-content");
-            const controllerBtns = document.getElementsByClassName("cycle-tab-trigger");
+            const targetPanels = document.getElementsByClassName("cycle-view-panel");
+            for (let i = 0; i < targetPanels.length; i++) targetPanels[i].classList.remove("active-panel");
+            const controllerBtns = document.getElementsByClassName("cycle-tab-btn");
             for (let i = 0; i < controllerBtns.length; i++) controllerBtns[i].classList.remove("active-tab");
-            document.getElementById(matrixId).classList.add("active-content");
+            document.getElementById(matrixId).classList.add("active-panel");
             evt.currentTarget.classList.add("active-tab");
         }
 
-        document.getElementById("password-input").addEventListener("keypress", function(event) {
-            if (event.key === "Enter") verifikasi();
-        });
+        document.getElementById("password-input").addEventListener("keypress", function(event) { if (event.key === "Enter") verifikasi(); });
     </script>
 </body>
 </html>
