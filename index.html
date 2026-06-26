@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Our Homey Space : Private Ghibli Capsule</title>
+    <title>Our Homey Space : The Unlimited Capsule</title>
     
-    <!-- Google Fonts for High End Typography -->
+    <!-- Google Fonts Premium Typography -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -16,197 +16,91 @@
 
     <style>
         :root {
-            --bg-base: #ecf4f9; 
-            --bg-glass: rgba(255, 255, 255, 0.75); 
+            --bg-base: #eef7fc; 
             --bg-panel: #ffffff; 
-            --accent-blue: #bcd4e6; 
+            --accent-blue: #b0d4de; 
+            --accent-dark: #3a86c8;
             --text-primary: #2c3e50; 
             --text-muted: #7f95a8;
-            --border-light: rgba(214, 228, 237, 0.8);
-            --shadow-premium: 0 30px 60px rgba(188, 212, 230, 0.25);
-            --transition-bounce: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            --border-light: rgba(214, 228, 237, 0.7);
+            --glass-card: rgba(255, 255, 255, 0.75);
+            --transition-bounce: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            --transition-smooth: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Plus Jakarta Sans', sans-serif;
-        }
-
-        body {
-            background-color: var(--bg-base);
-            color: var(--text-primary);
-            overflow-x: hidden;
-            -webkit-font-smoothing: antialiased;
-        }
-
-        ::-webkit-scrollbar { width: 5px; height: 5px; }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Plus Jakarta Sans', sans-serif; }
+        body { background-color: var(--bg-base); color: var(--text-primary); overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+        ::-webkit-scrollbar { width: 4px; height: 4px; }
         ::-webkit-scrollbar-track { background: var(--bg-base); }
         ::-webkit-scrollbar-thumb { background: var(--accent-blue); border-radius: 10px; }
 
         /* -----------------------------------------
-           SECURE GATEWAY
+           SECURE GATEWAY INTERFACE
         ----------------------------------------- */
         #login-screen {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(135deg, #ecf4f9 0%, #d6e6f2 100%);
-            display: flex; justify-content: center; align-items: center;
-            z-index: 99999;
-            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(135deg, #ecf4f9 0%, #bcd4e6 100%);
+            display: flex; justify-content: center; align-items: center; z-index: 99999;
+            transition: var(--transition-smooth);
         }
         .login-box {
-            background: var(--bg-panel);
-            padding: 60px;
-            border-radius: 40px;
-            box-shadow: var(--shadow-premium);
-            text-align: center;
-            max-width: 450px;
-            width: 90%;
-            border: 1px solid var(--border-light);
+            background: var(--bg-panel); padding: 60px; border-radius: 36px;
+            box-shadow: 0 40px 90px rgba(147,184,207,0.3); text-align: center; max-width: 440px; width: 90%;
         }
-        .login-box h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: 38px;
-            font-style: italic;
-            margin-bottom: 12px;
-            color: var(--text-primary);
-        }
-        .login-box p {
-            color: var(--text-muted);
-            font-size: 11px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 35px;
-        }
+        .login-box h2 { font-family: 'Playfair Display', serif; font-size: 38px; font-style: italic; margin-bottom: 10px; }
+        .login-box p { color: var(--text-muted); font-size: 11px; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 35px; }
         .login-box input {
-            width: 100%;
-            padding: 18px;
-            margin-bottom: 20px;
-            border: 1px solid var(--border-light);
-            border-radius: 16px;
-            outline: none;
-            text-align: center;
-            font-size: 16px;
-            background: #f7fafc;
-            transition: all 0.3s;
+            width: 100%; padding: 18px; margin-bottom: 20px; border: 1px solid var(--border-light);
+            border-radius: 16px; outline: none; text-align: center; font-size: 16px; background: #fbfbfc;
         }
-        .login-box input:focus { border-color: var(--accent-blue); background: #ffffff; }
         .login-box button {
-            background: var(--text-primary);
-            color: #ffffff;
-            border: none;
-            padding: 18px;
-            width: 100%;
-            border-radius: 16px;
-            cursor: pointer;
-            font-size: 13px;
-            font-weight: 600;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
+            background: var(--text-primary); color: #ffffff; border: none; padding: 18px;
+            width: 100%; border-radius: 16px; cursor: pointer; font-size: 13px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase;
         }
 
         /* -----------------------------------------
-           NAVBAR NAVIGATION & DROPDOWN
+           PREMIUM NAVBAR EDITORIAL
         ----------------------------------------- */
         header {
-            position: fixed;
-            top: 0; left: 0; width: 100%;
-            padding: 30px 60px;
-            display: flex; justify-content: space-between; align-items: center;
-            z-index: 999;
-            background: rgba(236, 244, 249, 0.8);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(214, 228, 237, 0.4);
+            position: fixed; top: 0; left: 0; width: 100%; padding: 30px 60px;
+            display: flex; justify-content: space-between; align-items: center; z-index: 999;
+            background: rgba(238, 247, 252, 0.8); backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(214, 228, 237, 0.5);
         }
-        .brand-logo {
-            font-family: 'Playfair Display', serif;
-            font-size: 24px;
-            font-weight: 600;
-            font-style: italic;
-            cursor: pointer;
-            color: var(--text-primary);
-        }
+        .brand-logo { font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 600; font-style: italic; cursor: pointer; }
         .vault-trigger-btn {
-            background: var(--bg-panel);
-            color: var(--text-primary);
-            border: 1px solid var(--border-light);
-            padding: 12px 26px;
-            border-radius: 30px;
-            font-size: 11px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            cursor: pointer;
-            display: flex; align-items: center; gap: 8px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.02);
-            transition: var(--transition-bounce);
+            background: var(--bg-panel); color: var(--text-primary); border: 1px solid var(--border-light);
+            padding: 12px 28px; border-radius: 30px; font-size: 11px; font-weight: 700; text-transform: uppercase;
+            letter-spacing: 1.5px; cursor: pointer; display: flex; align-items: center; gap: 8px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.02); transition: var(--transition-bounce);
         }
-        .vault-trigger-btn:hover { transform: scale(1.05); background: var(--bg-base); }
+        .vault-trigger-btn:hover { transform: scale(1.05); background: #fcfdfe; }
         .vault-dropdown-menu {
-            position: absolute;
-            top: 130%; right: 0;
-            background: var(--bg-panel);
-            border: 1px solid var(--border-light);
-            border-radius: 24px;
-            width: 320px;
-            padding: 20px;
-            box-shadow: 0 30px 60px rgba(44,62,80,0.1);
-            display: none;
-            flex-direction: column;
-            gap: 8px;
+            position: absolute; top: 130%; right: 0; background: var(--bg-panel);
+            border: 1px solid var(--border-light); border-radius: 24px; width: 320px; padding: 20px;
+            box-shadow: 0 30px 60px rgba(44,62,80,0.12); display: none; flex-direction: column; gap: 8px;
             animation: softEntrance 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
         .vault-dropdown-menu a {
-            padding: 12px 18px;
-            border-radius: 12px;
-            font-size: 13px;
-            color: var(--text-primary);
-            text-decoration: none;
-            font-weight: 500;
-            display: flex; justify-content: space-between; align-items: center;
-            transition: background 0.2s;
+            padding: 12px 18px; border-radius: 12px; font-size: 13px; color: var(--text-primary);
+            text-decoration: none; font-weight: 500; display: flex; justify-content: space-between; align-items: center;
         }
         .vault-dropdown-menu a:hover { background: var(--bg-base); }
 
         /* -----------------------------------------
-           MULTIPAGE FRAMEWORK SYSTEM WITH GHIBLI GIF
+           IMMERIVE MULTIPAGE CHASSIS FRAMEWORK
         ----------------------------------------- */
         #main-content { display: none; }
         .view-frame {
-            min-height: 100vh;
-            width: 100%;
-            padding: 140px 60px 80px 60px;
-            display: none;
-            position: relative;
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
+            min-height: 100vh; width: 100%; padding: 150px 60px 80px 60px; display: none;
+            position: relative; background-size: cover; background-position: center; background-repeat: no-repeat;
         }
-        .view-frame::before {
-            content: "";
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(236, 244, 249, 0.4); 
-            z-index: 1;
-        }
-        .view-frame.active-view {
-            display: block;
-            animation: viewFadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        .view-container-inner {
-            position: relative;
-            z-index: 2;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        @keyframes viewFadeIn {
-            from { opacity: 0; transform: scale(0.98) translateY(10px); }
-            to { opacity: 1; transform: scale(1) translateY(0); }
-        }
+        .view-frame::before { content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(238, 247, 252, 0.35); z-index: 1; }
+        .view-frame.active-view { display: block; animation: viewFadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
+        .view-container-inner { position: relative; z-index: 2; max-width: 1200px; margin: 0 auto; }
+        @keyframes viewFadeIn { from { opacity: 0; transform: scale(0.99) translateY(10px); } to { opacity: 1; transform: scale(1) translateY(0); } }
 
-        /* BACKGROUND GIF ALLOCATION PER PAGE */
+        /* MULTIPAGE GHIBLI GIF ENGINE ALLOCATION */
         #home-view { background-image: url('https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExM3N5bHd0M3g4N3hxcjZzeG1mZ3VwYWw3Nmx6amR4dnEwM3N3Znd5NCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/V0IdVIIWWMGGA/giphy.gif'); }
         #view-counter { background-image: url('https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExMmV0NThrbDkzb3g3MHNkaXBoMXh6bWx3MG95azV6YW04bXQycnNveSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/14uXQbPS73Y3qU/giphy.gif'); }
         #view-status { background-image: url('https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExbDNscnd5NXRmZ3pldXl6Z3N2OHFnaGptMGY4OGdtcHdpeXR3Nzg0dyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/wdaW9H0BH42Mo/giphy.gif'); }
@@ -216,160 +110,96 @@
         #view-soundtrack { background-image: url('https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExbDVtcHloOWV6M3R2NHoxdzFwdXdwMmszcmgzdXZ6a3p0eDZobWoxbiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/9AI3DOykf70fS/giphy.gif'); }
         #view-bucket { background-image: url('https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHBlM2U1NnR4amY3NHI0aTNnM2Mwb212bW0zNGQ3MHppZ3c0ODJhYSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/ho0xBIzv3f9Yc/giphy.gif'); }
         #view-gallery { background-image: url('https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExYnJ2MXNqdWpyaDhrNnd2MTU2azBrMW5iZHJ0Mm4xazh0N3VobzhveSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/B0f059T1BO44U/giphy.gif'); }
-        #view-timeline { background-image: url('https://media.giphy.com/media/玉/giphy.gif'), url('https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExZ3g5YTB6MW40Zmd6NThidXphbjZ3YWl5cTBpeW11ZHJvNzB1MTJ0NSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/PZ87wAAnwPjLa/giphy.gif'); }
+        #view-timeline { background-image: url('https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExZ3g5YTB6MW40Zmd6NThidXphbjZ3YWl5cTBpeW11ZHJvNzB1MTJ0NSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/PZ87wAAnwPjLa/giphy.gif'); }
         #view-care { background-image: url('https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExN3Y1ZXl2cDZqamg5bjh0M253c3Z2cXN1NHVrcDR1NWN6ejFpNmQ3eCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/VvO6fIPY6S0eI/giphy.gif'); }
 
         /* -----------------------------------------
-           HOMEPAGE DESIGN (PURE EDITORIAL NO BORING)
+           HOMEPAGE (EDITORIAL HERO LAYOUT)
         ----------------------------------------- */
-        .hero-layout {
-            display: grid;
-            grid-template-columns: 1.2fr 1fr;
-            gap: 60px;
-            align-items: center;
-            min-height: calc(100vh - 220px);
-        }
-        .hero-text-side {
-            background: var(--bg-glass);
-            padding: 50px;
-            border-radius: 32px;
-            backdrop-filter: blur(12px);
-            border: 1px solid var(--border-light);
-            box-shadow: var(--shadow-premium);
-        }
-        .hero-tag {
-            font-size: 11px; text-transform: uppercase; letter-spacing: 4px;
-            color: var(--text-muted); margin-bottom: 20px; font-weight: 700;
-        }
-        .hero-text-side h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: 52px; font-weight: 400; line-height: 1.2;
-            color: var(--text-primary); margin-bottom: 25px;
-        }
+        .hero-layout { display: grid; grid-template-columns: 1.2fr 1fr; gap: 60px; align-items: center; min-height: calc(100vh - 230px); }
+        .hero-text-side { background: var(--glass-card); padding: 50px; border-radius: 32px; backdrop-filter: blur(16px); border: 1px solid var(--border-light); box-shadow: var(--shadow-premium); }
+        .hero-tag { font-size: 11px; text-transform: uppercase; letter-spacing: 4px; color: var(--text-muted); margin-bottom: 20px; font-weight: 700; }
+        .hero-text-side h1 { font-family: 'Playfair Display', serif; font-size: 52px; font-weight: 400; line-height: 1.2; margin-bottom: 25px; }
         .hero-text-side h1 span { font-style: italic; font-weight: 300; color: var(--text-muted); }
-        .hero-paragraph { font-size: 14px; line-height: 1.8; color: var(--text-primary); }
-        
-        .interactive-welcome-card {
-            background: var(--bg-panel);
-            border-radius: 24px;
-            padding: 30px;
-            margin-top: 30px;
-            border: 1px solid var(--border-light);
-            display: flex; align-items: center; gap: 20px;
-        }
-        .welcome-avatar {
-            width: 60px; height: 60px; border-radius: 50%;
-            background: #cbdfe3; display: flex; justify-content: center; align-items: center; font-size: 24px;
-        }
+        .hero-paragraph { font-size: 14.5px; line-height: 1.8; color: var(--text-primary); }
+        .welcome-badge-row { background: var(--bg-panel); border-radius: 20px; padding: 25px; margin-top: 35px; border: 1px solid var(--border-light); display: flex; align-items: center; gap: 20px; }
+        .badge-icon { width: 55px; height: 55px; border-radius: 50%; background: #e3eff5; display: flex; justify-content: center; align-items: center; font-size: 24px; }
+        .quote-banner { grid-column: span 2; background: var(--bg-panel); padding: 40px; border-radius: 24px; border: 1px solid var(--border-light); margin-top: 40px; text-align: center; }
+        .quote-banner p { font-family: 'Playfair Display', serif; font-style: italic; font-size: 20px; color: var(--text-primary); }
 
         /* -----------------------------------------
-           GLASS COMPONENT LAYOUT FOR FULLPAGES
+           GLOBAL PACKED UI LAYOUT FRAMES
         ----------------------------------------- */
         .back-nav-btn {
-            display: inline-flex; align-items: center; gap: 8px;
-            font-size: 11px; font-weight: 700; text-transform: uppercase;
-            letter-spacing: 1.5px; color: var(--text-primary); cursor: pointer;
-            background: var(--bg-panel); padding: 10px 20px; border-radius: 20px;
-            margin-bottom: 30px; border: 1px solid var(--border-light);
-            transition: var(--transition-bounce);
+            display: inline-flex; align-items: center; gap: 8px; font-size: 11px; font-weight: 700; text-transform: uppercase;
+            letter-spacing: 1.5px; color: var(--text-primary); cursor: pointer; background: var(--bg-panel);
+            padding: 12px 24px; border-radius: 30px; margin-bottom: 30px; border: 1px solid var(--border-light); transition: var(--transition-bounce);
         }
         .back-nav-btn:hover { transform: translateX(-5px); }
-        
-        .page-meta-header {
-            margin-bottom: 40px; background: var(--bg-glass);
-            padding: 25px 40px; border-radius: 24px; display: inline-block;
-            backdrop-filter: blur(10px); border: 1px solid var(--border-light);
-        }
-        .page-meta-header h2 { font-family: 'Playfair Display', serif; font-size: 38px; font-weight: 400; color: var(--text-primary); }
+        .page-meta-header { margin-bottom: 40px; background: var(--glass-card); padding: 25px 40px; border-radius: 24px; display: inline-block; backdrop-filter: blur(10px); border: 1px solid var(--border-light); }
+        .page-meta-header h2 { font-family: 'Playfair Display', serif; font-size: 38px; font-weight: 400; }
         .page-meta-header p { font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 3px; margin-top: 4px; }
+        .luxury-packed-layout { background: var(--glass-card); border-radius: 32px; padding: 50px; border: 1px solid var(--border-light); backdrop-filter: blur(20px); box-shadow: var(--shadow-premium); }
 
-        .luxury-packed-layout {
-            background: var(--bg-glass);
-            border-radius: 32px;
-            padding: 50px;
-            border: 1px solid var(--border-light);
-            backdrop-filter: blur(16px);
-            box-shadow: var(--shadow-premium);
-        }
-
+        /* Input Standard flat styles */
         .clean-inline-input {
-            width: 100%; border: 1px solid transparent; background: transparent;
-            font-size: 16px; color: var(--text-primary); padding: 12px 16px;
-            border-radius: 12px; outline: none; transition: all 0.2s;
+            width: 100%; border: 1px solid transparent; background: transparent; font-size: 15px; color: var(--text-primary);
+            padding: 14px 18px; border-radius: 14px; outline: none; transition: all 0.2s;
         }
-        .clean-inline-input:hover { background: rgba(255,255,255,0.5); border-color: var(--border-light); }
-        .clean-inline-input:focus { background: #ffffff; border-color: var(--text-primary); box-shadow: 0 4px 15px rgba(0,0,0,0.02); }
+        .clean-inline-input:hover { background: rgba(255,255,255,0.6); border-color: var(--border-light); }
+        .clean-inline-input:focus { background: #ffffff; border-color: var(--text-primary); box-shadow: 0 4px 20px rgba(0,0,0,0.02); }
 
         /* -----------------------------------------
-           FITUR MAKSIMAL SUB COMPONENTS
+           DYNAMIC INFINITE FUNCTIONALITY CORES
         ----------------------------------------- */
         
-        /* 1. Day Counter */
-        .giant-metric-number {
-            font-family: 'Playfair Display', serif; font-size: 130px;
-            text-align: center; color: var(--text-primary); font-weight: 300; line-height: 1;
-            text-shadow: 0 10px 30px rgba(176,205,219,0.2);
-        }
-        .counter-milestone-grid {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; margin-top: 40px;
-        }
-        .milestone-node-card {
-            background: var(--bg-panel); padding: 25px; border-radius: 20px; text-align: center; border: 1px solid var(--border-light);
-        }
+        /* 1. Day Counter Core */
+        .giant-metric-number { font-family: 'Playfair Display', serif; font-size: 130px; text-align: center; color: var(--text-primary); font-weight: 300; line-height: 1; text-shadow: 0 10px 40px rgba(188,212,230,0.3); }
+        .counter-milestone-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; margin-top: 40px; }
+        .milestone-node-card { background: var(--bg-panel); padding: 25px; border-radius: 20px; text-align: center; border: 1px solid var(--border-light); }
         .milestone-title { font-size: 11px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
-        .milestone-value { font-family: 'Playfair Display', serif; font-size: 26px; font-weight: 600; margin-top: 8px; color: var(--text-primary); }
+        .milestone-value { font-family: 'Playfair Display', serif; font-size: 26px; font-weight: 600; margin-top: 8px; }
 
-        /* 2. Mood Stream */
+        /* 2. Mood Stream Framework */
         .mood-dashboard { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
         .mood-user-block { background: var(--bg-panel); padding: 35px; border-radius: 28px; border: 1px solid var(--border-light); }
         .mood-user-title { font-weight: 700; font-size: 13px; text-transform: uppercase; color: var(--text-muted); margin-bottom: 20px; letter-spacing: 1px; }
-        .mood-selector-container { display: flex; gap: 10px; margin-bottom: 15px; background: var(--bg-base); padding: 10px; border-radius: 14px; justify-content: space-around; }
-        .mood-emoji-btn { font-size: 22px; cursor: pointer; transition: transform 0.2s; border: none; background: none; opacity: 0.5; }
-        .mood-emoji-btn.active-emoji { transform: scale(1.25); opacity: 1; filter: drop-shadow(0 4px 8px rgba(0,0,0,0.1)); }
+        .mood-selector-container { display: flex; gap: 10px; margin-bottom: 20px; background: var(--bg-base); padding: 10px; border-radius: 14px; justify-content: space-around; }
+        .mood-emoji-btn { font-size: 22px; cursor: pointer; transition: transform 0.2s; border: none; background: none; opacity: 0.4; }
+        .mood-emoji-btn.active-emoji { transform: scale(1.3); opacity: 1; filter: drop-shadow(0 4px 10px rgba(0,0,0,0.12)); }
+        .mood-history-vault { margin-top: 30px; border-top: 1px dashed var(--border-light); padding-top: 25px; }
+        .mood-log-stream { max-height: 150px; overflow-y: auto; list-style: none; font-size: 13px; color: var(--text-muted); }
+        .mood-log-item { padding: 8px 0; border-bottom: 1px solid #fbfbfc; display: flex; justify-content: space-between; }
 
-        /* 3. Adventure Countdown */
-        .countdown-center-node { text-align: center; max-width: 650px; margin: 0 auto; }
-        .pack-list-box { text-align: left; background: var(--bg-panel); padding: 30px; border-radius: 24px; margin-top: 40px; border: 1px solid var(--border-light); }
+        /* 3. Infinite Future Countdown Generator */
+        .countdown-dynamic-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 25px; }
+        .countdown-event-card { background: var(--bg-panel); padding: 30px; border-radius: 24px; border: 1px solid var(--border-light); text-align: center; position: relative; }
+        .card-days-left { font-family: 'Playfair Display', serif; font-size: 42px; font-weight: 400; color: var(--text-primary); margin: 15px 0; }
 
-        /* 4. Sticky Board */
+        /* 4. Infinite Masonry Sticky Notes */
         .board-canvas-notes { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 25px; }
-        .individual-sticky-card {
-            background: #fffef0; border-left: 5px solid #e3d3b4; padding: 25px;
-            border-radius: 0 20px 20px 0; min-height: 180px; display: flex; flex-direction: column;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.02);
-        }
-        .sticky-card-textarea {
-            width: 100%; flex: 1; background: transparent; border: none; outline: none;
-            resize: none; font-size: 14px; line-height: 1.7; color: #3a3a3a;
-        }
+        .individual-sticky-card { background: #fffef2; border-left: 5px solid #e3d3b4; padding: 25px; border-radius: 0 20px 20px 0; min-height: 190px; display: flex; flex-direction: column; box-shadow: 0 10px 25px rgba(0,0,0,0.01); }
+        .sticky-card-textarea { width: 100%; flex: 1; background: transparent; border: none; outline: none; resize: none; font-size: 14.5px; line-height: 1.7; color: #3a3a3a; }
 
-        /* 5. Date Roulette */
-        .wheel-display-screen {
-            background: var(--bg-panel); padding: 50px; border-radius: 28px;
-            font-family: 'Playfair Display', serif; font-size: 26px; font-style: italic; margin-bottom: 35px;
-            border: 2px dashed var(--accent-blue); text-align: center;
-        }
+        /* 5. Date Roulette Decider List Core */
+        .wheel-display-screen { background: var(--bg-panel); padding: 50px; border-radius: 28px; font-family: 'Playfair Display', serif; font-size: 26px; font-style: italic; margin-bottom: 35px; border: 2px dashed var(--accent-blue); text-align: center; }
 
-        /* 7. Bucket List Progress */
+        /* 7. Bucket List Tracker */
         .bucket-progress-wrapper { background: var(--bg-panel); padding: 25px; border-radius: 20px; margin-bottom: 35px; border: 1px solid var(--border-light); }
         .progress-bar-container { background: var(--bg-base); height: 10px; border-radius: 10px; margin-top: 12px; overflow: hidden; }
         .progress-bar-fill { background: var(--text-primary); height: 100%; width: 0%; transition: width 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
 
-        /* 8. Polaroid Framing */
-        .album-stream-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(310px, 1fr)); gap: 40px; }
-        .ghibli-polaroid-frame {
-            background: var(--bg-panel); padding: 20px 20px 35px 20px;
-            border: 1px solid var(--border-light); border-radius: 4px;
-            box-shadow: 0 15px 40px rgba(44,62,80,0.04); text-align: center;
-        }
-        .ghibli-polaroid-frame img { width: 100%; height: 260px; object-fit: cover; border-radius: 2px; margin-bottom: 20px; background: #fafbfc; }
+        /* 8. Polaroid Immersive Infinite Framing Layout */
+        .polaroid-editorial-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 35px; }
+        .luxury-polaroid-node { background: var(--bg-panel); padding: 18px 18px 30px 18px; border: 1px solid var(--border-light); border-radius: 4px; box-shadow: 0 15px 40px rgba(44,62,80,0.03); text-align: center; position: relative; }
+        .luxury-polaroid-node img { width: 100%; height: 240px; object-fit: cover; border-radius: 2px; margin-bottom: 18px; background-color: #fafbfc; }
 
-        /* 9. Timeline Backbone */
+        /* 9. Timeline Records */
         .timeline-vertical-backbone { padding-left: 10px; max-height: 450px; overflow-y: auto; }
         .timeline-editorial-node { padding-left: 30px; border-left: 2px solid var(--text-primary); position: relative; margin-bottom: 35px; }
         .timeline-editorial-node::before { content: ""; position: absolute; left: -6px; top: 4px; width: 10px; height: 10px; border-radius: 50%; background: var(--bg-panel); border: 2px solid var(--text-primary); }
 
-        /* 10. Period Care Dynamic */
+        /* 10. Period Dashboard Layout */
         .cycle-tabs-row { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 15px; margin-bottom: 30px; border-bottom: 1px solid var(--border-light); }
         .cycle-tab-btn { background: var(--bg-panel); border: 1px solid var(--border-light); padding: 12px 24px; font-size: 12px; font-weight: 700; border-radius: 30px; cursor: pointer; white-space: nowrap; transition: var(--transition-bounce); }
         .cycle-tab-btn.active-tab, .cycle-tab-btn:hover { background: var(--text-primary); color: white; border-color: var(--text-primary); }
@@ -378,36 +208,25 @@
         .badge-matrix-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 15px; margin-top: 30px; }
         .luxury-badge-node { background: var(--bg-panel); padding: 16px 22px; border-radius: 14px; font-size: 13px; font-weight: 600; border: 1px solid var(--border-light); display: flex; align-items: center; gap: 10px; }
 
-        /* Shared Flex Docks */
+        /* Shared Multi Input Form Docks */
         .dock-flex-submission { display: flex; gap: 12px; margin-top: 30px; border-top: 1px dashed var(--border-light); padding-top: 30px; }
         .dock-text-field { flex: 1; padding: 16px 20px; border: 1px solid var(--border-light); border-radius: 14px; font-size: 14px; outline: none; background: var(--bg-base); }
         .dock-text-field:focus { border-color: var(--text-primary); background: #ffffff; }
         .dock-btn-trigger { background: var(--text-primary); color: white; border: none; padding: 16px 32px; border-radius: 14px; font-size: 13px; font-weight: 600; cursor: pointer; transition: background 0.2s; }
         
-        .item-data-list { list-style: none; max-height: 350px; overflow-y: auto; }
         .item-row-node { display: flex; align-items: center; padding: 16px 12px; border-radius: 14px; font-size: 15px; background: var(--bg-panel); margin-bottom: 8px; border: 1px solid var(--border-light); }
         .item-row-node input[type="checkbox"] { margin-right: 16px; accent-color: var(--text-primary); width: 20px; height: 20px; cursor: pointer; }
         .node-erasure { margin-left: auto; cursor: pointer; opacity: 0.3; transition: opacity 0.2s; }
         .node-erasure:hover { opacity: 1; color: #c0392b; }
 
         /* EDITORIAL FOOTER */
-        footer {
-            max-width: 1200px; margin: 100px auto 0 auto;
-            padding: 50px 0; border-top: 1px solid var(--border-light);
-            display: flex; justify-content: space-between; align-items: center;
-            color: var(--text-muted); font-size: 11px; text-transform: uppercase; letter-spacing: 2px;
-            position: relative; z-index: 10;
-        }
-
-        @keyframes softEntrance {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+        footer { max-width: 1200px; margin: 120px auto 0 auto; padding: 50px 0; border-top: 1px solid var(--border-light); display: flex; justify-content: space-between; align-items: center; color: var(--text-muted); font-size: 11px; text-transform: uppercase; letter-spacing: 2px; position: relative; z-index: 10; }
+        @keyframes softEntrance { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
     </style>
 </head>
 <body>
 
-    <!-- VAULT SECURE SYSTEM GATEWAY -->
+    <!-- GATEWAY CHASSIS INTERFACE -->
     <div id="login-screen">
         <div class="login-box">
             <h2>Our Homey Space</h2>
@@ -417,10 +236,10 @@
         </div>
     </div>
 
-    <!-- MAIN PLATFORM NODE -->
+    <!-- MAIN APP STRUCTURE -->
     <div id="main-content">
         
-        <!-- EDITORIAL HEADER BAR NAVIGATION -->
+        <!-- EDITORIAL HEADER MODULE -->
         <header>
             <div class="brand-logo" onclick="navigateTo('home-view')">Syallu & Ghatan.</div>
             <div class="vault-dropdown-wrapper">
@@ -428,8 +247,8 @@
                 <div id="vault-dropdown" class="vault-dropdown-menu">
                     <a href="#" onclick="navigateTo('view-counter')">Day Counter <span>⏳</span></a>
                     <a href="#" onclick="navigateTo('view-status')">Mood Indicators <span>🌱</span></a>
-                    <a href="#" onclick="navigateTo('view-countdown')">Adventure Target <span>🎯</span></a>
-                    <a href="#" onclick="navigateTo('view-notes')">Sticky Notes <span>📝</span></a>
+                    <a href="#" onclick="navigateTo('view-countdown')">Adventure Targets <span>🎯</span></a>
+                    <a href="#" onclick="navigateTo('view-notes')">Sticky Board Notes <span>📝</span></a>
                     <a href="#" onclick="navigateTo('view-roulette')">Date Roulette <span>🎲</span></a>
                     <a href="#" onclick="navigateTo('view-soundtrack')">Audio Soundtrack <span>🎵</span></a>
                     <a href="#" onclick="navigateTo('view-bucket')">Bucket List <span>✈️</span></a>
@@ -440,35 +259,38 @@
             </div>
         </header>
 
-        <!-- VIEW 0: PURE ARCHIVE LANDING HOMEPAGE (EDITORIAL & COZY) -->
+        <!-- VIEW 0: EXCLUSIVE HOMEPAGE PORTAL LAYER -->
         <main id="home-view" class="view-frame active-view">
             <div class="view-container-inner">
                 <div class="hero-layout">
                     <div class="hero-text-side">
-                        <p class="hero-tag">System Node Ecosystem v5.0</p>
+                        <p class="hero-tag">Core Ecosystem Node v6.0</p>
                         <h1>A serene cloud room curated to preserve our <span>shared milestones.</span></h1>
-                        <p class="hero-paragraph">Selamat datang di ruang penyimpanan digital terenkripsi milik Ghatan dan Syallu. Dikembangkan dengan arsitektur Single Page modern berstandar Awwwards, platform ini murni berfungsi sebagai kapsul waktu naratif tanpa dekorasi fitur yang berserakan. Silakan gunakan direktori berkas di pojok kanan atas untuk membuka gerbang memori dan manajemen rencana berkala kita.</p>
+                        <p class="hero-paragraph">Selamat datang di ekosistem digital personal milik Ghatan dan Syallu. Dikembangkan menggunakan visualisasi berlapis cermin transparan dengan latar belakang animasi cuaca Studio Ghibli, beranda ini murni dirancang sebagai ruang baca naratif yang bersih tanpa gangguan fitur. Gunakan pintu berkas di sudut kanan atas untuk mengontrol seluruh data fungsional kita.</p>
                         
-                        <div class="interactive-welcome-card">
-                            <div class="welcome-avatar">☁️</div>
-                            <div>
-                                <div style="font-size:14px; font-weight:700;">Status Koneksi Aman</div>
-                                <div style="font-size:12px; color:var(--text-muted);">Database Realtime terhubung secara instan</div>
+                        <div class="welcome-badge-row">
+                            <div class="badge-icon">☁️</div>
+                            <div style="text-align: left;">
+                                <div style="font-size:14px; font-weight:700;">Secure Database Active</div>
+                                <div style="font-size:12px; color:var(--text-muted);">Firebase cloud synchronizing nodes automatically</div>
                             </div>
                         </div>
                     </div>
-                    <div></div> <!-- Empty right column to show off looping Ghibli background GIF -->
+                    <div></div>
+                </div>
+                <div class="quote-banner">
+                    <p>"The sky is bright, the clouds are high, and my favorite place is right by your side."</p>
                 </div>
             </div>
         </main>
 
-        <!-- VIEW 1: DAY COUNTER DEDICATED PAGE (PACKED) -->
+        <!-- VIEW 1: DAY COUNTER DEDICATED ARCHITECTURE (PACKED) -->
         <section id="view-counter" class="view-frame">
             <div class="view-container-inner">
                 <div class="back-nav-btn" onclick="navigateTo('home-view')">← Back to Index</div>
                 <div class="page-meta-header">
                     <h2>Day Counter</h2>
-                    <p>Union timeline matrix clock parameter</p>
+                    <p>Timeline clock parameters measurement matrix</p>
                 </div>
                 <div class="luxury-packed-layout">
                     <div class="giant-metric-number" id="days-counter">0</div>
@@ -484,21 +306,21 @@
                             <div id="m-rem" class="milestone-value">...</div>
                         </div>
                         <div class="milestone-node-card">
-                            <div class="milestone-title">Ecosystem System Health</div>
-                            <div class="milestone-value" style="color: #27ae60;">100% Secure</div>
+                            <div class="milestone-title">System Synchronization Health</div>
+                            <div class="milestone-value" style="color: #27ae60;">100% Stable</div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- VIEW 2: MOOD INDICATORS DEDICATED PAGE (PACKED SELECTORS) -->
+        <!-- VIEW 2: MOOD TRACKER DEDICATED COMPONENT (PACKED HISTORY LOGS) -->
         <section id="view-status" class="view-frame">
             <div class="view-container-inner">
                 <div class="back-nav-btn" onclick="navigateTo('home-view')">← Back to Index</div>
                 <div class="page-meta-header">
                     <h2>Mood Stream Indicators</h2>
-                    <p>Synchronize live individual energy level parameters and quick emoji states</p>
+                    <p>Synchronize live individual energy fields and permanent history logs</p>
                 </div>
                 <div class="luxury-packed-layout">
                     <div class="mood-dashboard">
@@ -508,10 +330,14 @@
                                 <button class="mood-emoji-btn" id="emoji-s-1" onclick="selectMoodEmoji('syallu', 1, '😊')">😊</button>
                                 <button class="mood-emoji-btn" id="emoji-s-2" onclick="selectMoodEmoji('syallu', 2, '🍰')">🍰</button>
                                 <button class="mood-emoji-btn" id="emoji-s-3" onclick="selectMoodEmoji('syallu', 3, '😴')">😴</button>
-                                <button class="mood-emoji-btn" id="emoji-s-4" onclick="selectMoodEmoji('syallu', 4, ' Penat 😣')">😣</button>
+                                <button class="mood-emoji-btn" id="emoji-s-4" onclick="selectMoodEmoji('syallu', 4, '😣')">😣</button>
                             </div>
-                            <input type="text" id="status-syallu" class="clean-inline-input" style="font-weight: 600;" placeholder="Describe current condition..." onblur="sendDirectField(this, 'status/syallu')" onkeydown="handleFieldEnter(event, this)">
+                            <input type="text" id="status-syallu" class="clean-inline-input" style="font-weight: 600;" placeholder="Describe current status node..." onblur="sendDirectField(this, 'status/syallu')" onkeydown="handleFieldEnter(event, this)">
                             <input type="text" id="battery-syallu" class="clean-inline-input" style="font-size:13px; color:var(--text-muted); margin-top:10px;" placeholder="Energy Battery Indicator (e.g. 90%)" onblur="sendDirectField(this, 'status/batSyallu')" onkeydown="handleFieldEnter(event, this)">
+                            <div class="mood-history-vault">
+                                <div class="milestone-title" style="margin-bottom:10px;">Syallu Mood History Updates</div>
+                                <ul id="history-stream-syallu" class="mood-log-stream"></ul>
+                            </div>
                         </div>
                         <div class="mood-user-block">
                             <div class="mood-user-title">Ghatan Core State</div>
@@ -521,35 +347,11 @@
                                 <button class="mood-emoji-btn" id="emoji-g-3" onclick="selectMoodEmoji('ghatan', 3, '💻')">💻</button>
                                 <button class="mood-emoji-btn" id="emoji-g-4" onclick="selectMoodEmoji('ghatan', 4, '😴')">😴</button>
                             </div>
-                            <input type="text" id="status-ghatan" class="clean-inline-input" style="font-weight: 600;" placeholder="Describe current condition..." onblur="sendDirectField(this, 'status/ghatan')" onkeydown="handleFieldEnter(event, this)">
+                            <input type="text" id="status-ghatan" class="clean-inline-input" style="font-weight: 600;" placeholder="Describe current status node..." onblur="sendDirectField(this, 'status/ghatan')" onkeydown="handleFieldEnter(event, this)">
                             <input type="text" id="battery-ghatan" class="clean-inline-input" style="font-size:13px; color:var(--text-muted); margin-top:10px;" placeholder="Energy Battery Indicator (e.g. 50%)" onblur="sendDirectField(this, 'status/batGhatan')" onkeydown="handleFieldEnter(event, this)">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- VIEW 3: ADVENTURE COUNTDOWN DEDICATED PAGE (PACKED PACKLIST) -->
-        <section id="view-countdown" class="view-frame">
-            <div class="view-container-inner">
-                <div class="back-nav-btn" onclick="navigateTo('home-view')">← Back to Index</div>
-                <div class="page-meta-header">
-                    <h2>Adventure Objective Target</h2>
-                    <p>Chronological countdown tracking with built in journey luggage sub parameters</p>
-                </div>
-                <div class="luxury-packed-layout">
-                    <div class="countdown-center-node">
-                        <input type="text" id="next-title" class="clean-inline-input" style="text-align:center; font-weight:700; font-size:26px;" onblur="sendDirectField(this, 'nextPlan/title')" onkeydown="handleFieldEnter(event, this)">
-                        <div id="countdown-timer" class="giant-metric-number" style="font-size: 72px; margin: 15px 0;">0 Days Left</div>
-                        <input type="text" id="next-date" class="clean-inline-input" style="text-align:center; font-size:13px; color:var(--text-muted);" onblur="sendDateDirect(this)" onkeydown="handleFieldEnter(event, this)">
-                        <input type="text" id="next-loc" class="clean-inline-input" style="text-align:center; font-size:13px; color:var(--text-muted); margin-top:10px;" placeholder="Add Location Link or Venue Address Name" onblur="sendDirectField(this, 'nextPlan/location')" onkeydown="handleFieldEnter(event, this)">
-                        
-                        <div class="pack-list-box">
-                            <div style="font-size:12px; font-weight:700; color:var(--text-muted); text-transform:uppercase; margin-bottom:15px; letter-spacing:1px;">Trip Checklist Prep Sub Node :</div>
-                            <ul id="trip-checklist-frame" class="item-data-list"></ul>
-                            <div class="dock-flex-submission" style="margin-top:15px; padding-top:15px;">
-                                <input type="text" id="trip-item-input" class="dock-text-field" style="padding:12px 16px;" placeholder="Add luggage list parameter...">
-                                <button class="dock-btn-trigger" style="padding:12px 24px;" onclick="pushTripChecklistNode()">Add</button>
+                            <div class="mood-history-vault">
+                                <div class="milestone-title" style="margin-bottom:10px;">Ghatan Mood History Updates</div>
+                                <ul id="history-stream-ghatan" class="mood-log-stream"></ul>
                             </div>
                         </div>
                     </div>
@@ -557,151 +359,155 @@
             </div>
         </section>
 
-        <!-- VIEW 4: STICKY NOTES DEDICATED PAGE -->
-        <section id="view-notes" class="view-frame">
+        <!-- VIEW 3: COUNTDOWN AGENDAS (INFINITE MULTIPLE TRACKING) -->
+        <section id="view-countdown" class="view-frame">
             <div class="view-container-inner">
                 <div class="back-nav-btn" onclick="navigateTo('home-view')">← Back to Index</div>
                 <div class="page-meta-header">
-                    <h2>Multi Sticky Board Notes</h2>
-                    <p>Simultaneous matrix cloud canvas message injection</p>
+                    <h2>Adventure Target Cards</h2>
+                    <p>Infinite tracking engine array matrix for future plans</p>
                 </div>
                 <div class="luxury-packed-layout">
-                    <div class="board-canvas-notes">
-                        <div class="individual-sticky-card">
-                            <div style="font-size: 11px; font-weight:700; color:var(--text-muted); margin-bottom:12px;">Mading Note 01</div>
-                            <textarea id="sticky-text-1" class="sticky-card-textarea" onblur="sendDirectField(this, 'memos/m1')" placeholder="Type direct to write..."></textarea>
-                        </div>
-                        <div class="individual-sticky-card">
-                            <div style="font-size: 11px; font-weight:700; color:var(--text-muted); margin-bottom:12px;">Mading Note 02</div>
-                            <textarea id="sticky-text-2" class="sticky-card-textarea" onblur="sendDirectField(this, 'memos/m2')" placeholder="Type direct to write..."></textarea>
-                        </div>
-                        <div class="individual-sticky-card">
-                            <div style="font-size: 11px; font-weight:700; color:var(--text-muted); margin-bottom:12px;">Mading Note 03</div>
-                            <textarea id="sticky-text-3" class="sticky-card-textarea" onblur="sendDirectField(this, 'memos/m3')" placeholder="Type direct to write..."></textarea>
-                        </div>
+                    <div id="countdown-cards-container" class="countdown-dynamic-grid"></div>
+                    <div class="dock-flex-submission">
+                        <input type="text" id="countdown-input-title" class="dock-text-field" placeholder="Agenda Title (e.g. Weekend Picnic)">
+                        <input type="text" id="countdown-input-date" class="dock-text-field" placeholder="Date (YYYY-MM-DD)">
+                        <button class="dock-btn-trigger" onclick="pushCountdownCardNode()">+ Add Agenda Card</button>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- VIEW 5: DATE ROULETTE DEDICATED PAGE -->
+        <!-- VIEW 4: STICKY BOARD NOTES DEDICATED GRID (INFINITE EXPANSION) -->
+        <section id="view-notes" class="view-frame">
+            <div class="view-container-inner">
+                <div class="back-nav-btn" onclick="navigateTo('home-view')">← Back to Index</div>
+                <div class="page-meta-header">
+                    <h2>Infinite Sticky Board Notes</h2>
+                    <p>Simultaneous real-time dashboard micro memo storage layers</p>
+                </div>
+                <div class="luxury-packed-layout">
+                    <div id="sticky-masonry-container" class="board-canvas-notes"></div>
+                    <button class="dock-btn-trigger" style="margin-top:30px; width:100%; border-radius:16px;" onclick="pushNewStickyCard()">+ Deploy New Sticky Note Card</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- VIEW 5: ROULETTE DECIDER DEDICATED PAGE (INFINITE DYNAMIC ENTRY) -->
         <section id="view-roulette" class="view-frame">
             <div class="view-container-inner">
                 <div class="back-nav-btn" onclick="navigateTo('home-view')">← Back to Index</div>
                 <div class="page-meta-header">
                     <h2>The "Terserah" Roulette Decision Engine</h2>
-                    <p>Algorithmic strategy pathway randomization solution choice generator</p>
+                    <p>Dynamic decision option random list generator machine</p>
                 </div>
                 <div class="luxury-packed-layout">
                     <div class="roulette-container-box">
-                        <div id="roulette-display" class="wheel-display-screen">Awaiting spin execution array command...</div>
-                        <button class="dock-btn-trigger" style="border-radius:30px; padding:16px 44px; font-size:14px;" onclick="triggerRouletteEngine()">Spin Strategy Array</button>
+                        <div id="roulette-display" class="wheel-display-screen">Awaiting roulette strategy roll triggers...</div>
+                        <button class="dock-btn-trigger" style="border-radius:30px; padding:16px 44px; font-size:14px; width:100%; margin-bottom:30px;" onclick="spinRouletteEngine()">Spin Option Array</button>
                         
-                        <div class="custom-roulette-list">
-                            <div style="font-size:11px; font-weight:700; color:var(--text-muted); text-transform:uppercase; margin-bottom:15px; letter-spacing:1px;">Configured Operational Choices Database :</div>
-                            <p style="font-size:14px; color:var(--text-primary); line-height:1.8; background:var(--bg-panel); padding:20px; border-radius:16px; border:1px solid var(--border-light);">1. Nonton Movie Bareng | 2. Keliling Kota Bandar Lampung | 3. Cafe Hopping Unila | 4. Berburu Jajanan Pastry | 5. Sesi Deep Talk Intim | 6. Delivery McD Pizza Terdekat</p>
+                        <div class="custom-roulette-list" style="text-align:left;">
+                            <div class="milestone-title" style="margin-bottom:15px;">Dynamic Strategy Options Repository</div>
+                            <ul id="roulette-options-frame" class="item-data-list"></ul>
+                            <div class="dock-flex-submission" style="margin-top:15px; padding-top:15px;">
+                                <input type="text" id="roulette-input-field" class="dock-text-field" placeholder="Insert new alternative choice option...">
+                                <button class="dock-btn-trigger" style="padding:14px 24px;" onclick="pushRouletteOptionNode()">Add Choice</button>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- VIEW 6: AUDIO SOUNDTRACK DEDICATED PAGE -->
+        <!-- VIEW 6: AUDIO SOUNDTRACK VAULT -->
         <section id="view-soundtrack" class="view-frame">
             <div class="view-container-inner">
                 <div class="back-nav-btn" onclick="navigateTo('home-view')">← Back to Index</div>
                 <div class="page-meta-header">
                     <h2>Soundtrack Core Stream Archive</h2>
-                    <p>Linked audio mix tape database framework data sync</p>
+                    <p>Linked collective custom music data track logs</p>
                 </div>
                 <div class="luxury-packed-layout">
-                    <div class="audio-luxury-vault">
+                    <div class="audio-luxury-vault" style="max-width:750px; margin:0 auto;">
                         <div class="item-row-node" style="padding:25px; gap:10px;">
                             <div style="font-size:36px; filter:grayscale(100%);">💿</div>
                             <div>
-                                <div style="font-size:15px; font-weight:600; color:var(--text-primary);">Main Linked Spotify Ecosystem</div>
-                                <a href="https://open.spotify.com" target="_blank" style="font-size:12px; color:var(--text-muted); text-decoration:underline;">Launch Connected Anchor</a>
+                                <div style="font-size:15px; font-weight:600;">Main Connected Spotify System Link</div>
+                                <a href="https://open.spotify.com" target="_blank" style="font-size:12px; color:var(--text-muted); text-decoration:underline;">Launch Connected Anchor Layout</a>
                             </div>
                         </div>
-                        <div class="item-row-node" style="padding:25px; background:#fffdfc; flex-direction:column; align-items:flex-start; gap:10px;">
-                            <div style="font-size:11px; font-weight:700; color:var(--text-muted); text-transform:uppercase; letter-spacing:1px;">Song Tracking Focus Of The Week :</div>
-                            <input type="text" id="song-week" class="clean-inline-input" style="font-size:16px; font-weight:600; padding:6px 0;" placeholder="Type track name link parameter here..." onblur="sendDirectField(this, 'audio/songWeek')">
+                        <div class="item-row-node" style="padding:25px; background:#fffdfc; flex-direction:column; align-items:flex-start; gap:15px;">
+                            <div class="milestone-title">Curated Relationship Music Log Records</div>
+                            <ul id="music-track-frame" class="item-data-list" style="width:100%;"></ul>
+                            <div class="dock-flex-submission" style="width:100%; gap:8px; margin-top:10px; padding-top:15px;">
+                                <input type="text" id="music-input-track" class="dock-text-field" placeholder="Track Name">
+                                <input type="text" id="music-input-note" class="dock-text-field" placeholder="Memories Note (e.g. Lagu pas kita ke...)">
+                                <button class="dock-btn-trigger" onclick="pushMusicTrackNode()">Record</button>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- VIEW 7: BUCKET LIST DEDICATED PAGE -->
+        <!-- VIEW 7: BUCKET LIST DEDICATED LAYER -->
         <section id="view-bucket" class="view-frame">
             <div class="view-container-inner">
                 <div class="back-nav-btn" onclick="navigateTo('home-view')">← Back to Index</div>
                 <div class="page-meta-header">
                     <h2>Collective Future Bucket List</h2>
-                    <p>Target goals pathway registry development progress tracker metrics</p>
+                    <p>Dynamic target goals milestone ratio progress records logs</p>
                 </div>
                 <div class="luxury-packed-layout" style="max-width: 850px; margin: 0 auto;">
                     <div class="bucket-progress-wrapper">
                         <div style="display:flex; justify-content:space-between; font-size:12px; font-weight:700; color:var(--text-muted); letter-spacing:0.5px;">
-                            <span>COMPLETION RATIO LEDGER DETECTOR</span>
+                            <span>COMPLETION RATIO PROGRESS LEDGER</span>
                             <span id="bucket-ratio-text">0% Completed</span>
                         </div>
                         <div class="progress-bar-container"><div id="bucket-bar-fill" class="progress-bar-fill"></div></div>
                     </div>
-
                     <ul id="bucket-list-frame" class="item-data-list"></ul>
-                    
                     <div class="dock-flex-submission">
-                        <input type="text" id="bucket-input-field" class="dock-text-field" placeholder="Append new dream map ledger data...">
+                        <input type="text" id="bucket-input-field" class="dock-text-field" placeholder="Append new dream roadmap parameter data...">
                         <button class="dock-btn-trigger" onclick="pushBucketNode()">Deploy Plan</button>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- VIEW 8: PHOTO GALLERY ALBUM DEDICATED PAGE -->
+        <!-- VIEW 8: PHOTO GALLERY MODULE (INFINITE IMAGES + GDRIVE COMPILER RECONVERSION) -->
         <section id="view-gallery" class="view-frame">
             <div class="view-container-inner">
                 <div class="back-nav-btn" onclick="navigateTo('home-view')">← Back to Index</div>
                 <div class="page-meta-header">
-                    <h2>Captured Polaroid Frames</h2>
-                    <p>Visual logs vault configuration node (Equipped with automated protection system)</p>
+                    <h2>Captured Polaroid Photo Albums</h2>
+                    <p>Infinite photographic storage layer with real-time dynamic node inject system</p>
                 </div>
                 <div class="luxury-packed-layout">
-                    <div class="album-stream-grid">
-                        <div class="ghibli-polaroid-frame">
-                            <img id="p1-img" src="https://images.unsplash.com/photo-1542856391-010fb87dcfed?w=500" alt="Visual Frame Log Node" onerror="this.src='https://images.unsplash.com/photo-1542856391-010fb87dcfed?w=500'">
-                            <div class="polaroid-inputs">
-                                <input type="text" id="p1-cap" class="clean-inline-input" style="font-weight:700; text-align:center; font-size:14px;" placeholder="Add Title Description" onblur="commitPolaroidNode(1)" onkeydown="handleFieldEnter(event, this)">
-                                <input type="text" id="p1-url" class="clean-inline-input" style="font-size:10px; color:var(--text-muted); text-align:center;" placeholder="Paste Photo Direct / GDrive Share Link Address" onblur="commitPolaroidNode(1)" onkeydown="handleFieldEnter(event, this)">
-                            </div>
-                        </div>
-                        <div class="ghibli-polaroid-frame">
-                            <img id="p2-img" src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=500" alt="Visual Frame Log Node" onerror="this.src='https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=500'">
-                            <div class="polaroid-inputs">
-                                <input type="text" id="p2-cap" class="clean-inline-input" style="font-weight:700; text-align:center; font-size:14px;" placeholder="Add Title Description" onblur="commitPolaroidNode(2)" onkeydown="handleFieldEnter(event, this)">
-                                <input type="text" id="p2-url" class="clean-inline-input" style="font-size:10px; color:var(--text-muted); text-align:center;" placeholder="Paste Photo Direct / GDrive Share Link Address" onblur="commitPolaroidNode(2)" onkeydown="handleFieldEnter(event, this)">
-                            </div>
-                        </div>
+                    <div id="polaroid-infinite-grid" class="polaroid-editorial-grid"></div>
+                    <div class="dock-flex-submission" style="background:var(--bg-panel); padding:30px; border-radius:24px; border:1px solid var(--border-light); margin-top:40px; box-shadow:0 10px 30px rgba(0,0,0,0.01);">
+                        <input type="text" id="gallery-input-cap" class="dock-text-field" placeholder="Moment Memory Title Caption...">
+                        <input type="text" id="gallery-input-url" class="dock-text-field" placeholder="Paste Image Address / GDrive Public Link Address...">
+                        <button class="dock-btn-trigger" onclick="pushNewPolaroidFrameNode()">+ Deploy Photo Node</button>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- VIEW 9: STORY TIMELINE DEDICATED PAGE -->
+        <!-- VIEW 9: STORY TIMELINE LAYER -->
         <section id="view-timeline" class="view-frame">
             <div class="view-container-inner">
                 <div class="back-nav-btn" onclick="navigateTo('home-view')">← Back to Index</div>
                 <div class="page-meta-header">
                     <h2>Historical Milestone Chain Log</h2>
-                    <p>Chronological relationship index tracking structural ledger mapping</p>
+                    <p>Chronological relationship index core logging mapper structure</p>
                 </div>
                 <div class="luxury-packed-layout" style="max-width: 850px; margin: 0 auto;">
                     <div id="timeline-node-frame" class="timeline-vertical-backbone"></div>
                     <div class="dock-flex-submission" style="flex-direction: column; gap: 12px;">
-                        <input type="text" id="milestone-date-field" class="dock-text-field" placeholder="Date Parameter Setup (e.g. 11 Juni 2026)">
+                        <input type="text" id="milestone-date-field" class="dock-text-field" placeholder="Date Parameter Setup Node (e.g. 11 Juni 2026)">
                         <div style="display:flex; gap:12px; width:100%;">
-                            <input type="text" id="milestone-desc-field" class="dock-text-field" placeholder="Describe unique memory historical element node text...">
+                            <input type="text" id="milestone-desc-field" class="dock-text-field" placeholder="Describe unique memory narrative log story content text...">
                             <button class="dock-btn-trigger" onclick="pushTimelineNode()">Record Event</button>
                         </div>
                     </div>
@@ -709,13 +515,13 @@
             </div>
         </section>
 
-        <!-- VIEW 10: PERIOD CARE PLAN DEDICATED PAGE (PACKED & ACTIONABLE) -->
+        <!-- VIEW 10: AUTOMATED SICKNESS PERIOD MONITOR VIEW -->
         <section id="view-care" class="view-frame">
             <div class="view-container-inner">
                 <div class="back-nav-btn" onclick="navigateTo('home-view')">← Back to Index</div>
                 <div class="page-meta-header">
                     <h2>Biomedical Cycle Comfort Protocol</h2>
-                    <p>Actionable tactical 7-day care matrix structural parameter guide dashboard</p>
+                    <p>Tactical action tracking care matrix layout dashboard</p>
                 </div>
                 <div class="luxury-packed-layout">
                     <div class="cycle-tabs-row">
@@ -732,7 +538,7 @@
                         <div style="font-size: 22px; font-weight:700; margin-bottom:15px; font-family:'Playfair Display', serif; font-style:italic;">🩸 Day 01 : Peak Contraction Matrix</div>
                         <p style="font-size:14px; line-height:1.8; color:#4a5568;">Fase peluruhan rahim awal dimulai. Sekresi prostaglandin memicu kontraksi saraf perut bawah secara intensif. Kondisi fisik Syallu cenderung sangat lemas disertai tingkat sensitivitas nyeri tinggi.</p>
                         <div class="badge-matrix-container">
-                            <div class="luxury-badge-node">🛑 Pain Level: Kram Tinggi & Lemas</div>
+                            <div class="luxury-badge-node">🛑 Pain Level: Kram Tinggi dan Lemas</div>
                             <div class="luxury-badge-node">🔥 Care Action: Kompres Air Hangat di Perut Bawah</div>
                             <div class="luxury-badge-node">🥤 Nutrition Link: Suplai Air Putih Hangat Teratur</div>
                             <div class="luxury-badge-node">🛌 Ghatan Task: Handle tugas berat dan temani bedrest</div>
@@ -742,18 +548,18 @@
                         <div style="font-size: 22px; font-weight:700; margin-bottom:15px; font-family:'Playfair Display', serif; font-style:italic;">🌊 Day 02 : Maximum Heavy Flow Stream</div>
                         <p style="font-size:14px; line-height:1.8; color:#4a5568;">Volume pelepasan darah haid mencapai titik puncak tertinggi. Kehilangan zat besi yang masif dalam waktu cepat memicu pusing keliling, pegal linu sendi pinggang, dan migrain ringan.</p>
                         <div class="badge-matrix-container">
-                            <div class="luxury-badge-node">📢 Flow Level: Sangat Banyak & Migrain</div>
+                            <div class="luxury-badge-node">📢 Flow Level: Sangat Banyak dan Migrain</div>
                             <div class="luxury-badge-node">🔄 Care Action: Rutin Ganti Pembalut per 3 Jam</div>
-                            <div class="luxury-badge-node">🥩 Nutrition Link: Konsumsi Daging Merah / Bayam</div>
-                            <div class="luxury-badge-node">🛌 Ghatan Task: Larang aktivitas fisik berlebih atau jalan jauh</div>
+                            <div class="luxury-badge-node">🥩 Nutrition Link: Konsumsi Daging Merah atau Bayam</div>
+                            <div class="luxury-badge-node">🛌 Ghatan Task: Batasi pergerakan fisik jauh, prioritaskan bedrest</div>
                         </div>
                     </div>
                     <div id="day3" class="cycle-view-panel">
                         <div style="font-size: 22px; font-weight:700; margin-bottom:15px; font-family:'Playfair Display', serif; font-style:italic;">🍫 Day 03 : Hormonal Deprivation Mood Shift</div>
-                        <p style="font-size:14px; line-height:1.8; color:#4a5568;">Nyeri perut utama melandai secara perlahan. Namun level estrogen turun drastis ke titik terendah sebelum proses pemulihan sel telur baru, memicu kelelahan psikologis atau mood swing sensitif.</p>
+                        <p style="font-size:14px; line-height:1.8; color:#4a5568;">Nyeri perut utama melandai secara perlahan. Namun level estrogen turun drastis ke titik terendah sebelum proses pemulihan sel telur baru, memicu ketidakseimbangan mood dan emosi sensitif.</p>
                         <div class="badge-matrix-container">
                             <div class="luxury-badge-node">⚡ Status Core: Nyeri Reda, Emosi Sensitif</div>
-                            <div class="luxury-badge-node">🍰 Sugar Treat: Belikan Kue Pastry Hangat / Es Krim</div>
+                            <div class="luxury-badge-node">🍰 Sugar Treat: Belikan Kue Pastry Hangat atau Es Krim</div>
                             <div class="luxury-badge-node">🍵 Care Drink: Seduh Teh Chamomile Hangat</div>
                             <div class="luxury-badge-node">🎬 Ghatan Task: Jaga pembicaraan dan tonton series cozy bareng</div>
                         </div>
@@ -763,15 +569,15 @@
                         <p style="font-size:14px; line-height:1.8; color:#4a5568;">Pendarahan melambat konstan menjadi bercak flek tipis. Keseimbangan metabolisme organ reproduksi internal Syallu mulai mengisi ulang pasokan energi fisik baru.</p>
                         <div class="badge-matrix-container">
                             <div class="luxury-badge-node">📈 Status Core: Energi Stamina Mulai Pulih</div>
-                            <div class="luxury-badge-node">🥗 Nutrition Link: Konsumsi Serat Sayur & Buah Segar</div>
-                            <div class="luxury-badge-node">🧘‍♀️ Move Care: Sesi Yoga Ringan / Peregangan Otot</div>
+                            <div class="luxury-badge-node">🥗 Nutrition Link: Konsumsi Serat Sayur dan Buah Segar</div>
+                            <div class="luxury-badge-node">🧘‍♀️ Move Care: Sesi Yoga Ringan atau Peregangan Otot</div>
                         </div>
                     </div>
                     <div id="day5" class="cycle-view-panel">
                         <div style="font-size: 22px; font-weight:700; margin-bottom:15px; font-family:'Playfair Display', serif; font-style:italic;">✨ Day 05 : Estrogen Surge Renaissance</div>
                         <p style="font-size:14px; line-height:1.8; color:#4a5568;">Hormon estrogen meningkat konstan, mempercepat hidrasi jaringan kulit wajah dan mengembalikan kecerahan emosional. Siklus peluruhan berada di fase bersih total.</p>
                         <div class="badge-matrix-container">
-                            <div class="luxury-badge-node">🔆 Vibe Level: Bersih Total, Ceria & Nyaman</div>
+                            <div class="luxury-badge-node">🔆 Vibe Level: Bersih Total, Ceria dan Nyaman</div>
                             <div class="luxury-badge-node">💅 Status Core: Hidrasi Wajah Membaik, Fokus Naik</div>
                             <div class="luxury-badge-node">💬 Ghatan Task: Momen paling ideal untuk deep talk intim</div>
                         </div>
@@ -796,16 +602,16 @@
             </div>
         </section>
 
-        <!-- PURE EDITORIAL FOOTER COMPONENT -->
+        <!-- EDITORIAL PURE FOOTER -->
         <footer>
-            <div>Secure Capsule Node : Connected Live</div>
+            <div>Secure System Operational Node</div>
             <div>Curated by Ghatan & Syallu &copy; 2026</div>
         </footer>
 
     </div>
 
     <script>
-        // CORE FIREBASE ROUTING MATRIX CONFIGURATION
+        // FIREBASE SYNC MANAGEMENT ROUTING BLOCK CONFIG
         const firebaseConfig = {
             apiKey: "AIzaSyBXL3eBi9s3-amUxSv5s4m4EM-BSuzp-rs",
             authDomain: "ourhomey.firebaseapp.com",
@@ -820,7 +626,7 @@
         const db = firebase.database();
 
         const anniversaryAnchor = new Date(2026, 5, 11); 
-        const arrayDecider = ["Nonton Movie/Netflix bareng 🎬", "Berburu Sunset Keliling Bandar Lampung 🚗", "Nongkrong di Cafe Baru dekat Unila ☕", "Berburu Jajan Pastry & Bakery Hangat 🍰", "Sesi Deep Talk malam hari 💬", "Pesan delivery Pizza/McD di kasur 🍕"];
+        let arrayDecider = ["Nonton Movie Bareng 🎬", "Berburu Sunset Keliling Bandar Lampung 🚗", "Nongkrong di Cafe Baru dekat Unila ☕", "Berburu Jajan Pastry Hangat 🍰", "Sesi Deep Talk malam hari 💬"];
 
         function verifikasi() {
             const inputUser = document.getElementById("password-input").value;
@@ -836,7 +642,7 @@
                     runEcosystemDashboard();
                 }, 500);
             } else {
-                alert("Vault Security Control Verification Error: Access Denied.");
+                alert("Vault Control Warning: Invalid Security Key.");
             }
         }
 
@@ -859,94 +665,133 @@
             }
         });
 
-        function reformatDriveUrl(url) {
-            let processed = url.trim();
-            if (processed.includes("drive.google.com")) {
-                let segmentD = processed.split('/d/');
-                if (segmentD.length > 1) {
-                    let extractedId = segmentD[1].split('/')[0];
-                    return `https://drive.google.com/uc?export=view&id=${extractedId}`;
-                }
-                let queryId = processed.split('id=');
-                if (queryId.length > 1) {
-                    let extractedQueryId = queryId[1].split('&')[0];
-                    return `https://drive.google.com/uc?export=view&id=${extractedQueryId}`;
-                }
+        // REFORMAT SECURE LINK FOR IMAGE PROCESSING
+        function reformatUrlLink(url) {
+            let src = url.trim();
+            if (src.includes("drive.google.com")) {
+                let segmentD = src.split('/d/');
+                if (segmentD.length > 1) { return `https://drive.google.com/uc?export=view&id=${segmentD[1].split('/')[0]}`; }
+                let queryId = src.split('id=');
+                if (queryId.length > 1) { return `https://drive.google.com/uc?export=view&id=${queryId[1].split('&')[0]}`; }
             }
-            return processed;
+            if (src.includes("pinterest.com/pin/")) {
+                return src; // Prompt user fallbacks rule warning handled inside notice box
+            }
+            return src;
         }
 
         function runEcosystemDashboard() {
             calculateTimeMetrics();
             
-            // Sync Core Nodes Text Realtime
+            // 2. Mood Indicators Realtime Sync Logs
             db.ref('status/syallu').on('value', snap => { document.getElementById('status-syallu').value = snap.val() || ""; });
             db.ref('status/ghatan').on('value', snap => { document.getElementById('status-ghatan').value = snap.val() || ""; });
             db.ref('status/batSyallu').on('value', snap => { document.getElementById('battery-syallu').value = snap.val() || ""; });
             db.ref('status/batGhatan').on('value', snap => { document.getElementById('battery-ghatan').value = snap.val() || ""; });
-            
-            // Sync Active Emoji States
             db.ref('status/emojiSyalluIdx').on('value', snap => { resetEmojiSelection('syallu', snap.val()); });
             db.ref('status/emojiGhatanIdx').on('value', snap => { resetEmojiSelection('ghatan', snap.val()); });
 
-            db.ref('memos/m1').on('value', snap => { document.getElementById('sticky-text-1').value = snap.val() || ""; });
-            db.ref('memos/m2').on('value', snap => { document.getElementById('sticky-text-2').value = snap.val() || ""; });
-            db.ref('memos/m3').on('value', snap => { document.getElementById('sticky-text-3').value = snap.val() || ""; });
-            
-            db.ref('audio/songWeek').on('value', snap => { document.getElementById('song-week').value = snap.val() || ""; });
-            db.ref('nextPlan/title').on('value', snap => { document.getElementById('next-title').value = snap.val() || ""; });
-            db.ref('nextPlan/location').on('value', snap => { document.getElementById('next-loc').value = snap.val() || ""; });
-            
-            db.ref('nextPlan/date').on('value', snap => { 
-                const dateParam = snap.val() || "2026-12-31";
-                document.getElementById('next-date').value = dateParam;
-                computeTargetCountdown(dateParam);
-            });
+            db.ref('moodLogs/syallu').limitToLast(5).on('value', snap => { renderMoodHistoryList('history-stream-syallu', snap.val()); });
+            db.ref('moodLogs/ghatan').limitToLast(5).on('value', snap => { renderMoodHistoryList('history-stream-ghatan', snap.val()); });
 
-            // Sync Visual Photo Album Frame Modules
-            db.ref('polaroid/p1').on('value', snap => {
-                const node = snap.val() || { img: "", cap: "First Moment" };
-                document.getElementById('p1-img').src = node.img || "https://images.unsplash.com/photo-1542856391-010fb87dcfed?w=500";
-                document.getElementById('p1-cap').value = node.cap;
-                document.getElementById('p1-url').value = node.img;
-            });
-            db.ref('polaroid/p2').on('value', snap => {
-                const node = snap.val() || { img: "", cap: "Second Moment" };
-                document.getElementById('p2-img').src = node.img || "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=500";
-                document.getElementById('p2-cap').value = node.cap;
-                document.getElementById('p2-url').value = node.img;
-            });
-
-            // Sync Main Bucket Ledger List Progress Data
-            db.ref('bucketList').on('value', snap => {
-                const listWrapper = document.getElementById('bucket-list-frame');
-                listWrapper.innerHTML = "";
+            // 3. Dynamic Future Countdowns Trackers
+            db.ref('countdownAgendas').on('value', snap => {
+                const wrapper = document.getElementById('countdown-cards-container'); wrapper.innerHTML = "";
                 const dataset = snap.val() || {};
-                let totalItems = 0; let completedItems = 0;
-                
+                for(let key in dataset) {
+                    let card = document.createElement('div'); card.className = "countdown-event-card";
+                    let days = calculateCardDaysLeft(dataset[key].date);
+                    card.innerHTML = `<div class="node-erasure" style="position:absolute; top:15px; right:20px;" onclick="purgeNode('countdownAgendas/${key}')">❌</div>
+                                      <div style="font-weight:700; font-size:15px;">${dataset[key].title}</div>
+                                      <div class="card-days-left">${days}</div>
+                                      <div style="font-size:12px; color:var(--text-muted);">${dataset[key].date}</div>`;
+                    wrapper.appendChild(card);
+                }
+            });
+
+            // 4. Infinite Masonry Sticky Notes Sync
+            db.ref('stickyNotesGrid').on('value', snap => {
+                const wrapper = document.getElementById('sticky-masonry-container'); wrapper.innerHTML = "";
+                const dataset = snap.val() || {};
+                for(let key in dataset) {
+                    let note = document.createElement('div'); note.className = "individual-sticky-card";
+                    note.innerHTML = `<div style="display:flex; justify-content:space-between; font-size:10px; color:var(--text-muted); margin-bottom:8px;">
+                                        <span>CANVAS MEMO</span>
+                                        <span style="cursor:pointer;" onclick="purgeNode('stickyNotesGrid/${key}')">❌</span>
+                                      </div>
+                                      <textarea class="sticky-card-textarea" onblur="sendDirectField(this, 'stickyNotesGrid/${key}/text')">${dataset[key].text || ""}</textarea>`;
+                    wrapper.appendChild(note);
+                }
+            });
+
+            // 5. Roulette Dynamic Decisions Array List Options
+            db.ref('rouletteOptions').on('value', snap => {
+                const wrapper = document.getElementById('roulette-options-frame'); wrapper.innerHTML = "";
+                const dataset = snap.val() || {}; arrayDecider = [];
+                for(let key in dataset) {
+                    arrayDecider.push(dataset[key].text);
+                    let li = document.createElement('li'); li.className = "item-row-node";
+                    li.innerHTML = `<span>${dataset[key].text}</span><span class="node-erasure" onclick="purgeNode('rouletteOptions/${key}')">❌</span>`;
+                    wrapper.appendChild(li);
+                }
+                if(arrayDecider.length === 0) { arrayDecider = ["Nonton Movie Bareng 🎬", "Keliling Bandar Lampung 🚗", "Cafe Hopping Unila ☕"]; }
+            });
+
+            // 6. Audio Tracks Log List Sync
+            db.ref('musicTracks').on('value', snap => {
+                const wrapper = document.getElementById('music-track-frame'); wrapper.innerHTML = "";
+                const dataset = snap.val() || {};
+                for(let key in dataset) {
+                    let li = document.createElement('li'); li.className = "item-row-node";
+                    li.style.flexDirection = "column"; li.style.alignItems = "flex-start";
+                    li.innerHTML = `<div style="display:flex; justify-content:space-between; width:100%; font-weight:600; font-size:14px;">
+                                        <span>🎵 ${dataset[key].track}</span>
+                                        <span class="node-erasure" onclick="purgeNode('musicTracks/${key}')">❌</span>
+                                    </div>
+                                    <div style="font-size:12px; color:var(--text-muted); margin-top:4px;">Note: ${dataset[key].note}</div>`;
+                    wrapper.appendChild(li);
+                }
+            });
+
+            // 7. Bucket List Data Sync
+            db.ref('bucketList').on('value', snap => {
+                const listWrapper = document.getElementById('bucket-list-frame'); listWrapper.innerHTML = "";
+                const dataset = snap.val() || {}; let total = 0; let done = 0;
                 for (let key in dataset) {
-                    totalItems++; if(dataset[key].done) completedItems++;
-                    const row = document.createElement('li');
-                    row.className = "item-row-node";
+                    total++; if(dataset[key].done) done++;
+                    const row = document.createElement('li'); row.className = "item-row-node";
                     row.innerHTML = `<input type="checkbox" ${dataset[key].done ? 'checked' : ''} onclick="invertBucketState('bucketList/${key}', ${dataset[key].done})"> 
                                     <span style="${dataset[key].done ? 'text-decoration: line-through; color: var(--text-muted);' : ''}">${dataset[key].text}</span>
                                     <span class="node-erasure" onclick="purgeNode('bucketList/${key}')">❌</span>`;
                     listWrapper.appendChild(row);
                 }
-                let ratio = totalItems > 0 ? Math.round((completedItems / totalItems) * 100) : 0;
-                document.getElementById('bucket-ratio-text').innerText = `${ratio}% Completed (${completedItems}/${totalItems})`;
+                let ratio = total > 0 ? Math.round((done / total) * 100) : 0;
+                document.getElementById('bucket-ratio-text').innerText = `${ratio}% Completed (${done}/${total})`;
                 document.getElementById('bucket-bar-fill').style.width = `${ratio}%`;
             });
 
-            // Sync Sub Feature Checklist Prep Node Trip Packlist
+            // 8. Infinite Polaroid Photo Frames Album Node Grid Sync
+            db.ref('polaroidGallery').on('value', snap => {
+                const grid = document.getElementById('polaroid-infinite-grid'); grid.innerHTML = "";
+                const dataset = snap.val() || {};
+                for(let key in dataset) {
+                    let frame = document.createElement('div'); frame.className = "luxury-polaroid-node";
+                    frame.innerHTML = `<div class="node-erasure" style="position:absolute; top:10px; right:15px; z-index:5;" onclick="purgeNode('polaroidGallery/${key}')">❌</div>
+                                       <img src="${dataset[key].img}" alt="Polaroid Core Node Image" onerror="this.src='https://images.unsplash.com/photo-1542856391-010fb87dcfed?w=500'">
+                                       <div class="polaroid-inputs">
+                                            <input type="text" class="clean-inline-input" style="font-weight:700; text-align:center; font-size:14px;" value="${dataset[key].cap}" onblur="sendDirectField(this, 'polaroidGallery/${key}/cap')">
+                                            <input type="text" class="clean-inline-input" style="font-size:10px; color:var(--text-muted); text-align:center;" value="${dataset[key].img}" onblur="updatePolaroidLink(this, '${key}')">
+                                       </div>`;
+                    grid.appendChild(frame);
+                }
+            });
+
+            // 3. Sub checklist luggage countdown page sync
             db.ref('tripChecklist').on('value', snap => {
-                const wrapper = document.getElementById('trip-checklist-frame');
-                wrapper.innerHTML = "";
+                const wrapper = document.getElementById('trip-checklist-frame'); wrapper.innerHTML = "";
                 const dataset = snap.val() || {};
                 for (let key in dataset) {
-                    const row = document.createElement('li');
-                    row.className = "item-row-node";
-                    row.style.background = "#fafbfc";
+                    const row = document.createElement('li'); row.className = "item-row-node"; row.style.background = "#fafbfc";
                     row.innerHTML = `<input type="checkbox" ${dataset[key].done ? 'checked' : ''} onclick="invertBucketState('tripChecklist/${key}', ${dataset[key].done})"> 
                                     <span style="${dataset[key].done ? 'text-decoration: line-through; color: var(--text-muted);' : ''}">${dataset[key].text}</span>
                                     <span class="node-erasure" onclick="purgeNode('tripChecklist/${key}')">❌</span>`;
@@ -954,14 +799,12 @@
                 }
             });
 
-            // Sync Story Milestone Historical Chronology Elements
+            // 9. Chronological Timelines Sync Nodes
             db.ref('timeline').on('value', snap => {
-                const streamWrapper = document.getElementById('timeline-node-frame');
-                streamWrapper.innerHTML = "";
+                const streamWrapper = document.getElementById('timeline-node-frame'); streamWrapper.innerHTML = "";
                 const dataset = snap.val() || {};
                 for (let key in dataset) {
-                    const node = document.createElement('div');
-                    node.className = "timeline-editorial-node";
+                    const node = document.createElement('div'); node.className = "timeline-editorial-node";
                     node.innerHTML = `<div style="font-weight:700; font-size:12px; display:flex; justify-content:space-between;"><span>${dataset[key].date}</span><span style="cursor:pointer; opacity:0.3;" onclick="purgeNode('timeline/${key}')">❌</span></div>
                                      <div style="font-size:14px; margin-top:5px; line-height:1.6;">${dataset[key].text}</div>`;
                     streamWrapper.appendChild(node);
@@ -969,105 +812,113 @@
             });
         }
 
-        // MOOD EMOJI SELECTION INJECT OPERATIONS
+        // MOOD WRITERS INLINE FUNCTION ENGINE
         function selectMoodEmoji(user, idx, emojiChar) {
             db.ref(`status/emoji${user === 'syallu' ? 'Syallu' : 'Ghatan'}Idx`).set(idx);
-            // Append emoji parameter text value automatically to status log line if empty
-            const field = document.getElementById(`status-${user}`);
-            if(field.value.trim() === "") { field.value = `Feeling ${emojiChar}`; field.blur(); }
+            const inputField = document.getElementById(`status-${user}`);
+            const textValue = inputField.value.trim() || `Feeling ${emojiChar}`;
+            db.ref(`status/${user}`).set(textValue);
+            db.ref(`moodLogs/${user}`).push({ text: textValue, date: new Date().toLocaleDateString('id-ID') });
+        }
+        function renderMoodHistoryList(elementId, dataset) {
+            const list = document.getElementById(elementId); list.innerHTML = "";
+            for(let key in dataset) {
+                let li = document.createElement('li'); li.className = "mood-log-item";
+                li.innerHTML = `<span>${dataset[key].text}</span><span>${dataset[key].date}</span>`;
+                list.insertBefore(li, list.firstChild);
+            }
         }
         function resetEmojiSelection(user, activeIdx) {
             const prefix = user === 'syallu' ? 'emoji-s-' : 'emoji-g-';
-            for(let i=1; i<=4; i++) {
-                const btn = document.getElementById(prefix + i);
-                if(btn) btn.classList.remove('active-emoji');
-            }
-            if(activeIdx) {
-                const activeBtn = document.getElementById(prefix + activeIdx);
-                if(activeBtn) activeBtn.classList.add('active-emoji');
-            }
+            for(let i=1; i<=4; i++) { if(document.getElementById(prefix + i)) document.getElementById(prefix + i).classList.remove('active-emoji'); }
+            if(activeIdx && document.getElementById(prefix + activeIdx)) document.getElementById(prefix + activeIdx).classList.add('active-emoji');
         }
 
-        // INLINE ENGINE BROADCAST CONTEXT SINK
-        function sendDirectField(element, path) {
-            const cleanVal = element.value.trim();
-            if(cleanVal !== "") db.ref(path).set(cleanVal);
+        // PUSH NODES TRIGGERS
+        function pushNewPolaroidFrameNode() {
+            const capField = document.getElementById('gallery-input-cap'); const urlField = document.getElementById('gallery-input-url');
+            const cleanUrl = reformatUrlLink(urlField.value);
+            if(capField.value.trim() && cleanUrl) {
+                db.ref('polaroidGallery').push({ img: cleanUrl, cap: capField.value.trim() });
+                capField.value = ""; urlField.value = "";
+            }
         }
-        function sendDateDirect(element) {
-            const cleanVal = element.value.trim();
-            if(cleanVal !== "") { db.ref('nextPlan/date').set(cleanVal); computeTargetCountdown(cleanVal); }
+        function updatePolaroidLink(element, key) {
+            const cleanUrl = reformatUrlLink(element.value);
+            if(cleanUrl) db.ref(`polaroidGallery/${key}/img`).set(cleanUrl);
         }
-        function commitPolaroidNode(id) {
-            const descriptiveCap = document.getElementById(`p${id}-cap`).value.trim();
-            const sourceUrlRaw = document.getElementById(`p${id}-url`).value.trim();
-            const conversionUrlClean = reformatDriveUrl(sourceUrlRaw);
-            if(descriptiveCap && conversionUrlClean) { db.ref(`polaroid/p${id}`).set({ img: conversionUrlClean, cap: descriptiveCap }); }
+        function pushNewStickyCard() { db.ref('stickyNotesGrid').push({ text: "Type direct inside memo canvas note card node..." }); }
+        function pushCountdownCardNode() {
+            const title = document.getElementById('countdown-input-title'); const date = document.getElementById('countdown-input-date');
+            if(title.value.trim() && date.value.trim()) {
+                db.ref('countdownAgendas').push({ title: title.value.trim(), date: date.value.trim() });
+                title.value = ""; date.value = "";
+            }
         }
-        function handleFieldEnter(evt, element) { if (evt.key === "Enter") element.blur(); }
-
-        // CORE STORAGE INPUT OPERATIONS
+        function pushRouletteOptionNode() {
+            const field = document.getElementById('roulette-input-field');
+            if(field.value.trim()) { db.ref('rouletteOptions').push({ text: field.value.trim() }); field.value = ""; }
+        }
+        function pushMusicTrackNode() {
+            const track = document.getElementById('music-input-track'); const note = document.getElementById('music-input-note');
+            if(track.value.trim()) { db.ref('musicTracks').push({ track: track.value.trim(), note: note.value.trim() }); track.value = ""; note.value = ""; }
+        }
         function pushBucketNode() {
             const field = document.getElementById('bucket-input-field');
-            const txt = field.value.trim();
-            if (txt) { db.ref('bucketList').push({ text: txt, done: false }); field.value = ""; }
+            if (field.value.trim()) { db.ref('bucketList').push({ text: field.value.trim(), done: false }); field.value = ""; }
         }
         function pushTripChecklistNode() {
             const field = document.getElementById('trip-item-input');
-            const txt = field.value.trim();
-            if (txt) { db.ref('tripChecklist').push({ text: txt, done: false }); field.value = ""; }
+            if (field.value.trim()) { db.ref('tripChecklist').push({ text: field.value.trim(), done: false }); field.value = ""; }
         }
+        function pushTimelineNode() {
+            const dateNode = document.getElementById('milestone-date-field'); const descNode = document.getElementById('milestone-desc-field');
+            if (dateNode.value.trim() && descNode.value.trim()) {
+                db.ref('timeline').push({ date: dateNode.value.trim(), text: descNode.value.trim() });
+                dateNode.value = ""; descNode.value = "";
+            }
+        }
+
+        // GLOBAL INTERACTIVE RUNTIME SERVICES
+        function sendDirectField(element, path) { const cleanVal = element.value.trim(); if(cleanVal !== "") db.ref(path).set(cleanVal); }
+        function sendDateDirect(element) { const cleanVal = element.value.trim(); if(cleanVal !== "") { db.ref('nextPlan/date').set(cleanVal); computeTargetCountdown(cleanVal); } }
         function invertBucketState(fullPath, currentStatus) { db.ref(`${fullPath}/done`).set(!currentStatus); }
         function purgeNode(fullPath) { db.ref(fullPath).remove(); }
+        function handleFieldEnter(evt, element) { if (evt.key === "Enter") element.blur(); }
 
-        function pushTimelineNode() {
-            const dNode = document.getElementById('milestone-date-field');
-            const tNode = document.getElementById('milestone-desc-field');
-            const txtDate = dNode.value.trim(); const txtDesc = tNode.value.trim();
-            if (txtDate && txtDesc) { db.ref('timeline').push({ date: txtDate, text: txtDesc }); dNode.value = ""; tNode.value = ""; }
-        }
-
-        // TIME ARCHIVE COMPILERS
+        // PARAMETERS DOCK COMPUTATION SERVICES
         function calculateTimeMetrics() {
-            const currentMoment = new Date();
-            const differenceTime = currentMoment - anniversaryAnchor;
+            const currentMoment = new Date(); const differenceTime = currentMoment - anniversaryAnchor;
             const absoluteDaysSum = Math.floor(differenceTime / (1000 * 60 * 60 * 24));
             document.getElementById("days-counter").innerText = absoluteDaysSum;
             
             let nextMilestone = 100;
-            if (absoluteDaysSum >= 100) nextMilestone = 365;
-            if (absoluteDaysSum >= 365) nextMilestone = 500;
-            if (absoluteDaysSum >= 500) nextMilestone = 1000;
-            
+            if (absoluteDaysSum >= 100) nextMilestone = 365; if (absoluteDaysSum >= 365) nextMilestone = 500; if (absoluteDaysSum >= 500) nextMilestone = 1000;
             document.getElementById("m-next").innerText = `${nextMilestone} Days`;
             let remaining = nextMilestone - absoluteDaysSum;
-            document.getElementById("m-rem").innerText = remaining > 0 ? `${remaining} Days` : "Achieved! ✨";
+            document.getElementById("m-rem").innerText = remaining > 0 ? `${remaining} Days` : "Reached! 🎉";
         }
-
-        function computeTargetCountdown(targetStr) {
-            const calculatedTarget = new Date(targetStr); const todayBoundary = new Date();
-            todayBoundary.setHours(0,0,0,0); const absoluteDifference = calculatedTarget - todayBoundary;
-            const metricDaysLeft = Math.ceil(absoluteDifference / (1000 * 60 * 60 * 24));
-            document.getElementById("countdown-timer").innerText = metricDaysLeft > 0 ? `${metricDaysLeft} Days Left` : (metricDaysLeft === 0 ? "Today! ✨" : "Archived");
+        function calculateCardDaysLeft(targetStr) {
+            const targetDate = new Date(targetStr); const today = new Date(); today.setHours(0,0,0,0);
+            const diff = targetDate - today; const metricDaysLeft = Math.ceil(diff / (1000 * 60 * 60 * 24));
+            return metricDaysLeft > 0 ? `${metricDaysLeft} Days Left` : (metricDaysLeft === 0 ? "Today! ✨" : "Passed");
         }
-
         function triggerRouletteEngine() {
             let ticker = 0;
             const processingInterval = setInterval(() => {
                 document.getElementById('roulette-display').innerText = arrayDecider[Math.floor(Math.random() * arrayDecider.length)];
                 if (++ticker > 14) {
                     clearInterval(processingInterval);
-                    document.getElementById('roulette-display').innerText = `✨ Strategy Choice Selected: ${arrayDecider[Math.floor(Math.random() * arrayDecider.length)]} ✨`;
+                    document.getElementById('roulette-display').innerText = `✨ Selected Strategy: ${arrayDecider[Math.floor(Math.random() * arrayDecider.length)]} ✨`;
                 }
             }, 75);
         }
-
         function switchCareTab(evt, matrixId) {
             const targetPanels = document.getElementsByClassName("cycle-view-panel");
             for (let i = 0; i < targetPanels.length; i++) targetPanels[i].classList.remove("active-panel");
             const controllerBtns = document.getElementsByClassName("cycle-tab-btn");
             for (let i = 0; i < controllerBtns.length; i++) controllerBtns[i].classList.remove("active-tab");
-            document.getElementById(matrixId).classList.add("active-panel");
-            evt.currentTarget.classList.add("active-tab");
+            document.getElementById(matrixId).classList.add("active-panel"); evt.currentTarget.classList.add("active-tab");
         }
 
         document.getElementById("password-input").addEventListener("keypress", function(event) { if (event.key === "Enter") verifikasi(); });
