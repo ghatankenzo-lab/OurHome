@@ -1,176 +1,566 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Our Happy Place</title>
+    <title>Our Homey Space</title>
+    
+    <!-- Firebase Core & Database SDK (v8 Classic) -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+
     <style>
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
         }
         body {
-            background-color: #ffeef2;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            background-color: #faf7f5;
+            color: #2c2c2c;
             min-height: 100vh;
-            overflow-x: hidden;
+            padding-bottom: 40px;
         }
-        /* Style Halaman Login / Password */
+        /* Gateway Screen */
         #login-screen {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(135deg, #ffafbd, #ffc3a0);
+            background: #f4eae4;
             display: flex;
             justify-content: center;
             align-items: center;
             z-index: 9999;
-            transition: 0.5s;
         }
         .login-box {
             background: white;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            padding: 40px 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
             text-align: center;
-            max-width: 400px;
+            max-width: 360px;
             width: 90%;
         }
         .login-box h2 {
-            color: #d11a5b;
-            margin-bottom: 15px;
-            font-size: 24px;
+            font-size: 22px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #4a4a4a;
+        }
+        .login-box p {
+            color: #8c8c8c;
+            font-size: 14px;
+            margin-bottom: 20px;
         }
         .login-box input {
             width: 100%;
             padding: 12px;
-            margin: 15px 0;
-            border: 2px solid #ffd0dc;
-            border-radius: 8px;
+            margin-bottom: 15px;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
             outline: none;
             text-align: center;
-            font-size: 16px;
+            font-size: 15px;
+            background: #fcfcfc;
         }
         .login-box button {
-            background-color: #d11a5b;
+            background-color: #4a4a4a;
             color: white;
             border: none;
-            padding: 12px 30px;
-            border-radius: 8px;
+            padding: 12px;
+            width: 100%;
+            border-radius: 6px;
             cursor: pointer;
-            font-size: 16px;
-            font-weight: bold;
-            transition: 0.3s;
+            font-size: 15px;
+            font-weight: 500;
         }
-        .login-box button:hover {
-            background-color: #b0124a;
-        }
-        /* Style Konten Utama (Disembunyikan Dulu) */
+        /* Dashboard Layout */
         #main-content {
             display: none;
-            width: 100%;
-            max-width: 600px;
-            padding: 20px;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        .header-section {
             text-align: center;
+            margin-bottom: 40px;
+        }
+        .header-section h1 {
+            font-size: 28px;
+            color: #2c2c2c;
+            font-weight: 600;
+        }
+        .header-section p {
+            color: #7a7a7a;
+            font-size: 14px;
+            margin-top: 6px;
+        }
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
         }
         .card {
             background: white;
-            padding: 30px;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(209, 26, 91, 0.1);
-            margin-bottom: 20px;
+            border-radius: 16px;
+            padding: 25px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+            border: 1px solid #f0ece6;
         }
-        h1 {
-            color: #d11a5b;
-            margin-bottom: 10px;
+        .card-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #4a4a4a;
+            margin-bottom: 15px;
+            border-bottom: 1px solid #faf7f5;
+            padding-bottom: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
-        .hearts {
-            font-size: 40px;
-            margin: 15px 0;
-            animation: pulse 1.5s infinite;
+        .edit-hint {
+            font-size: 11px;
+            color: #b5b5b5;
+            font-weight: normal;
         }
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.15); }
-            100% { transform: scale(1); }
+        .editable {
+            cursor: pointer;
+            transition: background 0.2s;
+            border-radius: 4px;
+            padding: 2px 4px;
         }
-        .counter-box {
-            background: #fff0f3;
-            padding: 15px;
-            border-radius: 12px;
-            margin: 20px 0;
-            border: 1px dashed #d11a5b;
+        .editable:hover {
+            background: #fdfaf7;
         }
         .days-number {
-            font-size: 36px;
-            font-weight: bold;
-            color: #d11a5b;
+            font-size: 48px;
+            font-weight: 700;
+            text-align: center;
+            color: #4a4a4a;
+            margin: 10px 0;
         }
-        p {
+        .counter-label {
+            font-size: 12px;
+            color: #8c8c8c;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-align: center;
+        }
+        .status-row {
+            margin: 10px 0;
+            font-size: 14px;
+        }
+        .status-name {
+            font-weight: 600;
+            color: #555;
+        }
+        .sticky-note {
+            background: #fffdf0;
+            border-left: 4px solid #f3e5ab;
+            padding: 15px;
+            font-size: 14px;
             color: #555;
             line-height: 1.6;
+            min-height: 80px;
+        }
+        .polaroid-container {
+            display: flex;
+            gap: 15px;
+            overflow-x: auto;
+            padding: 10px 0;
+        }
+        .polaroid {
+            background: white;
+            padding: 10px 10px 15px 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.04);
+            border: 1px solid #eee;
+            min-width: 150px;
+            text-align: center;
+        }
+        .polaroid img {
+            width: 130px;
+            height: 130px;
+            object-fit: cover;
+            background-color: #eee;
+        }
+        .polaroid .caption {
+            font-size: 12px;
+            color: #555;
+            margin-top: 8px;
+        }
+        .timeline-box {
+            max-height: 200px;
+            overflow-y: auto;
+        }
+        .timeline-item {
+            margin-bottom: 15px;
+            padding-left: 15px;
+            border-left: 2px solid #e0dcd8;
+            position: relative;
+        }
+        .timeline-date {
+            font-size: 11px;
+            color: #999;
+            font-weight: 600;
+        }
+        .timeline-text {
+            font-size: 13px;
+            color: #4a4a4a;
+            margin-top: 2px;
+        }
+        .bucket-list {
+            list-style: none;
+            max-height: 180px;
+            overflow-y: auto;
+        }
+        .bucket-item {
+            display: flex;
+            align-items: center;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+        .bucket-item input {
+            margin-right: 10px;
+            accent-color: #4a4a4a;
+        }
+        .add-btn {
+            background: none;
+            border: none;
+            color: #8c8c8c;
+            font-size: 12px;
+            cursor: pointer;
+            text-decoration: underline;
+            margin-top: 5px;
+        }
+        .tabs {
+            display: flex;
+            gap: 5px;
+            overflow-x: auto;
+            padding-bottom: 8px;
+            margin-bottom: 10px;
+        }
+        .tab-btn {
+            background: #faf7f5;
+            border: none;
+            padding: 6px 12px;
+            font-size: 11px;
+            border-radius: 20px;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+        .tab-btn.active {
+            background: #4a4a4a;
+            color: white;
+        }
+        .tab-content {
+            display: none;
+            font-size: 13px;
+            line-height: 1.6;
+            color: #555;
+            background: #faf7f5;
+            padding: 15px;
+            border-radius: 8px;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        .picker-box {
+            text-align: center;
+            background: #faf7f5;
+            padding: 20px;
+            border-radius: 10px;
+        }
+        #picked-result {
+            font-size: 15px;
+            font-weight: 600;
+            color: #4a4a4a;
+            margin-bottom: 15px;
+            min-height: 22px;
+        }
+        .spin-btn {
+            background: #4a4a4a;
+            color: white;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 13px;
+            cursor: pointer;
         }
     </style>
 </head>
 <body>
 
-    <!-- HALAMAN GERBANG PASSWORD -->
+    <!-- PASSWORD GATEWAY -->
     <div id="login-screen">
         <div class="login-box">
-            <h2>Hanya Untuk Kita Berdua ❤️</h2>
-            <p>Masukkan password rahasia kita untuk masuk ke dalam.</p>
-            <input type="password" id="password-input" placeholder="Ketik password di sini...">
-            <button onclick="verifikasi()&quot;">Buka Pintu</button>
+            <h2>Our Homey Space</h2>
+            <p>Enter password to access our dashboard.</p>
+            <input type="password" id="password-input" placeholder="Password...">
+            <button onclick="verifikasi()">Unlock</button>
         </div>
     </div>
 
-    <!-- HALAMAN UTAMA WEBSITE -->
+    <!-- MAIN DASHBOARD -->
     <div id="main-content">
-        <div class="card">
-            <div class="hearts">❤️</div>
-            <h1>Our Safe Place</h1>
-            <p>Selamat datang di tempat spesial yang dibuat khusus untuk menyimpan cerita perjalanan kita berdua.</p>
+        <div class="header-section">
+            <h1>Syallu & Me Workspace</h1>
+            <p>A minimalist real-time dashboard to archive our milestones and plans.</p>
+        </div>
+
+        <div class="dashboard-grid">
             
-            <div class="counter-box">
-                <p>Kita sudah bersama selama:</p>
+            <!-- 1. DAY COUNTER -->
+            <div class="card">
+                <div class="card-title">Day Counter <span>⏳</span></div>
                 <div class="days-number" id="days-counter">0</div>
-                <p>Hari yang penuh kebahagiaan</p>
+                <div class="counter-label">Days and Counting</div>
             </div>
-            
-            <p style="font-style: italic; color: #888;">"Aku bersyukur bisa memilikimu setiap harinya."</p>
+
+            <!-- 2. MOOD / STATUS TRACKER -->
+            <div class="card">
+                <div class="card-title">Current Status <span class="edit-hint">Double-tap to edit</span></div>
+                <div class="status-row">
+                    <span class="status-name">Syallu:</span> 
+                    <span id="status-syallu" class="editable" ondblclick="editField('status-syallu', 'status/syallu')">Tap 2x to edit status</span>
+                </div>
+                <div class="status-row">
+                    <span class="status-name">Ghatan:</span> 
+                    <span id="status-ghatan" class="editable" ondblclick="editField('status-ghatan', 'status/ghatan')">Tap 2x to edit status</span>
+                </div>
+            </div>
+
+            <!-- 3. NEXT PLAN COUNTDOWN -->
+            <div class="card">
+                <div class="card-title">Next Agenda <span class="edit-hint">Double-tap to plan</span></div>
+                <div style="text-align: center; padding: 5px 0;">
+                    <p id="next-title" class="editable" style="font-weight: 600;" ondblclick="editField('next-title', 'nextPlan/title')">Tap 2x to name event</p>
+                    <div id="countdown-timer" style="font-size: 24px; font-weight: 700; color: #4a4a4a; margin: 8px 0;">0 Days Left</div>
+                    <p id="next-date" class="editable" style="font-size: 11px; color: #999;" ondblclick="editField('next-date', 'nextPlan/date')">2026-12-31</p>
+                </div>
+            </div>
+
+            <!-- 4. DAILY STICKY NOTES -->
+            <div class="card">
+                <div class="card-title">Sticky Notes <span class="edit-hint">Double-tap to write</span></div>
+                <div id="sticky-text" class="sticky-note editable" ondblclick="editField('sticky-text', 'stickyNote')">Tap 2x to change this message...</div>
+            </div>
+
+            <!-- 5. TERSERAH DECIDER -->
+            <div class="card">
+                <div class="card-title">The "Terserah" Decider <span>🎲</span></div>
+                <div class="picker-box">
+                    <div id="picked-result">Click roll to decide what to do!</div>
+                    <button class="spin-btn" onclick="rollDecider()">Roll Option</button>
+                </div>
+            </div>
+
+            <!-- 6. SPOTIFY PLAYLIST LINK -->
+            <div class="card">
+                <div class="card-title">Our Soundtrack <span>🎵</span></div>
+                <div style="display: flex; align-items: center; background: #faf7f5; padding: 15px; border-radius: 10px;">
+                    <div style="font-size: 28px; margin-right: 15px;">💿</div>
+                    <div>
+                        <div style="font-size: 14px; font-weight: 600;">Shared Mixtape</div>
+                        <a href="https://open.spotify.com" target="_blank" style="font-size: 12px; color: #7a7a7a; text-decoration: underline;">Open Spotify Playlist</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 7. BUCKET LIST / AGENDA -->
+            <div class="card">
+                <div class="card-title">Our Bucket List <span>✈️</span></div>
+                <ul id="bucket-list-container" class="bucket-list"></ul>
+                <button class="add-btn" onclick="addBucketItem()">+ Add New Item</button>
+            </div>
+
+            <!-- 8. POLAROID GALLERY -->
+            <div class="card">
+                <div class="card-title">Captured Moments <span class="edit-hint">Double-tap text to edit link</span></div>
+                <div class="polaroid-container">
+                    <div class="polaroid">
+                        <img id="p1-img" src="https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?w=150" alt="Moment 1">
+                        <div id="p1-cap" class="caption editable" ondblclick="editPolaroid(1)">First Moment</div>
+                    </div>
+                    <div class="polaroid">
+                        <img id="p2-img" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150" alt="Moment 2">
+                        <div id="p2-cap" class="caption editable" ondblclick="editPolaroid(2)">Second Moment</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 9. TIMELINE MILESTONES -->
+            <div class="card">
+                <div class="card-title">Our Timeline <span>📌</span></div>
+                <div id="timeline-container" class="timeline-box"></div>
+                <button class="add-btn" onclick="addTimelineItem()">+ Add Milestone</button>
+            </div>
+
+            <!-- 10. 7-DAY PERIOD CARE PLAN -->
+            <div class="card">
+                <div class="card-title">Comfort Zone: 7-Day Care Plan <span>❤️🩹</span></div>
+                <div class="tabs">
+                    <button class="tab-btn active" onclick="openTab(event, 'day1')">Day 1</button>
+                    <button class="tab-btn" onclick="openTab(event, 'day2')">Day 2</button>
+                    <button class="tab-btn" onclick="openTab(event, 'day3')">Day 3</button>
+                    <button class="tab-btn" onclick="openTab(event, 'day4')">Day 4</button>
+                    <button class="tab-btn" onclick="openTab(event, 'day5')">Day 5</button>
+                    <button class="tab-btn" onclick="openTab(event, 'day6')">Day 6</button>
+                    <button class="tab-btn" onclick="openTab(event, 'day7')">Day 7</button>
+                </div>
+                <div id="day1" class="tab-content active"><b>Day 1:</b> Hari pertama biasanya yang paling berat/kram perut. Kurangi aktivitas berat, sediakan kompres hangat, air putih, dan cemilan kesukaannya. Tetap sabar ya Ghatan kalau mood-nya naik turun!</div>
+                <div id="day2" class="tab-content"><b>Day 2:</b> Biasanya volume darah lagi banyak-banyaknya. Pastikan dia nyaman, ingatkan ganti pembalut teratur, dan jangan biarkan dia kecapekan.</div>
+                <div id="day3" class="tab-content"><b>Day 3:</b> Kram perut mulai berkurang tapi badan mungkin masih lemas. Waktu yang pas untuk kasih asupan manis atau pesan makanan favorit bareng.</div>
+                <div id="day4" class="tab-content"><b>Day 4:</b> Kondisi fisiknya mulai membaik secara konstan. Mood-nya juga biasanya sudah mulai kembali stabil dan berenergi.</div>
+                <div id="day5" class="tab-content"><b>Day 5:</b> Fase krusialnya sudah lewat. Siklus haidnya sudah mulai bersih dan volumenya berkurang drastis. Berikan pujian kecil karena dia sudah berhasil melewati masa penatnya!</div>
+                <div id="day6" class="tab-content"><b>Day 6:</b> Menjelang akhir siklus. Energi dan semangatnya kembali 100%. Waktu yang cocok untuk rencanain jalan-jalan atau kencan seru di akhir pekan.</div>
+                <div id="day7" class="tab-content"><b>Day 7:</b> Selesai! Siklus haid Syallu sudah kembali bersih sepenuhnya dan tubuhnya terasa ringan lagi.</div>
+            </div>
+
         </div>
     </div>
 
     <script>
-        // TANGGAL JADIAN: Ganti angka di bawah sesuai tanggal jadian kalian (Tahun, Bulan-1, Tanggal)
-        // Catatan: Bulan dimulai dari 0 (Januari = 0, Februari = 1, Maret = 2, dst)
-        // Contoh di bawah adalah untuk tanggal 15 Oktober 2024 (10-1 = 9)
-        const tanggalJadian = new Date(2024, 9, 15); 
+        // INTEGRASI FIREBASE KAMU
+        const firebaseConfig = {
+            apiKey: "AIzaSyBXL3eBi9s3-amUxSv5s4m4EM-BSuzp-rs",
+            authDomain: "ourhomey.firebaseapp.com",
+            databaseURL: "https://ourhomey-default-rtdb.asia-southeast1.firebasedatabase.app",
+            projectId: "ourhomey",
+            storageBucket: "ourhomey.firebasestorage.app",
+            messagingSenderId: "888064564131",
+            appId: "1:888064564131:web:e9d34b1d8db1b799dcd816"
+        };
+        
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.database();
 
-        // PASSWORD AKAN DISAMARKAN DI SINI
-        // Password bawaan saat ini adalah: kitaBerdua
-        // Jika kamu ingin menggantinya nanti, beritahu saya agar saya buatkan kode samaran yang baru.
-        const passwordTerpilih = "a2l0YUJlcmR1YQ=="; 
+        // DATA UTAMA RELATIONSHIP
+        const tanggalJadian = new Date(2026, 5, 11); 
+        const opsiDecider = ["Nonton Movie/Netflix bareng 🎬", "Berburu Sunset/Keliling Kota 🚗", "Coba Cafe baru di Bandar Lampung ☕", "Jajan Pastry & Bakery 🍰", "Deep Talk di tempat teduh 💬", "Pesan delivery makanan di rumah 🍕"];
 
         function verifikasi() {
             const inputUser = document.getElementById("password-input").value;
-            // Mengecek apakah password yang diinput setelah disamarkan cocok
-            if (btoa(inputUser) === passwordTerpilih) {
-                // Sembunyikan layar login dan tampilkan konten utama
-                document.getElementById("login-screen").style.style.display = "none";
-                document.getElementById("main-content").style.style.display = "block";
-                hitungHari();
+            const kodeRahasia = [111, 110, 108, 121, 102, 111, 114, 109, 121, 112, 97, 115, 116, 114, 121]; // onlyformypastry
+            const passwordCocok = inputUser.length === kodeRahasia.length && 
+                                  inputUser.split('').every((char, index) => char.charCodeAt(0) === kodeRahasia[index]);
+
+            if (passwordCocok) {
+                document.getElementById("login-screen").style.display = "none";
+                document.getElementById("main-content").style.display = "block";
+                initDashboard();
             } else {
-                alert("Password-nya salah sayang, coba diingat-ingat lagi ya!");
+                alert("Wrong password. Coba diingat lagi password rahasia kalian!");
             }
         }
 
+        function initDashboard() {
+            hitungHari();
+            
+            // Sync Realtime Text Fields
+            db.ref('status/syallu').on('value', snap => { document.getElementById('status-syallu').innerText = snap.val() || "Tap 2x untuk edit status"; });
+            db.ref('status/ghatan').on('value', snap => { document.getElementById('status-ghatan').innerText = snap.val() || "Tap 2x untuk edit status"; });
+            db.ref('stickyNote').on('value', snap => { document.getElementById('sticky-text').innerText = snap.val() || "Tap 2x untuk menulis pesan..."; });
+            db.ref('nextPlan/title').on('value', snap => { document.getElementById('next-title').innerText = snap.val() || "Tap 2x untuk ganti agenda"; });
+            
+            db.ref('nextPlan/date').on('value', snap => { 
+                const targetDateStr = snap.val() || "2026-12-31";
+                document.getElementById('next-date').innerText = targetDateStr;
+                hitungCountdown(targetDateStr);
+            });
+
+            // Sync Polaroid Links & Captions
+            db.ref('polaroid/p1').on('value', snap => {
+                const data = snap.val() || { img: "https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?w=150", cap: "First Moment" };
+                document.getElementById('p1-img').src = data.img;
+                document.getElementById('p1-cap').innerText = data.cap;
+            });
+            db.ref('polaroid/p2').on('value', snap => {
+                const data = snap.val() || { img: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150", cap: "Second Moment" };
+                document.getElementById('p2-img').src = data.img;
+                document.getElementById('p2-cap').innerText = data.cap;
+            });
+
+            // Sync Bucket List
+            db.ref('bucketList').on('value', snap => {
+                const container = document.getElementById('bucket-list-container');
+                container.innerHTML = "";
+                const items = snap.val() || {};
+                for (let id in items) {
+                    const li = document.createElement('li');
+                    li.className = "bucket-item";
+                    li.innerHTML = `<input type="checkbox" ${items[id].done ? 'checked' : ''} onclick="toggleBucket('${id}', ${items[id].done})"> 
+                                    <span style="${items[id].done ? 'text-decoration: line-through; color: #aaa;' : ''}">${items[id].text}</span>
+                                    <span style="margin-left:auto; cursor:pointer; font-size:11px; color:#c94c4c;" onclick="deleteBucket('${id}')">❌</span>`;
+                    container.appendChild(li);
+                }
+            });
+
+            // Sync Timeline
+            db.ref('timeline').on('value', snap => {
+                const container = document.getElementById('timeline-container');
+                container.innerHTML = "";
+                const items = snap.val() || {};
+                // Urutkan berdasarkan tanggal jika diperlukan, sementara tampilkan semua
+                for (let id in items) {
+                    const div = document.createElement('div');
+                    div.className = "timeline-item";
+                    div.innerHTML = `<div class="timeline-date">${items[id].date} <span style="cursor:pointer; margin-left:5px;" onclick="deleteTimeline('${id}')">❌</span></div>
+                                     <div class="timeline-text">${items[id].text}</div>`;
+                    container.appendChild(div);
+                }
+            });
+        }
+
+        // REALTIME INLINE EDIT SYSTEM (DOUBLE CLICK TO PROMPT)
+        function editField(elementId, dbPath) {
+            const currentText = document.getElementById(elementId).innerText;
+            const newText = prompt(`Ubah data untuk bagian ini:`, currentText);
+            if (newText !== null && newText.trim() !== "") {
+                db.ref(dbPath).set(newText.trim());
+            }
+        }
+
+        function editPolaroid(id) {
+            const currentCap = document.getElementById(`p${id}-cap`).innerText;
+            const currentImg = document.getElementById(`p${id}-img`).src;
+            const newCap = prompt("Masukkan caption baru untuk foto polaroid:", currentCap);
+            const newImg = prompt("Masukkan link URL foto baru (pastikan dari web hosting foto terbuka atau link langsung gambar):", currentImg);
+            
+            if (newCap && newImg) {
+                db.ref(`polaroid/p${id}`).set({ img: newImg.trim(), cap: newCap.trim() });
+            }
+        }
+
+        // BUCKET LIST OPERATIONS
+        function addBucketItem() {
+            const text = prompt("Masukkan agenda atau bucket list baru kalian:");
+            if (text) {
+                db.ref('bucketList').push({ text: text.trim(), done: false });
+            }
+        }
+        function toggleBucket(id, currentStatus) {
+            db.ref(`bucketList/${id}/done`).set(!currentStatus);
+        }
+        function deleteBucket(id) {
+            if(confirm("Hapus item dari bucket list?")) db.ref(`bucketList/${id}`).remove();
+        }
+
+        // TIMELINE OPERATIONS
+        function addTimelineItem() {
+            const date = prompt("Masukkan tanggal momen (Contoh: 11 Juni 2026 atau Akhir Pekan):");
+            const text = prompt("Ceritakan momen singkat itu sedang ngapain:");
+            if (date && text) {
+                db.ref('timeline').push({ date: date.trim(), text: text.trim() });
+            }
+        }
+        function deleteTimeline(id) {
+            if(confirm("Hapus momen ini dari timeline?")) db.ref(`timeline/${id}`).remove();
+        }
+
+        // CALCULATION LOGIC
         function hitungHari() {
             const hariIni = new Date();
             const selisihWaktu = hariIni - tanggalJadian;
@@ -178,11 +568,53 @@
             document.getElementById("days-counter").innerText = selisihHari;
         }
 
-        // Supaya bisa tekan Enter untuk login
-        document.getElementById("password-input").addEventListener("keypress", function(event) {
-            if (event.key === "Enter") {
-                verifikasi();
+        function hitungCountdown(targetDateStr) {
+            const targetDate = new Date(targetDateStr);
+            const hariIni = new Date();
+            hariIni.setHours(0,0,0,0);
+            const selisihWaktu = targetDate - hariIni;
+            const selisihHari = Math.ceil(selisihWaktu / (1000 * 60 * 60 * 24));
+            
+            if (selisihHari > 0) {
+                document.getElementById("countdown-timer").innerText = `${selisihHari} Days Left`;
+            } else if (selisihHari === 0) {
+                document.getElementById("countdown-timer").innerText = "Today is the Day! ✨";
+            } else {
+                document.getElementById("countdown-timer").innerText = "Event Passed";
             }
+        }
+
+        // ROLL DECIDER LOULETTE
+        function rollDecider() {
+            let counter = 0;
+            const interval = setInterval(() => {
+                const randomIdx = Math.floor(Math.random() * opsiDecider.length);
+                document.getElementById('picked-result').innerText = opsiDecider[randomIdx];
+                counter++;
+                if (counter > 10) {
+                    clearInterval(interval);
+                    const finalIdx = Math.floor(Math.random() * opsiDecider.length);
+                    document.getElementById('picked-result').innerText = `✨ Kita pilih: ${opsiDecider[finalIdx]} ✨`;
+                }
+            }, 100);
+        }
+
+        // TAB PERIOD SYSTEM
+        function openTab(evt, dayId) {
+            const tabcontents = document.getElementsByClassName("tab-content");
+            for (let i = 0; i < tabcontents.length; i++) {
+                tabcontents[i].classList.remove("active");
+            }
+            const tabbtns = document.getElementsByClassName("tab-btn");
+            for (let i = 0; i < tabbtns.length; i++) {
+                tabbtns[i].classList.remove("active");
+            }
+            document.getElementById(dayId).classList.add("active");
+            evt.currentTarget.classList.add("active");
+        }
+
+        document.getElementById("password-input").addEventListener("keypress", function(event) {
+            if (event.key === "Enter") verifikasi();
         });
     </script>
 </body>
