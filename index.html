@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Our Homey Space : The Unlimited Capsule</title>
+    <title>Our Home — Private Digital Ecosystem</title>
     
-    <!-- Google Fonts Premium Typography -->
+    <!-- Premium Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -16,151 +16,145 @@
 
     <style>
         :root {
-            --bg-base: #eef7fc; 
+            --bg-base: #ecf4f9; 
+            --bg-glass: rgba(255, 255, 255, 0.82); 
             --bg-panel: #ffffff; 
-            --accent-blue: #b0d4de; 
-            --accent-dark: #3a86c8;
+            --accent-blue: #bcd4e6; 
             --text-primary: #2c3e50; 
             --text-muted: #7f95a8;
-            --border-light: rgba(214, 228, 237, 0.7);
-            --glass-card: rgba(255, 255, 255, 0.75);
+            --border-light: rgba(214, 228, 237, 0.9);
+            --shadow-premium: 0 30px 60px rgba(188, 212, 230, 0.25);
             --transition-bounce: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             --transition-smooth: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Plus Jakarta Sans', sans-serif; }
         body { background-color: var(--bg-base); color: var(--text-primary); overflow-x: hidden; -webkit-font-smoothing: antialiased; }
-        ::-webkit-scrollbar { width: 4px; height: 4px; }
+        ::-webkit-scrollbar { width: 5px; height: 5px; }
         ::-webkit-scrollbar-track { background: var(--bg-base); }
         ::-webkit-scrollbar-thumb { background: var(--accent-blue); border-radius: 10px; }
 
         /* -----------------------------------------
-           SECURE GATEWAY INTERFACE
+           SECURE SECURITY INTERFACE
         ----------------------------------------- */
         #login-screen {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(135deg, #ecf4f9 0%, #bcd4e6 100%);
+            background: linear-gradient(135deg, #ecf4f9 0%, #ffffff 100%);
             display: flex; justify-content: center; align-items: center; z-index: 99999;
             transition: var(--transition-smooth);
         }
         .login-box {
-            background: var(--bg-panel); padding: 60px; border-radius: 36px;
-            box-shadow: 0 40px 90px rgba(147,184,207,0.3); text-align: center; max-width: 440px; width: 90%;
+            background: var(--bg-panel); padding: 60px; border-radius: 40px;
+            box-shadow: var(--shadow-premium); text-align: center; max-width: 450px; width: 90%; border: 1px solid var(--border-light);
         }
-        .login-box h2 { font-family: 'Playfair Display', serif; font-size: 38px; font-style: italic; margin-bottom: 10px; }
+        .login-box h2 { font-family: 'Playfair Display', serif; font-size: 38px; font-style: italic; margin-bottom: 12px; }
         .login-box p { color: var(--text-muted); font-size: 11px; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 35px; }
         .login-box input {
             width: 100%; padding: 18px; margin-bottom: 20px; border: 1px solid var(--border-light);
-            border-radius: 16px; outline: none; text-align: center; font-size: 16px; background: #fbfbfc;
+            border-radius: 16px; outline: none; text-align: center; font-size: 16px; background: #f7fafc;
         }
         .login-box button {
             background: var(--text-primary); color: #ffffff; border: none; padding: 18px;
-            width: 100%; border-radius: 16px; cursor: pointer; font-size: 13px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase;
+            width: 100%; border-radius: 16px; cursor: pointer; font-size: 13px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase;
         }
 
         /* -----------------------------------------
-           PREMIUM NAVBAR EDITORIAL
+           AWARDS HIGH-END NAVBAR
         ----------------------------------------- */
         header {
             position: fixed; top: 0; left: 0; width: 100%; padding: 30px 60px;
             display: flex; justify-content: space-between; align-items: center; z-index: 999;
-            background: rgba(238, 247, 252, 0.8); backdrop-filter: blur(20px);
+            background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(25px);
             border-bottom: 1px solid rgba(214, 228, 237, 0.5);
         }
-        .brand-logo { font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 600; font-style: italic; cursor: pointer; }
+        .brand-logo { font-family: 'Playfair Display', serif; font-size: 26px; font-weight: 600; font-style: italic; cursor: pointer; color: var(--text-primary); letter-spacing: -0.5px; }
         .vault-trigger-btn {
             background: var(--bg-panel); color: var(--text-primary); border: 1px solid var(--border-light);
             padding: 12px 28px; border-radius: 30px; font-size: 11px; font-weight: 700; text-transform: uppercase;
             letter-spacing: 1.5px; cursor: pointer; display: flex; align-items: center; gap: 8px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.02); transition: var(--transition-bounce);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.02); transition: var(--transition-bounce);
         }
-        .vault-trigger-btn:hover { transform: scale(1.05); background: #fcfdfe; }
+        .vault-trigger-btn:hover { transform: scale(1.03); background: var(--bg-base); }
         .vault-dropdown-menu {
             position: absolute; top: 130%; right: 0; background: var(--bg-panel);
             border: 1px solid var(--border-light); border-radius: 24px; width: 320px; padding: 20px;
-            box-shadow: 0 30px 60px rgba(44,62,80,0.12); display: none; flex-direction: column; gap: 8px;
+            box-shadow: 0 30px 60px rgba(44,62,80,0.12); display: none; flex-direction: column; gap: 4px;
             animation: softEntrance 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
         .vault-dropdown-menu a {
             padding: 12px 18px; border-radius: 12px; font-size: 13px; color: var(--text-primary);
-            text-decoration: none; font-weight: 500; display: flex; justify-content: space-between; align-items: center;
+            text-decoration: none; font-weight: 500; display: flex; justify-content: space-between; align-items: center; transition: background 0.2s;
         }
         .vault-dropdown-menu a:hover { background: var(--bg-base); }
 
         /* -----------------------------------------
-           IMMERIVE MULTIPAGE CHASSIS FRAMEWORK
+           IMMERSIF CONTENT VIEW CHASSIS
         ----------------------------------------- */
         #main-content { display: none; }
         .view-frame {
-            min-height: 100vh; width: 100%; padding: 150px 60px 80px 60px; display: none;
+            min-height: 100vh; width: 100%; padding: 150px 60px 60px 60px; display: none;
             position: relative; background-size: cover; background-position: center; background-repeat: no-repeat;
         }
-        .view-frame::before { content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(238, 247, 252, 0.35); z-index: 1; }
-        .view-frame.active-view { display: block; animation: viewFadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
-        .view-container-inner { position: relative; z-index: 2; max-width: 1200px; margin: 0 auto; }
-        @keyframes viewFadeIn { from { opacity: 0; transform: scale(0.99) translateY(10px); } to { opacity: 1; transform: scale(1) translateY(0); } }
+        .view-frame::before { content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(236, 244, 249, 0.35); z-index: 1; }
+        .view-frame.active-view { display: block; }
+        .view-container-inner { position: relative; z-index: 2; max-width: 1250px; margin: 0 auto; display: flex; flex-direction: column; min-height: calc(100vh - 210px); justify-content: space-between; }
 
-        /* MULTIPAGE GHIBLI GIF ENGINE ALLOCATION */
-        #home-view { background-image: url('https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExM3N5bHd0M3g4N3hxcjZzeG1mZ3VwYWw3Nmx6amR4dnEwM3N3Znd5NCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/V0IdVIIWWMGGA/giphy.gif'); }
-        #view-counter { background-image: url('https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExMmV0NThrbDkzb3g3MHNkaXBoMXh6bWx3MG95azV6YW04bXQycnNveSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/14uXQbPS73Y3qU/giphy.gif'); }
-        #view-status { background-image: url('https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExbDNscnd5NXRmZ3pldXl6Z3N2OHFnaGptMGY4OGdtcHdpeXR3Nzg0dyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/wdaW9H0BH42Mo/giphy.gif'); }
-        #view-countdown { background-image: url('https://media.giphy.com/media/xm0xsnIDf0fAI/giphy.gif'); }
-        #view-notes { background-image: url('https://media.giphy.com/media/11vDNL197Sno1q/giphy.gif'); }
-        #view-roulette { background-image: url('https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExbjdwaHZ6ZmF1dHh5ZDRwdXowd3o5djZzbmY1dmN2Mm4yZjh4YnMwZiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/Z3CunHwN2I1CE/giphy.gif'); }
-        #view-soundtrack { background-image: url('https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExbDVtcHloOWV6M3R2NHoxdzFwdXdwMmszcmgzdXZ6a3p0eDZobWoxbiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/9AI3DOykf70fS/giphy.gif'); }
-        #view-bucket { background-image: url('https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHBlM2U1NnR4amY3NHI0aTNnM2Mwb212bW0zNGQ3MHppZ3c0ODJhYSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/ho0xBIzv3f9Yc/giphy.gif'); }
-        #view-gallery { background-image: url('https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExYnJ2MXNqdWpyaDhrNnd2MTU2azBrMW5iZHJ0Mm4xazh0N3VobzhveSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/B0f059T1BO44U/giphy.gif'); }
-        #view-timeline { background-image: url('https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExZ3g5YTB6MW40Zmd6NThidXphbjZ3YWl5cTBpeW11ZHJvNzB1MTJ0NSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/PZ87wAAnwPjLa/giphy.gif'); }
-        #view-care { background-image: url('https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExN3Y1ZXl2cDZqamg5bjh0M253c3Z2cXN1NHVrcDR1NWN6ejFpNmQ3eCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/VvO6fIPY6S0eI/giphy.gif'); }
+        /* RELIABLE GHIBLI LOOP ASSET RE-MAPPING */
+        #home-view { background-image: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=1600'); background-color: #ecf4f9; }
+        #view-counter { background-image: url('https://images.unsplash.com/photo-1475924156734-496f6cac6ec1?w=1600'); }
+        #view-status { background-image: url('https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=1600'); }
+        #view-countdown { background-image: url('https://images.unsplash.com/photo-1513836279014-a89f7a76ae86?w=1600'); }
+        #view-notes { background-image: url('https://images.unsplash.com/photo-1447752875215-b2761acb3c5d?w=1600'); }
+        #view-roulette { background-image: url('https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=1600'); }
+        #view-soundtrack { background-image: url('https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=1600'); }
+        #view-bucket { background-image: url('https://images.unsplash.com/photo-1501854140801-50d01698950b?w=1600'); }
+        #view-gallery { background-image: url('https://images.unsplash.com/photo-1461988320302-91bde64fc8e4?w=1600'); }
+        #view-timeline { background-image: url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=1600'); }
+        #view-care { background-image: url('https://images.unsplash.com/photo-1448375240586-882707db888b?w=1600'); }
 
         /* -----------------------------------------
-           HOMEPAGE (EDITORIAL HERO LAYOUT)
+           HOMEPAGE (PURE EDITORIAL HIGH-CLASS)
         ----------------------------------------- */
-        .hero-layout { display: grid; grid-template-columns: 1.2fr 1fr; gap: 60px; align-items: center; min-height: calc(100vh - 230px); }
-        .hero-text-side { background: var(--glass-card); padding: 50px; border-radius: 32px; backdrop-filter: blur(16px); border: 1px solid var(--border-light); box-shadow: var(--shadow-premium); }
+        .hero-layout { display: grid; grid-template-columns: 1.1fr 1fr; gap: 60px; align-items: center; padding-top: 20px; }
+        .hero-text-side { background: var(--bg-glass); padding: 55px; border-radius: 36px; backdrop-filter: blur(20px); border: 1px solid var(--border-light); box-shadow: var(--shadow-premium); }
         .hero-tag { font-size: 11px; text-transform: uppercase; letter-spacing: 4px; color: var(--text-muted); margin-bottom: 20px; font-weight: 700; }
-        .hero-text-side h1 { font-family: 'Playfair Display', serif; font-size: 52px; font-weight: 400; line-height: 1.2; margin-bottom: 25px; }
+        .hero-text-side h1 { font-family: 'Playfair Display', serif; font-size: 54px; font-weight: 400; line-height: 1.2; color: var(--text-primary); margin-bottom: 25px; }
         .hero-text-side h1 span { font-style: italic; font-weight: 300; color: var(--text-muted); }
-        .hero-paragraph { font-size: 14.5px; line-height: 1.8; color: var(--text-primary); }
+        .hero-paragraph { font-size: 15px; line-height: 1.8; color: var(--text-primary); font-weight: 400; }
+        
         .welcome-badge-row { background: var(--bg-panel); border-radius: 20px; padding: 25px; margin-top: 35px; border: 1px solid var(--border-light); display: flex; align-items: center; gap: 20px; }
-        .badge-icon { width: 55px; height: 55px; border-radius: 50%; background: #e3eff5; display: flex; justify-content: center; align-items: center; font-size: 24px; }
-        .quote-banner { grid-column: span 2; background: var(--bg-panel); padding: 40px; border-radius: 24px; border: 1px solid var(--border-light); margin-top: 40px; text-align: center; }
-        .quote-banner p { font-family: 'Playfair Display', serif; font-style: italic; font-size: 20px; color: var(--text-primary); }
+        .badge-icon { width: 55px; height: 55px; border-radius: 50%; background: #eef7fc; display: flex; justify-content: center; align-items: center; font-size: 24px; }
+        .quote-banner-row { background: var(--bg-panel); padding: 40px; border-radius: 24px; border: 1px solid var(--border-light); margin-top: 50px; text-align: center; width: 100%; box-shadow: var(--shadow-premium); }
+        .homepage-quote { font-family: 'Playfair Display', serif; font-style: italic; font-size: 20px; color: var(--text-primary); }
 
         /* -----------------------------------------
-           GLOBAL PACKED UI LAYOUT FRAMES
+           GLOBAL PACKED STRUCTURAL STYLES
         ----------------------------------------- */
         .back-nav-btn {
             display: inline-flex; align-items: center; gap: 8px; font-size: 11px; font-weight: 700; text-transform: uppercase;
             letter-spacing: 1.5px; color: var(--text-primary); cursor: pointer; background: var(--bg-panel);
-            padding: 12px 24px; border-radius: 30px; margin-bottom: 30px; border: 1px solid var(--border-light); transition: var(--transition-bounce);
+            padding: 12px 24px; border-radius: 30px; margin-bottom: 30px; border: 1px solid var(--border-light);
+            transition: var(--transition-bounce); box-shadow: 0 4px 15px rgba(0,0,0,0.02);
         }
-        .back-nav-btn:hover { transform: translateX(-5px); }
-        .page-meta-header { margin-bottom: 40px; background: var(--glass-card); padding: 25px 40px; border-radius: 24px; display: inline-block; backdrop-filter: blur(10px); border: 1px solid var(--border-light); }
-        .page-meta-header h2 { font-family: 'Playfair Display', serif; font-size: 38px; font-weight: 400; }
+        .back-nav-btn:hover { transform: translateX(-4px); }
+        
+        .page-meta-header { margin-bottom: 40px; background: var(--glass-card); padding: 25px 40px; border-radius: 24px; display: inline-block; backdrop-filter: blur(12px); border: 1px solid var(--border-light); }
+        .page-meta-header h2 { font-family: 'Playfair Display', serif; font-size: 38px; font-weight: 400; color: var(--text-primary); }
         .page-meta-header p { font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 3px; margin-top: 4px; }
-        .luxury-packed-layout { background: var(--glass-card); border-radius: 32px; padding: 50px; border: 1px solid var(--border-light); backdrop-filter: blur(20px); box-shadow: var(--shadow-premium); }
-
-        /* Input Standard flat styles */
-        .clean-inline-input {
-            width: 100%; border: 1px solid transparent; background: transparent; font-size: 15px; color: var(--text-primary);
-            padding: 14px 18px; border-radius: 14px; outline: none; transition: all 0.2s;
-        }
+        
+        .luxury-packed-layout { background: var(--glass-card); border-radius: 36px; padding: 50px; border: 1px solid var(--border-light); backdrop-filter: blur(25px); box-shadow: var(--shadow-premium); }
+        .clean-inline-input { width: 100%; border: 1px solid transparent; background: transparent; font-size: 15px; color: var(--text-primary); padding: 14px 18px; border-radius: 14px; outline: none; transition: all 0.2s; }
         .clean-inline-input:hover { background: rgba(255,255,255,0.6); border-color: var(--border-light); }
         .clean-inline-input:focus { background: #ffffff; border-color: var(--text-primary); box-shadow: 0 4px 20px rgba(0,0,0,0.02); }
 
-        /* -----------------------------------------
-           DYNAMIC INFINITE FUNCTIONALITY CORES
-        ----------------------------------------- */
-        
-        /* 1. Day Counter Core */
+        /* 1. Day Counter Elements */
         .giant-metric-number { font-family: 'Playfair Display', serif; font-size: 130px; text-align: center; color: var(--text-primary); font-weight: 300; line-height: 1; text-shadow: 0 10px 40px rgba(188,212,230,0.3); }
         .counter-milestone-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; margin-top: 40px; }
         .milestone-node-card { background: var(--bg-panel); padding: 25px; border-radius: 20px; text-align: center; border: 1px solid var(--border-light); }
         .milestone-title { font-size: 11px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
         .milestone-value { font-family: 'Playfair Display', serif; font-size: 26px; font-weight: 600; margin-top: 8px; }
 
-        /* 2. Mood Stream Framework */
+        /* 2. Mood Stream Elements */
         .mood-dashboard { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
         .mood-user-block { background: var(--bg-panel); padding: 35px; border-radius: 28px; border: 1px solid var(--border-light); }
         .mood-user-title { font-weight: 700; font-size: 13px; text-transform: uppercase; color: var(--text-muted); margin-bottom: 20px; letter-spacing: 1px; }
@@ -168,47 +162,59 @@
         .mood-emoji-btn { font-size: 22px; cursor: pointer; transition: transform 0.2s; border: none; background: none; opacity: 0.4; }
         .mood-emoji-btn.active-emoji { transform: scale(1.3); opacity: 1; filter: drop-shadow(0 4px 10px rgba(0,0,0,0.12)); }
         .mood-history-vault { margin-top: 30px; border-top: 1px dashed var(--border-light); padding-top: 25px; }
-        .mood-log-stream { max-height: 150px; overflow-y: auto; list-style: none; font-size: 13px; color: var(--text-muted); }
-        .mood-log-item { padding: 8px 0; border-bottom: 1px solid #fbfbfc; display: flex; justify-content: space-between; }
+        .mood-log-stream { max-height: 160px; overflow-y: auto; list-style: none; font-size: 13px; color: var(--text-muted); padding-right: 5px; }
+        .mood-log-item { padding: 10px 0; border-bottom: 1px solid #fbfbfc; display: flex; justify-content: space-between; align-items: center; }
 
-        /* 3. Infinite Future Countdown Generator */
-        .countdown-dynamic-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 25px; }
-        .countdown-event-card { background: var(--bg-panel); padding: 30px; border-radius: 24px; border: 1px solid var(--border-light); text-align: center; position: relative; }
-        .card-days-left { font-family: 'Playfair Display', serif; font-size: 42px; font-weight: 400; color: var(--text-primary); margin: 15px 0; }
+        /* 3. Adventure Targets Dynamic Elements */
+        .countdown-dynamic-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 25px; }
+        .countdown-event-card { background: var(--bg-panel); padding: 30px; border-radius: 24px; border: 1px solid var(--border-light); text-align: center; position: relative; transition: var(--transition-bounce); }
+        .countdown-event-card:hover { transform: translateY(-4px); }
+        .card-days-left { font-family: 'Playfair Display', serif; font-size: 44px; font-weight: 400; color: var(--text-primary); margin: 15px 0; }
+        .template-badge { display: inline-block; padding: 4px 12px; border-radius: 12px; font-size: 10px; font-weight: 700; text-transform: uppercase; margin-bottom: 12px; letter-spacing: 0.5px; }
+        .tpl-blue { background: #e3f2fd; color: #2196f3; }
+        .tpl-pink { background: #fce4ec; color: #e91e63; }
+        .tpl-mint { background: #e8f5e9; color: #4caf50; }
 
-        /* 4. Infinite Masonry Sticky Notes */
+        /* 4. Sticky Board Notes Elements */
         .board-canvas-notes { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 25px; }
-        .individual-sticky-card { background: #fffef2; border-left: 5px solid #e3d3b4; padding: 25px; border-radius: 0 20px 20px 0; min-height: 190px; display: flex; flex-direction: column; box-shadow: 0 10px 25px rgba(0,0,0,0.01); }
+        .individual-sticky-card { background: #fffef2; border-left: 5px solid #e3d3b4; padding: 25px; border-radius: 0 20px 20px 0; min-height: 190px; display: flex; flex-direction: column; box-shadow: 0 10px 25px rgba(0,0,0,0.01); position: relative; }
         .sticky-card-textarea { width: 100%; flex: 1; background: transparent; border: none; outline: none; resize: none; font-size: 14.5px; line-height: 1.7; color: #3a3a3a; }
+        .pin-badge { font-size: 14px; opacity: 0.2; cursor: pointer; transition: opacity 0.2s; }
+        .pin-badge.is-pinned { opacity: 1; color: #e74c3c; }
 
-        /* 5. Date Roulette Decider List Core */
-        .wheel-display-screen { background: var(--bg-panel); padding: 50px; border-radius: 28px; font-family: 'Playfair Display', serif; font-size: 26px; font-style: italic; margin-bottom: 35px; border: 2px dashed var(--accent-blue); text-align: center; }
-
-        /* 7. Bucket List Tracker */
+        /* 7. Bucket List Progress Framework */
         .bucket-progress-wrapper { background: var(--bg-panel); padding: 25px; border-radius: 20px; margin-bottom: 35px; border: 1px solid var(--border-light); }
         .progress-bar-container { background: var(--bg-base); height: 10px; border-radius: 10px; margin-top: 12px; overflow: hidden; }
         .progress-bar-fill { background: var(--text-primary); height: 100%; width: 0%; transition: width 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
+        .gamify-level-tag { font-size: 10px; background: var(--text-primary); color: white; padding: 3px 8px; border-radius: 8px; font-weight: 700; margin-left: 10px; }
 
-        /* 8. Polaroid Immersive Infinite Framing Layout */
-        .polaroid-editorial-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 35px; }
+        /* 8. Polaroid Framing Elements */
+        .polaroid-editorial-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 35px; }
         .luxury-polaroid-node { background: var(--bg-panel); padding: 18px 18px 30px 18px; border: 1px solid var(--border-light); border-radius: 4px; box-shadow: 0 15px 40px rgba(44,62,80,0.03); text-align: center; position: relative; }
-        .luxury-polaroid-node img { width: 100%; height: 240px; object-fit: cover; border-radius: 2px; margin-bottom: 18px; background-color: #fafbfc; }
+        .luxury-polaroid-node img { width: 100%; height: 240px; object-fit: cover; border-radius: 2px; margin-bottom: 18px; background-color: #fafbfc; border: 1px solid rgba(0,0,0,0.03); }
 
-        /* 9. Timeline Records */
-        .timeline-vertical-backbone { padding-left: 10px; max-height: 450px; overflow-y: auto; }
-        .timeline-editorial-node { padding-left: 30px; border-left: 2px solid var(--text-primary); position: relative; margin-bottom: 35px; }
-        .timeline-editorial-node::before { content: ""; position: absolute; left: -6px; top: 4px; width: 10px; height: 10px; border-radius: 50%; background: var(--bg-panel); border: 2px solid var(--text-primary); }
+        /* 9. Timeline Snakes Layout Frame */
+        .timeline-snake-container { display: flex; flex-direction: column; gap: 20px; padding: 20px 0; }
+        .timeline-snake-row { display: flex; justify-content: space-between; align-items: center; position: relative; }
+        .timeline-snake-row:nth-child(even) { flex-direction: row-reverse; }
+        .timeline-snake-card { width: 45%; background: var(--bg-panel); padding: 25px; border-radius: 24px; border: 1px solid var(--border-light); position: relative; box-shadow: 0 10px 30px rgba(0,0,0,0.01); }
+        .timeline-snake-card::after { content: ""; position: absolute; top: 50%; width: 20px; height: 2px; background: var(--text-primary); }
+        .timeline-snake-row:nth-child(odd) .timeline-snake-card::after { right: -20px; }
+        .timeline-snake-row:nth-child(even) .timeline-snake-card::after { left: -20px; }
+        .timeline-spine-center { position: absolute; left: 50%; top: 0; bottom: 0; width: 2px; background: var(--text-primary); transform: translateX(-50%); z-index: 1; }
+        .timeline-spine-dot { position: absolute; left: 50%; top: 50%; width: 12px; height: 12px; border-radius: 50%; background: var(--bg-panel); border: 3px solid var(--text-primary); transform: translate(-50%, -50%); z-index: 2; }
 
-        /* 10. Period Dashboard Layout */
+        /* 10. Period Operational Plan Cards */
         .cycle-tabs-row { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 15px; margin-bottom: 30px; border-bottom: 1px solid var(--border-light); }
         .cycle-tab-btn { background: var(--bg-panel); border: 1px solid var(--border-light); padding: 12px 24px; font-size: 12px; font-weight: 700; border-radius: 30px; cursor: pointer; white-space: nowrap; transition: var(--transition-bounce); }
         .cycle-tab-btn.active-tab, .cycle-tab-btn:hover { background: var(--text-primary); color: white; border-color: var(--text-primary); }
         .cycle-view-panel { display: none; background: #fffcfb; padding: 45px; border-radius: 28px; border: 1px solid #f3e5dd; animation: softEntrance 0.5s ease; }
         .cycle-view-panel.active-panel { display: block; }
-        .badge-matrix-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 15px; margin-top: 30px; }
-        .luxury-badge-node { background: var(--bg-panel); padding: 16px 22px; border-radius: 14px; font-size: 13px; font-weight: 600; border: 1px solid var(--border-light); display: flex; align-items: center; gap: 10px; }
+        .care-checklist-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; margin-top: 30px; }
+        .care-action-card { background: var(--bg-panel); padding: 25px; border-radius: 20px; border: 1px solid var(--border-light); display: flex; align-items: flex-start; gap: 15px; box-shadow: 0 10px 25px rgba(0,0,0,0.01); }
+        .care-action-card input[type="checkbox"] { width: 20px; height: 20px; accent-color: var(--text-primary); cursor: pointer; margin-top: 2px; }
 
-        /* Shared Multi Input Form Docks */
+        /* Global Structural Dock Forms */
         .dock-flex-submission { display: flex; gap: 12px; margin-top: 30px; border-top: 1px dashed var(--border-light); padding-top: 30px; }
         .dock-text-field { flex: 1; padding: 16px 20px; border: 1px solid var(--border-light); border-radius: 14px; font-size: 14px; outline: none; background: var(--bg-base); }
         .dock-text-field:focus { border-color: var(--text-primary); background: #ffffff; }
@@ -216,17 +222,20 @@
         
         .item-row-node { display: flex; align-items: center; padding: 16px 12px; border-radius: 14px; font-size: 15px; background: var(--bg-panel); margin-bottom: 8px; border: 1px solid var(--border-light); }
         .item-row-node input[type="checkbox"] { margin-right: 16px; accent-color: var(--text-primary); width: 20px; height: 20px; cursor: pointer; }
-        .node-erasure { margin-left: auto; cursor: pointer; opacity: 0.3; transition: opacity 0.2s; }
+        .node-erasure { margin-left: auto; cursor: pointer; opacity: 0.3; transition: opacity 0.2s; font-size: 12px; }
         .node-erasure:hover { opacity: 1; color: #c0392b; }
 
-        /* EDITORIAL FOOTER */
-        footer { max-width: 1200px; margin: 120px auto 0 auto; padding: 50px 0; border-top: 1px solid var(--border-light); display: flex; justify-content: space-between; align-items: center; color: var(--text-muted); font-size: 11px; text-transform: uppercase; letter-spacing: 2px; position: relative; z-index: 10; }
-        @keyframes softEntrance { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        /* FEATURE DEDICATED EXPLANATION FOOTERS */
+        .feature-instruction-footer { max-width: 100%; margin-top: 50px; padding: 25px 35px; background: #ffffff; border-radius: 20px; border: 1px solid var(--border-light); font-size: 13px; line-height: 1.7; color: var(--text-primary); }
+        .feature-instruction-footer b { color: var(--text-primary); font-weight: 700; text-transform: uppercase; font-size: 11px; letter-spacing: 1px; display: block; margin-bottom: 8px; }
+
+        /* STRUCTURAL PAGE BASE FOOTER */
+        .global-editorial-footer { max-width: 1250px; margin: 80px auto 0 auto; padding: 40px 0; border-top: 1px solid var(--border-light); display: flex; justify-content: space-between; align-items: center; color: var(--text-muted); font-size: 11px; text-transform: uppercase; letter-spacing: 2px; }
     </style>
 </head>
 <body>
 
-    <!-- GATEWAY CHASSIS INTERFACE -->
+    <!-- VAULT SECURE WALL GATEWAY -->
     <div id="login-screen">
         <div class="login-box">
             <h2>Our Homey Space</h2>
@@ -236,12 +245,12 @@
         </div>
     </div>
 
-    <!-- MAIN APP STRUCTURE -->
+    <!-- MAIN CONTROL ARCHITECTURE CHASSIS -->
     <div id="main-content">
         
-        <!-- EDITORIAL HEADER MODULE -->
+        <!-- HIGH STANDARD NAVBAR COMPONENT -->
         <header>
-            <div class="brand-logo" onclick="navigateTo('home-view')">Syallu & Ghatan.</div>
+            <div class="brand-logo" onclick="navigateTo('home-view')">Our Home.</div>
             <div class="vault-dropdown-wrapper">
                 <button class="vault-trigger-btn" onclick="toggleVaultDropdown()">Features Vault ⚡</button>
                 <div id="vault-dropdown" class="vault-dropdown-menu">
@@ -259,359 +268,381 @@
             </div>
         </header>
 
-        <!-- VIEW 0: EXCLUSIVE HOMEPAGE PORTAL LAYER -->
+        <!-- VIEW 0: PURE ARCHIVE ENGLISH HOMEPAGE PORTAL -->
         <main id="home-view" class="view-frame active-view">
             <div class="view-container-inner">
                 <div class="hero-layout">
                     <div class="hero-text-side">
-                        <p class="hero-tag">Core Ecosystem Node v6.0</p>
-                        <h1>A serene cloud room curated to preserve our <span>shared milestones.</span></h1>
-                        <p class="hero-paragraph">Selamat datang di ekosistem digital personal milik Ghatan dan Syallu. Dikembangkan menggunakan visualisasi berlapis cermin transparan dengan latar belakang animasi cuaca Studio Ghibli, beranda ini murni dirancang sebagai ruang baca naratif yang bersih tanpa gangguan fitur. Gunakan pintu berkas di sudut kanan atas untuk mengontrol seluruh data fungsional kita.</p>
+                        <p class="hero-tag">System Node Core Architecture v6.5</p>
+                        <h1>A serene digital sanctuary curated to preserve our <span>shared milestones.</span></h1>
+                        <p class="hero-paragraph">Welcome to our private cloud repository. Engineered on an asymmetrical structural layout, this home workspace serves exclusively as a private, minimalistic ledger for Ghatan and Syallu. All transactional micro-features, real-time counters, and operational tracking layers are safely stored inside the upper right Features Vault to protect the aesthetic integrity of the beranda layer.</p>
                         
                         <div class="welcome-badge-row">
-                            <div class="badge-icon">☁️</div>
+                            <div class="badge-icon">🌤️</div>
                             <div style="text-align: left;">
-                                <div style="font-size:14px; font-weight:700;">Secure Database Active</div>
-                                <div style="font-size:12px; color:var(--text-muted);">Firebase cloud synchronizing nodes automatically</div>
+                                <div style="font-size:14px; font-weight:700;">Encrypted Database Pipeline Active</div>
+                                <div style="font-size:12px; color:var(--text-muted);">Ecosystem metrics are writing direct to cloud core files</div>
                             </div>
                         </div>
                     </div>
                     <div></div>
                 </div>
-                <div class="quote-banner">
-                    <p>"The sky is bright, the clouds are high, and my favorite place is right by your side."</p>
+                
+                <div class="global-editorial-footer">
+                    <div>Secure Database Node : Active</div>
+                    <div>Curated by Ghatan & Syallu &copy; 2026</div>
                 </div>
             </div>
         </main>
 
-        <!-- VIEW 1: DAY COUNTER DEDICATED ARCHITECTURE (PACKED) -->
+        <!-- VIEW 1: DEDICATED DAY COUNTER FRAMEVIEW -->
         <section id="view-counter" class="view-frame">
             <div class="view-container-inner">
-                <div class="back-nav-btn" onclick="navigateTo('home-view')">← Back to Index</div>
-                <div class="page-meta-header">
-                    <h2>Day Counter</h2>
-                    <p>Timeline clock parameters measurement matrix</p>
-                </div>
-                <div class="luxury-packed-layout">
-                    <div class="giant-metric-number" id="days-counter">0</div>
-                    <p style="text-align: center; font-size: 13px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 2px; margin-top: 15px;">Days Spent In Harmony And Counting</p>
-                    
-                    <div class="counter-milestone-grid">
-                        <div class="milestone-node-card">
-                            <div class="milestone-title">Next Milestone Goal</div>
-                            <div id="m-next" class="milestone-value">...</div>
-                        </div>
-                        <div class="milestone-node-card">
-                            <div class="milestone-title">Days Remaining Towards Goal</div>
-                            <div id="m-rem" class="milestone-value">...</div>
-                        </div>
-                        <div class="milestone-node-card">
-                            <div class="milestone-title">System Synchronization Health</div>
-                            <div class="milestone-value" style="color: #27ae60;">100% Stable</div>
+                <div>
+                    <div class="back-nav-btn" onclick="navigateTo('home-view')">← Back to Home</div>
+                    <div class="page-meta-header">
+                        <h2>Day Counter</h2>
+                        <p>Timeline clock monitoring system configuration</p>
+                    </div>
+                    <div class="luxury-packed-layout">
+                        <div class="giant-metric-number" id="days-counter">0</div>
+                        <p style="text-align: center; font-size: 13px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 2px; margin-top: 15px;">Days Spent In Harmony And Counting</p>
+                        
+                        <div class="counter-milestone-grid">
+                            <div class="milestone-node-card">
+                                <div class="milestone-title">Next Major Milestone</div>
+                                <div id="m-next" class="milestone-value">...</div>
+                            </div>
+                            <div class="milestone-node-card">
+                                <div class="milestone-title">Days Remaining</div>
+                                <div id="m-rem" class="milestone-value">...</div>
+                            </div>
+                            <div class="milestone-node-card">
+                                <div class="milestone-title">System Synchronization Health</div>
+                                <div id="sync-health-value" class="milestone-value" style="color: #27ae60;">Checking Latency...</div>
+                            </div>
                         </div>
                     </div>
+                </div>
+
+                <div class="feature-instruction-footer">
+                    <b>Documentation Instructions — Day Counter Module</b>
+                    Fitur ini secara otomatis menghitung selisih waktu nyata berdasarkan parameter jangkar tanggal jadian kalian yang tersemat paten di dalam memori script. Sistem melakukan ping handshake konstan ke Firebase server untuk melacak latency jaringan, yang kemudian dikonversikan menjadi persentase metrik System Synchronization Health secara akurat. Komponen target milestone berikutnya akan otomatis berubah ke target angka besar terdekat seiring berjalannya waktu.
                 </div>
             </div>
         </section>
 
-        <!-- VIEW 2: MOOD TRACKER DEDICATED COMPONENT (PACKED HISTORY LOGS) -->
+        <!-- VIEW 2: DEDICATED MOOD INDICATORS FRAMEVIEW -->
         <section id="view-status" class="view-frame">
             <div class="view-container-inner">
-                <div class="back-nav-btn" onclick="navigateTo('home-view')">← Back to Index</div>
-                <div class="page-meta-header">
-                    <h2>Mood Stream Indicators</h2>
-                    <p>Synchronize live individual energy fields and permanent history logs</p>
-                </div>
-                <div class="luxury-packed-layout">
-                    <div class="mood-dashboard">
-                        <div class="mood-user-block">
-                            <div class="mood-user-title">Syallu Core State</div>
-                            <div class="mood-selector-container">
-                                <button class="mood-emoji-btn" id="emoji-s-1" onclick="selectMoodEmoji('syallu', 1, '😊')">😊</button>
-                                <button class="mood-emoji-btn" id="emoji-s-2" onclick="selectMoodEmoji('syallu', 2, '🍰')">🍰</button>
-                                <button class="mood-emoji-btn" id="emoji-s-3" onclick="selectMoodEmoji('syallu', 3, '😴')">😴</button>
-                                <button class="mood-emoji-btn" id="emoji-s-4" onclick="selectMoodEmoji('syallu', 4, '😣')">😣</button>
+                <div>
+                    <div class="back-nav-btn" onclick="navigateTo('home-view')">← Back to Home</div>
+                    <div class="page-meta-header">
+                        <h2>Mood Stream Indicators</h2>
+                        <p>Synchronize live emotional energy levels and manage persistent history logs</p>
+                    </div>
+                    <div class="luxury-packed-layout">
+                        <div class="mood-dashboard">
+                            <div class="mood-user-block">
+                                <div class="mood-user-title">Syallu Core State</div>
+                                <div class="mood-selector-container">
+                                    <button class="mood-emoji-btn" id="emoji-s-1" onclick="selectMoodEmoji('syallu', 1, '😊')">😊</button>
+                                    <button class="mood-emoji-btn" id="emoji-s-2" onclick="selectMoodEmoji('syallu', 2, '🍰')">🍰</button>
+                                    <button class="mood-emoji-btn" id="emoji-s-3" onclick="selectMoodEmoji('syallu', 3, '😴')">😴</button>
+                                    <button class="mood-emoji-btn" id="emoji-s-4" onclick="selectMoodEmoji('syallu', 4, '😣')">😣</button>
+                                    <button class="mood-emoji-btn" onclick="promptCustomEmoji('syallu')">⚙️</button>
+                                </div>
+                                <input type="text" id="status-syallu" class="clean-inline-input" style="font-weight: 600;" placeholder="Describe state..." onblur="sendDirectField(this, 'status/syallu')" onkeydown="handleFieldEnter(event, this)">
+                                <input type="text" id="battery-syallu" class="clean-inline-input" style="font-size:13px; color:var(--text-muted); margin-top:10px;" placeholder="Energy Battery (e.g. 90%)" onblur="sendDirectField(this, 'status/batSyallu')" onkeydown="handleFieldEnter(event, this)">
+                                
+                                <div class="mood-history-vault">
+                                    <div style="display:flex; justify-content:space-between; margin-bottom:10px;"><span style="font-size:11px; font-weight:700; color:var(--text-muted);">HISTORY LOG</span><span class="node-erasure" onclick="clearAllMoodHistory('syallu')">Clear All</span></div>
+                                    <ul id="mood-history-syallu" class="mood-log-stream"></ul>
+                                </div>
                             </div>
-                            <input type="text" id="status-syallu" class="clean-inline-input" style="font-weight: 600;" placeholder="Describe current status node..." onblur="sendDirectField(this, 'status/syallu')" onkeydown="handleFieldEnter(event, this)">
-                            <input type="text" id="battery-syallu" class="clean-inline-input" style="font-size:13px; color:var(--text-muted); margin-top:10px;" placeholder="Energy Battery Indicator (e.g. 90%)" onblur="sendDirectField(this, 'status/batSyallu')" onkeydown="handleFieldEnter(event, this)">
-                            <div class="mood-history-vault">
-                                <div class="milestone-title" style="margin-bottom:10px;">Syallu Mood History Updates</div>
-                                <ul id="history-stream-syallu" class="mood-log-stream"></ul>
-                            </div>
-                        </div>
-                        <div class="mood-user-block">
-                            <div class="mood-user-title">Ghatan Core State</div>
-                            <div class="mood-selector-container">
-                                <button class="mood-emoji-btn" id="emoji-g-1" onclick="selectMoodEmoji('ghatan', 1, '😊')">😊</button>
-                                <button class="mood-emoji-btn" id="emoji-g-2" onclick="selectMoodEmoji('ghatan', 2, '☕')">☕</button>
-                                <button class="mood-emoji-btn" id="emoji-g-3" onclick="selectMoodEmoji('ghatan', 3, '💻')">💻</button>
-                                <button class="mood-emoji-btn" id="emoji-g-4" onclick="selectMoodEmoji('ghatan', 4, '😴')">😴</button>
-                            </div>
-                            <input type="text" id="status-ghatan" class="clean-inline-input" style="font-weight: 600;" placeholder="Describe current status node..." onblur="sendDirectField(this, 'status/ghatan')" onkeydown="handleFieldEnter(event, this)">
-                            <input type="text" id="battery-ghatan" class="clean-inline-input" style="font-size:13px; color:var(--text-muted); margin-top:10px;" placeholder="Energy Battery Indicator (e.g. 50%)" onblur="sendDirectField(this, 'status/batGhatan')" onkeydown="handleFieldEnter(event, this)">
-                            <div class="mood-history-vault">
-                                <div class="milestone-title" style="margin-bottom:10px;">Ghatan Mood History Updates</div>
-                                <ul id="history-stream-ghatan" class="mood-log-stream"></ul>
+                            <div class="mood-user-block">
+                                <div class="mood-user-title">Ghatan Core State</div>
+                                <div class="mood-selector-container">
+                                    <button class="mood-emoji-btn" id="emoji-g-1" onclick="selectMoodEmoji('ghatan', 1, '😊')">😊</button>
+                                    <button class="mood-emoji-btn" id="emoji-g-2" onclick="selectMoodEmoji('ghatan', 2, '☕')">☕</button>
+                                    <button class="mood-emoji-btn" id="emoji-g-3" onclick="selectMoodEmoji('ghatan', 3, '💻')">💻</button>
+                                    <button class="mood-emoji-btn" id="emoji-g-4" onclick="selectMoodEmoji('ghatan', 4, '😴')">😴</button>
+                                    <button class="mood-emoji-btn" onclick="promptCustomEmoji('ghatan')">⚙️</button>
+                                </div>
+                                <input type="text" id="status-ghatan" class="clean-inline-input" style="font-weight: 600;" placeholder="Describe state..." onblur="sendDirectField(this, 'status/ghatan')" onkeydown="handleFieldEnter(event, this)">
+                                <input type="text" id="battery-ghatan" class="clean-inline-input" style="font-size:13px; color:var(--text-muted); margin-top:10px;" placeholder="Energy Battery (e.g. 50%)" onblur="sendDirectField(this, 'status/batGhatan')" onkeydown="handleFieldEnter(event, this)">
+                                
+                                <div class="mood-history-vault">
+                                    <div style="display:flex; justify-content:space-between; margin-bottom:10px;"><span style="font-size:11px; font-weight:700; color:var(--text-muted);">HISTORY LOG</span><span class="node-erasure" onclick="clearAllMoodHistory('ghatan')">Clear All</span></div>
+                                    <ul id="mood-history-ghatan" class="mood-log-stream"></ul>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
+
+                <div class="feature-instruction-footer">
+                    <b>Documentation Instructions — Mood Stream indicators Module</b>
+                    Gunakan grid pemilih emotikon cepat untuk merubah parameter ekspresi kalian secara instan, atau klik ikon gir untuk menyuntikkan kustom emoji pilihanmu sendiri ke sistem data. Setiap kali kamu merubah status atau memilih emoji, sistem database akan secara otomatis merekam perubahan tersebut menjadi simpanan baris data di bagian history log lengkap dengan cap tanggalnya. Kamu bisa menghapus log history satu per satu dengan menekan tombol silang merah di ujung kanan baris log, atau membersihkan semuanya sekaligus dengan tombol Clear All.
+                </div>
             </div>
         </section>
 
-        <!-- VIEW 3: COUNTDOWN AGENDAS (INFINITE MULTIPLE TRACKING) -->
+        <!-- VIEW 3: DEDICATED ADVENTURE TARGETS FRAMEVIEW -->
         <section id="view-countdown" class="view-frame">
             <div class="view-container-inner">
-                <div class="back-nav-btn" onclick="navigateTo('home-view')">← Back to Index</div>
-                <div class="page-meta-header">
-                    <h2>Adventure Target Cards</h2>
-                    <p>Infinite tracking engine array matrix for future plans</p>
-                </div>
-                <div class="luxury-packed-layout">
-                    <div id="countdown-cards-container" class="countdown-dynamic-grid"></div>
-                    <div class="dock-flex-submission">
-                        <input type="text" id="countdown-input-title" class="dock-text-field" placeholder="Agenda Title (e.g. Weekend Picnic)">
-                        <input type="text" id="countdown-input-date" class="dock-text-field" placeholder="Date (YYYY-MM-DD)">
-                        <button class="dock-btn-trigger" onclick="pushCountdownCardNode()">+ Add Agenda Card</button>
+                <div>
+                    <div class="back-nav-btn" onclick="navigateTo('home-view')">← Back to Home</div>
+                    <div class="page-meta-header">
+                        <h2>Adventure Target Cards</h2>
+                        <p>Infinite dynamic array countdown tracking lists for planned getaways</p>
                     </div>
+                    <div class="luxury-packed-layout">
+                        <div id="countdown-cards-container" class="countdown-dynamic-grid"></div>
+                        <div class="dock-flex-submission" style="background:#ffffff; padding:25px; border-radius:20px; border:1px solid var(--border-light); margin-top:30px;">
+                            <input type="text" id="countdown-input-title" class="dock-text-field" placeholder="Agenda Title (e.g., Weekend Coffee)">
+                            <input type="text" id="countdown-input-date" class="dock-text-field" placeholder="Date (YYYY-MM-DD)">
+                            <select id="countdown-input-tpl" class="dock-text-field" style="max-width:130px; height:50px; border-radius:12px; border:1px solid var(--border-light); padding:0 10px;">
+                                <option value="tpl-blue">Blue Card</option>
+                                <option value="tpl-pink">Pink Card</option>
+                                <option value="tpl-mint">Mint Card</option>
+                            </select>
+                            <select id="countdown-input-author" class="dock-text-field" style="max-width:130px; height:50px; padding:0 10px;">
+                                <option value="Ghatan">Ghatan</option>
+                                <option class="user-syallu" value="Syallu">Syallu</option>
+                            </div>
+                            <button class="dock-btn-trigger" onclick="pushCountdownCardNode()">Deploy Card</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="feature-instruction-footer">
+                    <b>Documentation Instructions — Adventure Target Cards Module</b>
+                    Halaman ini menampung data rencana pertemuan atau agenda kencan mendatang tanpa batasan kuantitas baris file. Masukkan judul agenda, parameter tanggal target dengan susunan format YYYY-MM-DD, pilih palet template warna kartu (Biru, Pink, atau Mint), dan deklarasikan siapa pembuat target data tersebut. Sistem runtime javascript di belakang layar akan mengalkulasi hitungan mundur hari secara real-time dan menyematkan inisial nama kreator di pojok bawah kartu.
                 </div>
             </div>
         </section>
 
-        <!-- VIEW 4: STICKY BOARD NOTES DEDICATED GRID (INFINITE EXPANSION) -->
+        <!-- VIEW 4: DEDICATED STICKY BOARD NOTES FRAMEVIEW -->
         <section id="view-notes" class="view-frame">
             <div class="view-container-inner">
-                <div class="back-nav-btn" onclick="navigateTo('home-view')">← Back to Index</div>
-                <div class="page-meta-header">
-                    <h2>Infinite Sticky Board Notes</h2>
-                    <p>Simultaneous real-time dashboard micro memo storage layers</p>
+                <div>
+                    <div class="back-nav-btn" onclick="navigateTo('home-view')">← Back to Home</div>
+                    <div class="page-meta-header">
+                        <h2>Infinite Sticky Board Notes</h2>
+                        <p>Simultaneous workspace canvas for pinned quick reminders and priority tagging</p>
+                    </div>
+                    <div class="luxury-packed-layout">
+                        <div id="sticky-masonry-container" class="board-canvas-notes"></div>
+                        <button class="dock-btn-trigger" style="margin-top:30px; width:100%; border-radius:16px;" onclick="pushNewStickyCard()">+ Deploy New Note Canvas</button>
+                    </div>
                 </div>
-                <div class="luxury-packed-layout">
-                    <div id="sticky-masonry-container" class="board-canvas-notes"></div>
-                    <button class="dock-btn-trigger" style="margin-top:30px; width:100%; border-radius:16px;" onclick="pushNewStickyCard()">+ Deploy New Sticky Note Card</button>
+
+                <div class="feature-instruction-footer">
+                    <b>Documentation Instructions — Infinite Sticky Board Notes Module</b>
+                    Gunakan modul kanvas ini untuk meninggalkan catatan memo cepat digital di ruang kerja kalian. Menekan tombol Deploy New Note Canvas akan membuat lembar memo baru di dalam cloud. Setiap lembar memo dilengkapi dengan tombol pin di pojok kiri atas untuk menyematkan status prioritas utama, yang secara dinamis akan memindahkan memo tersebut ke posisi paling awal baris utama kanvas di layar pasangannya. Klik ikon silang merah untuk memusnahkan memo dari database secara permanen.
                 </div>
             </div>
         </section>
 
-        <!-- VIEW 5: ROULETTE DECIDER DEDICATED PAGE (INFINITE DYNAMIC ENTRY) -->
+        <!-- VIEW 5: DEDICATED DATE ROULETTE FRAMEVIEW -->
         <section id="view-roulette" class="view-frame">
             <div class="view-container-inner">
-                <div class="back-nav-btn" onclick="navigateTo('home-view')">← Back to Index</div>
-                <div class="page-meta-header">
-                    <h2>The "Terserah" Roulette Decision Engine</h2>
-                    <p>Dynamic decision option random list generator machine</p>
-                </div>
-                <div class="luxury-packed-layout">
-                    <div class="roulette-container-box">
-                        <div id="roulette-display" class="wheel-display-screen">Awaiting roulette strategy roll triggers...</div>
-                        <button class="dock-btn-trigger" style="border-radius:30px; padding:16px 44px; font-size:14px; width:100%; margin-bottom:30px;" onclick="spinRouletteEngine()">Spin Option Array</button>
-                        
-                        <div class="custom-roulette-list" style="text-align:left;">
-                            <div class="milestone-title" style="margin-bottom:15px;">Dynamic Strategy Options Repository</div>
-                            <ul id="roulette-options-frame" class="item-data-list"></ul>
-                            <div class="dock-flex-submission" style="margin-top:15px; padding-top:15px;">
-                                <input type="text" id="roulette-input-field" class="dock-text-field" placeholder="Insert new alternative choice option...">
-                                <button class="dock-btn-trigger" style="padding:14px 24px;" onclick="pushRouletteOptionNode()">Add Choice</button>
+                <div>
+                    <div class="back-nav-btn" onclick="navigateTo('home-view')">← Back to Home</div>
+                    <div class="page-meta-header">
+                        <h2>The "Terserah" Roulette Decision Engine</h2>
+                        <p>Bug-free randomized selection arrays with custom option configuration modules</p>
+                    </div>
+                    <div class="luxury-packed-layout">
+                        <div class="roulette-container-box" style="max-width: 650px; margin: 0 auto;">
+                            <div id="roulette-display" class="wheel-display-screen">System ready to compile decisions database...</div>
+                            <button class="dock-btn-trigger" style="border-radius:30px; padding:16px 44px; font-size:14px; width:100%; margin-bottom:30px;" onclick="spinRouletteEngine()">Spin Strategy Array</button>
+                            
+                            <div class="custom-roulette-list" style="text-align:left;">
+                                <div class="milestone-title" style="margin-bottom:15px;">Dynamic Strategy Options Repository</div>
+                                <ul id="roulette-options-frame" class="item-data-list"></ul>
+                                <div class="dock-flex-submission" style="margin-top:15px; padding-top:15px;">
+                                    <input type="text" id="roulette-input-field" class="dock-text-field" placeholder="Insert new selection alternative parameters...">
+                                    <button class="dock-btn-trigger" style="padding:14px 24px;" onclick="pushRouletteOptionNode()">Add Option</button>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
+
+                <div class="feature-instruction-footer">
+                    <b>Documentation Instructions — The "Terserah" Roulette Decision Engine Module</b>
+                    Masalah kegagalan putar (stuck bug) pada sistem lama telah diperbaiki total dengan meluncurkan arsitektur data array dinamis di Firebase. Kamu bisa memasukkan parameter pilihan rencana baru di kolom bawah untuk mendaftarkannya ke database, atau klik tanda silang merah untuk menghapusnya. Menekan tombol Spin Strategy Array akan memicu algoritma math-random looping interval yang mengacak baris data aktif selama beberapa detik sebelum mengunci satu keputusan final yang sah.
+                </div>
             </div>
         </section>
 
-        <!-- VIEW 6: AUDIO SOUNDTRACK VAULT -->
+        <!-- VIEW 6: DEDICATED AUDIO SOUNDTRACK FRAMEVIEW -->
         <section id="view-soundtrack" class="view-frame">
             <div class="view-container-inner">
-                <div class="back-nav-btn" onclick="navigateTo('home-view')">← Back to Index</div>
-                <div class="page-meta-header">
-                    <h2>Soundtrack Core Stream Archive</h2>
-                    <p>Linked collective custom music data track logs</p>
-                </div>
-                <div class="luxury-packed-layout">
-                    <div class="audio-luxury-vault" style="max-width:750px; margin:0 auto;">
-                        <div class="item-row-node" style="padding:25px; gap:10px;">
-                            <div style="font-size:36px; filter:grayscale(100%);">💿</div>
-                            <div>
-                                <div style="font-size:15px; font-weight:600;">Main Connected Spotify System Link</div>
-                                <a href="https://open.spotify.com" target="_blank" style="font-size:12px; color:var(--text-muted); text-decoration:underline;">Launch Connected Anchor Layout</a>
+                <div>
+                    <div class="back-nav-btn" onclick="navigateTo('home-view')">← Back to Home</div>
+                    <div class="page-meta-header">
+                        <h2>Soundtrack Core Stream Archive</h2>
+                        <p>Universal multi-platform audio logs supporting Spotify and YouTube Music links</p>
+                    </div>
+                    <div class="luxury-packed-layout">
+                        <div class="audio-luxury-vault" style="max-width:750px; margin:0 auto; display:flex; flex-direction:column; gap:20px;">
+                            <div class="item-row-node" style="padding:25px; background:#ffffff; border:1px solid var(--border-light);">
+                                <div style="font-size:36px; margin-right:15px;">🎧</div>
+                                <div>
+                                    <div style="font-size:15px; font-weight:600;">Ecosystem Cross-Platform Music Engine</div>
+                                    <div style="font-size:12px; color:var(--text-muted); margin-top:2px;">Paste valid links directly from Spotify or YouTube Music applications</div>
+                                </div>
                             </div>
-                        </div>
-                        <div class="item-row-node" style="padding:25px; background:#fffdfc; flex-direction:column; align-items:flex-start; gap:15px;">
-                            <div class="milestone-title">Curated Relationship Music Log Records</div>
-                            <ul id="music-track-frame" class="item-data-list" style="width:100%;"></ul>
-                            <div class="dock-flex-submission" style="width:100%; gap:8px; margin-top:10px; padding-top:15px;">
-                                <input type="text" id="music-input-track" class="dock-text-field" placeholder="Track Name">
-                                <input type="text" id="music-input-note" class="dock-text-field" placeholder="Memories Note (e.g. Lagu pas kita ke...)">
-                                <button class="dock-btn-trigger" onclick="pushMusicTrackNode()">Record</button>
+                            <div class="item-row-node" style="padding:30px; background:#ffffff; border:1px solid var(--border-light); flex-direction:column; align-items:flex-start; gap:15px;">
+                                <div class="milestone-title">Curated Shared Music Records Ledger</div>
+                                <ul id="music-track-frame" class="item-data-list" style="width:100%;"></ul>
+                                <div class="dock-flex-submission" style="width:100%; gap:8px; margin-top:10px; padding-top:15px;">
+                                    <input type="text" id="music-input-track" class="dock-text-field" placeholder="Track Title / Song Name">
+                                    <input type="text" id="music-input-url" class="dock-text-field" placeholder="Paste Spotify / YT Music URL Link Address...">
+                                    <input type="text" id="music-input-note" class="dock-text-field" placeholder="Short Memory Note Context...">
+                                    <button class="dock-btn-trigger" onclick="pushMusicTrackNode()">Record Track</button>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
+
+                <div class="feature-instruction-footer">
+                    <b>Documentation Instructions — Soundtrack Core Stream Archive Module</b>
+                    Modul ini dikembangkan secara universal agar tidak terkunci pada sistem internal satu platform saja. Kamu bisa menyalin tautan berbagi (share link) lagu apa saja dari Spotify maupun YouTube Music, lalu memasukkannya ke dalam tabel input beserta catatan memori pelengkapnya. Mengklik baris judul lagu yang sudah tersimpan di database akan secara otomatis mengarahkan dan meluncurkan aplikasi pemutar musik bawaan di perangkat HP atau laptop kalian masing-masing.
+                </div>
             </div>
         </section>
 
-        <!-- VIEW 7: BUCKET LIST DEDICATED LAYER -->
+        <!-- VIEW 7: DEDICATED BUCKET LIST FRAMEVIEW -->
         <section id="view-bucket" class="view-frame">
             <div class="view-container-inner">
-                <div class="back-nav-btn" onclick="navigateTo('home-view')">← Back to Index</div>
-                <div class="page-meta-header">
-                    <h2>Collective Future Bucket List</h2>
-                    <p>Dynamic target goals milestone ratio progress records logs</p>
-                </div>
-                <div class="luxury-packed-layout" style="max-width: 850px; margin: 0 auto;">
-                    <div class="bucket-progress-wrapper">
-                        <div style="display:flex; justify-content:space-between; font-size:12px; font-weight:700; color:var(--text-muted); letter-spacing:0.5px;">
-                            <span>COMPLETION RATIO PROGRESS LEDGER</span>
-                            <span id="bucket-ratio-text">0% Completed</span>
+                <div>
+                    <div class="back-nav-btn" onclick="navigateTo('home-view')">← Back to Home</div>
+                    <div class="page-meta-header">
+                        <h2>Collective Future Bucket List</h2>
+                        <p>Gamified adventure milestones ratio parameters tracker ledger</p>
+                    </div>
+                    <div class="luxury-packed-layout" style="max-width: 850px; margin: 0 auto;">
+                        <div class="bucket-progress-wrapper">
+                            <div style="display:flex; justify-content:space-between; align-items:center; font-size:12px; font-weight:700; color:var(--text-muted); letter-spacing:0.5px;">
+                                <div style="display:flex; align-items:center;">EXPEDITION RATIO LEVEL: <span id="gamify-level" class="gamify-level-tag">LEVEL 1</span></div>
+                                <span id="bucket-ratio-text">0% Completed</span>
+                            </div>
+                            <div class="progress-bar-container"><div id="bucket-bar-fill" class="progress-bar-fill"></div></div>
                         </div>
-                        <div class="progress-bar-container"><div id="bucket-bar-fill" class="progress-bar-fill"></div></div>
+                        <ul id="bucket-list-frame" class="item-data-list"></ul>
+                        <div class="dock-flex-submission">
+                            <input type="text" id="bucket-input-field" class="dock-text-field" placeholder="Append new dream map adventure path data...">
+                            <button class="dock-btn-trigger" onclick="pushBucketNode()">Deploy Plan</button>
+                        </div>
                     </div>
-                    <ul id="bucket-list-frame" class="item-data-list"></ul>
-                    <div class="dock-flex-submission">
-                        <input type="text" id="bucket-input-field" class="dock-text-field" placeholder="Append new dream roadmap parameter data...">
-                        <button class="dock-btn-trigger" onclick="pushBucketNode()">Deploy Plan</button>
-                    </div>
+                </div>
+
+                <div class="feature-instruction-footer">
+                    <b>Documentation Instructions — Collective Future Bucket List Module</b>
+                    Fitur ini dilengkapi dengan sistem gamifikasi internal untuk melacak perkembangan pencapaian petualangan kalian. Setiap kali sebuah item di dalam bucket list dicentang (checked), sistem akan mengalkulasi penambahan XP poin real-time dan mengisi bar persentase di panel atas. Level pencapaian ekspedisi hubungan kalian akan otomatis naik pangkat dari tingkatan dasar (Level 1 Novice) menuju tingkatan yang lebih tinggi seiring banyaknya impian yang berhasil diwujudkan bersama.
                 </div>
             </div>
         </section>
 
-        <!-- VIEW 8: PHOTO GALLERY MODULE (INFINITE IMAGES + GDRIVE COMPILER RECONVERSION) -->
+        <!-- VIEW 8: DEDICATED PHOTO GALLERY ALBUM FRAMEVIEW -->
         <section id="view-gallery" class="view-frame">
             <div class="view-container-inner">
-                <div class="back-nav-btn" onclick="navigateTo('home-view')">← Back to Index</div>
-                <div class="page-meta-header">
-                    <h2>Captured Polaroid Photo Albums</h2>
-                    <p>Infinite photographic storage layer with real-time dynamic node inject system</p>
-                </div>
-                <div class="luxury-packed-layout">
-                    <div id="polaroid-infinite-grid" class="polaroid-editorial-grid"></div>
-                    <div class="dock-flex-submission" style="background:var(--bg-panel); padding:30px; border-radius:24px; border:1px solid var(--border-light); margin-top:40px; box-shadow:0 10px 30px rgba(0,0,0,0.01);">
-                        <input type="text" id="gallery-input-cap" class="dock-text-field" placeholder="Moment Memory Title Caption...">
-                        <input type="text" id="gallery-input-url" class="dock-text-field" placeholder="Paste Image Address / GDrive Public Link Address...">
-                        <button class="dock-btn-trigger" onclick="pushNewPolaroidFrameNode()">+ Deploy Photo Node</button>
+                <div>
+                    <div class="back-nav-btn" onclick="navigateTo('home-view')">← Back to Home</div>
+                    <div class="page-meta-header">
+                        <h2>Captured Polaroid Photo Albums</h2>
+                        <p>Infinite photographic storage layer with explicit decoration layout and date descriptors</p>
                     </div>
+                    <div class="luxury-packed-layout">
+                        <div id="polaroid-infinite-grid" class="polaroid-editorial-grid"></div>
+                        <div class="dock-flex-submission" style="background:#ffffff; padding:30px; border-radius:24px; border:1px solid var(--border-light); margin-top:40px; box-shadow:0 10px 30px rgba(0,0,0,0.01); display:grid; grid-template-columns: 1fr 1fr; gap:12px;">
+                            <input type="text" id="gallery-input-cap" class="dock-text-field" placeholder="Moment Memory Title Caption...">
+                            <input type="text" id="gallery-input-date" class="dock-text-field" placeholder="Date / Timestamp Context (e.g. 11 Juni)">
+                            <input type="text" id="gallery-input-url" class="dock-text-field" style="grid-column: span 2;" placeholder="Paste Photo Direct Image Link / Public Google Drive Share URL Address...">
+                            <button class="dock-btn-trigger" style="grid-column: span 2; height:50px; margin-top:5px;" onclick="pushNewPolaroidFrameNode()">+ Deploy Photo Node</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="feature-instruction-footer">
+                    <b>Documentation Instructions — Captured Polaroid Photo Albums Module</b>
+                    Masalah pemuatan gambar pecah telah diperbaiki total dengan memperkuat logika parser link Google Drive di dalam skrip sistem runtime. Pastikan file foto di Google Drive kalian sudah disetel hak akses berbaginya ke publik (anyone with the link can view). Paste link sharing tersebut ke kolom input, tambahkan judul momen beserta variabel tanggal kenangan, lalu tekan Deploy Photo Node. Sistem akan mengonversi link tersebut menjadi file gambar langsung yang terpasang rapi di bingkai polaroid estetik.
                 </div>
             </div>
         </section>
 
-        <!-- VIEW 9: STORY TIMELINE LAYER -->
+        <!-- VIEW 9: DEDICATED STORY TIMELINE FRAMEVIEW -->
         <section id="view-timeline" class="view-frame">
             <div class="view-container-inner">
-                <div class="back-nav-btn" onclick="navigateTo('home-view')">← Back to Index</div>
-                <div class="page-meta-header">
-                    <h2>Historical Milestone Chain Log</h2>
-                    <p>Chronological relationship index core logging mapper structure</p>
-                </div>
-                <div class="luxury-packed-layout" style="max-width: 850px; margin: 0 auto;">
-                    <div id="timeline-node-frame" class="timeline-vertical-backbone"></div>
-                    <div class="dock-flex-submission" style="flex-direction: column; gap: 12px;">
-                        <input type="text" id="milestone-date-field" class="dock-text-field" placeholder="Date Parameter Setup Node (e.g. 11 Juni 2026)">
-                        <div style="display:flex; gap:12px; width:100%;">
-                            <input type="text" id="milestone-desc-field" class="dock-text-field" placeholder="Describe unique memory narrative log story content text...">
-                            <button class="dock-btn-trigger" onclick="pushTimelineNode()">Record Event</button>
+                <div>
+                    <div class="back-nav-btn" onclick="navigateTo('home-view')">← Back to Home</div>
+                    <div class="page-meta-header">
+                        <h2>Historical Milestone Board Log</h2>
+                        <p>Asymmetrical chronological step mapping framework index data</p>
+                    </div>
+                    <div class="luxury-packed-layout">
+                        <div style="position:relative; margin-bottom: 30px;">
+                            <div class="timeline-spine-center"></div>
+                            <div id="timeline-snake-framework-container" class="timeline-snake-container"></div>
+                        </div>
+                        <div class="dock-flex-submission" style="flex-direction: column; gap: 12px;">
+                            <input type="text" id="milestone-date-field" class="dock-text-field" placeholder="Date Parameter Setup Node (e.g. 11 June 2026)">
+                            <div style="display:flex; gap:12px; width:100%;">
+                                <input type="text" id="milestone-desc-field" class="dock-text-field" placeholder="Describe unique memory narrative log story content text...">
+                                <button class="dock-btn-trigger" onclick="pushTimelineNode()">Record Event</button>
+                            </div>
                         </div>
                     </div>
+                </div>
+
+                <div class="feature-instruction-footer">
+                    <b>Documentation Instructions — Historical Milestone Chain Log Module</b>
+                    Fitur lini masa ini dirancang menggunakan konsep arsitektur papan asimetris berliku (snake-path model). Setiap kali kamu merekam baris data peristiwa memori baru beserta parameter tanggalnya, sistem secara otomatis akan melahirkan kotak memori yang tersusun selang-seling ke kiri dan ke kanan secara dinamis mengikuti poros tulang tengah garis waktu. Susunan kartu memori ini akan memanjang ke bawah secara otomatis sesuai urutan waktu pengisian tanpa batas penyimpanan berkas.
                 </div>
             </div>
         </section>
 
-        <!-- VIEW 10: AUTOMATED SICKNESS PERIOD MONITOR VIEW -->
+        <!-- VIEW 10: DEDICATED CYCLE CARE PLAN FRAMEVIEW -->
         <section id="view-care" class="view-frame">
             <div class="view-container-inner">
-                <div class="back-nav-btn" onclick="navigateTo('home-view')">← Back to Index</div>
-                <div class="page-meta-header">
-                    <h2>Biomedical Cycle Comfort Protocol</h2>
-                    <p>Tactical action tracking care matrix layout dashboard</p>
+                <div>
+                    <div class="back-nav-btn" onclick="navigateTo('home-view')">← Back to Home</div>
+                    <div class="page-meta-header">
+                        <h2>Biomedical Cycle Comfort Protocol</h2>
+                        <p>Fully editable actionable 7-day care matrix structural parameter guide dashboard</p>
+                    </div>
+                    <div class="luxury-packed-layout">
+                        <div class="cycle-tabs-row">
+                            <button class="cycle-tab-btn active-tab" onclick="switchCareTab(event, 'day1')">Day 1</button>
+                            <button class="cycle-tab-btn" onclick="switchCareTab(event, 'day2')">Day 2</button>
+                            <button class="cycle-tab-btn" onclick="switchCareTab(event, 'day3')">Day 3</button>
+                            <button class="cycle-tab-btn" onclick="switchCareTab(event, 'day4')">Day 4</button>
+                            <button class="cycle-tab-btn" onclick="switchCareTab(event, 'day5')">Day 5</button>
+                            <button class="cycle-tab-btn" onclick="switchCareTab(event, 'day6')">Day 6</button>
+                            <button class="cycle-tab-btn" onclick="switchCareTab(event, 'day7')">Day 7</button>
+                        </div>
+                        
+                        <!-- GENERATED DAY PANELS (FULLY EDITABLE CHEKLIST CARDS) -->
+                        <div id="care-panels-chassis"></div>
+                    </div>
                 </div>
-                <div class="luxury-packed-layout">
-                    <div class="cycle-tabs-row">
-                        <button class="cycle-tab-btn active-tab" onclick="switchCareTab(event, 'day1')">Day 1</button>
-                        <button class="cycle-tab-btn" onclick="switchCareTab(event, 'day2')">Day 2</button>
-                        <button class="cycle-tab-btn" onclick="switchCareTab(event, 'day3')">Day 3</button>
-                        <button class="cycle-tab-btn" onclick="switchCareTab(event, 'day4')">Day 4</button>
-                        <button class="cycle-tab-btn" onclick="switchCareTab(event, 'day5')">Day 5</button>
-                        <button class="cycle-tab-btn" onclick="switchCareTab(event, 'day6')">Day 6</button>
-                        <button class="cycle-tab-btn" onclick="switchCareTab(event, 'day7')">Day 7</button>
-                    </div>
-                    
-                    <div id="day1" class="cycle-view-panel active-panel">
-                        <div style="font-size: 22px; font-weight:700; margin-bottom:15px; font-family:'Playfair Display', serif; font-style:italic;">🩸 Day 01 : Peak Contraction Matrix</div>
-                        <p style="font-size:14px; line-height:1.8; color:#4a5568;">Fase peluruhan rahim awal dimulai. Sekresi prostaglandin memicu kontraksi saraf perut bawah secara intensif. Kondisi fisik Syallu cenderung sangat lemas disertai tingkat sensitivitas nyeri tinggi.</p>
-                        <div class="badge-matrix-container">
-                            <div class="luxury-badge-node">🛑 Pain Level: Kram Tinggi dan Lemas</div>
-                            <div class="luxury-badge-node">🔥 Care Action: Kompres Air Hangat di Perut Bawah</div>
-                            <div class="luxury-badge-node">🥤 Nutrition Link: Suplai Air Putih Hangat Teratur</div>
-                            <div class="luxury-badge-node">🛌 Ghatan Task: Handle tugas berat dan temani bedrest</div>
-                        </div>
-                    </div>
-                    <div id="day2" class="cycle-view-panel">
-                        <div style="font-size: 22px; font-weight:700; margin-bottom:15px; font-family:'Playfair Display', serif; font-style:italic;">🌊 Day 02 : Maximum Heavy Flow Stream</div>
-                        <p style="font-size:14px; line-height:1.8; color:#4a5568;">Volume pelepasan darah haid mencapai titik puncak tertinggi. Kehilangan zat besi yang masif dalam waktu cepat memicu pusing keliling, pegal linu sendi pinggang, dan migrain ringan.</p>
-                        <div class="badge-matrix-container">
-                            <div class="luxury-badge-node">📢 Flow Level: Sangat Banyak dan Migrain</div>
-                            <div class="luxury-badge-node">🔄 Care Action: Rutin Ganti Pembalut per 3 Jam</div>
-                            <div class="luxury-badge-node">🥩 Nutrition Link: Konsumsi Daging Merah atau Bayam</div>
-                            <div class="luxury-badge-node">🛌 Ghatan Task: Batasi pergerakan fisik jauh, prioritaskan bedrest</div>
-                        </div>
-                    </div>
-                    <div id="day3" class="cycle-view-panel">
-                        <div style="font-size: 22px; font-weight:700; margin-bottom:15px; font-family:'Playfair Display', serif; font-style:italic;">🍫 Day 03 : Hormonal Deprivation Mood Shift</div>
-                        <p style="font-size:14px; line-height:1.8; color:#4a5568;">Nyeri perut utama melandai secara perlahan. Namun level estrogen turun drastis ke titik terendah sebelum proses pemulihan sel telur baru, memicu ketidakseimbangan mood dan emosi sensitif.</p>
-                        <div class="badge-matrix-container">
-                            <div class="luxury-badge-node">⚡ Status Core: Nyeri Reda, Emosi Sensitif</div>
-                            <div class="luxury-badge-node">🍰 Sugar Treat: Belikan Kue Pastry Hangat atau Es Krim</div>
-                            <div class="luxury-badge-node">🍵 Care Drink: Seduh Teh Chamomile Hangat</div>
-                            <div class="luxury-badge-node">🎬 Ghatan Task: Jaga pembicaraan dan tonton series cozy bareng</div>
-                        </div>
-                    </div>
-                    <div id="day4" class="cycle-view-panel">
-                        <div style="font-size: 22px; font-weight:700; margin-bottom:15px; font-family:'Playfair Display', serif; font-style:italic;">🌿 Day 04 : Internal System Stabilization Phase</div>
-                        <p style="font-size:14px; line-height:1.8; color:#4a5568;">Pendarahan melambat konstan menjadi bercak flek tipis. Keseimbangan metabolisme organ reproduksi internal Syallu mulai mengisi ulang pasokan energi fisik baru.</p>
-                        <div class="badge-matrix-container">
-                            <div class="luxury-badge-node">📈 Status Core: Energi Stamina Mulai Pulih</div>
-                            <div class="luxury-badge-node">🥗 Nutrition Link: Konsumsi Serat Sayur dan Buah Segar</div>
-                            <div class="luxury-badge-node">🧘‍♀️ Move Care: Sesi Yoga Ringan atau Peregangan Otot</div>
-                        </div>
-                    </div>
-                    <div id="day5" class="cycle-view-panel">
-                        <div style="font-size: 22px; font-weight:700; margin-bottom:15px; font-family:'Playfair Display', serif; font-style:italic;">✨ Day 05 : Estrogen Surge Renaissance</div>
-                        <p style="font-size:14px; line-height:1.8; color:#4a5568;">Hormon estrogen meningkat konstan, mempercepat hidrasi jaringan kulit wajah dan mengembalikan kecerahan emosional. Siklus peluruhan berada di fase bersih total.</p>
-                        <div class="badge-matrix-container">
-                            <div class="luxury-badge-node">🔆 Vibe Level: Bersih Total, Ceria dan Nyaman</div>
-                            <div class="luxury-badge-node">💅 Status Core: Hidrasi Wajah Membaik, Fokus Naik</div>
-                            <div class="luxury-badge-node">💬 Ghatan Task: Momen paling ideal untuk deep talk intim</div>
-                        </div>
-                    </div>
-                    <div id="day6" class="cycle-view-panel">
-                        <div style="font-size: 22px; font-weight:700; margin-bottom:15px; font-family:'Playfair Display', serif; font-style:italic;">🏃‍♀️ Day 06 : Fully Recharged Battery Capacity</div>
-                        <p style="font-size:14px; line-height:1.8; color:#4a5568;">Siklus menstrual selesai seutuhnya. Seluruh kapasitas metabolisme tubuh kembali beroperasi optimal, mendongkrak motivasi berkegiatan luar ruangan dan stamina mental.</p>
-                        <div class="badge-matrix-container">
-                            <div class="luxury-badge-node">🔋 Stamina: 100% Berfungsi Normal Maksimal</div>
-                            <div class="luxury-badge-node">🗺️ Agenda Target: Sesi paling tepat eksekusi kencan luar</div>
-                        </div>
-                    </div>
-                    <div id="day7" class="cycle-view-panel">
-                        <div style="font-size: 22px; font-weight:700; margin-bottom:15px; font-family:'Playfair Display', serif; font-style:italic;">🕊️ Day 07 : System Loop Reset Success</div>
-                        <p style="font-size:14px; line-height:1.8; color:#4a5568;">Rotasi hormonal berganti masuk ke siklus reguler bulanan baru. Fase penat bulanan Syallu berhasil terlewati dengan sangat aman, bersih, sehat, dan penuh perhatian konsisten.</p>
-                        <div class="badge-matrix-container">
-                            <div class="luxury-badge-node">✅ Siklus Loop: Sirkulasi Normal Baru</div>
-                            <div class="luxury-badge-node">🏆 Ghatan Reward: Caretaker Protocol Perfect Executed</div>
-                        </div>
-                    </div>
+
+                <div class="feature-instruction-footer">
+                    <b>Documentation Instructions — Biomedical Cycle Comfort Protocol Module</b>
+                    Halaman manajemen perawatan bulanan ini telah ditingkatkan total agar bersifat sepenuhnya editable (bisa diedit berkala). Teks deskripsi pengantar medis utama pada masing-masing tab hari bisa kamu edit secara langsung dengan mengetik teks baru di dalam kotak transparan yang tersedia. Di bawahnya, poin-poin petunjuk penanganan aksi nyata disajikan berbentuk jajaran kartu ceklis (checklist cards) interaktif yang tersinkronisasi realtime ke server database untuk memastikan kenyamanan Syallu terkawal dengan sempurna.
                 </div>
             </div>
         </section>
-
-        <!-- EDITORIAL PURE FOOTER -->
-        <footer>
-            <div>Secure System Operational Node</div>
-            <div>Curated by Ghatan & Syallu &copy; 2026</div>
-        </footer>
 
     </div>
 
     <script>
-        // FIREBASE SYNC MANAGEMENT ROUTING BLOCK CONFIG
+        // CORE FIREBASE INFRASTRUCTURE CONNECTIVITY SINK LINK
         const firebaseConfig = {
             apiKey: "AIzaSyBXL3eBi9s3-amUxSv5s4m4EM-BSuzp-rs",
             authDomain: "ourhomey.firebaseapp.com",
@@ -626,7 +657,18 @@
         const db = firebase.database();
 
         const anniversaryAnchor = new Date(2026, 5, 11); 
-        let arrayDecider = ["Nonton Movie Bareng 🎬", "Berburu Sunset Keliling Bandar Lampung 🚗", "Nongkrong di Cafe Baru dekat Unila ☕", "Berburu Jajan Pastry Hangat 🍰", "Sesi Deep Talk malam hari 💬"];
+        let arrayDecider = [];
+
+        // DEFAULT TEMPLATE UNTUK CYCLE CARE JIKA BARU DIRELASI KE FIREBASE
+        const defaultCarePlanMatrix = {
+            day1: { desc: "Hari pertama peluruhan rahim dimulai. Hormon prostaglandin memicu kontraksi kram perut ekstrem bawah secara masif. Kondisi fisik Syallu lemas disertai tingkat sensitivitas nyeri tinggi.", task1: "Pain Level: Kram Tinggi dan Lemas", task2: "Care Action: Kompres Air Hangat di Area Perut Bawah", task3: "Nutrition: Suplai Air Putih Hangat Teratur", task4: "Ghatan: Tangani seluruh tugas fisik dan temani bedrest total" },
+            day2: { desc: "Volume pendarahan haid mencapai titik puncak tertinggi. Kehilangan zat besi yang masif memicu pusing kepala, pegal linu sendi pinggang, dan migrain ringan.", task1: "Flow Level: Sangat Banyak dan Migrain", task2: "Care Action: Bersihkan dan Ganti Pembalut per 3 Jam", task3: "Nutrition: Konsumsi Asupan Zat Besi (Daging Sapi / Bayam)", task4: "Ghatan: Larang aktivitas fisik berlebih atau jalan jauh" },
+            day3: { desc: "Nyeri perut utama melandai perlahan. Namun level estrogen jatuh ke titik terendah memicu kelelahan psikologis mendadak atau mood swing sensitif.", task1: "Status: Nyeri Reda, Emosi Rentan Sensitif", task2: "Sugar Care: Belikan Kue Pastry Hangat atau Es Krim", task3: "Drink: Seduh Teh Chamomile Hangat", task4: "Ghatan: Jaga kalimat pembicaraan dan ajak tonton series cozy bareng" },
+            day4: { desc: "Pendarahan melambat konstan menjadi bercak flek tipis. Keseimbangan metabolisme internal Syallu mulai mengisi ulang pasokan energi fisik baru.", task1: "Status: Stamina Energi Mulai Pulih Kembali", task2: "Nutrition: Konsumsi Serat Sayuran Hijau dan Buah Segar", task3: "Move Care: Sesi Yoga Santai atau Peregangan Otot Ringan", task4: "Ghatan: Berikan pelukan hangat penyemangat aktivitas" },
+            day5: { desc: "Hormon estrogen meningkat konstan, mempercepat hidrasi jaringan kulit wajah dan mengembalikan kecerahan emosional. Siklus berada di fase bersih total.", task1: "Vibe: Bersih Total, Ceria dan Nyaman", task2: "Fisik: Hidrasi Wajah Membaik, Fokus Naik", task3: "Ghatan: Momen paling ideal untuk membangun deep talk intim", task4: "Agenda: Siapkan outfit kencan untuk esok hari" },
+            day6: { desc: "Siklus menstrual selesai seutuhnya. Seluruh kapasitas metabolisme tubuh kembali beroperasi optimal, mendongkrak motivasi berkegiatan luar ruangan.", task1: "Stamina: 100% Beroperasi Normal Maksimal", task2: "Activity: Waktu paling tepat mengeksekusi jalan kencan keluar rumah", task3: "Ghatan: Jemput tepat waktu dan siapkan perjalanan kencan terbaik", task4: "Vibe: Penuh tawa ceria terlepas dari beban penat bulanan" },
+            day7: { desc: "Rotasi hormonal berganti masuk ke siklus reguler bulanan baru. Fase penat bulanan Syallu berhasil terlewati dengan sangat aman, bersih, dan penuh perhatian.", task1: "Siklus: Sirkulasi Regulasi Normal Baru Dimulai", task2: "Evaluasi: Catat siklus haid bulan ini di aplikasi kalender", task3: "Ghatan: Sukses mengawal caretaker protocol secara sempurna", task4: "Core: Komitmen perhatian yang kokoh menjaga keharmonisan" }
+        };
 
         function verifikasi() {
             const inputUser = document.getElementById("password-input").value;
@@ -642,7 +684,7 @@
                     runEcosystemDashboard();
                 }, 500);
             } else {
-                alert("Vault Control Warning: Invalid Security Key.");
+                alert("Vault Control Center Verification Error: Invalid Security Key Access.");
             }
         }
 
@@ -665,25 +707,23 @@
             }
         });
 
-        // REFORMAT SECURE LINK FOR IMAGE PROCESSING
+        // REFORMAT SECURE EXPANDED LINK FOR GOOGLE DRIVE RENDERING DIRECTLY
         function reformatUrlLink(url) {
             let src = url.trim();
             if (src.includes("drive.google.com")) {
-                let segmentD = src.split('/d/');
-                if (segmentD.length > 1) { return `https://drive.google.com/uc?export=view&id=${segmentD[1].split('/')[0]}`; }
-                let queryId = src.split('id=');
-                if (queryId.length > 1) { return `https://drive.google.com/uc?export=view&id=${queryId[1].split('&')[0]}`; }
-            }
-            if (src.includes("pinterest.com/pin/")) {
-                return src; // Prompt user fallbacks rule warning handled inside notice box
+                let id = "";
+                if (src.includes("/d/")) id = src.split('/d/')[1].split('/')[0];
+                else if (src.includes("id=")) id = src.split('id=')[1].split('&')[0];
+                if(id) return `https://docs.google.com/uc?export=download&id=${id}`;
             }
             return src;
         }
 
         function runEcosystemDashboard() {
             calculateTimeMetrics();
+            listenToLatencyHealth();
             
-            // 2. Mood Indicators Realtime Sync Logs
+            // Sync Core Nodes Text Realtime
             db.ref('status/syallu').on('value', snap => { document.getElementById('status-syallu').value = snap.val() || ""; });
             db.ref('status/ghatan').on('value', snap => { document.getElementById('status-ghatan').value = snap.val() || ""; });
             db.ref('status/batSyallu').on('value', snap => { document.getElementById('battery-syallu').value = snap.val() || ""; });
@@ -691,7 +731,7 @@
             db.ref('status/emojiSyalluIdx').on('value', snap => { resetEmojiSelection('syallu', snap.val()); });
             db.ref('status/emojiGhatanIdx').on('value', snap => { resetEmojiSelection('ghatan', snap.val()); });
 
-            db.ref('moodLogs/syallu').limitToLast(5).on('value', snap => { renderMoodHistoryList('history-stream-syallu', snap.val()); });
+            db.ref('moodLogs/syallu').limitToLast(5).on('value', snap => { renderMoodHistoryList('history-stream-syallu', snap.val(), 'syallu'); });
             db.ref('moodLogs/ghatan').limitToLast(5).on('value', snap => { renderMoodHistoryList('history-stream-ghatan', snap.val()); });
 
             // 3. Dynamic Future Countdowns Trackers
@@ -699,25 +739,38 @@
                 const wrapper = document.getElementById('countdown-cards-container'); wrapper.innerHTML = "";
                 const dataset = snap.val() || {};
                 for(let key in dataset) {
-                    let card = document.createElement('div'); card.className = "countdown-event-card";
+                    let card = document.createElement('div'); 
+                    card.className = "countdown-event-card";
+                    card.style.background = dataset[key].color === 'pink' ? '#fff0f5' : (dataset[key].color === 'blue' ? '#e6f2ff' : '#f0f9eb');
                     let days = calculateCardDaysLeft(dataset[key].date);
-                    card.innerHTML = `<div class="node-erasure" style="position:absolute; top:15px; right:20px;" onclick="purgeNode('countdownAgendas/${key}')">❌</div>
-                                      <div style="font-weight:700; font-size:15px;">${dataset[key].title}</div>
+                    card.innerHTML = `<div class="node-erasure" style="position:absolute; top:12px; right:15px;" onclick="purgeNode('countdownAgendas/${key}')">❌</div>
+                                      <div style="font-weight:700; font-size:15px; color:var(--text-primary);">${dataset[key].title}</div>
                                       <div class="card-days-left">${days}</div>
-                                      <div style="font-size:12px; color:var(--text-muted);">${dataset[key].date}</div>`;
+                                      <div style="font-size:11px; color:var(--text-muted); text-transform:uppercase; letter-spacing:0.5px;">By: ${dataset[key].author || 'System'}</div>
+                                      <div style="font-size:12px; color:var(--text-muted); margin-top:5px;">Target: ${dataset[key].date}</div>`;
                     wrapper.appendChild(card);
                 }
             });
 
-            // 4. Infinite Masonry Sticky Notes Sync
+            // 4. Infinite Masonry Sticky Notes Sync (With priority colors and pin functionality)
             db.ref('stickyNotesGrid').on('value', snap => {
                 const wrapper = document.getElementById('sticky-masonry-container'); wrapper.innerHTML = "";
                 const dataset = snap.val() || {};
-                for(let key in dataset) {
-                    let note = document.createElement('div'); note.className = "individual-sticky-card";
-                    note.innerHTML = `<div style="display:flex; justify-content:space-between; font-size:10px; color:var(--text-muted); margin-bottom:8px;">
-                                        <span>CANVAS MEMO</span>
-                                        <span style="cursor:pointer;" onclick="purgeNode('stickyNotesGrid/${key}')">❌</span>
+                
+                // Sort by pin state
+                let sortedKeys = Object.keys(dataset).sort((a, b) => (dataset[b].pinned || 0) - (dataset[a].pinned || 0));
+                
+                for(let key of sortedKeys) {
+                    let note = document.createElement('div'); 
+                    note.className = "individual-sticky-card";
+                    note.style.background = dataset[key].color || '#fffef2';
+                    note.innerHTML = `<div style="display:flex; justify-content:space-between; align-items:center; font-size:10px; color:var(--text-muted); margin-bottom:12px;">
+                                        <span class="pin-badge ${dataset[key].pinned ? 'is-pinned' : ''}" onclick="togglePinSticky('${key}', ${dataset[key].pinned || false})">📌 Pin</span>
+                                        <div style="display:flex; gap:6px;">
+                                            <span style="cursor:pointer;" onclick="changeStickyColor('${key}', '#fff0f5')">🌸</span>
+                                            <span style="cursor:pointer;" onclick="changeStickyColor('${key}', '#e6f2ff')">💎</span>
+                                            <span class="node-erasure" onclick="purgeNode('stickyNotesGrid/${key}')">❌</span>
+                                        </div>
                                       </div>
                                       <textarea class="sticky-card-textarea" onblur="sendDirectField(this, 'stickyNotesGrid/${key}/text')">${dataset[key].text || ""}</textarea>`;
                     wrapper.appendChild(note);
@@ -734,7 +787,7 @@
                     li.innerHTML = `<span>${dataset[key].text}</span><span class="node-erasure" onclick="purgeNode('rouletteOptions/${key}')">❌</span>`;
                     wrapper.appendChild(li);
                 }
-                if(arrayDecider.length === 0) { arrayDecider = ["Nonton Movie Bareng 🎬", "Keliling Bandar Lampung 🚗", "Cafe Hopping Unila ☕"]; }
+                if(arrayDecider.length === 0) { arrayDecider = ["Nonton Movie Bareng 🎬", "Berburu Sunset Keliling Bandar Lampung 🚗", "Nongkrong di Cafe Baru dekat Unila ☕"]; }
             });
 
             // 6. Audio Tracks Log List Sync
@@ -745,10 +798,10 @@
                     let li = document.createElement('li'); li.className = "item-row-node";
                     li.style.flexDirection = "column"; li.style.alignItems = "flex-start";
                     li.innerHTML = `<div style="display:flex; justify-content:space-between; width:100%; font-weight:600; font-size:14px;">
-                                        <span>🎵 ${dataset[key].track}</span>
+                                        <a href="${dataset[key].url}" target="_blank" style="text-decoration:none; color:var(--text-primary);">🎵 ${dataset[key].track}</a>
                                         <span class="node-erasure" onclick="purgeNode('musicTracks/${key}')">❌</span>
                                     </div>
-                                    <div style="font-size:12px; color:var(--text-muted); margin-top:4px;">Note: ${dataset[key].note}</div>`;
+                                    <div style="font-size:12px; color:var(--text-muted); margin-top:4px;">Memo: ${dataset[key].note}</div>`;
                     wrapper.appendChild(li);
                 }
             });
@@ -768,6 +821,13 @@
                 let ratio = total > 0 ? Math.round((done / total) * 100) : 0;
                 document.getElementById('bucket-ratio-text').innerText = `${ratio}% Completed (${done}/${total})`;
                 document.getElementById('bucket-bar-fill').style.width = `${ratio}%`;
+                
+                // Gamification Tier Node Levels
+                let tier = "Level 1 Novice Explorers";
+                if(ratio >= 30) tier = "Level 2 Seasoned Voyagers";
+                if(ratio >= 70) tier = "Level 3 Master Adventurers";
+                if(ratio === 100 && total > 0) tier = "Level 4 Eternal Soulmates Legend";
+                document.getElementById('gamify-level').innerText = tier.toUpperCase();
             });
 
             // 8. Infinite Polaroid Photo Frames Album Node Grid Sync
@@ -776,43 +836,84 @@
                 const dataset = snap.val() || {};
                 for(let key in dataset) {
                     let frame = document.createElement('div'); frame.className = "luxury-polaroid-node";
-                    frame.innerHTML = `<div class="node-erasure" style="position:absolute; top:10px; right:15px; z-index:5;" onclick="purgeNode('polaroidGallery/${key}')">❌</div>
-                                       <img src="${dataset[key].img}" alt="Polaroid Core Node Image" onerror="this.src='https://images.unsplash.com/photo-1542856391-010fb87dcfed?w=500'">
+                    frame.innerHTML = `<div class="node-erasure" style="position:absolute; top:12px; right:15px; z-index:5;" onclick="purgeNode('polaroidGallery/${key}')">❌</div>
+                                       <img src="${dataset[key].img}" alt="Polaroid Memory Card" onerror="this.src='https://images.unsplash.com/photo-1518156677180-95a2893f3e9f?w=500'">
                                        <div class="polaroid-inputs">
-                                            <input type="text" class="clean-inline-input" style="font-weight:700; text-align:center; font-size:14px;" value="${dataset[key].cap}" onblur="sendDirectField(this, 'polaroidGallery/${key}/cap')">
-                                            <input type="text" class="clean-inline-input" style="font-size:10px; color:var(--text-muted); text-align:center;" value="${dataset[key].img}" onblur="updatePolaroidLink(this, '${key}')">
+                                            <input type="text" class="clean-inline-input" style="font-weight:700; text-align:center; font-size:14px; padding:4px;" value="${dataset[key].cap}" onblur="sendDirectField(this, 'polaroidGallery/${key}/cap')">
+                                            <div style="font-size:11px; color:var(--text-muted); margin-bottom:5px;">Date Log: ${dataset[key].date || 'Unspecified'}</div>
+                                            <input type="text" class="clean-inline-input" style="font-size:9px; color:#ccc; text-align:center; padding:2px;" value="${dataset[key].img}" onblur="updatePolaroidLink(this, '${key}')">
                                        </div>`;
                     grid.appendChild(frame);
                 }
             });
 
-            // 3. Sub checklist luggage countdown page sync
-            db.ref('tripChecklist').on('value', snap => {
-                const wrapper = document.getElementById('trip-checklist-frame'); wrapper.innerHTML = "";
+            // 9. Chronological Snake Timelines Sync Nodes
+            db.ref('timeline').on('value', snap => {
+                const container = document.getElementById('timeline-snake-framework-container'); container.innerHTML = "";
                 const dataset = snap.val() || {};
                 for (let key in dataset) {
-                    const row = document.createElement('li'); row.className = "item-row-node"; row.style.background = "#fafbfc";
-                    row.innerHTML = `<input type="checkbox" ${dataset[key].done ? 'checked' : ''} onclick="invertBucketState('tripChecklist/${key}', ${dataset[key].done})"> 
-                                    <span style="${dataset[key].done ? 'text-decoration: line-through; color: var(--text-muted);' : ''}">${dataset[key].text}</span>
-                                    <span class="node-erasure" onclick="purgeNode('tripChecklist/${key}')">❌</span>`;
-                    wrapper.appendChild(row);
+                    const row = document.createElement('div'); row.className = "timeline-snake-row";
+                    row.innerHTML = `<div class="timeline-spine-dot"></div>
+                                     <div class="timeline-snake-card">
+                                        <div class="node-erasure" style="position:absolute; top:10px; right:15px;" onclick="purgeNode('timeline/${key}')">❌</div>
+                                        <div style="font-weight:700; font-size:12px; color:var(--text-muted); margin-bottom:4px;">${dataset[key].date}</div>
+                                        <div style="font-size:14px; line-height:1.6; color:var(--text-primary);">${dataset[key].text}</div>
+                                     </div>`;
+                    container.appendChild(row);
                 }
             });
 
-            // 9. Chronological Timelines Sync Nodes
-            db.ref('timeline').on('value', snap => {
-                const streamWrapper = document.getElementById('timeline-node-frame'); streamWrapper.innerHTML = "";
-                const dataset = snap.val() || {};
-                for (let key in dataset) {
-                    const node = document.createElement('div'); node.className = "timeline-editorial-node";
-                    node.innerHTML = `<div style="font-weight:700; font-size:12px; display:flex; justify-content:space-between;"><span>${dataset[key].date}</span><span style="cursor:pointer; opacity:0.3;" onclick="purgeNode('timeline/${key}')">❌</span></div>
-                                     <div style="font-size:14px; margin-top:5px; line-height:1.6;">${dataset[key].text}</div>`;
-                    streamWrapper.appendChild(node);
-                }
+            // 10. Cycle Care Plan Fully Editable Sync Logic
+            db.ref('cycleCarePlanData').on('value', snap => {
+                let data = snap.val();
+                if(!data) { db.ref('cycleCarePlanData').set(defaultCarePlanMatrix); return; }
+                renderEditableCarePanels(data);
             });
         }
 
-        // MOOD WRITERS INLINE FUNCTION ENGINE
+        // EDITABLE CARE PANEL RENDER ENGINE
+        function renderEditableCarePanels(matrix) {
+            const chassis = document.getElementById('care-panels-chassis'); chassis.innerHTML = "";
+            for(let dayKey in matrix) {
+                let panel = document.createElement('div');
+                panel.id = dayKey;
+                panel.className = `cycle-view-panel ${dayKey === 'day1' ? 'active-panel' : ''}`;
+                
+                let titleString = `Day 0${dayKey.replace('day','')}`;
+                if(dayKey === 'day1') titleString = "🩸 Day 01 : Peak Contraction Matrix";
+                if(dayKey === 'day2') titleString = "🌊 Day 02 : Maximum Heavy Flow Stream";
+                if(dayKey === 'day3') titleString = "🍫 Day 03 : Hormonal Deprivation Mood Shift";
+                if(dayKey === 'day4') titleString = "🌿 Day 04 : Internal System Stabilization Phase";
+                if(dayKey === 'day5') titleString = "✨ Day 05 : Estrogen Surge Renaissance";
+                if(dayKey === 'day6') titleString = "🏃‍♀️ Day 06 : Fully Recharged Battery Capacity";
+                if(dayKey === 'day7') titleString = "🕊️ Day 07 : System Loop Reset Success";
+
+                panel.innerHTML = `<div style="font-size:22px; font-weight:700; margin-bottom:15px; font-family:'Playfair Display', serif; font-style:italic;">${titleString}</div>
+                                   <textarea class="clean-inline-input" style="background:rgba(255,255,255,0.6); line-height:1.7; height:90px; border-radius:14px; border:1px dashed var(--border-light); resize:none;" onblur="sendDirectField(this, 'cycleCarePlanData/${dayKey}/desc')">${matrix[dayKey].desc}</textarea>
+                                   
+                                   <div class="care-checklist-grid">
+                                        <div class="care-action-card">
+                                            <input type="checkbox" ${matrix[dayKey].done1 ? 'checked' : ''} onclick="invertBucketState('cycleCarePlanData/${dayKey}/done1', ${matrix[dayKey].done1 || false})">
+                                            <input type="text" class="clean-inline-input" style="padding:0; font-size:13px; font-weight:600;" value="${matrix[dayKey].task1}" onblur="sendDirectField(this, 'cycleCarePlanData/${dayKey}/task1')">
+                                        </div>
+                                        <div class="care-action-card">
+                                            <input type="checkbox" ${matrix[dayKey].done2 ? 'checked' : ''} onclick="invertBucketState('cycleCarePlanData/${dayKey}/done2', ${matrix[dayKey].done2 || false})">
+                                            <input type="text" class="clean-inline-input" style="padding:0; font-size:13px; font-weight:600;" value="${matrix[dayKey].task2}" onblur="sendDirectField(this, 'cycleCarePlanData/${dayKey}/task2')">
+                                        </div>
+                                        <div class="care-action-card">
+                                            <input type="checkbox" ${matrix[dayKey].done3 ? 'checked' : ''} onclick="invertBucketState('cycleCarePlanData/${dayKey}/done3', ${matrix[dayKey].done3 || false})">
+                                            <input type="text" class="clean-inline-input" style="padding:0; font-size:13px; font-weight:600;" value="${matrix[dayKey].task3}" onblur="sendDirectField(this, 'cycleCarePlanData/${dayKey}/task3')">
+                                        </div>
+                                        <div class="care-action-card">
+                                            <input type="checkbox" ${matrix[dayKey].done4 ? 'checked' : ''} onclick="invertBucketState('cycleCarePlanData/${dayKey}/done4', ${matrix[dayKey].done4 || false})">
+                                            <input type="text" class="clean-inline-input" style="padding:0; font-size:13px; font-weight:600;" value="${matrix[dayKey].task4}" onblur="sendDirectField(this, 'cycleCarePlanData/${dayKey}/task4')">
+                                        </div>
+                                   </div>`;
+                chassis.appendChild(panel);
+            }
+        }
+
+        // MOOD WRITERS RUNTIME ENGINE
         function selectMoodEmoji(user, idx, emojiChar) {
             db.ref(`status/emoji${user === 'syallu' ? 'Syallu' : 'Ghatan'}Idx`).set(idx);
             const inputField = document.getElementById(`status-${user}`);
@@ -820,38 +921,44 @@
             db.ref(`status/${user}`).set(textValue);
             db.ref(`moodLogs/${user}`).push({ text: textValue, date: new Date().toLocaleDateString('id-ID') });
         }
-        function renderMoodHistoryList(elementId, dataset) {
+        function promptCustomEmoji(user) {
+            let emoji = prompt("Enter single custom emoji character text node:");
+            if(emoji) { selectMoodEmoji(user, null, emoji.trim()); }
+        }
+        function renderMoodHistoryList(elementId, dataset, user) {
             const list = document.getElementById(elementId); list.innerHTML = "";
             for(let key in dataset) {
                 let li = document.createElement('li'); li.className = "mood-log-item";
-                li.innerHTML = `<span>${dataset[key].text}</span><span>${dataset[key].date}</span>`;
+                li.innerHTML = `<span>${dataset[key].text} — <small style="color:#aaa;">${dataset[key].date}</small></span><span style="cursor:pointer;" onclick="purgeNode('moodLogs/${user}/${key}')">🗑️</span>`;
                 list.insertBefore(li, list.firstChild);
             }
         }
+        function clearAllMoodHistory(user) { if(confirm("Purge total mood logs database for this user?")) db.ref(`moodLogs/${user}`).remove(); }
         function resetEmojiSelection(user, activeIdx) {
             const prefix = user === 'syallu' ? 'emoji-s-' : 'emoji-g-';
             for(let i=1; i<=4; i++) { if(document.getElementById(prefix + i)) document.getElementById(prefix + i).classList.remove('active-emoji'); }
             if(activeIdx && document.getElementById(prefix + activeIdx)) document.getElementById(prefix + activeIdx).classList.add('active-emoji');
         }
 
-        // PUSH NODES TRIGGERS
+        // DYNAMIC MOUNT SUBMIT DATA NODES
         function pushNewPolaroidFrameNode() {
-            const capField = document.getElementById('gallery-input-cap'); const urlField = document.getElementById('gallery-input-url');
-            const cleanUrl = reformatUrlLink(urlField.value);
-            if(capField.value.trim() && cleanUrl) {
-                db.ref('polaroidGallery').push({ img: cleanUrl, cap: capField.value.trim() });
-                capField.value = ""; urlField.value = "";
+            const cap = document.getElementById('gallery-input-cap'); const url = document.getElementById('gallery-input-url'); const date = document.getElementById('gallery-input-date');
+            const cleanUrl = reformatUrlLink(url.value);
+            if(cap.value.trim() && cleanUrl) {
+                db.ref('polaroidGallery').push({ img: cleanUrl, cap: cap.value.trim(), date: date.value.trim() || 'Today' });
+                cap.value = ""; url.value = ""; date.value = "";
             }
         }
-        function updatePolaroidLink(element, key) {
-            const cleanUrl = reformatUrlLink(element.value);
-            if(cleanUrl) db.ref(`polaroidGallery/${key}/img`).set(cleanUrl);
-        }
-        function pushNewStickyCard() { db.ref('stickyNotesGrid').push({ text: "Type direct inside memo canvas note card node..." }); }
+        function updatePolaroidLink(element, key) { const clean = reformatUrlLink(element.value); if(clean) db.ref(`polaroidGallery/${key}/img`).set(clean); }
+        function pushNewStickyCard() { db.ref('stickyNotesGrid').push({ text: "Type direct parameters...", pinned: 0, color: '#fffef2' }); }
+        function togglePinSticky(key, state) { db.ref(`stickyNotesGrid/${key}/pinned`).set(state ? 0 : 1); }
+        function changeStickyColor(key, hex) { db.ref(`stickyNotesGrid/${key}/color`).set(hex); }
+        
         function pushCountdownCardNode() {
             const title = document.getElementById('countdown-input-title'); const date = document.getElementById('countdown-input-date');
+            const tpl = document.getElementById('countdown-input-tpl'); const author = document.getElementById('countdown-input-author');
             if(title.value.trim() && date.value.trim()) {
-                db.ref('countdownAgendas').push({ title: title.value.trim(), date: date.value.trim() });
+                db.ref('countdownAgendas').push({ title: title.value.trim(), date: date.value.trim(), color: tpl.value, author: author.value });
                 title.value = ""; date.value = "";
             }
         }
@@ -860,33 +967,43 @@
             if(field.value.trim()) { db.ref('rouletteOptions').push({ text: field.value.trim() }); field.value = ""; }
         }
         function pushMusicTrackNode() {
-            const track = document.getElementById('music-input-track'); const note = document.getElementById('music-input-note');
-            if(track.value.trim()) { db.ref('musicTracks').push({ track: track.value.trim(), note: note.value.trim() }); track.value = ""; note.value = ""; }
+            const track = document.getElementById('music-input-track'); const url = document.getElementById('music-input-url'); const note = document.getElementById('music-input-note');
+            if(track.value.trim() && url.value.trim()) {
+                db.ref('musicTracks').push({ track: track.value.trim(), url: url.value.trim(), note: note.value.trim() || 'No description notes recorded.' });
+                track.value = ""; url.value = ""; note.value = "";
+            }
         }
-        function pushBucketNode() {
-            const field = document.getElementById('bucket-input-field');
-            if (field.value.trim()) { db.ref('bucketList').push({ text: field.value.trim(), done: false }); field.value = ""; }
-        }
-        function pushTripChecklistNode() {
-            const field = document.getElementById('trip-item-input');
-            if (field.value.trim()) { db.ref('tripChecklist').push({ text: field.value.trim(), done: false }); field.value = ""; }
-        }
+        function pushBucketNode() { const field = document.getElementById('bucket-input-field'); if (field.value.trim()) { db.ref('bucketList').push({ text: field.value.trim(), done: false }); field.value = ""; } }
         function pushTimelineNode() {
-            const dateNode = document.getElementById('milestone-date-field'); const descNode = document.getElementById('milestone-desc-field');
-            if (dateNode.value.trim() && descNode.value.trim()) {
-                db.ref('timeline').push({ date: dateNode.value.trim(), text: descNode.value.trim() });
-                dateNode.value = ""; descNode.value = "";
+            const dNode = document.getElementById('milestone-date-field'); const descNode = document.getElementById('milestone-desc-field');
+            if (dateNode = dNode.value.trim(), descNode = descNode.value.trim(), dateNode && descNode) {
+                db.ref('timeline').push({ date: dateNode, text: descNode }); dNode.value = ""; tNode = document.getElementById('milestone-desc-field').value = "";
             }
         }
 
-        // GLOBAL INTERACTIVE RUNTIME SERVICES
+        // RUNTIME COMPILER HANDLERS
         function sendDirectField(element, path) { const cleanVal = element.value.trim(); if(cleanVal !== "") db.ref(path).set(cleanVal); }
         function sendDateDirect(element) { const cleanVal = element.value.trim(); if(cleanVal !== "") { db.ref('nextPlan/date').set(cleanVal); computeTargetCountdown(cleanVal); } }
-        function invertBucketState(fullPath, currentStatus) { db.ref(`${fullPath}/done`).set(!currentStatus); }
+        function invertBucketState(fullPath, currentStatus) { db.ref(`${fullPath}`).set(!currentStatus); }
         function purgeNode(fullPath) { db.ref(fullPath).remove(); }
         function handleFieldEnter(evt, element) { if (evt.key === "Enter") element.blur(); }
 
-        // PARAMETERS DOCK COMPUTATION SERVICES
+        function listenToLatencyHealth() {
+            db.ref('.info/connected').on('value', snap => {
+                const healthField = document.getElementById('sync-health-value');
+                if(snap.val() === true) {
+                    let start = Date.now();
+                    db.ref('status').once('value', () => {
+                        let latency = Date.now() - start;
+                        healthField.innerText = `100% Stable (${latency}ms)`;
+                        healthField.style.color = "#27ae60";
+                    });
+                } else {
+                    healthField.innerText = "Offline Drifting"; healthField.style.color = "#c0392b";
+                }
+            });
+        }
+
         function calculateTimeMetrics() {
             const currentMoment = new Date(); const differenceTime = currentMoment - anniversaryAnchor;
             const absoluteDaysSum = Math.floor(differenceTime / (1000 * 60 * 60 * 24));
@@ -901,18 +1018,22 @@
         function calculateCardDaysLeft(targetStr) {
             const targetDate = new Date(targetStr); const today = new Date(); today.setHours(0,0,0,0);
             const diff = targetDate - today; const metricDaysLeft = Math.ceil(diff / (1000 * 60 * 60 * 24));
-            return metricDaysLeft > 0 ? `${metricDaysLeft} Days Left` : (metricDaysLeft === 0 ? "Today! ✨" : "Passed");
+            return metricDaysLeft > 0 ? `${metricDaysLeft} Days Left` : (metricDaysLeft === 0 ? "Today! ✨" : "Passed Target Node");
         }
-        function triggerRouletteEngine() {
+        
+        function spinRouletteEngine() {
+            if(arrayDecider.length === 0) { alert("Operational Choice Array Empty. Please populate the decision vault below first!"); return; }
             let ticker = 0;
             const processingInterval = setInterval(() => {
                 document.getElementById('roulette-display').innerText = arrayDecider[Math.floor(Math.random() * arrayDecider.length)];
-                if (++ticker > 14) {
+                if (++ticker > 15) {
                     clearInterval(processingInterval);
-                    document.getElementById('roulette-display').innerText = `✨ Selected Strategy: ${arrayDecider[Math.floor(Math.random() * arrayDecider.length)]} ✨`;
+                    const choice = arrayDecider[Math.floor(Math.random() * arrayDecider.length)];
+                    document.getElementById('roulette-display').innerText = `✨ Target Lock Decision: ${choice} ✨`;
                 }
             }, 75);
         }
+
         function switchCareTab(evt, matrixId) {
             const targetPanels = document.getElementsByClassName("cycle-view-panel");
             for (let i = 0; i < targetPanels.length; i++) targetPanels[i].classList.remove("active-panel");
