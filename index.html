@@ -5,7 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Our Homey Space</title>
     
-    <!-- Firebase Core & Database SDK (v8 Classic) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..700;1,400..700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
 
@@ -14,391 +17,550 @@
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+            font-family: 'Plus Jakarta Sans', sans-serif;
         }
         body {
-            background-color: #faf7f5;
-            color: #2c2c2c;
+            background-color: #fbf9f6;
+            color: #1a1a1a;
             min-height: 100vh;
-            padding-bottom: 40px;
+            padding-bottom: 60px;
+            overflow-x: hidden;
         }
-        /* Gateway Screen */
+        /* Elegant Custom Selection */
+        ::selection {
+            background: #e9e2db;
+            color: #1a1a1a;
+        }
+
+        /* Premium Gateway Screen */
         #login-screen {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: #f4eae4;
+            background: #f5f0ea;
             display: flex;
             justify-content: center;
             align-items: center;
             z-index: 9999;
+            transition: opacity 0.6s ease;
         }
         .login-box {
-            background: white;
-            padding: 40px 30px;
-            border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            background: #ffffff;
+            padding: 50px 40px;
+            border-radius: 24px;
+            box-shadow: 0 20px 50px rgba(26,26,26,0.03);
             text-align: center;
-            max-width: 360px;
+            max-width: 400px;
             width: 90%;
+            border: 1px solid #e9e2db;
         }
         .login-box h2 {
-            font-size: 22px;
-            font-weight: 600;
-            margin-bottom: 8px;
-            color: #4a4a4a;
+            font-family: 'Playfair Display', serif;
+            font-size: 32px;
+            font-weight: 500;
+            margin-bottom: 12px;
+            color: #1a1a1a;
         }
         .login-box p {
-            color: #8c8c8c;
+            color: #8a8580;
             font-size: 14px;
-            margin-bottom: 20px;
+            margin-bottom: 30px;
+            letter-spacing: -0.2px;
         }
         .login-box input {
             width: 100%;
-            padding: 12px;
-            margin-bottom: 15px;
-            border: 1px solid #e0e0e0;
-            border-radius: 6px;
+            padding: 16px;
+            margin-bottom: 20px;
+            border: 1px solid #e9e2db;
+            border-radius: 12px;
             outline: none;
             text-align: center;
-            font-size: 15px;
-            background: #fcfcfc;
+            font-size: 16px;
+            background: #faf8f5;
+            transition: all 0.3s ease;
+        }
+        .login-box input:focus {
+            border-color: #1a1a1a;
+            background: #ffffff;
         }
         .login-box button {
-            background-color: #4a4a4a;
-            color: white;
+            background-color: #1a1a1a;
+            color: #ffffff;
             border: none;
-            padding: 12px;
+            padding: 16px;
             width: 100%;
-            border-radius: 6px;
+            border-radius: 12px;
             cursor: pointer;
             font-size: 15px;
-            font-weight: 500;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            transition: background 0.3s ease;
         }
-        /* Dashboard Layout */
+        .login-box button:hover {
+            background-color: #3a3a3a;
+        }
+
+        /* Main Dashboard Header */
         #main-content {
             display: none;
-            max-width: 1100px;
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 40px 20px;
+            padding: 60px 24px;
+            animation: fadeIn 1s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
         .header-section {
             text-align: center;
-            margin-bottom: 40px;
+            margin-bottom: 60px;
         }
         .header-section h1 {
-            font-size: 28px;
-            color: #2c2c2c;
-            font-weight: 600;
+            font-family: 'Playfair Display', serif;
+            font-size: 48px;
+            color: #1a1a1a;
+            font-weight: 400;
+            font-style: italic;
         }
         .header-section p {
-            color: #7a7a7a;
-            font-size: 14px;
-            margin-top: 6px;
+            color: #8a8580;
+            font-size: 15px;
+            margin-top: 10px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
         }
+
+        /* Editorial Grid Layout */
         .dashboard-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 25px;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
         }
         .card {
-            background: white;
-            border-radius: 16px;
-            padding: 25px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.02);
-            border: 1px solid #f0ece6;
+            background: #ffffff;
+            border-radius: 24px;
+            padding: 35px;
+            border: 1px solid #e9e2db;
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+        }
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(26,26,26,0.02);
         }
         .card-title {
-            font-size: 16px;
+            font-size: 12px;
             font-weight: 600;
-            color: #4a4a4a;
-            margin-bottom: 15px;
-            border-bottom: 1px solid #faf7f5;
-            padding-bottom: 8px;
+            color: #8a8580;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 25px;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            border-bottom: 1px solid #f5f0ea;
+            padding-bottom: 10px;
         }
         .edit-hint {
             font-size: 11px;
-            color: #b5b5b5;
-            font-weight: normal;
+            color: #c0bbb5;
+            text-transform: none;
+            letter-spacing: 0;
+            font-weight: 400;
         }
-        .editable {
-            cursor: pointer;
-            transition: background 0.2s;
-            border-radius: 4px;
-            padding: 2px 4px;
+
+        /* True Inline Interactive Inputs */
+        .editable-input-flat {
+            width: 100%;
+            border: 1px solid transparent;
+            background: transparent;
+            font-size: 15px;
+            color: #1a1a1a;
+            padding: 6px 8px;
+            border-radius: 8px;
+            outline: none;
+            transition: all 0.2s ease;
         }
-        .editable:hover {
-            background: #fdfaf7;
+        .editable-input-flat:hover {
+            background: #faf8f5;
+            border-color: #e9e2db;
         }
+        .editable-input-flat:focus {
+            background: #ffffff;
+            border-color: #1a1a1a;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+        }
+
+        /* Specific Component Styling */
         .days-number {
-            font-size: 48px;
-            font-weight: 700;
+            font-family: 'Playfair Display', serif;
+            font-size: 72px;
+            font-weight: 400;
             text-align: center;
-            color: #4a4a4a;
-            margin: 10px 0;
+            color: #1a1a1a;
+            line-height: 1;
+            margin: 15px 0;
         }
         .counter-label {
             font-size: 12px;
-            color: #8c8c8c;
+            color: #8a8580;
             text-transform: uppercase;
             letter-spacing: 1px;
             text-align: center;
         }
         .status-row {
-            margin: 10px 0;
-            font-size: 14px;
+            margin: 15px 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
         .status-name {
             font-weight: 600;
-            color: #555;
+            font-size: 14px;
+            color: #8a8580;
+            min-width: 65px;
         }
-        .sticky-note {
-            background: #fffdf0;
-            border-left: 4px solid #f3e5ab;
+        .sticky-textarea {
+            width: 100%;
+            height: 110px;
+            border: 1px solid transparent;
+            background: #fffdf9;
             padding: 15px;
             font-size: 14px;
-            color: #555;
+            color: #4a4540;
             line-height: 1.6;
-            min-height: 80px;
+            border-left: 3px solid #e2d9cf;
+            resize: none;
+            outline: none;
+            transition: all 0.2s ease;
         }
-        .polaroid-container {
+        .sticky-textarea:hover {
+            border-color: #e9e2db;
+            border-left: 3px solid #1a1a1a;
+        }
+        .sticky-textarea:focus {
+            background: #ffffff;
+            border-color: #1a1a1a;
+            border-left: 3px solid #1a1a1a;
+        }
+
+        /* Micro Inline Fields for Forms */
+        .inline-form-box {
             display: flex;
-            gap: 15px;
-            overflow-x: auto;
-            padding: 10px 0;
+            gap: 8px;
+            margin-top: 15px;
+            border-top: 1px dashed #e9e2db;
+            padding-top: 15px;
         }
-        .polaroid {
-            background: white;
-            padding: 10px 10px 15px 10px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.04);
-            border: 1px solid #eee;
-            min-width: 150px;
-            text-align: center;
-        }
-        .polaroid img {
-            width: 130px;
-            height: 130px;
-            object-fit: cover;
-            background-color: #eee;
-        }
-        .polaroid .caption {
-            font-size: 12px;
-            color: #555;
-            margin-top: 8px;
-        }
-        .timeline-box {
-            max-height: 200px;
-            overflow-y: auto;
-        }
-        .timeline-item {
-            margin-bottom: 15px;
-            padding-left: 15px;
-            border-left: 2px solid #e0dcd8;
-            position: relative;
-        }
-        .timeline-date {
-            font-size: 11px;
-            color: #999;
-            font-weight: 600;
-        }
-        .timeline-text {
+        .inline-mini-input {
+            flex: 1;
+            padding: 10px 12px;
+            border: 1px solid #e9e2db;
+            border-radius: 8px;
             font-size: 13px;
-            color: #4a4a4a;
-            margin-top: 2px;
+            outline: none;
+            background: #faf8f5;
         }
-        .bucket-list {
+        .inline-mini-input:focus {
+            border-color: #1a1a1a;
+            background: #ffffff;
+        }
+        .inline-add-btn {
+            background: #1a1a1a;
+            color: white;
+            border: none;
+            padding: 10px 16px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        /* Modern Lists (Bucket & Timeline) */
+        .bucket-list, .timeline-box {
             list-style: none;
-            max-height: 180px;
+            max-height: 220px;
             overflow-y: auto;
+            padding-right: 5px;
         }
         .bucket-item {
             display: flex;
             align-items: center;
+            padding: 10px 8px;
+            border-radius: 8px;
             font-size: 14px;
-            margin-bottom: 10px;
+            transition: background 0.2s ease;
+        }
+        .bucket-item:hover {
+            background: #faf8f5;
         }
         .bucket-item input {
-            margin-right: 10px;
-            accent-color: #4a4a4a;
-        }
-        .add-btn {
-            background: none;
-            border: none;
-            color: #8c8c8c;
-            font-size: 12px;
+            margin-right: 12px;
+            accent-color: #1a1a1a;
+            width: 16px;
+            height: 16px;
             cursor: pointer;
-            text-decoration: underline;
-            margin-top: 5px;
         }
+        .delete-icon {
+            margin-left: auto;
+            cursor: pointer;
+            opacity: 0.3;
+            transition: opacity 0.2s;
+            font-size: 12px;
+        }
+        .delete-icon:hover {
+            opacity: 1;
+        }
+        .timeline-item {
+            margin-bottom: 20px;
+            padding-left: 15px;
+            border-left: 1px solid #1a1a1a;
+            position: relative;
+        }
+        .timeline-date {
+            font-size: 11px;
+            color: #8a8580;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            display: flex;
+            justify-content: space-between;
+        }
+        .timeline-text {
+            font-size: 14px;
+            color: #1a1a1a;
+            margin-top: 4px;
+            line-height: 1.4;
+        }
+
+        /* Premium Polaroid Component */
+        .polaroid-container {
+            display: flex;
+            gap: 20px;
+            overflow-x: auto;
+            padding: 5px 0;
+        }
+        .polaroid {
+            background: #ffffff;
+            padding: 12px 12px 24px 12px;
+            border: 1px solid #e9e2db;
+            min-width: 165px;
+            text-align: center;
+            border-radius: 4px;
+            box-shadow: 0 4px 15px rgba(26,26,26,0.01);
+        }
+        .polaroid img {
+            width: 140px;
+            height: 140px;
+            object-fit: cover;
+            background-color: #faf8f5;
+            filter: grayscale(10%);
+            border-radius: 2px;
+        }
+        .polaroid-input-group {
+            margin-top: 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        /* Roulette & Period Section */
+        .picker-box {
+            text-align: center;
+            background: #faf8f5;
+            padding: 25px;
+            border-radius: 16px;
+            border: 1px dashed #e9e2db;
+        }
+        #picked-result {
+            font-size: 14px;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 20px;
+            min-height: 22px;
+            font-style: italic;
+        }
+        .spin-btn {
+            background: #1a1a1a;
+            color: white;
+            border: none;
+            padding: 10px 24px;
+            border-radius: 24px;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .spin-btn:hover { background: #3a3a3a; }
+
         .tabs {
             display: flex;
-            gap: 5px;
+            gap: 6px;
             overflow-x: auto;
-            padding-bottom: 8px;
-            margin-bottom: 10px;
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+            border-bottom: 1px solid #f5f0ea;
         }
         .tab-btn {
-            background: #faf7f5;
-            border: none;
-            padding: 6px 12px;
+            background: #faf8f5;
+            border: 1px solid #e9e2db;
+            padding: 8px 14px;
             font-size: 11px;
-            border-radius: 20px;
+            font-weight: 600;
+            border-radius: 30px;
             cursor: pointer;
             white-space: nowrap;
+            transition: all 0.2s ease;
         }
-        .tab-btn.active {
-            background: #4a4a4a;
-            color: white;
+        .tab-btn.active, .tab-btn:hover {
+            background: #1a1a1a;
+            color: #ffffff;
+            border-color: #1a1a1a;
         }
         .tab-content {
             display: none;
             font-size: 13px;
             line-height: 1.6;
-            color: #555;
-            background: #faf7f5;
-            padding: 15px;
-            border-radius: 8px;
-        }
-        .tab-content.active {
-            display: block;
-        }
-        .picker-box {
-            text-align: center;
-            background: #faf7f5;
+            color: #4a4540;
+            background: #faf8f5;
             padding: 20px;
-            border-radius: 10px;
+            border-radius: 12px;
+            border: 1px solid #e9e2db;
+            animation: fadeIn 0.4s ease;
         }
-        #picked-result {
-            font-size: 15px;
-            font-weight: 600;
-            color: #4a4a4a;
-            margin-bottom: 15px;
-            min-height: 22px;
+        .tab-content.active { display: block; }
+
+        /* Spotify Bar */
+        .spotify-bar {
+            display: flex;
+            align-items: center;
+            background: #faf8f5;
+            padding: 18px;
+            border-radius: 14px;
+            border: 1px solid #e9e2db;
         }
-        .spin-btn {
-            background: #4a4a4a;
-            color: white;
-            border: none;
-            padding: 8px 20px;
-            border-radius: 20px;
+        .spotify-link {
             font-size: 13px;
-            cursor: pointer;
+            color: #1a1a1a;
+            font-weight: 600;
+            text-decoration: none;
+            border-bottom: 1px solid #1a1a1a;
         }
     </style>
 </head>
 <body>
 
-    <!-- PASSWORD GATEWAY -->
     <div id="login-screen">
         <div class="login-box">
             <h2>Our Homey Space</h2>
-            <p>Enter password to access our dashboard.</p>
+            <p>Enter the password to access the platform.</p>
             <input type="password" id="password-input" placeholder="Password...">
-            <button onclick="verifikasi()">Unlock</button>
+            <button onclick="verifikasi()">Unlock Space</button>
         </div>
     </div>
 
-    <!-- MAIN DASHBOARD -->
     <div id="main-content">
         <div class="header-section">
             <h1>Syallu & Me Workspace</h1>
-            <p>A minimalist real-time dashboard to archive our milestones and plans.</p>
+            <p>A curated digital ecosystem for our private archives</p>
         </div>
 
         <div class="dashboard-grid">
             
-            <!-- 1. DAY COUNTER -->
             <div class="card">
                 <div class="card-title">Day Counter <span>⏳</span></div>
                 <div class="days-number" id="days-counter">0</div>
                 <div class="counter-label">Days and Counting</div>
             </div>
 
-            <!-- 2. MOOD / STATUS TRACKER -->
             <div class="card">
-                <div class="card-title">Current Status <span class="edit-hint">Double-tap to edit</span></div>
+                <div class="card-title">Current Status <span class="edit-hint">Click line to type directly</span></div>
                 <div class="status-row">
-                    <span class="status-name">Syallu:</span> 
-                    <span id="status-syallu" class="editable" ondblclick="editField('status-syallu', 'status/syallu')">Tap 2x to edit status</span>
+                    <span class="status-name">Syallu</span> 
+                    <input type="text" id="status-syallu" class="editable-input-flat" onblur="saveInlineField(this, 'status/syallu')" onkeydown="checkEnter(event, this)">
                 </div>
                 <div class="status-row">
-                    <span class="status-name">Ghatan:</span> 
-                    <span id="status-ghatan" class="editable" ondblclick="editField('status-ghatan', 'status/ghatan')">Tap 2x to edit status</span>
+                    <span class="status-name">Ghatan</span> 
+                    <input type="text" id="status-ghatan" class="editable-input-flat" onblur="saveInlineField(this, 'status/ghatan')" onkeydown="checkEnter(event, this)">
                 </div>
             </div>
 
-            <!-- 3. NEXT PLAN COUNTDOWN -->
             <div class="card">
-                <div class="card-title">Next Agenda <span class="edit-hint">Double-tap to plan</span></div>
-                <div style="text-align: center; padding: 5px 0;">
-                    <p id="next-title" class="editable" style="font-weight: 600;" ondblclick="editField('next-title', 'nextPlan/title')">Tap 2x to name event</p>
-                    <div id="countdown-timer" style="font-size: 24px; font-weight: 700; color: #4a4a4a; margin: 8px 0;">0 Days Left</div>
-                    <p id="next-date" class="editable" style="font-size: 11px; color: #999;" ondblclick="editField('next-date', 'nextPlan/date')">2026-12-31</p>
+                <div class="card-title">Next Agenda <span class="edit-hint">Edit details inline</span></div>
+                <div style="text-align: center;">
+                    <input type="text" id="next-title" class="editable-input-flat" style="text-align:center; font-weight:600;" onblur="saveInlineField(this, 'nextPlan/title')" onkeydown="checkEnter(event, this)">
+                    <div id="countdown-timer" style="font-family: 'Playfair Display', serif; font-size: 32px; font-weight: 400; color: #1a1a1a; margin: 12px 0;">0 Days Left</div>
+                    <input type="text" id="next-date" class="editable-input-flat" style="text-align:center; font-size:12px; color:#8a8580;" onblur="saveInlineDate(this)" onkeydown="checkEnter(event, this)">
                 </div>
             </div>
 
-            <!-- 4. DAILY STICKY NOTES -->
             <div class="card">
-                <div class="card-title">Sticky Notes <span class="edit-hint">Double-tap to write</span></div>
-                <div id="sticky-text" class="sticky-note editable" ondblclick="editField('sticky-text', 'stickyNote')">Tap 2x to change this message...</div>
+                <div class="card-title">Sticky Notes <span class="edit-hint">Type directly inside note</span></div>
+                <textarea id="sticky-text" class="sticky-textarea" onblur="saveInlineField(this, 'stickyNote')"></textarea>
             </div>
 
-            <!-- 5. TERSERAH DECIDER -->
             <div class="card">
                 <div class="card-title">The "Terserah" Decider <span>🎲</span></div>
                 <div class="picker-box">
-                    <div id="picked-result">Click roll to decide what to do!</div>
+                    <div id="picked-result">Let the engine decide the plan.</div>
                     <button class="spin-btn" onclick="rollDecider()">Roll Option</button>
                 </div>
             </div>
 
-            <!-- 6. SPOTIFY PLAYLIST LINK -->
             <div class="card">
                 <div class="card-title">Our Soundtrack <span>🎵</span></div>
-                <div style="display: flex; align-items: center; background: #faf7f5; padding: 15px; border-radius: 10px;">
-                    <div style="font-size: 28px; margin-right: 15px;">💿</div>
+                <div class="spotify-bar">
+                    <div style="font-size: 24px; margin-right: 15px; filter: grayscale(100%);">💿</div>
                     <div>
-                        <div style="font-size: 14px; font-weight: 600;">Shared Mixtape</div>
-                        <a href="https://open.spotify.com" target="_blank" style="font-size: 12px; color: #7a7a7a; text-decoration: underline;">Open Spotify Playlist</a>
+                        <div style="font-size: 13px; font-weight: 500; color:#8a8580; margin-bottom: 2px;">Shared Space Track</div>
+                        <a href="https://open.spotify.com" target="_blank" class="spotify-link">Launch Spotify Mixtape</a>
                     </div>
                 </div>
             </div>
 
-            <!-- 7. BUCKET LIST / AGENDA -->
             <div class="card">
                 <div class="card-title">Our Bucket List <span>✈️</span></div>
                 <ul id="bucket-list-container" class="bucket-list"></ul>
-                <button class="add-btn" onclick="addBucketItem()">+ Add New Item</button>
+                <div class="inline-form-box">
+                    <input type="text" id="new-bucket-input" class="inline-mini-input" placeholder="New adventure path...">
+                    <button class="inline-add-btn" onclick="addBucketItem()">Add</button>
+                </div>
             </div>
 
-            <!-- 8. POLAROID GALLERY -->
             <div class="card">
-                <div class="card-title">Captured Moments <span class="edit-hint">Double-tap text to edit link</span></div>
+                <div class="card-title">Captured Moments <span class="edit-hint">Change text & photo URL seamlessly</span></div>
                 <div class="polaroid-container">
                     <div class="polaroid">
-                        <img id="p1-img" src="https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?w=150" alt="Moment 1">
-                        <div id="p1-cap" class="caption editable" ondblclick="editPolaroid(1)">First Moment</div>
+                        <img id="p1-img" src="" alt="Moment 1">
+                        <div class="polaroid-input-group">
+                            <input type="text" id="p1-cap" class="editable-input-flat" style="font-size:11px; text-align:center;" onblur="savePolaroid(1)" onkeydown="checkEnter(event, this)">
+                            <input type="text" id="p1-url" class="editable-input-flat" style="font-size:9px; text-align:center; color:#ccc;" placeholder="Image URL" onblur="savePolaroid(1)" onkeydown="checkEnter(event, this)">
+                        </div>
                     </div>
                     <div class="polaroid">
-                        <img id="p2-img" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150" alt="Moment 2">
-                        <div id="p2-cap" class="caption editable" ondblclick="editPolaroid(2)">Second Moment</div>
+                        <img id="p2-img" src="" alt="Moment 2">
+                        <div class="polaroid-input-group">
+                            <input type="text" id="p2-cap" class="editable-input-flat" style="font-size:11px; text-align:center;" onblur="savePolaroid(2)" onkeydown="checkEnter(event, this)">
+                            <input type="text" id="p2-url" class="editable-input-flat" style="font-size:9px; text-align:center; color:#ccc;" placeholder="Image URL" onblur="savePolaroid(2)" onkeydown="checkEnter(event, this)">
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <!-- 9. TIMELINE MILESTONES -->
             <div class="card">
                 <div class="card-title">Our Timeline <span>📌</span></div>
                 <div id="timeline-container" class="timeline-box"></div>
-                <button class="add-btn" onclick="addTimelineItem()">+ Add Milestone</button>
+                <div class="inline-form-box" style="flex-direction: column; gap: 6px;">
+                    <input type="text" id="time-date-input" class="inline-mini-input" placeholder="Date (e.g. 11 June)">
+                    <div style="display:flex; gap:8px;">
+                        <input type="text" id="time-text-input" class="inline-mini-input" placeholder="What happened...">
+                        <button class="inline-add-btn" onclick="addTimelineItem()">Post</button>
+                    </div>
+                </div>
             </div>
 
-            <!-- 10. 7-DAY PERIOD CARE PLAN -->
             <div class="card">
                 <div class="card-title">Comfort Zone: 7-Day Care Plan <span>❤️🩹</span></div>
                 <div class="tabs">
@@ -423,7 +585,7 @@
     </div>
 
     <script>
-        // INTEGRASI FIREBASE KAMU
+        // CONFIG FIREBASE KAMU
         const firebaseConfig = {
             apiKey: "AIzaSyBXL3eBi9s3-amUxSv5s4m4EM-BSuzp-rs",
             authDomain: "ourhomey.firebaseapp.com",
@@ -437,7 +599,6 @@
         firebase.initializeApp(firebaseConfig);
         const db = firebase.database();
 
-        // DATA UTAMA RELATIONSHIP
         const tanggalJadian = new Date(2026, 5, 11); 
         const opsiDecider = ["Nonton Movie/Netflix bareng 🎬", "Berburu Sunset/Keliling Kota 🚗", "Coba Cafe baru di Bandar Lampung ☕", "Jajan Pastry & Bakery 🍰", "Deep Talk di tempat teduh 💬", "Pesan delivery makanan di rumah 🍕"];
 
@@ -448,39 +609,44 @@
                                   inputUser.split('').every((char, index) => char.charCodeAt(0) === kodeRahasia[index]);
 
             if (passwordCocok) {
-                document.getElementById("login-screen").style.display = "none";
-                document.getElementById("main-content").style.display = "block";
-                initDashboard();
+                document.getElementById("login-screen").style.opacity = "0";
+                setTimeout(() => {
+                    document.getElementById("login-screen").style.display = "none";
+                    document.getElementById("main-content").style.display = "block";
+                    initDashboard();
+                }, 600);
             } else {
-                alert("Wrong password. Coba diingat lagi password rahasia kalian!");
+                alert("Wrong password.");
             }
         }
 
         function initDashboard() {
             hitungHari();
             
-            // Sync Realtime Text Fields
-            db.ref('status/syallu').on('value', snap => { document.getElementById('status-syallu').innerText = snap.val() || "Tap 2x untuk edit status"; });
-            db.ref('status/ghatan').on('value', snap => { document.getElementById('status-ghatan').innerText = snap.val() || "Tap 2x untuk edit status"; });
-            db.ref('stickyNote').on('value', snap => { document.getElementById('sticky-text').innerText = snap.val() || "Tap 2x untuk menulis pesan..."; });
-            db.ref('nextPlan/title').on('value', snap => { document.getElementById('next-title').innerText = snap.val() || "Tap 2x untuk ganti agenda"; });
+            // Sync Text Fields
+            db.ref('status/syallu').on('value', snap => { document.getElementById('status-syallu').value = snap.val() || ""; });
+            db.ref('status/ghatan').on('value', snap => { document.getElementById('status-ghatan').value = snap.val() || ""; });
+            db.ref('stickyNote').on('value', snap => { document.getElementById('sticky-text').value = snap.val() || ""; });
+            db.ref('nextPlan/title').on('value', snap => { document.getElementById('next-title').value = snap.val() || ""; });
             
             db.ref('nextPlan/date').on('value', snap => { 
                 const targetDateStr = snap.val() || "2026-12-31";
-                document.getElementById('next-date').innerText = targetDateStr;
+                document.getElementById('next-date').value = targetDateStr;
                 hitungCountdown(targetDateStr);
             });
 
-            // Sync Polaroid Links & Captions
+            // Sync Polaroids
             db.ref('polaroid/p1').on('value', snap => {
                 const data = snap.val() || { img: "https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?w=150", cap: "First Moment" };
                 document.getElementById('p1-img').src = data.img;
-                document.getElementById('p1-cap').innerText = data.cap;
+                document.getElementById('p1-cap').value = data.cap;
+                document.getElementById('p1-url').value = data.img;
             });
             db.ref('polaroid/p2').on('value', snap => {
                 const data = snap.val() || { img: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150", cap: "Second Moment" };
                 document.getElementById('p2-img').src = data.img;
-                document.getElementById('p2-cap').innerText = data.cap;
+                document.getElementById('p2-cap').value = data.cap;
+                document.getElementById('p2-url').value = data.img;
             });
 
             // Sync Bucket List
@@ -492,8 +658,8 @@
                     const li = document.createElement('li');
                     li.className = "bucket-item";
                     li.innerHTML = `<input type="checkbox" ${items[id].done ? 'checked' : ''} onclick="toggleBucket('${id}', ${items[id].done})"> 
-                                    <span style="${items[id].done ? 'text-decoration: line-through; color: #aaa;' : ''}">${items[id].text}</span>
-                                    <span style="margin-left:auto; cursor:pointer; font-size:11px; color:#c94c4c;" onclick="deleteBucket('${id}')">❌</span>`;
+                                    <span style="${items[id].done ? 'text-decoration: line-through; color: #b5b5b5;' : ''}">${items[id].text}</span>
+                                    <span class="delete-icon" onclick="deleteBucket('${id}')">❌</span>`;
                     container.appendChild(li);
                 }
             });
@@ -503,64 +669,79 @@
                 const container = document.getElementById('timeline-container');
                 container.innerHTML = "";
                 const items = snap.val() || {};
-                // Urutkan berdasarkan tanggal jika diperlukan, sementara tampilkan semua
                 for (let id in items) {
                     const div = document.createElement('div');
                     div.className = "timeline-item";
-                    div.innerHTML = `<div class="timeline-date">${items[id].date} <span style="cursor:pointer; margin-left:5px;" onclick="deleteTimeline('${id}')">❌</span></div>
+                    div.innerHTML = `<div class="timeline-date"><span>${items[id].date}</span><span class="delete-icon" onclick="deleteTimeline('${id}')">❌</span></div>
                                      <div class="timeline-text">${items[id].text}</div>`;
                     container.appendChild(div);
                 }
             });
         }
 
-        // REALTIME INLINE EDIT SYSTEM (DOUBLE CLICK TO PROMPT)
-        function editField(elementId, dbPath) {
-            const currentText = document.getElementById(elementId).innerText;
-            const newText = prompt(`Ubah data untuk bagian ini:`, currentText);
-            if (newText !== null && newText.trim() !== "") {
-                db.ref(dbPath).set(newText.trim());
+        // NO POPUPS INLINE REALTIME SAVING
+        function saveInlineField(inputElement, dbPath) {
+            const val = inputElement.value.trim();
+            if(val !== "") {
+                db.ref(dbPath).set(val);
             }
         }
 
-        function editPolaroid(id) {
-            const currentCap = document.getElementById(`p${id}-cap`).innerText;
-            const currentImg = document.getElementById(`p${id}-img`).src;
-            const newCap = prompt("Masukkan caption baru untuk foto polaroid:", currentCap);
-            const newImg = prompt("Masukkan link URL foto baru (pastikan dari web hosting foto terbuka atau link langsung gambar):", currentImg);
-            
-            if (newCap && newImg) {
-                db.ref(`polaroid/p${id}`).set({ img: newImg.trim(), cap: newCap.trim() });
+        function saveInlineDate(inputElement) {
+            const val = inputElement.value.trim();
+            if(val !== "") {
+                db.ref('nextPlan/date').set(val);
+                hitungCountdown(val);
+            }
+        }
+
+        function savePolaroid(id) {
+            const cap = document.getElementById(`p${id}-cap`).value.trim();
+            const img = document.getElementById(`p${id}-url`).value.trim();
+            if(cap && img) {
+                db.ref(`polaroid/p${id}`).set({ img: img, cap: cap });
+            }
+        }
+
+        function checkEnter(event, inputElement) {
+            if (event.key === "Enter") {
+                inputElement.blur(); // Triggers onblur automatically
             }
         }
 
         // BUCKET LIST OPERATIONS
         function addBucketItem() {
-            const text = prompt("Masukkan agenda atau bucket list baru kalian:");
+            const input = document.getElementById('new-bucket-input');
+            const text = input.value.trim();
             if (text) {
-                db.ref('bucketList').push({ text: text.trim(), done: false });
+                db.ref('bucketList').push({ text: text, done: false });
+                input.value = "";
             }
         }
         function toggleBucket(id, currentStatus) {
             db.ref(`bucketList/${id}/done`).set(!currentStatus);
         }
         function deleteBucket(id) {
-            if(confirm("Hapus item dari bucket list?")) db.ref(`bucketList/${id}`).remove();
+            db.ref(`bucketList/${id}`).remove();
         }
 
         // TIMELINE OPERATIONS
         function addTimelineItem() {
-            const date = prompt("Masukkan tanggal momen (Contoh: 11 Juni 2026 atau Akhir Pekan):");
-            const text = prompt("Ceritakan momen singkat itu sedang ngapain:");
+            const dateInput = document.getElementById('time-date-input');
+            const textInput = document.getElementById('time-text-input');
+            const date = dateInput.value.trim();
+            const text = textInput.value.trim();
             if (date && text) {
-                db.ref('timeline').push({ date: date.trim(), text: text.trim() });
+                db.ref('timeline').push({ date: date, text: text });
+                dateInput.value = "";
+                textInput.value = "";
             }
         }
         function deleteTimeline(id) {
-            if(confirm("Hapus momen ini dari timeline?")) db.ref(`timeline/${id}`).remove();
+            db.ref(`timeline/${id}`).remove();
         }
 
-        // CALCULATION LOGIC
+        // SYSTEM LOGIC GENERATORS
         function hitungHari() {
             const hariIni = new Date();
             const selisihWaktu = hariIni - tanggalJadian;
@@ -578,13 +759,12 @@
             if (selisihHari > 0) {
                 document.getElementById("countdown-timer").innerText = `${selisihHari} Days Left`;
             } else if (selisihHari === 0) {
-                document.getElementById("countdown-timer").innerText = "Today is the Day! ✨";
+                document.getElementById("countdown-timer").innerText = "Today! ✨";
             } else {
-                document.getElementById("countdown-timer").innerText = "Event Passed";
+                document.getElementById("countdown-timer").innerText = "Passed Plan";
             }
         }
 
-        // ROLL DECIDER LOULETTE
         function rollDecider() {
             let counter = 0;
             const interval = setInterval(() => {
@@ -594,21 +774,16 @@
                 if (counter > 10) {
                     clearInterval(interval);
                     const finalIdx = Math.floor(Math.random() * opsiDecider.length);
-                    document.getElementById('picked-result').innerText = `✨ Kita pilih: ${opsiDecider[finalIdx]} ✨`;
+                    document.getElementById('picked-result').innerText = `✨ Let's go to: ${opsiDecider[finalIdx]} ✨`;
                 }
             }, 100);
         }
 
-        // TAB PERIOD SYSTEM
         function openTab(evt, dayId) {
             const tabcontents = document.getElementsByClassName("tab-content");
-            for (let i = 0; i < tabcontents.length; i++) {
-                tabcontents[i].classList.remove("active");
-            }
+            for (let i = 0; i < tabcontents.length; i++) tabcontents[i].classList.remove("active");
             const tabbtns = document.getElementsByClassName("tab-btn");
-            for (let i = 0; i < tabbtns.length; i++) {
-                tabbtns[i].classList.remove("active");
-            }
+            for (let i = 0; i < tabbtns.length; i++) tabbtns[i].classList.remove("active");
             document.getElementById(dayId).classList.add("active");
             evt.currentTarget.classList.add("active");
         }
