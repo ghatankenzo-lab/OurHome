@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Our Homey Space — Private Ecosystem</title>
+    <title>Our Homey Space : Private Editorial Platform</title>
     
-    <!-- Google Fonts for High-End Typography -->
+    <!-- Google Fonts for Editorial Luxury -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -15,572 +15,541 @@
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
 
     <style>
+        :root {
+            --bg-color: #fdfbf7;
+            --text-main: #1a1a1a;
+            --text-muted: #86807a;
+            --border-color: #e9e2db;
+            --accent-cozy: #efeae4;
+        }
+
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
             font-family: 'Plus Jakarta Sans', sans-serif;
         }
+
         body {
-            background-color: #fcfbfa;
-            color: #1a1a1a;
+            background-color: var(--bg-color);
+            color: var(--text-main);
             overflow-x: hidden;
-        }
-        ::selection {
-            background: #e9e2db;
-            color: #1a1a1a;
+            -webkit-font-smoothing: antialiased;
         }
 
+        /* Premium Custom Scrollbar */
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        ::-webkit-scrollbar-track { background: var(--bg-color); }
+        ::-webkit-scrollbar-thumb { background: var(--text-main); border-radius: 10px; }
+
         /* -----------------------------------------
-           PREMIUM GATEWAY SCREEN
+           AUTHENTICATION VAULT INTERFACE
         ----------------------------------------- */
         #login-screen {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: #f5f0ea;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: #f4eae1;
+            display: flex; justify-content: center; align-items: center;
             z-index: 99999;
-            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+            transition: transform 1s cubic-bezier(0.85, 0, 0.15, 1), opacity 0.8s ease;
         }
         .login-box {
             background: #ffffff;
-            padding: 60px 40px;
-            border-radius: 32px;
-            box-shadow: 0 30px 70px rgba(26,26,26,0.04);
+            padding: 60px;
+            border-radius: 40px;
+            box-shadow: 0 40px 90px rgba(26,26,26,0.05);
             text-align: center;
-            max-width: 420px;
-            width: 90%;
-            border: 1px solid #e9e2db;
+            max-width: 460px;
+            width: 92%;
+            border: 1px solid var(--border-color);
         }
         .login-box h2 {
             font-family: 'Playfair Display', serif;
-            font-size: 36px;
+            font-size: 40px;
             font-weight: 400;
             font-style: italic;
-            margin-bottom: 12px;
-            color: #1a1a1a;
+            margin-bottom: 15px;
         }
         .login-box p {
-            color: #8a8580;
-            font-size: 14px;
-            margin-bottom: 35px;
+            color: var(--text-muted);
+            font-size: 12px;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 2px;
+            margin-bottom: 40px;
         }
         .login-box input {
             width: 100%;
-            padding: 18px;
-            margin-bottom: 20px;
-            border: 1px solid #e9e2db;
-            border-radius: 14px;
+            padding: 20px;
+            margin-bottom: 25px;
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
             outline: none;
             text-align: center;
             font-size: 16px;
-            background: #faf8f5;
-            transition: all 0.3s ease;
+            background: #fbf9f6;
+            transition: all 0.3s;
         }
-        .login-box input:focus {
-            border-color: #1a1a1a;
-            background: #ffffff;
-        }
+        .login-box input:focus { border-color: var(--text-main); background: #ffffff; }
         .login-box button {
-            background-color: #1a1a1a;
+            background: var(--text-main);
             color: #ffffff;
             border: none;
-            padding: 18px;
+            padding: 20px;
             width: 100%;
-            border-radius: 14px;
+            border-radius: 16px;
             cursor: pointer;
-            font-size: 15px;
+            font-size: 14px;
             font-weight: 600;
-            letter-spacing: 1px;
+            letter-spacing: 2px;
             text-transform: uppercase;
-            transition: background 0.3s ease;
+            transition: background 0.3s;
         }
-        .login-box button:hover { background-color: #3a3a3a; }
+        .login-box button:hover { background: #3a3a3a; }
 
         /* -----------------------------------------
-           HEADER & NAVIGATION NAVIGATION
+           AWWWARDS EDITORIAL HEADER
         ----------------------------------------- */
         header {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            padding: 25px 50px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            top: 0; left: 0; width: 100%;
+            padding: 30px 60px;
+            display: flex; justify-content: space-between; align-items: center;
             z-index: 999;
-            background: rgba(252, 251, 250, 0.8);
-            backdrop-filter: blur(12px);
-            border-bottom: 1px solid rgba(233, 226, 219, 0.4);
+            background: rgba(253, 251, 247, 0.85);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(233, 226, 219, 0.5);
         }
-        .nav-logo {
+        .nav-brand {
             font-family: 'Playfair Display', serif;
-            font-size: 20px;
+            font-size: 24px;
             font-weight: 600;
             font-style: italic;
+            letter-spacing: -0.5px;
         }
-        nav {
-            display: flex;
-            gap: 30px;
+        .search-container {
+            position: relative;
+            width: 300px;
         }
+        .search-bar {
+            width: 100%;
+            padding: 10px 16px 10px 36px;
+            border: 1px solid var(--border-color);
+            border-radius: 30px;
+            font-size: 13px;
+            outline: none;
+            background: #fbf9f6;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .search-bar:focus { width: 380px; border-color: var(--text-main); background: #fff; }
+        .search-icon {
+            position: absolute;
+            left: 14px; top: 50%;
+            transform: translateY(-50%);
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+        nav { display: flex; gap: 35px; align-items: center; }
         nav a {
             text-decoration: none;
-            color: #8a8580;
-            font-size: 12px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            transition: color 0.3s;
-        }
-        nav a:hover { color: #1a1a1a; }
-
-        /* -----------------------------------------
-           MAIN CONTAINER & HERO SECTION
-        ----------------------------------------- */
-        #main-content { display: none; }
-        
-        .hero-section {
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 0 24px;
-            position: relative;
-            background: radial-gradient(circle at 50% 50%, #fbf9f5 0%, #f5f0ea 100%);
-        }
-        .hero-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 76px;
-            font-weight: 400;
-            line-height: 1.1;
-            margin-bottom: 20px;
-            max-width: 800px;
-        }
-        .hero-title span { font-style: italic; font-weight: 300; }
-        .hero-subtitle {
-            color: #8a8580;
-            font-size: 14px;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            margin-bottom: 40px;
-        }
-        .cta-btn {
-            background: #1a1a1a;
-            color: white;
-            padding: 16px 36px;
-            border-radius: 40px;
-            text-decoration: none;
-            font-size: 13px;
-            font-weight: 600;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            transition: all 0.3s ease;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-        }
-        .cta-btn:hover {
-            background: #3a3a3a;
-            transform: translateY(-2px);
-        }
-        .scroll-hint {
-            position: absolute;
-            bottom: 40px;
-            font-size: 11px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            color: #b5b0aa;
-            animation: bounce 2s infinite;
-        }
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-            40% { transform: translateY(-8px); }
-            60% { transform: translateY(-4px); }
-        }
-
-        /* -----------------------------------------
-           EDITORIAL CONTENT CONTAINER
-        ----------------------------------------- */
-        .page-section {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 100px 24px;
-            border-top: 1px solid #e9e2db;
-        }
-        .section-headline {
-            margin-bottom: 60px;
-        }
-        .section-headline h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: 38px;
-            font-weight: 400;
-            margin-bottom: 8px;
-        }
-        .section-headline p {
-            font-size: 12px;
-            color: #8a8580;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-
-        /* Grid Framework for UI Widgets */
-        .matrix-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-            gap: 35px;
-        }
-        .box-panel {
-            background: #ffffff;
-            border-radius: 28px;
-            padding: 40px;
-            border: 1px solid #e9e2db;
-        }
-        .panel-heading {
+            color: var(--text-muted);
             font-size: 11px;
             font-weight: 700;
-            color: #8a8580;
             text-transform: uppercase;
             letter-spacing: 2px;
-            margin-bottom: 30px;
-            display: flex;
-            justify-content: space-between;
-            border-bottom: 1px solid #f7f5f2;
-            padding-bottom: 12px;
+            transition: color 0.3s;
         }
+        nav a:hover { color: var(--text-main); }
 
         /* -----------------------------------------
-           TRUE INLINE INTERACTIVES
+           HERO DISPLAY SECTION
         ----------------------------------------- */
-        .clean-flat-input {
+        #main-content { display: none; }
+        .hero {
+            height: 100vh;
+            display: flex; flex-direction: column;
+            justify-content: center; align-items: center;
+            text-align: center; padding: 0 24px;
+            position: relative;
+            background: radial-gradient(circle at 50% 40%, #fefdfb 0%, #f4eae1 100%);
+        }
+        .hero-tag {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            color: var(--text-muted);
+            margin-bottom: 24px;
+        }
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 84px;
+            font-weight: 400;
+            line-height: 1.1;
+            max-width: 950px;
+            margin-bottom: 40px;
+            letter-spacing: -1px;
+        }
+        .hero h1 span { font-style: italic; font-weight: 300; color: var(--text-muted); }
+        .hero-cta-group { display: flex; gap: 20px; }
+        .btn-primary {
+            background: var(--text-main);
+            color: #ffffff;
+            padding: 18px 44px;
+            border-radius: 40px;
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .btn-primary:hover { background: #3a3a3a; transform: translateY(-2px); }
+        .btn-secondary {
+            background: transparent;
+            color: var(--text-main);
+            padding: 18px 44px;
+            border-radius: 40px;
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            border: 1px solid var(--text-main);
+            transition: all 0.3s;
+        }
+        .btn-secondary:hover { background: rgba(26,26,26,0.03); }
+
+        /* -----------------------------------------
+           EDITORIAL CONTENT LAYOUT
+        ----------------------------------------- */
+        .section-wrapper {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 120px 40px;
+            border-top: 1px solid var(--border-color);
+        }
+        .section-meta {
+            margin-bottom: 70px;
+        }
+        .section-meta span {
+            font-size: 11px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            display: block;
+            margin-bottom: 10px;
+        }
+        .section-meta h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 46px;
+            font-weight: 400;
+        }
+
+        /* Custom Asymmetrical Layout Grid */
+        .asym-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 40px;
+        }
+        .panel-card {
+            background: #ffffff;
+            border-radius: 32px;
+            padding: 45px;
+            border: 1px solid var(--border-color);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .panel-card:hover { transform: translateY(-4px); box-shadow: 0 30px 60px rgba(26,26,26,0.015); }
+        
+        .panel-tag {
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 35px;
+            display: flex; justify-content: space-between; align-items: center;
+            border-bottom: 1px solid #fbf9f6;
+            padding-bottom: 15px;
+        }
+
+        /* Elegant Direct Inputs (No Popups) */
+        .direct-flat-field {
             width: 100%;
             border: 1px solid transparent;
             background: transparent;
             font-size: 16px;
-            color: #1a1a1a;
-            padding: 8px 10px;
-            border-radius: 10px;
+            color: var(--text-main);
+            padding: 10px 14px;
+            border-radius: 12px;
             outline: none;
-            transition: all 0.25s ease;
+            transition: all 0.2s ease;
         }
-        .clean-flat-input:hover {
-            background: #faf8f5;
-            border-color: #e9e2db;
-        }
-        .clean-flat-input:focus {
-            background: #ffffff;
-            border-color: #1a1a1a;
-        }
-        .huge-counter {
+        .direct-flat-field:hover { background: #faf8f5; border-color: var(--border-color); }
+        .direct-flat-field:focus { background: #ffffff; border-color: var(--text-main); }
+
+        .massive-counter-display {
             font-family: 'Playfair Display', serif;
-            font-size: 84px;
+            font-size: 96px;
             text-align: center;
             line-height: 1;
-            margin: 10px 0;
+            margin: 20px 0;
+            font-weight: 300;
         }
-        .sticky-area {
-            width: 100%;
-            height: 140px;
-            border: 1px solid transparent;
-            background: #fffefb;
-            padding: 20px;
-            font-size: 15px;
-            color: #3a3a3a;
-            line-height: 1.6;
-            border-left: 3px solid #1a1a1a;
-            resize: none;
-            outline: none;
-            border-radius: 0 12px 12px 0;
+        .status-block { margin: 20px 0; display: flex; align-items: center; }
+        .status-label { font-weight: 700; font-size: 13px; color: var(--text-muted); min-width: 80px; text-transform: uppercase; }
+        
+        .sticky-editor-box {
+            width: 100%; height: 160px;
+            border: 1px solid transparent; background: #fffefb;
+            padding: 20px; font-size: 15px; color: #333; line-height: 1.6;
+            border-left: 3px solid var(--text-main);
+            resize: none; outline: none; border-radius: 0 16px 16px 0;
             transition: all 0.3s;
         }
-        .sticky-area:focus { background: #ffffff; border-color: #1a1a1a; }
+        .sticky-editor-box:focus { background: #ffffff; border-color: var(--text-main); }
 
         /* -----------------------------------------
-           MAXIMIZED PACKED PERIOD PLAN
+           7-DAY PERIOD MATRIX SYSTEM
         ----------------------------------------- */
-        .period-engine {
+        .period-module { display: flex; flex-direction: column; gap: 30px; }
+        .period-nav-tabs {
+            display: flex; gap: 10px; overflow-x: auto;
+            padding-bottom: 15px; border-bottom: 1px solid var(--border-color);
+        }
+        .tab-trigger-btn {
+            background: #ffffff; border: 1px solid var(--border-color);
+            padding: 12px 22px; font-size: 12px; font-weight: 700;
+            border-radius: 40px; cursor: pointer; white-space: nowrap;
+            transition: all 0.25s ease;
+        }
+        .tab-trigger-btn.active, .tab-trigger-btn:hover {
+            background: var(--text-main); color: #ffffff; border-color: var(--text-main);
+        }
+        .tab-matrix-panel {
+            display: none; background: #fffaf6;
+            padding: 40px; border-radius: 28px;
+            border: 1px solid #f5e8df;
+            animation: softEntrance 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .tab-matrix-panel.active { display: block; }
+        .panel-matrix-title {
+            display: flex; align-items: center; gap: 15px;
+            font-size: 22px; font-weight: 700; margin-bottom: 20px;
+            font-family: 'Playfair Display', serif; font-style: italic;
+        }
+        .panel-matrix-desc { font-size: 14px; line-height: 1.7; color: #444; margin-bottom: 25px; }
+        .action-badges-container {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 15px;
+        }
+        .matrix-badge {
+            background: #ffffff; padding: 16px 20px; border-radius: 14px;
+            font-size: 13px; font-weight: 500; border: 1px solid rgba(26,26,26,0.02);
+            display: flex; align-items: center; gap: 10px;
+        }
+
+        /* -----------------------------------------
+           IMPROVED MULTI-POLAROID GALLERY
+        ----------------------------------------- */
+        .infinite-gallery-row {
             display: grid;
-            grid-template-columns: 1fr;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
             gap: 25px;
-        }
-        .period-tabs {
-            display: flex;
-            gap: 8px;
-            overflow-x: auto;
-            padding-bottom: 12px;
-            border-bottom: 1px solid #f5f0ea;
-        }
-        .cycle-btn {
-            background: #ffffff;
-            border: 1px solid #e9e2db;
-            padding: 10px 18px;
-            font-size: 12px;
-            font-weight: 600;
-            border-radius: 40px;
-            cursor: pointer;
-            white-space: nowrap;
-            transition: all 0.25s;
-        }
-        .cycle-btn.active, .cycle-btn:hover {
-            background: #1a1a1a;
-            color: white;
-            border-color: #1a1a1a;
-        }
-        .cycle-matrix-content {
-            display: none;
-            background: #fffaf7;
-            padding: 30px;
-            border-radius: 20px;
-            border: 1px solid #f3e6dd;
-            animation: softFade 0.5s ease;
-        }
-        .cycle-matrix-content.active { display: block; }
-        .cycle-header {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            font-size: 18px;
-            font-weight: 700;
-            margin-bottom: 15px;
-        }
-        .cycle-badge-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px;
             margin-top: 15px;
         }
-        .badge-indicator {
-            background: #ffffff;
-            padding: 12px 15px;
-            border-radius: 10px;
-            font-size: 13px;
-            border: 1px solid rgba(26,26,26,0.03);
-            display: flex;
-            align-items: center;
-            gap: 8px;
+        .luxury-polaroid {
+            background: #ffffff; padding: 18px 18px 35px 18px;
+            border: 1px solid var(--border-color); border-radius: 4px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.01); text-align: center;
+            transition: transform 0.3s;
         }
+        .luxury-polaroid:hover { transform: rotate(1deg) scale(1.02); }
+        .luxury-polaroid img {
+            width: 100%; height: 230px; object-fit: cover;
+            border-radius: 2px; margin-bottom: 20px; background-color: #f5f0ea;
+        }
+        .polaroid-inputs { display: flex; flex-direction: column; gap: 8px; }
+        .polaroid-inputs input { text-align: center; font-size: 13px; }
 
         /* -----------------------------------------
-           IMMERSIVE PHOTOGRAPHY (POLAROID)
+           DYNAMIC DATA CAPTURE VANS
         ----------------------------------------- */
-        .curated-gallery {
-            display: flex;
-            gap: 30px;
-            overflow-x: auto;
-            padding: 10px 0;
+        .interactive-stream-box { display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 40px; }
+        .scrollable-list-frame { list-style: none; max-height: 280px; overflow-y: auto; padding-right: 10px; }
+        .stream-row-item {
+            display: flex; align-items: center; padding: 14px 12px;
+            border-radius: 14px; font-size: 14px; transition: background 0.2s;
         }
-        .premium-polaroid {
-            background: #ffffff;
-            padding: 16px 16px 30px 16px;
-            border: 1px solid #e9e2db;
-            border-radius: 4px;
-            min-width: 260px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.01);
-            text-align: center;
+        .stream-row-item:hover { background: #faf8f5; }
+        .stream-row-item input[type="checkbox"] {
+            margin-right: 16px; accent-color: var(--text-main); width: 20px; height: 20px; cursor: pointer;
         }
-        .premium-polaroid img {
-            width: 100%;
-            height: 220px;
-            object-fit: cover;
-            border-radius: 2px;
-            margin-bottom: 15px;
+        .timeline-vertical-line { max-height: 320px; overflow-y: auto; padding-right: 10px; }
+        .timeline-node {
+            padding-left: 24px; border-left: 1px solid var(--text-main);
+            position: relative; margin-bottom: 30px;
         }
-        .polaroid-meta {
-            display: flex;
-            flex-direction: column;
-            gap: 6px;
-        }
-        .polaroid-meta input { text-align: center; font-size: 13px; }
-
-        /* -----------------------------------------
-           LISTS LAYOUT (BUCKET & TIMELINE)
-        ----------------------------------------- */
-        .split-vault {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-            gap: 40px;
-        }
-        .modern-list { list-style: none; max-height: 250px; overflow-y: auto; }
-        .list-row {
-            display: flex;
-            align-items: center;
-            padding: 12px 10px;
-            border-radius: 10px;
-            font-size: 14px;
-        }
-        .list-row:hover { background: #faf8f5; }
-        .list-row input[type="checkbox"] {
-            margin-right: 15px;
-            accent-color: #1a1a1a;
-            width: 18px;
-            height: 18px;
-        }
-        .timeline-stream { max-height: 300px; overflow-y: auto; }
-        .node-event {
-            padding-left: 20px;
-            border-left: 1px solid #1a1a1a;
-            position: relative;
-            margin-bottom: 25px;
-        }
-        .node-meta { font-size: 11px; font-weight: 700; color: #8a8580; display: flex; justify-content: space-between;}
-        .node-body { font-size: 14px; margin-top: 5px; line-height: 1.5; }
+        .node-timestamp { font-size: 11px; font-weight: 700; color: var(--text-muted); display: flex; justify-content: space-between; }
+        .node-content-text { font-size: 14px; margin-top: 6px; line-height: 1.6; }
         
-        .panel-form {
-            display: flex;
-            gap: 8px;
-            margin-top: 20px;
-            border-top: 1px dashed #e9e2db;
-            padding-top: 20px;
+        .erasure-action { cursor: pointer; opacity: 0.2; transition: opacity 0.2s; font-size: 11px; }
+        .erasure-action:hover { opacity: 1; color: #b84646; }
+
+        .submission-dock {
+            display: flex; gap: 10px; margin-top: 25px;
+            border-top: 1px dashed var(--border-color); padding-top: 25px;
         }
-        .panel-input {
-            flex: 1;
-            padding: 12px 16px;
-            border: 1px solid #e9e2db;
-            border-radius: 10px;
-            font-size: 13px;
-            outline: none;
-            background: #faf8f5;
+        .dock-input {
+            flex: 1; padding: 14px 18px; border: 1px solid var(--border-color);
+            border-radius: 12px; font-size: 13px; outline: none; background: #faf8f5;
+            transition: all 0.3s;
         }
-        .panel-btn {
-            background: #1a1a1a;
-            color: white;
-            border: none;
-            padding: 12px 20px;
-            border-radius: 10px;
-            font-size: 13px;
-            font-weight: 600;
-            cursor: pointer;
+        .dock-input:focus { border-color: var(--text-main); background: #ffffff; }
+        .dock-trigger-btn {
+            background: var(--text-main); color: #ffffff; border: none;
+            padding: 14px 24px; border-radius: 12px; font-size: 13px;
+            font-weight: 600; cursor: pointer; transition: background 0.2s;
+        }
+        .dock-trigger-btn:hover { background: #3a3a3a; }
+
+        /* Roulette & Utilities */
+        .roulette-board { text-align: center; background: #faf8f5; padding: 30px; border-radius: 20px; border: 1px dashed var(--border-color); }
+        #roulette-display { font-size: 15px; font-weight: 600; color: var(--text-main); margin-bottom: 25px; min-height: 24px; font-style: italic; }
+        .roulette-trigger {
+            background: var(--text-main); color: white; border: none;
+            padding: 12px 28px; border-radius: 30px; font-size: 12px;
+            font-weight: 700; letter-spacing: 1px; cursor: pointer;
+        }
+
+        /* Spotify Widget Minimalist Bar */
+        .spotify-bar-luxury {
+            display: flex; align-items: center; background: #faf8f5;
+            padding: 20px; border-radius: 18px; border: 1px solid var(--border-color);
+        }
+        .spotify-anchor {
+            font-size: 13px; color: var(--text-main); font-weight: 700;
+            text-decoration: none; border-bottom: 1px solid var(--text-main);
         }
 
         /* -----------------------------------------
-           FOOTER EDITORIAL
+           EDITORIAL FOOTER COMPONENT
         ----------------------------------------- */
         footer {
-            max-width: 1200px;
-            margin: 60px auto 0 auto;
-            padding: 40px 24px;
-            border-top: 1px solid #e9e2db;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            color: #b5b0aa;
-            font-size: 11px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+            max-width: 1300px; margin: 100px auto 0 auto;
+            padding: 50px 40px; border-top: 1px solid var(--border-color);
+            display: flex; justify-content: space-between; align-items: center;
+            color: #b0aaa4; font-size: 11px; text-transform: uppercase; letter-spacing: 2px;
         }
 
-        @keyframes softFade {
-            from { opacity: 0; transform: translateY(5px); }
+        @keyframes softEntrance {
+            from { opacity: 0; transform: translateY(12px); }
             to { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
 <body>
 
-    <!-- PASSWORD SYSTEM GATEWAY -->
+    <!-- SECURE GATEWAY SYSTEM -->
     <div id="login-screen">
         <div class="login-box">
             <h2>Our Homey Space</h2>
-            <p>Vault Access Protection</p>
-            <input type="password" id="password-input" placeholder="Enter Security Code...">
-            <button onclick="verifikasi()">Unlock Interface</button>
+            <p>Authentication Required</p>
+            <input type="password" id="password-input" placeholder="Security Password...">
+            <button onclick="verifikasi()">Access Dashboard</button>
         </div>
     </div>
 
-    <!-- MAIN PLATFORM STRUCTURE -->
+    <!-- MAIN PLATFORM HUB -->
     <div id="main-content">
         
-        <!-- HEADER COMPONENT -->
+        <!-- HIGH END NAVBAR -->
         <header>
-            <div class="nav-logo">Syallu & Me.</div>
+            <div class="nav-brand">Syallu & Me.</div>
+            <div class="search-container">
+                <span class="search-icon">🔍</span>
+                <input type="text" id="global-search" class="search-bar" placeholder="Search milestones, plans, bucket lists..." oninput="executeGlobalSearch()">
+            </div>
             <nav>
-                <a href="#hero">Home</a>
-                <a href="#metrics">Status</a>
-                <a href="#moments">Moments</a>
-                <a href="#care">Care Plan</a>
-                <a href="#vault">Vault Archive</a>
+                <a href="#hero">Index</a>
+                <a href="#telemetry">Matrix</a>
+                <a href="#gallery">Moments</a>
+                <a href="#biomedical">Care</a>
+                <a href="#archives">Ledger</a>
             </nav>
         </header>
 
-        <!-- 1. HERO ENGINE SECTION -->
-        <section id="hero" class="hero-section">
-            <p class="hero-subtitle">Private Cloud Core</p>
-            <h2 class="hero-title">An architecture dedicated to archiving our <span>shared journey.</span></h2>
-            <a href="#metrics" class="cta-btn">Explore Database</a>
-            <div class="scroll-hint">Scroll down to view dashboard</div>
-        </section>
-
-        <!-- 2. SYSTEM METRICS SECTION (Day Counter, Mood, Agenda) -->
-        <section id="metrics" class="page-section">
-            <div class="section-headline">
-                <p>Telemetry Node</p>
-                <h2>Live Matrix Status</h2>
-            </div>
-            <div class="matrix-grid">
-                <div class="box-panel">
-                    <div class="panel-heading">Operational Day Counter</div>
-                    <div class="huge-counter" id="days-counter">0</div>
-                    <div class="counter-label">Days In Union</div>
-                </div>
-                <div class="box-panel">
-                    <div class="panel-heading">Inline Mood Status Indicator</div>
-                    <div class="status-row">
-                        <span class="status-name">Syallu</span>
-                        <input type="text" id="status-syallu" class="clean-flat-input" onblur="saveField(this, 'status/syallu')" onkeydown="checkEnter(event, this)">
-                    </div>
-                    <div class="status-row">
-                        <span class="status-name">Ghatan</span>
-                        <input type="text" id="status-ghatan" class="clean-flat-input" onblur="saveField(this, 'status/ghatan')" onkeydown="checkEnter(event, this)">
-                    </div>
-                </div>
-                <div class="box-panel">
-                    <div class="panel-heading">Next Objective Target</div>
-                    <input type="text" id="next-title" class="clean-flat-input" style="text-align:center; font-weight:600; font-size:15px;" onblur="saveField(this, 'nextPlan/title')" onkeydown="checkEnter(event, this)">
-                    <div id="countdown-timer" style="font-family: 'Playfair Display', serif; font-size: 28px; text-align:center; margin: 10px 0;">0 Days</div>
-                    <input type="text" id="next-date" class="clean-flat-input" style="text-align:center; font-size:12px; color:#8a8580;" onblur="saveDate(this)" onkeydown="checkEnter(event, this)">
-                </div>
+        <!-- IMMERSIVE HERO FRAME -->
+        <section id="hero" class="hero">
+            <p class="hero-tag">System Terminal Node v3.0</p>
+            <h1>An interactive cloud architecture curated to archive our <span>shared milestones.</span></h1>
+            <div class="hero-cta-group">
+                <a href="#telemetry" class="btn-primary">Launch Ecosystem</a>
+                <a href="#biomedical" class="btn-secondary">Check Cycle Plan</a>
             </div>
         </section>
 
-        <!-- 3. IMMERSIVE PICTURES SECTION (With GDrive Fixer Built-In) -->
-        <section id="moments" class="page-section">
-            <div class="section-headline">
-                <p>Visual Log Storage</p>
-                <h2>Captured Moments</h2>
+        <!-- SECTION 1 : TELEMETRY SYSTEM STATUS -->
+        <section id="telemetry" class="section-wrapper target-search-block">
+            <div class="section-meta">
+                <span>Database Section 01</span>
+                <h2>Core Telemetry Status</h2>
             </div>
-            <div class="matrix-grid" style="grid-template-columns: 1fr 2fr;">
-                <div class="box-panel">
-                    <div class="panel-heading">Digital Sticky Notes</div>
-                    <textarea id="sticky-text" class="sticky-area" onblur="saveField(this, 'stickyNote')" placeholder="Leave a capsule text here..."></textarea>
+            <div class="asym-grid">
+                <div class="panel-card">
+                    <div class="panel-tag">Union Core Timeline</div>
+                    <div class="massive-counter-display" id="days-counter">0</div>
+                    <div class="counter-label">Days Running In Sync</div>
+                </div>
+                <div class="panel-card">
+                    <div class="panel-tag">Direct Mood Stream Indicators</div>
+                    <div class="status-block">
+                        <span class="status-label">Syallu</span>
+                        <input type="text" id="status-syallu" class="direct-flat-field" onblur="commitField(this, 'status/syallu')" onkeydown="interceptEnter(event, this)">
+                    </div>
+                    <div class="status-block">
+                        <span class="status-label">Ghatan</span>
+                        <input type="text" id="status-ghatan" class="direct-flat-field" onblur="commitField(this, 'status/ghatan')" onkeydown="interceptEnter(event, this)">
+                    </div>
+                </div>
+                <div class="panel-card">
+                    <div class="panel-tag">Imminent Operational Target</div>
+                    <input type="text" id="next-title" class="direct-flat-field" style="text-align:center; font-weight:700; font-size:16px;" onblur="commitField(this, 'nextPlan/title')" onkeydown="interceptEnter(event, this)">
+                    <div id="countdown-timer" class="massive-counter-display" style="font-size:36px; margin:15px 0;">0 Days</div>
+                    <input type="text" id="next-date" class="direct-flat-field" style="text-align:center; font-size:12px; color:var(--text-muted);" onblur="commitDate(this)" onkeydown="interceptEnter(event, this)">
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 2 : IMMERSIVE PHOTOGRAPHY & NOTES -->
+        <section id="gallery" class="section-wrapper target-search-block">
+            <div class="section-meta">
+                <span>Database Section 02</span>
+                <h2>Visual Logs & Micro Notes</h2>
+            </div>
+            <div class="asym-grid" style="grid-template-columns: 1fr 2fr;">
+                <div class="panel-card">
+                    <div class="panel-tag">Interactive Capsule Notes</div>
+                    <textarea id="sticky-text" class="sticky-editor-box" onblur="commitField(this, 'stickyNote')" placeholder="Write something direct to storage..."></textarea>
                     
-                    <div class="panel-heading" style="margin-top: 30px; margin-bottom: 15px;">Decider System</div>
-                    <div class="picker-box">
-                        <div id="picked-result">Awaiting core roll command.</div>
-                        <button class="spin-btn" onclick="rollDecider()">Roll Matrix</button>
+                    <div class="panel-tag" style="margin-top:40px; margin-bottom:15px;">"Terserah" Roulette Decider</div>
+                    <div class="roulette-board">
+                        <div id="roulette-display">System ready to spin plans.</div>
+                        <button class="roulette-trigger" onclick="spinRouletteEngine()">Spin Array</button>
                     </div>
                 </div>
-                <div class="box-panel">
-                    <div class="panel-heading">Polaroid Frame Module (Supports Google Drive Public Link)</div>
-                    <div class="curated-gallery">
-                        <div class="premium-polaroid">
-                            <img id="p1-img" src="" alt="Polaroid Arc">
-                            <div class="polaroid-meta">
-                                <input type="text" id="p1-cap" class="clean-flat-input" style="font-weight:600;" onblur="savePolaroid(1)" onkeydown="checkEnter(event, this)">
-                                <input type="text" id="p1-url" class="clean-flat-input" style="color:#bbb; font-size:10px;" placeholder="Paste Photo/GDrive Link" onblur="savePolaroid(1)" onkeydown="checkEnter(event, this)">
+                <div class="panel-card">
+                    <div class="panel-tag">Captured Photo Frames (Supports Shareable Google Drive Links)</div>
+                    <div class="infinite-gallery-row">
+                        <div class="luxury-polaroid search-item-node">
+                            <img id="p1-img" src="" alt="Polaroid Core">
+                            <div class="polaroid-inputs">
+                                <input type="text" id="p1-cap" class="direct-flat-field" style="font-weight:700;" onblur="commitPolaroid(1)" onkeydown="interceptEnter(event, this)">
+                                <input type="text" id="p1-url" class="direct-flat-field" style="color:#ccc; font-size:10px;" placeholder="Paste Direct Image / GDrive Link" onblur="commitPolaroid(1)" onkeydown="interceptEnter(event, this)">
                             </div>
                         </div>
-                        <div class="premium-polaroid">
-                            <img id="p2-img" src="" alt="Polaroid Arc">
-                            <div class="polaroid-meta">
-                                <input type="text" id="p2-cap" class="clean-flat-input" style="font-weight:600;" onblur="savePolaroid(2)" onkeydown="checkEnter(event, this)">
-                                <input type="text" id="p2-url" class="clean-flat-input" style="color:#bbb; font-size:10px;" placeholder="Paste Photo/GDrive Link" onblur="savePolaroid(2)" onkeydown="checkEnter(event, this)">
+                        <div class="luxury-polaroid search-item-node">
+                            <img id="p2-img" src="" alt="Polaroid Core">
+                            <div class="polaroid-inputs">
+                                <input type="text" id="p2-cap" class="direct-flat-field" style="font-weight:700;" onblur="commitPolaroid(2)" onkeydown="interceptEnter(event, this)">
+                                <input type="text" id="p2-url" class="direct-flat-field" style="color:#ccc; font-size:10px;" placeholder="Paste Direct Image / GDrive Link" onblur="commitPolaroid(2)" onkeydown="interceptEnter(event, this)">
                             </div>
                         </div>
                     </div>
@@ -588,131 +557,143 @@
             </div>
         </section>
 
-        <!-- 4. MAXIMIZED PERIOD PLAN SYSTEM -->
-        <section id="care" class="page-section">
-            <div class="section-headline">
-                <p>Biomedical Comfort Module</p>
-                <h2>Comfort Zone: 7-Day Care Plan</h2>
+        <!-- SECTION 3 : EXTENDED COMPREHENSIVE CARE MATRIX -->
+        <section id="biomedical" class="section-wrapper target-search-block">
+            <div class="section-meta">
+                <span>Database Section 03</span>
+                <h2>Biomedical Cycle Comfort Architecture</h2>
             </div>
-            <div class="box-panel period-engine">
-                <div class="period-tabs">
-                    <button class="cycle-btn active" onclick="openTab(event, 'day1')">Day 1</button>
-                    <button class="cycle-btn" onclick="openTab(event, 'day2')">Day 2</button>
-                    <button class="cycle-btn" onclick="openTab(event, 'day3')">Day 3</button>
-                    <button class="cycle-btn" onclick="openTab(event, 'day4')">Day 4</button>
-                    <button class="cycle-btn" onclick="openTab(event, 'day5')">Day 5</button>
-                    <button class="cycle-btn" onclick="openTab(event, 'day6')">Day 6</button>
-                    <button class="cycle-btn" onclick="openTab(event, 'day7')">Day 7</button>
+            <div class="panel-card period-module">
+                <div class="period-nav-tabs">
+                    <button class="tab-trigger-btn active" onclick="switchMatrixTab(event, 'day1')">Day 1</button>
+                    <button class="tab-trigger-btn" onclick="switchMatrixTab(event, 'day2')">Day 2</button>
+                    <button class="tab-trigger-btn" onclick="switchMatrixTab(event, 'day3')">Day 3</button>
+                    <button class="tab-trigger-btn" onclick="switchMatrixTab(event, 'day4')">Day 4</button>
+                    <button class="tab-trigger-btn" onclick="switchMatrixTab(event, 'day5')">Day 5</button>
+                    <button class="tab-trigger-btn" onclick="switchMatrixTab(event, 'day6')">Day 6</button>
+                    <button class="tab-trigger-btn" onclick="switchMatrixTab(event, 'day7')">Day 7</button>
                 </div>
                 
-                <div id="day1" class="cycle-matrix-content active">
-                    <div class="cycle-header">🩸 Hari Pertama — Peak Cramps Level</div>
-                    <p>Fase awal peluruhan dinding rahim, kram perut (dysmenorrhea) biasanya mencapai titik tertinggi karena kontraksi rahim yang kuat.</p>
-                    <div class="cycle-badge-grid">
-                        <div class="badge-indicator">🎚️ Status: Kram Ekstrem & Lemas</div>
-                        <div class="badge-indicator">☕ Care: Air Hangat & Kompres Perut</div>
-                        <div class="badge-indicator">💊 Opsional: Ibuprofen / Feminitas</div>
-                        <div class="badge-indicator">🛡️ Ghatan Note: Ekstra sabar & dengerin aja</div>
+                <div id="day1" class="tab-matrix-panel active">
+                    <div class="panel-matrix-title">🩸 Hari Ke-1 : Peak Cramps Protocol</div>
+                    <p class="panel-matrix-desc">Fase awal peluruhan rahim. Kram perut (dysmenorrhea) berada di level tertinggi akibat sekresi prostaglandin yang memicu kontraksi intens saraf perut.</p>
+                    <div class="action-badges-container">
+                        <div class="matrix-badge">🚨 Level Nyeri: Sangat Tinggi & Lemas</div>
+                        <div class="matrix-badge">🔥 Care: Kompres air hangat pada area perut bawah</div>
+                        <div class="matrix-badge">🥤 Komsumsi: Air putih hangat & hindari kafein</div>
+                        <div class="matrix-badge">🧸 Ghatan Task: Siapkan bantal tidur & dengarkan keluhannya</div>
                     </div>
                 </div>
-                <div id="day2" class="cycle-matrix-content">
-                    <div class="cycle-header">🌊 Hari Kedua — Heavy Flow Phase</div>
-                    <p>Volume pendarahan berada di tingkat maksimal. Tubuh kehilangan zat besi dalam jumlah signifikan, memicu pusing atau sakit kepala ringan.</p>
-                    <div class="cycle-badge-grid">
-                        <div class="badge-indicator">🎚️ Status: Darah Banyak & Lemas</div>
-                        <div class="badge-indicator">🩸 Care: Ingatkan ganti pembalut (3-4 jam)</div>
-                        <div class="badge-indicator">🥩 Nutrisi: Makanan tinggi zat besi</div>
-                        <div class="badge-indicator">🛌 Activity: Bedrest total / kurangi jalan jauh</div>
+                <div id="day2" class="tab-matrix-panel">
+                    <div class="panel-matrix-title">🌊 Hari Ke-2 : Maximum Volume Flow</div>
+                    <p class="panel-matrix-desc">Pelepasan volume darah menstruasi mencapai puncaknya. Kehilangan zat besi yang masif dapat menyebabkan kelelahan ekstrem, pusing ringan, dan pegal linu.</p>
+                    <div class="action-badges-container">
+                        <div class="matrix-badge">📢 Level Nyeri: Tinggi & Pusing Kepala</div>
+                        <div class="matrix-badge">🔄 Care: Ingatkan ganti pembalut berkala (3 jam sekali)</div>
+                        <div class="matrix-badge">🥩 Nutrisi: Makanan kaya zat besi seperti daging merah</div>
+                        <div class="matrix-badge">🛌 Ghatan Task: Handle semua aktivitas berat, biarkan dia bedrest</div>
                     </div>
                 </div>
-                <div id="day3" class="cycle-matrix-content">
-                    <div class="cycle-header">🍫 Hari Ketiga — Sweet Treatment Shift</div>
-                    <p>Kontraksi fisik mulai mereda namun fluktuasi hormon estrogen dan progesteron berada di titik terendah, memicu kelelahan emosional.</p>
-                    <div class="cycle-badge-grid">
-                        <div class="badge-indicator">🎚️ Status: Fisik membaik, Mood sensitif</div>
-                        <div class="badge-indicator">🍰 Sugar: Belikan Pastry / Dark Chocolate</div>
-                        <div class="badge-indicator">🥤 Drink: Teh Chamomile hangat</div>
-                        <div class="badge-indicator">🎬 Hiburan: Tonton series kesukaan dia</div>
+                <div id="day3" class="tab-matrix-panel">
+                    <div class="panel-matrix-title">🍫 Hari Ke-3 : Hormonal Drop & Mood Shift</div>
+                    <p class="panel-matrix-desc">Kram fisik luar mereda namun fluktuasi hormon estrogen berada di titik terendah sebelum merangkak naik, memicu sensitivitas emosional dan rasa lelah psikis.</p>
+                    <div class="action-badges-container">
+                        <div class="matrix-badge">⚡ Level Nyeri: Menengah & Mood Swing</div>
+                        <div class="matrix-badge">🍰 Sugar Care: Berikan jajanan pastry hangat atau es krim</div>
+                        <div class="matrix-badge">🍵 Drink: Seduh teh chamomile hangat untuk relaksasi</div>
+                        <div class="matrix-badge">🎬 Ghatan Task: Temani nonton film favorit penurun stress</div>
                     </div>
                 </div>
-                <div id="day4" class="cycle-matrix-content">
-                    <div class="cycle-header">🌿 Hari Keempat — Stabilization Phase</div>
-                    <p>Tubuh mulai beradaptasi secara internal, pendarahan melambat menjadi bercak atau flek ringan. Energi tubuh mulai kembali terisi.</p>
-                    <div class="cycle-badge-grid">
-                        <div class="badge-indicator">🎚️ Status: Tubuh mulai terasa ringan</div>
-                        <div class="badge-indicator">🥗 Care: Asupan serat dan air mineral cukup</div>
-                        <div class="badge-indicator">🚶‍♀️ Activity: Peregangan ringan / yoga santai</div>
+                <div id="day4" class="tab-matrix-panel">
+                    <div class="panel-matrix-title">🌿 Hari Ke-4 : Physical System Stabilization</div>
+                    <p class="panel-matrix-desc">Pendarahan melambat secara drastis menjadi flek ringan. Tubuh mulai memproduksi sediaan hormon baru untuk menstabilkan sirkulasi energi fisik.</p>
+                    <div class="action-badges-container">
+                        <div class="matrix-badge">📈 Level Nyeri: Rendah & Energi Mulai Pulih</div>
+                        <div class="matrix-badge">🥗 Nutrisi: Konsumsi serat sayuran hijau & buah segar</div>
+                        <div class="matrix-badge">🚶‍♀️ Gerak: Ajak peregangan otot ringan atau jalan santai</div>
                     </div>
                 </div>
-                <div id="day5" class="cycle-matrix-content">
-                    <div class="cycle-header">✨ Hari Kelima — Hormonal Revival</div>
-                    <p>Hormon estrogen perlahan mulai naik kembali. Siklus haid hampir selesai dan kondisi psikologis serta fisik jauh lebih segar.</p>
-                    <div class="cycle-badge-grid">
-                        <div class="badge-indicator">🎚️ Status: Menuju bersih total</div>
-                        <div class="badge-indicator">👗 Vibe: Tingkat kepercayaan diri naik</div>
-                        <div class="badge-indicator">🗣️ Deep Talk: Waktu tepat untuk obrolan intim</div>
+                <div id="day5" class="tab-matrix-panel">
+                    <div class="panel-matrix-title">✨ Hari Ke-5 : Ovarian Revival Sync</div>
+                    <p class="panel-matrix-desc">Estrogen meningkat secara konstan, memicu perbaikan jaringan kulit dan meningkatkan suasana hati. Siklus menuju bersih total.</p>
+                    <div class="action-badges-container">
+                        <div class="matrix-badge">🔆 Level Nyeri: Bersih Total & Mood Membaik</div>
+                        <div class="matrix-badge">💅 Vibe: Tingkat percaya diri dan fokus kembali normal</div>
+                        <div class="matrix-badge">💬 Ghatan Task: Waktu terbaik untuk deep-talk atau ngobrol seru</div>
                     </div>
                 </div>
-                <div id="day6" class="cycle-matrix-content">
-                    <div class="cycle-header">🏃‍♀️ Hari Keenam — Clean & Recharged</div>
-                    <p>Siklus pendarahan selesai. Hormon penunjang energi bekerja optimal, membuat stamina dan konsentrasi kembali normal.</p>
-                    <div class="cycle-badge-grid">
-                        <div class="badge-indicator">🎚️ Status: Bersih & berenergi penuh</div>
-                        <div class="badge-indicator">🚗 Plan: Rencanakan keluar rumah weekend ini</div>
+                <div id="day6" class="tab-matrix-panel">
+                    <div class="panel-matrix-title">🏃‍♀️ Hari Ke-6 : Fully Charged System</div>
+                    <p class="panel-matrix-desc">Siklus peluruhan selesai seutuhnya. Metabolisme tubuh kembali bekerja dalam kapasitas puncak, meningkatkan stamina dan kebugaran.</p>
+                    <div class="action-badges-container">
+                        <div class="matrix-badge">🔋 Level Nyeri: 0% / Stamina Optimal</div>
+                        <div class="matrix-badge">🗺️ Aktivitas: Rencanakan agenda keluar rumah atau kencan</div>
                     </div>
                 </div>
-                <div id="day7" class="cycle-matrix-content">
-                    <div class="cycle-header">🕊️ Hari Ketujuh — Pure Reset Complete</div>
-                    <p>Sistem reproduksi kembali ke siklus normal reguler. Syallu sudah melewati masa penatnya dengan aman dan sehat!</p>
-                    <div class="cycle-badge-grid">
-                        <div class="badge-indicator">🎚️ Status: Siklus selesai sempurna</div>
-                        <div class="badge-indicator">🥇 Ghatan Achievement: Best Caretaker Award</div>
+                <div id="day7" class="tab-matrix-panel">
+                    <div class="panel-matrix-title">🕊️ Hari Ke-7 : System Reset Complete</div>
+                    <p class="panel-matrix-desc">Sistem hormonal berputar kembali ke siklus reguler normal. Fase penat berhasil dilewati dengan aman, sehat, dan penuh perhatian.</p>
+                    <div class="action-badges-container">
+                        <div class="matrix-badge">✅ Status: Siklus Selesai Sempurna</div>
+                        <div class="matrix-badge">🏆 Ghatan Reward: Caretaker Protocol Successfully Executed</div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- 5. DEEP VAULT ARCHIVE SECTION (Bucket List & Timeline) -->
-        <section id="vault" class="page-section">
-            <div class="section-headline">
-                <p>Data Core Center</p>
-                <h2>Vault Archive Ledger</h2>
+        <!-- SECTION 4 : VAULT REGISTRY ARCHIVES -->
+        <section id="archives" class="section-wrapper target-search-block">
+            <div class="section-meta">
+                <span>Database Section 04</span>
+                <h2>Vault Registry Archives</h2>
             </div>
-            <div class="split-vault">
-                <!-- Bucket panel -->
-                <div class="box-panel">
-                    <div class="panel-heading">Our Collective Bucket List</div>
-                    <ul id="bucket-list-container" class="modern-list"></ul>
-                    <div class="panel-form">
-                        <input type="text" id="new-bucket-input" class="panel-input" placeholder="Enter objective data...">
-                        <button class="panel-btn" onclick="addBucketItem()">Deploy</button>
+            <div class="interactive-stream-box">
+                <div class="panel-card">
+                    <div class="panel-tag">Collective Future Bucket List</div>
+                    <ul id="bucket-list-frame" class="scrollable-list-frame"></ul>
+                    <div class="submission-dock">
+                        <input type="text" id="bucket-input-field" class="dock-input" placeholder="Append new adventure plan...">
+                        <button class="dock-trigger-btn" onclick="executeBucketPush()">Deploy</button>
                     </div>
                 </div>
-                <!-- Timeline panel -->
-                <div class="box-panel">
-                    <div class="panel-heading">Historical Milestone Stream</div>
-                    <div id="timeline-container" class="timeline-stream"></div>
-                    <div class="panel-form" style="flex-direction: column; gap: 8px;">
-                        <input type="text" id="time-date-input" class="panel-input" placeholder="Date Parameter (e.g., 11 June)">
-                        <div style="display:flex; gap:8px;">
-                            <input type="text" id="time-text-input" class="panel-input" placeholder="Event Description...">
-                            <button class="panel-btn" onclick="addTimelineItem()">Record</button>
+                <div class="panel-card">
+                    <div class="panel-tag">Historical Milestone Chain Log</div>
+                    <div id="timeline-node-frame" class="timeline-vertical-line"></div>
+                    <div class="submission-dock" style="flex-direction: column; gap: 10px;">
+                        <input type="text" id="milestone-date-field" class="dock-input" placeholder="Date Parameter (e.g. 11 Juni)">
+                        <div style="display:flex; gap:10px; width:100%;">
+                            <input type="text" id="milestone-desc-field" class="dock-input" placeholder="Describe historical event...">
+                            <button class="dock-trigger-btn" onclick="executeTimelinePush()">Record</button>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- EDITORIAL FOOTER COMPONENT -->
+        <!-- AUDIO CTA SOUNDTRACK BOARD -->
+        <section class="section-wrapper">
+            <div class="panel-card">
+                <div class="panel-tag">Shared Audio Stream Matrix</div>
+                <div class="spotify-bar-luxury">
+                    <div style="font-size: 32px; margin-right: 20px; filter: grayscale(100%);">💿</div>
+                    <div>
+                        <div style="font-size: 14px; font-weight: 600; margin-bottom: 4px;">Shared Core Space Mixtape</div>
+                        <a href="https://open.spotify.com" target="_blank" class="spotify-anchor">Launch Connected Spotify Interface</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- EDITORIAL FOOTER -->
         <footer>
-            <div>Secure System Node v2.0</div>
-            <div>Curated by Ghatan & Syallu &copy; 2026</div>
+            <div>Secure Database Node : Connected</div>
+            <div>Curated By Ghatan & Syallu &copy; 2026</div>
         </footer>
 
     </div>
 
     <script>
-        // FIREBASE INITIALIZATION DATABASE
+        // FIREBASE CREDENTIALS ROUTING
         const firebaseConfig = {
             apiKey: "AIzaSyBXL3eBi9s3-amUxSv5s4m4EM-BSuzp-rs",
             authDomain: "ourhomey.firebaseapp.com",
@@ -726,192 +707,230 @@
         firebase.initializeApp(firebaseConfig);
         const db = firebase.database();
 
-        const tanggalJadian = new Date(2026, 5, 11); 
-        const opsiDecider = ["Nonton Movie/Netflix bareng 🎬", "Berburu Sunset/Keliling Kota bareng 🚗", "Coba Cafe baru di Bandar Lampung ☕", "Berburu Jajan Pastry & Bakery 🍰", "Deep Talk malam hari 💬", "Pesan delivery McD/Pizza di rumah 🍕"];
+        const anniversaryAnchor = new Date(2026, 5, 11); 
+        const arrayDecider = ["Nonton Movie/Netflix bareng 🎬", "Berburu Sunset Keliling Kota Bandar Lampung 🚗", "Nongkrong di Cafe Baru Unila ☕", "Berburu Jajan Pastry & Bakery Terdekat 🍰", "Sesi Deep Talk malam hari 💬", "Pesan delivery Pizza/McD di kasur 🍕"];
 
         function verifikasi() {
             const inputUser = document.getElementById("password-input").value;
-            const kodeRahasia = [111, 110, 108, 121, 102, 111, 114, 109, 121, 112, 97, 115, 116, 114, 121]; // onlyformypastry
-            const passwordCocok = inputUser.length === kodeRahasia.length && 
-                                  inputUser.split('').every((char, index) => char.charCodeAt(0) === kodeRahasia[index]);
+            const gateKey = [111, 110, 108, 121, 102, 111, 114, 109, 121, 112, 97, 115, 116, 114, 121]; // onlyformypastry
+            const isMatch = inputUser.length === gateKey.length && 
+                            inputUser.split('').every((char, idx) => char.charCodeAt(0) === gateKey[idx]);
 
-            if (passwordCocok) {
+            if (isMatch) {
                 document.getElementById("login-screen").style.opacity = "0";
+                document.getElementById("login-screen").style.transform = "translateY(-100%)";
                 setTimeout(() => {
                     document.getElementById("login-screen").style.display = "none";
                     document.getElementById("main-content").style.display = "block";
-                    initDashboard();
-                }, 800);
+                    runEcosystemDashboard();
+                }, 1000);
             } else {
-                alert("Security alert: Unauthorized access denied.");
+                alert("Security Core: Invalid vault passcode parameter.");
             }
         }
 
-        // GOOGLE DRIVE DIRECT IMAGE URL CONVERTER FIXER
-        function parseDriveUrl(url) {
-            let directUrl = url.trim();
-            if (directUrl.includes("drive.google.com")) {
-                let parts = directUrl.split('/d/');
-                if (parts.length > 1) {
-                    let id = parts[1].split('/')[0];
-                    return `https://drive.google.com/uc?export=view&id=${id}`;
+        // AUTO DRIVE URL EXPANSION ALGORITHM
+        function reformatDriveUrl(url) {
+            let processed = url.trim();
+            if (processed.includes("drive.google.com")) {
+                let segmentD = processed.split('/d/');
+                if (segmentD.length > 1) {
+                    let extractedId = segmentD[1].split('/')[0];
+                    return `https://drive.google.com/uc?export=view&id=${extractedId}`;
                 }
-                let queryParts = directUrl.split('id=');
-                if (queryParts.length > 1) {
-                    let id = queryParts[1].split('&')[0];
-                    return `https://drive.google.com/uc?export=view&id=${id}`;
+                let queryId = processed.split('id=');
+                if (queryId.length > 1) {
+                    let extractedQueryId = queryId[1].split('&')[0];
+                    return `https://drive.google.com/uc?export=view&id=${extractedQueryId}`;
                 }
             }
-            return directUrl;
+            return processed;
         }
 
-        function initDashboard() {
-            hitungHari();
+        function runEcosystemDashboard() {
+            calculateTimeMetrics();
             
-            // Sync Core Text Nodes
+            // Sync Core Text Nodes Live
             db.ref('status/syallu').on('value', snap => { document.getElementById('status-syallu').value = snap.val() || ""; });
             db.ref('status/ghatan').on('value', snap => { document.getElementById('status-ghatan').value = snap.val() || ""; });
             db.ref('stickyNote').on('value', snap => { document.getElementById('sticky-text').value = snap.val() || ""; });
             db.ref('nextPlan/title').on('value', snap => { document.getElementById('next-title').value = snap.val() || ""; });
             
             db.ref('nextPlan/date').on('value', snap => { 
-                const targetDateStr = snap.val() || "2026-12-31";
-                document.getElementById('next-date').value = targetDateStr;
-                hitungCountdown(targetDateStr);
+                const dateParam = snap.val() || "2026-12-31";
+                document.getElementById('next-date').value = dateParam;
+                computeTargetCountdown(dateParam);
             });
 
-            // Sync Multi-Polaroid Elements
+            // Sync Visual Frame Modules
             db.ref('polaroid/p1').on('value', snap => {
-                const data = snap.val() || { img: "", cap: "Moment Title 1" };
-                document.getElementById('p1-img').src = data.img || "https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?w=300";
-                document.getElementById('p1-cap').value = data.cap;
-                document.getElementById('p1-url').value = data.img;
+                const node = snap.val() || { img: "", cap: "Moment Slate 1" };
+                document.getElementById('p1-img').src = node.img || "https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?w=400";
+                document.getElementById('p1-cap').value = node.cap;
+                document.getElementById('p1-url').value = node.img;
             });
             db.ref('polaroid/p2').on('value', snap => {
-                const data = snap.val() || { img: "", cap: "Moment Title 2" };
-                document.getElementById('p2-img').src = data.img || "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=300";
-                document.getElementById('p2-cap').value = data.cap;
-                document.getElementById('p2-url').value = data.img;
+                const node = snap.val() || { img: "", cap: "Moment Slate 2" };
+                document.getElementById('p2-img').src = node.img || "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400";
+                document.getElementById('p2-cap').value = node.cap;
+                document.getElementById('p2-url').value = node.img;
             });
 
-            // Sync Bucket Records
+            // Sync Bucket Array Storage
             db.ref('bucketList').on('value', snap => {
-                const container = document.getElementById('bucket-list-container');
-                container.innerHTML = "";
-                const items = snap.val() || {};
-                for (let id in items) {
-                    const li = document.createElement('li');
-                    li.className = "list-row";
-                    li.innerHTML = `<input type="checkbox" ${items[id].done ? 'checked' : ''} onclick="toggleBucket('${id}', ${items[id].done})"> 
-                                    <span style="${items[id].done ? 'text-decoration: line-through; color: #b5b0aa;' : ''}">${items[id].text}</span>
-                                    <span style="margin-left:auto; cursor:pointer; opacity:0.4;" onclick="deleteBucket('${id}')">❌</span>`;
-                    container.appendChild(li);
+                const listWrapper = document.getElementById('bucket-list-frame');
+                listWrapper.innerHTML = "";
+                const dataset = snap.val() || {};
+                for (let key in dataset) {
+                    const row = document.createElement('li');
+                    row.className = "stream-row-item search-item-node";
+                    row.innerHTML = `<input type="checkbox" ${dataset[key].done ? 'checked' : ''} onclick="invertBucketState('${key}', ${dataset[key].done})"> 
+                                    <span style="${dataset[key].done ? 'text-decoration: line-through; color: #b5b0aa;' : ''}">${dataset[key].text}</span>
+                                    <span class="erasure-action" style="margin-left:auto;" onclick="purgeBucketNode('${key}')">❌</span>`;
+                    listWrapper.appendChild(row);
                 }
             });
 
-            // Sync Historical Timeline Records
+            // Sync Historical Milestone Nodes
             db.ref('timeline').on('value', snap => {
-                const container = document.getElementById('timeline-container');
-                container.innerHTML = "";
-                const items = snap.val() || {};
-                for (let id in items) {
-                    const div = document.createElement('div');
-                    div.className = "node-event";
-                    div.innerHTML = `<div class="node-meta"><span>${items[id].date}</span><span style="cursor:pointer;" onclick="deleteTimeline('${id}')">❌</span></div>
-                                     <div class="node-body">${items[id].text}</div>`;
-                    container.appendChild(div);
+                const streamWrapper = document.getElementById('timeline-node-frame');
+                streamWrapper.innerHTML = "";
+                const dataset = snap.val() || {};
+                for (let key in dataset) {
+                    const node = document.createElement('div');
+                    node.className = "timeline-node search-item-node";
+                    node.innerHTML = `<div class="node-timestamp"><span>${dataset[key].date}</span><span class="erasure-action" onclick="purgeTimelineNode('${key}')">❌</span></div>
+                                     <div class="node-content-text">${dataset[key].text}</div>`;
+                    streamWrapper.appendChild(node);
                 }
             });
         }
 
-        // TRUE INLINE SAVE SYSTEM
-        function saveField(inputElement, dbPath) {
-            const val = inputElement.value.trim();
-            if(val !== "") db.ref(dbPath).set(val);
+        // TRUE INLINE ENGINE BROADCAST SINK
+        function commitField(element, path) {
+            const cleanVal = element.value.trim();
+            if(cleanVal !== "") db.ref(path).set(cleanVal);
         }
 
-        function saveDate(inputElement) {
-            const val = inputElement.value.trim();
-            if(val !== "") {
-                db.ref('nextPlan/date').set(val);
-                hitungCountdown(val);
+        function commitDate(element) {
+            const cleanVal = element.value.trim();
+            if(cleanVal !== "") {
+                db.ref('nextPlan/date').set(cleanVal);
+                computeTargetCountdown(cleanVal);
             }
         }
 
-        function savePolaroid(id) {
-            const cap = document.getElementById(`p${id}-cap`).value.trim();
-            const rawImg = document.getElementById(`p${id}-url`).value.trim();
-            const cleanImg = parseDriveUrl(rawImg); // Auto-convert GDrive link inside runtime
-            if(cap && cleanImg) {
-                db.ref(`polaroid/p${id}`).set({ img: cleanImg, cap: cap });
+        function commitPolaroid(id) {
+            const descriptiveCap = document.getElementById(`p${id}-cap`).value.trim();
+            const sourceUrlRaw = document.getElementById(`p${id}-url`).value.trim();
+            const conversionUrlClean = reformatDriveUrl(sourceUrlRaw);
+            if(descriptiveCap && conversionUrlClean) {
+                db.ref(`polaroid/p${id}`).set({ img: conversionUrlClean, cap: descriptiveCap });
             }
         }
 
-        function checkEnter(event, inputElement) {
-            if (event.key === "Enter") inputElement.blur();
+        function interceptEnter(evt, element) {
+            if (evt.key === "Enter") element.blur();
         }
 
-        // CONTROL MODULE CORES
-        function addBucketItem() {
-            const input = document.getElementById('new-bucket-input');
-            const text = input.value.trim();
-            if (text) {
-                db.ref('bucketList').push({ text: text, done: false });
-                input.value = "";
+        // DATABASE OPERATION PIPELINES
+        function executeBucketPush() {
+            const inputField = document.getElementById('bucket-input-field');
+            const dataText = inputField.value.trim();
+            if (dataText) {
+                db.ref('bucketList').push({ text: dataText, done: false });
+                inputField.value = "";
             }
         }
-        function toggleBucket(id, currentStatus) { db.ref(`bucketList/${id}/done`).set(!currentStatus); }
-        function deleteBucket(id) { db.ref(`bucketList/${id}`).remove(); }
+        function invertBucketState(key, status) { db.ref(`bucketList/${key}/done`).set(!status); }
+        function purgeBucketNode(key) { db.ref(`bucketList/${key}`).remove(); }
 
-        function addTimelineItem() {
-            const dInput = document.getElementById('time-date-input');
-            const tInput = document.getElementById('time-text-input');
-            const date = dInput.value.trim();
-            const text = tInput.value.trim();
-            if (date && text) {
-                db.ref('timeline').push({ date: date, text: text });
-                dInput.value = "";
-                tInput.value = "";
+        function executeTimelinePush() {
+            const dateNode = document.getElementById('milestone-date-field');
+            const descNode = document.getElementById('milestone-desc-field');
+            const txtDate = dateNode.value.trim();
+            const txtDesc = descNode.value.trim();
+            if (txtDate && txtDesc) {
+                db.ref('timeline').push({ date: txtDate, text: txtDesc });
+                dateNode.value = "";
+                descNode.value = "";
             }
         }
-        function deleteTimeline(id) { db.ref(`timeline/${id}`).remove(); }
+        function purgeTimelineNode(key) { db.ref(`timeline/${key}`).remove(); }
 
-        // ENGINE COMPUTATION ALGORITHMS
-        function hitungHari() {
-            const hariIni = new Date();
-            const selisihWaktu = hariIni - tanggalJadian;
-            const selisihHari = Math.floor(selisihWaktu / (1000 * 60 * 60 * 24));
-            document.getElementById("days-counter").innerText = selisihHari;
+        // ALGORITHMIC TELEMETRY COMPILERS
+        function calculateTimeMetrics() {
+            const currentMoment = new Date();
+            const differenceTime = currentMoment - anniversaryAnchor;
+            const absoluteDaysSum = Math.floor(differenceTime / (1000 * 60 * 60 * 24));
+            document.getElementById("days-counter").innerText = absoluteDaysSum;
         }
 
-        function hitungCountdown(targetDateStr) {
-            const targetDate = new Date(targetDateStr);
-            const hariIni = new Date();
-            hariIni.setHours(0,0,0,0);
-            const selisihWaktu = targetDate - hariIni;
-            const selisihHari = Math.ceil(selisihWaktu / (1000 * 60 * 60 * 24));
-            document.getElementById("countdown-timer").innerText = selisihHari > 0 ? `${selisihHari} Days Left` : (selisihHari === 0 ? "Today! ✨" : "Passed Target");
+        function computeTargetCountdown(targetStr) {
+            const calculatedTarget = new Date(targetStr);
+            const todayBoundary = new Date();
+            todayBoundary.setHours(0,0,0,0);
+            const absoluteDifference = calculatedTarget - todayBoundary;
+            const metricDaysLeft = Math.ceil(absoluteDifference / (1000 * 60 * 60 * 24));
+            document.getElementById("countdown-timer").innerText = metricDaysLeft > 0 ? `${metricDaysLeft} Days` : (metricDaysLeft === 0 ? "Today! ✨" : "Archived Plan");
         }
 
-        function rollDecider() {
-            let c = 0;
-            const loop = setInterval(() => {
-                document.getElementById('picked-result').innerText = opsiDecider[Math.floor(Math.random() * opsiDecider.length)];
-                if (++c > 12) {
-                    clearInterval(loop);
-                    document.getElementById('picked-result').innerText = `✨ Verified Choice: ${opsiDecider[Math.floor(Math.random() * opsiDecider.length)]} ✨`;
+        function spinRouletteEngine() {
+            let ticker = 0;
+            const processingInterval = setInterval(() => {
+                document.getElementById('roulette-display').innerText = arrayDecider[Math.floor(Math.random() * arrayDecider.length)];
+                if (++ticker > 14) {
+                    clearInterval(processingInterval);
+                    document.getElementById('roulette-display').innerText = `✨ Verified Strategy: ${arrayDecider[Math.floor(Math.random() * arrayDecider.length)]} ✨`;
                 }
-            }, 80);
+            }, 75);
         }
 
-        function openTab(evt, dayId) {
-            const contents = document.getElementsByClassName("cycle-matrix-content");
-            for (let i = 0; i < contents.length; i++) contents[i].classList.remove("active");
-            const btns = document.getElementsByClassName("cycle-btn");
-            for (let i = 0; i < btns.length; i++) btns[i].classList.remove("active");
-            document.getElementById(dayId).classList.add("active");
+        function switchMatrixTab(evt, matrixId) {
+            const targetPanels = document.getElementsByClassName("tab-matrix-panel");
+            for (let i = 0; i < targetPanels.length; i++) targetPanels[i].classList.remove("active");
+            const controllerBtns = document.getElementsByClassName("tab-trigger-btn");
+            for (let i = 0; i < controllerBtns.length; i++) controllerBtns[i].classList.remove("active");
+            document.getElementById(matrixId).classList.add("active");
             evt.currentTarget.classList.add("active");
         }
+
+        // AWWWARDS CORE FUNCTION: REAL-TIME GLOBAL FILTRATION SEARCH
+        function executeGlobalSearch() {
+            const queryText = document.getElementById("global-search").value.toLowerCase().trim();
+            const searchBlocks = document.getElementsByClassName("target-search-block");
+
+            if (queryText === "") {
+                // Reset ketersediaan tampilan jika input pencarian kosong
+                const allNodes = document.getElementsByClassName("search-item-node");
+                for (let n of allNodes) n.style.display = "";
+                for (let block of searchBlocks) block.style.display = "";
+                return;
+            }
+
+            // Memindai item di dalam elemen list, galeri, dan timeline
+            const searchItems = document.getElementsByClassName("search-item-node");
+            for (let item of searchItems) {
+                let innerContent = "";
+                
+                // Ekstraksi nilai input teks atau inner HTML untuk pencarian komprehensif
+                const inputFields = item.getElementsByTagName("input");
+                if (inputFields.length > 0) {
+                    for(let f of inputFields) { if(f.type === "text") innerContent += f.value.toLowerCase() + " "; }
+                }
+                innerContent += item.innerText.toLowerCase();
+
+                if (innerContent.includes(queryText)) {
+                    item.style.display = "";
+                } else {
+                    item.style.display = "none";
+                }
+            }
+        }
+
+        document.getElementById("password-input").addEventListener("keypress", function(event) {
+            if (event.key === "Enter") verifikasi();
+        });
     </script>
 </body>
 </html>
