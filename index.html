@@ -46,13 +46,16 @@
         .login-box {
             background: var(--bg-panel); padding: 60px; border-radius: 40px;
             box-shadow: var(--shadow-premium); text-align: center; max-width: 450px; width: 90%; border: 1px solid var(--border-light);
+            position: relative; overflow: hidden;
         }
-        .login-box h2 { font-family: 'Playfair Display', serif; font-size: 38px; font-style: italic; margin-bottom: 12px; }
+        .login-box::after { content: "🧸✨☁️"; position: absolute; bottom: 15px; left: 0; width: 100%; font-size: 16px; opacity: 0.4; }
+        .login-box h2 { font-family: 'Playfair Display', serif; font-size: 38px; font-style: italic; margin-bottom: 12px; color: var(--text-primary); }
         .login-box p { color: var(--text-muted); font-size: 11px; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 35px; }
         .login-box input {
             width: 100%; padding: 18px; margin-bottom: 20px; border: 1px solid var(--border-light);
             border-radius: 16px; outline: none; text-align: center; font-size: 16px; background: #f7fafc;
         }
+        .login-box input:focus { border-color: var(--accent-blue); background: #ffffff; }
         .login-box button {
             background: var(--text-primary); color: #ffffff; border: none; padding: 18px;
             width: 100%; border-radius: 16px; cursor: pointer; font-size: 13px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase;
@@ -94,13 +97,12 @@
             min-height: 100vh; width: 100%; padding: 150px 60px 60px 60px; display: none;
             position: relative; background-color: var(--bg-base);
         }
-        /* Cute Emojis Floating Background Pattern Layer */
         .view-frame::before {
             content: "☁️ ✨ 🧸 🌸 🍰 ☁️ 🧸 ✨ 🌸 ☁️ ✨ 🧸 🌸 🍰 ☁️ 🧸 ✨ 🌸 ☁️ ✨ 🧸 🌸 🍰 ☁️ 🧸 ✨ 🌸";
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            padding: 40px; font-size: 24px; line-height: 4; opacity: 0.15;
+            padding: 40px; font-size: 24px; line-height: 4; opacity: 0.18;
             word-wrap: break-word; pointer-events: none; overflow: hidden; z-index: 1;
-            font-family: 'Segoe UI Emoji', sans-serif;
+            font-family: 'Segoe UI Emoji', sans-serif; letter-spacing: 4px;
         }
         .view-frame.active-view { display: block; }
         .view-container-inner { position: relative; z-index: 2; max-width: 1250px; margin: 0 auto; display: flex; flex-direction: column; min-height: calc(100vh - 210px); justify-content: space-between; }
@@ -109,15 +111,19 @@
            HOMEPAGE (PURE ENGLISH EDITORIAL LEVEL)
         ----------------------------------------- */
         .hero-layout { display: grid; grid-template-columns: 1.1fr 1fr; gap: 60px; align-items: center; padding-top: 20px; }
-        .hero-text-side { background: var(--bg-glass); padding: 55px; border-radius: 36px; backdrop-filter: blur(20px); border: 1px solid var(--border-light); box-shadow: var(--shadow-premium); }
+        .hero-text-side { background: var(--bg-glass); padding: 55px; border-radius: 36px; backdrop-filter: blur(20px); border: 1px solid var(--border-light); box-shadow: var(--shadow-premium); position: relative; }
+        .hero-text-side::top-right { content: "✨"; position: absolute; top: 20px; right: 20px; font-size: 20px; }
         .hero-tag { font-size: 11px; text-transform: uppercase; letter-spacing: 4px; color: var(--text-muted); margin-bottom: 20px; font-weight: 700; }
         .hero-text-side h1 { font-family: 'Playfair Display', serif; font-size: 54px; font-weight: 400; line-height: 1.2; color: var(--text-primary); margin-bottom: 25px; }
         .hero-text-side h1 span { font-style: italic; font-weight: 300; color: var(--text-muted); }
         .hero-paragraph { font-size: 15px; line-height: 1.8; color: var(--text-primary); font-weight: 400; }
         
         .welcome-badge-row { background: var(--bg-panel); border-radius: 20px; padding: 25px; margin-top: 35px; border: 1px solid var(--border-light); display: flex; align-items: center; gap: 20px; }
-        .badge-icon { width: 55px; height: 55px; border-radius: 50%; background: #eef7fc; display: flex; justify-content: center; align-items: center; font-size: 24px; }
-        .quote-banner-row { background: var(--bg-panel); padding: 40px; border-radius: 24px; border: 1px solid var(--border-light); margin-top: 50px; text-align: center; width: 100%; box-shadow: var(--shadow-premium); }
+        .badge-icon { width: 55px; height: 55px; border-radius: 50%; background: #eef7fc; display: flex; justify-content: center; align-items: center; font-size: 24px; animation: pulseCute 2s infinite ease-in-out; }
+        @keyframes pulseCute { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.06); } }
+        .quote-banner-row { background: var(--bg-panel); padding: 40px; border-radius: 24px; border: 1px solid var(--border-light); margin-top: 50px; text-align: center; width: 100%; box-shadow: var(--shadow-premium); position: relative; }
+        .quote-banner-row::before { content: "🧸"; position: absolute; left: 20px; top: 50%; transform: translateY(-50%); font-size: 20px; }
+        .quote-banner-row::after { content: "🧸"; position: absolute; right: 20px; top: 50%; transform: translateY(-50%); font-size: 20px; }
         .homepage-quote { font-family: 'Playfair Display', serif; font-style: italic; font-size: 20px; color: var(--text-primary); }
 
         /* -----------------------------------------
@@ -129,13 +135,14 @@
             padding: 12px 24px; border-radius: 30px; margin-bottom: 30px; border: 1px solid var(--border-light);
             transition: var(--transition-bounce); box-shadow: 0 4px 15px rgba(0,0,0,0.02);
         }
-        .back-nav-btn:hover { transform: translateX(-4px); }
+        .back-nav-btn:hover { transform: translateX(-4px); background: #fbfdfe; }
         
-        .page-meta-header { margin-bottom: 40px; background: var(--glass-card); padding: 25px 40px; border-radius: 24px; display: inline-block; backdrop-filter: blur(12px); border: 1px solid var(--border-light); }
+        .page-meta-header { margin-bottom: 40px; background: var(--glass-card); padding: 25px 40px; border-radius: 24px; display: inline-block; backdrop-filter: blur(12px); border: 1px solid var(--border-light); position: relative; }
+        .page-meta-header::after { content: "✨"; position: absolute; right: 15px; top: 15px; font-size: 12px; opacity: 0.6; }
         .page-meta-header h2 { font-family: 'Playfair Display', serif; font-size: 38px; font-weight: 400; color: var(--text-primary); }
         .page-meta-header p { font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 3px; margin-top: 4px; }
         
-        .luxury-packed-layout { background: var(--glass-card); border-radius: 36px; padding: 50px; border: 1px solid var(--border-light); backdrop-filter: blur(25px); box-shadow: var(--shadow-premium); }
+        .luxury-packed-layout { background: var(--glass-card); border-radius: 36px; padding: 50px; border: 1px solid var(--border-light); backdrop-filter: blur(25px); box-shadow: var(--shadow-premium); position: relative; }
         .clean-inline-input { width: 100%; border: 1px solid transparent; background: transparent; font-size: 15px; color: var(--text-primary); padding: 14px 18px; border-radius: 14px; outline: none; transition: all 0.2s; }
         .clean-inline-input:hover { background: rgba(255,255,255,0.6); border-color: var(--border-light); }
         .clean-inline-input:focus { background: #ffffff; border-color: var(--text-primary); box-shadow: 0 4px 20px rgba(0,0,0,0.02); }
@@ -143,13 +150,13 @@
         /* 1. Day Counter */
         .giant-metric-number { font-family: 'Playfair Display', serif; font-size: 130px; text-align: center; color: var(--text-primary); font-weight: 300; line-height: 1; text-shadow: 0 10px 40px rgba(188,212,230,0.3); }
         .counter-milestone-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; margin-top: 40px; }
-        .milestone-node-card { background: var(--bg-panel); padding: 25px; border-radius: 20px; text-align: center; border: 1px solid var(--border-light); }
+        .milestone-node-card { background: var(--bg-panel); padding: 25px; border-radius: 20px; text-align: center; border: 1px solid var(--border-light); box-shadow: 0 4px 10px rgba(0,0,0,0.01); }
         .milestone-title { font-size: 11px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
         .milestone-value { font-family: 'Playfair Display', serif; font-size: 26px; font-weight: 600; margin-top: 8px; }
 
         /* 2. Mood Stream */
         .mood-dashboard { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
-        .mood-user-block { background: var(--bg-panel); padding: 35px; border-radius: 28px; border: 1px solid var(--border-light); }
+        .mood-user-block { background: var(--bg-panel); padding: 35px; border-radius: 28px; border: 1px solid var(--border-light); position: relative; }
         .mood-user-title { font-weight: 700; font-size: 13px; text-transform: uppercase; color: var(--text-muted); margin-bottom: 20px; letter-spacing: 1px; }
         .mood-selector-container { display: flex; gap: 10px; margin-bottom: 20px; background: var(--bg-base); padding: 10px; border-radius: 14px; justify-content: space-around; }
         .mood-emoji-btn { font-size: 22px; cursor: pointer; transition: transform 0.2s; border: none; background: none; opacity: 0.4; }
@@ -183,8 +190,8 @@
 
         /* 8. Polaroid Framing Layout */
         .polaroid-editorial-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 35px; }
-        .luxury-polaroid-node { background: var(--bg-panel); padding: 18px 18px 30px 18px; border: 1px solid var(--border-light); border-radius: 4px; box-shadow: 0 15px 40px rgba(44,62,80,0.03); text-align: center; position: relative; }
-        .luxury-polaroid-node img { width: 100%; height: 240px; object-fit: cover; border-radius: 2px; margin-bottom: 18px; background-color: #fafbfc; border: 1px solid rgba(0,0,0,0.03); }
+        .luxury-polaroid-node { background: var(--bg-panel); padding: 18px 18px 30px 18px; border: 1px solid var(--border-light); border-radius: 8px; box-shadow: 0 15px 40px rgba(44,62,80,0.03); text-align: center; position: relative; }
+        .luxury-polaroid-node img { width: 100%; height: 240px; object-fit: cover; border-radius: 4px; margin-bottom: 18px; background-color: #fafbfc; border: 1px solid rgba(0,0,0,0.03); }
 
         /* 9. Timeline Snake Layout */
         .timeline-snake-container { display: flex; flex-direction: column; gap: 30px; padding: 20px 0; position: relative; width: 100%; }
@@ -220,7 +227,7 @@
         .node-erasure { margin-left: auto; cursor: pointer; opacity: 0.3; transition: opacity 0.2s; font-size: 12px; }
         .node-erasure:hover { opacity: 1; color: #c0392b; }
 
-        /* FEATURE INSTRUCTION FOOTERS (EXCLUSIVE FOR EACH SECTION) */
+        /* FEATURE INSTRUCTION FOOTERS */
         .feature-instruction-footer { max-width: 100%; margin-top: 50px; padding: 25px 35px; background: #ffffff; border-radius: 20px; border: 1px solid var(--border-light); font-size: 13px; line-height: 1.7; color: var(--text-primary); box-shadow: 0 4px 20px rgba(0,0,0,0.01); }
         .feature-instruction-footer b { color: var(--text-primary); font-weight: 700; text-transform: uppercase; font-size: 11px; letter-spacing: 1px; display: block; margin-bottom: 8px; }
     </style>
@@ -638,13 +645,13 @@
         let temporaryBase64Str = ""; 
 
         const defaultCarePlanMatrix = {
-            day1: { desc: "Fase awal peluruhan rahim dimulai. Hormon prostaglandin memicu kontraksi kram perut ekstrem bawah secara masif. Kondisi fisik Syallu lemas disertai tingkat sensitivitas nyeri tinggi.", task1: "Pain Level: Kram Tinggi dan Lemas", task2: "Care Action: Kompres Air Hangat di Area Perut Bawah", task3: "Nutrition: Suplai Air Putih Hangat Teratur", task4: "Ghatan: Tangani seluruh tugas fisik dan temani bedrest total" },
-            day2: { desc: "Volume pendarahan haid mencapai titik puncak tertinggi. Kehilangan zat besi yang masif memicu pusing kepala, pegal linu sendi pinggang, dan migrain ringan.", task1: "Flow Level: Sangat Banyak dan Migrain", task2: "Care Action: Bersihkan dan Ganti Pembalut per 3 Jam", task3: "Nutrition: Konsumsi Asupan Zat Besi (Daging Sapi / Bayam)", task4: "Ghatan: Larang aktivitas fisik berlebih atau jalan jauh" },
-            day3: { desc: "Nyeri perut utama melandai perlahan. Namun level estrogen jatuh ke titik terendah memicu kelelahan psikologis mendadak atau mood swing sensitif.", task1: "Status: Nyeri Reda, Emosi Rentan Sensitif", task2: "Sugar Care: Belikan Kue Pastry Hangat atau Es Krim", task3: "Drink: Seduh Teh Chamomile Hangat", task4: "Ghatan: Jaga kalimat pembicaraan dan ajak tonton series cozy bareng" },
-            day4: { desc: "Pendarahan melambat konstan menjadi bercak flek tipis. Keseimbangan metabolisme internal Syallu mulai mengisi ulang pasokan energi fisik baru.", task1: "Status: Stamina Energi Mulai Pulih Kembali", task2: "Nutrition: Konsumsi Serat Sayuran Hijau dan Buah Segar", task3: "Move Care: Sesi Yoga Santai atau Peregangan Otot Ringan", task4: "Ghatan: Berikan pelukan hangat penyemangat aktivitas" },
-            day5: { desc: "Hormon estrogen meningkat konstan, mempercepat hidrasi jaringan kulit wajah dan mengembalikan kecerahan emosional. Siklus berada di fase bersih total.", task1: "Vibe: Bersih Total, Ceria dan Nyaman", task2: "Fisik: Hidrasi Wajah Membaik, Fokus Naik", task3: "Ghatan: Momen paling ideal untuk membangun deep talk intim", task4: "Agenda: Siapkan outfit kencan untuk esok hari" },
-            day6: { desc: "Siklus menstrual selesai seutuhnya. Seluruh kapasitas metabolisme tubuh kembali beroperasi optimal, mendongkrak motivasi berkegiatan luar ruangan.", task1: "Stamina: 100% Beroperasi Normal Maksimal", task2: "Activity: Waktu paling tepat mengeksekusi jalan kencan keluar rumah", task3: "Ghatan: Jemput tepat waktu dan siapkan perjalanan kencan terbaik", task4: "Vibe: Penuh tawa ceria terlepas dari beban penat bulanan" },
-            day7: { desc: "Rotasi hormonal berganti masuk ke siklus reguler bulanan baru. Fase penat bulanan Syallu berhasil terlewati dengan sangat aman, bersih, dan penuh perhatian.", task1: "Siklus: Sirkulasi Regulasi Normal Baru Dimulai", task2: "Evaluasi: Catat siklus haid bulan ini di aplikasi kalender", task3: "Ghatan: Sukses mengawal caretaker protocol secara sempurna", task4: "Core: Komitmen perhatian yang kokoh menjaga keharmonisan" }
+            day1: { desc: "Fase peluruhan rahim awal dimulai. Hormon prostaglandin memicu kontraksi kram perut ekstrem bawah secara masif. Kondisi fisik Syallu lemas disertai tingkat sensitivitas nyeri tinggi.", task1: "Pain Level: Kram Tinggi dan Lemas", task2: "Care Action: Kompres Air Hangat di Area Perut Bawah", task3: "Nutrition: Suplai Air Putih Hangat Teratur", task4: "Ghatan: Tangani seluruh tugas fisik dan temani bedrest total", done1: false, done2: false, done3: false, done4: false },
+            day2: { desc: "Volume pendarahan haid mencapai titik puncak tertinggi. Kehilangan zat besi yang masif memicu pusing kepala, pegal linu sendi pinggang, dan migrain ringan.", task1: "Flow Level: Sangat Banyak dan Migrain", task2: "Care Action: Bersihkan dan Ganti Pembalut per 3 Jam", task3: "Nutrition: Konsumsi Asupan Zat Besi (Daging Sapi / Bayam)", task4: "Ghatan: Larang aktivitas fisik berlebih atau jalan jauh", done1: false, done2: false, done3: false, done4: false },
+            day3: { desc: "Nyeri perut utama melandai perlahan. Namun level estrogen jatuh ke titik terendah memicu kelelahan psikologis mendadak atau mood swing sensitif.", task1: "Status: Nyeri Reda, Emosi Rentan Sensitif", task2: "Sugar Care: Belikan Kue Pastry Hangat atau Es Krim", task3: "Drink: Seduh Teh Chamomile Hangat", task4: "Ghatan: Jaga kalimat pembicaraan dan ajak tonton series cozy bareng", done1: false, done2: false, done3: false, done4: false },
+            day4: { desc: "Pendarahan melambat konstan menjadi bercak flek tipis. Keseimbangan metabolisme internal Syallu mulai mengisi ulang pasokan energi fisik baru.", task1: "Status: Stamina Energi Mulai Pulih Kembali", task2: "Nutrition: Konsumsi Serat Sayuran Hijau dan Buah Segar", task3: "Move Care: Sesi Yoga Santai atau Peregangan Otot Ringan", task4: "Ghatan: Berikan pelukan hangat penyemangat aktivitas", done1: false, done2: false, done3: false, done4: false },
+            day5: { desc: "Hormon estrogen meningkat konstan, mempercepat hidrasi jaringan kulit wajah dan mengembalikan kecerahan emosional. Siklus berada di fase bersih total.", task1: "Vibe: Bersih Total, Ceria dan Nyaman", task2: "Fisik: Hidrasi Wajah Membaik, Fokus Naik", task3: "Ghatan: Momen paling ideal untuk membangun deep talk intim", task4: "Agenda: Siapkan outfit kencan untuk esok hari", done1: false, done2: false, done3: false, done4: false },
+            day6: { desc: "Siklus menstrual selesai seutuhnya. Seluruh kapasitas metabolisme tubuh kembali beroperasi optimal, mendongkrak motivasi berkegiatan luar ruangan.", task1: "Stamina: 100% Beroperasi Normal Maksimal", task2: "Activity: Waktu paling tepat mengeksekusi jalan kencan keluar rumah", task3: "Ghatan: Jemput tepat waktu dan siapkan perjalanan kencan terbaik", task4: "Vibe: Penuh tawa ceria terlepas dari beban penat bulanan", done1: false, done2: false, done3: false, done4: false },
+            day7: { desc: "Rotasi hormonal berganti masuk ke siklus reguler bulanan baru. Fase penat bulanan Syallu berhasil terlewati dengan sangat aman, bersih, dan penuh perhatian.", task1: "Siklus: Sirkulasi Regulasi Normal Baru Dimulai", task2: "Evaluasi: Catat siklus haid bulan ini di aplikasi kalender", task3: "Ghatan: Sukses mengawal caretaker protocol secara sempurna", task4: "Core: Komitmen perhatian yang kokoh menjaga keharmonisan", done1: false, done2: false, done3: false, done4: false }
         };
 
         function verifikasi() {
@@ -661,7 +668,7 @@
                     runEcosystemDashboard();
                 }, 500);
             } else {
-                alert("Security Code Mismatch.");
+                alert("Vault Control Center Verification Error: Invalid Security Key Access.");
             }
         }
 
@@ -780,15 +787,19 @@
                 }
             });
 
-            // 7. Bucket List Complete Engine
+            // 7. Bucket List (SMART FALLBACK TO PREVENT UNDEFINED)
             db.ref('bucketList').on('value', snap => {
                 const listWrapper = document.getElementById('bucket-list-frame'); listWrapper.innerHTML = "";
                 const dataset = snap.val() || {}; let total = 0; let done = 0;
                 for (let key in dataset) {
                     total++; if(dataset[key].done) done++;
+                    
+                    // Smart detection fallback to prevent undefined text rendering
+                    const textValue = dataset[key].text || dataset[key].title || (typeof dataset[key] === 'string' ? dataset[key] : 'Objective Node');
+                    
                     const row = document.createElement('li'); row.className = "item-row-node";
                     row.innerHTML = `<input type="checkbox" ${dataset[key].done ? 'checked' : ''} onclick="invertBucketState('bucketList/${key}', ${dataset[key].done})"> 
-                                    <span style="${dataset[key].done ? 'text-decoration: line-through; color: var(--text-muted);' : ''}">${dataset[key].text}</span>
+                                    <span style="${dataset[key].done ? 'text-decoration: line-through; color: var(--text-muted);' : ''}">${textValue}</span>
                                     <span class="node-erasure" onclick="purgeNode('bucketList/${key}')">❌</span>`;
                     listWrapper.appendChild(row);
                 }
@@ -803,16 +814,16 @@
                 document.getElementById('gamify-level').innerText = tier.toUpperCase();
             });
 
-            // 8. Infinite Photo Album Module
+            // 8. Infinite Photo Album Module (WITH DYNAMIC FALLBACK ONERROR PROTECTION)
             db.ref('polaroidGallery').on('value', snap => {
                 const grid = document.getElementById('polaroid-infinite-grid'); grid.innerHTML = "";
                 const dataset = snap.val() || {};
                 for(let key in dataset) {
                     let frame = document.createElement('div'); frame.className = "luxury-polaroid-node";
                     frame.innerHTML = `<div class="node-erasure" style="position:absolute; top:12px; right:15px; z-index:5;" onclick="purgeNode('polaroidGallery/${key}')">❌</div>
-                                       <img src="${dataset[key].img}" alt="Polaroid Memory Card">
+                                       <img src="${dataset[key].img}" alt="Polaroid Memory Card" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1518156677180-95a2893f3e9f?w=500';">
                                        <div class="polaroid-inputs">
-                                            <input type="text" class="clean-inline-input" style="font-weight:700; text-align:center; font-size:14px; padding:4px;" value="${dataset[key].cap}" onblur="sendDirectField(this, 'polaroidGallery/${key}/cap')">
+                                            <input type="text" class="clean-inline-input" style="font-weight:700; text-align:center; font-size:14px; padding:4px;" value="${dataset[key].cap || 'Captured Moment'}" onblur="db.ref('polaroidGallery/${key}/cap').set(this.value.trim())">
                                             <div style="font-size:11px; color:var(--text-muted); margin-bottom:5px;">Date Context: ${dataset[key].date || 'Unspecified'}</div>
                                        </div>`;
                     grid.appendChild(frame);
@@ -835,7 +846,7 @@
                 }
             });
 
-            // 10. Cycle Care Plan 7 Days
+            // 10. Cycle Care Plan 7 Days (CRASH PROTECTION LOAD FALLBACKS)
             db.ref('cycleCarePlanData').on('value', snap => {
                 let data = snap.val();
                 if(!data) { db.ref('cycleCarePlanData').set(defaultCarePlanMatrix); return; }
@@ -843,16 +854,60 @@
             });
         }
 
-        // MOOD PROTOCOLS FIXES (TRACK HISTORI JALAN SETELAH ENTER)
+        // CRASH PROTECTION EDITCARE PROTOCOLS ENGINE
+        function renderEditableCarePanels(matrix) {
+            const chassis = document.getElementById('care-panels-chassis'); chassis.innerHTML = "";
+            const daysKeys = ['day1', 'day2', 'day3', 'day4', 'day5', 'day6', 'day7'];
+            
+            daysKeys.forEach(dayKey => {
+                // Defensive optional parameter fallback matching to prevent blank page screens
+                const dayData = (matrix && matrix[dayKey]) ? matrix[dayKey] : (defaultCarePlanMatrix[dayKey] || {});
+                
+                let panel = document.createElement('div');
+                panel.id = dayKey; 
+                panel.className = `cycle-view-panel ${dayKey === 'day1' ? 'active-panel' : ''}`;
+                
+                let titleString = `Day 0${dayKey.replace('day','')}`;
+                if(dayKey === 'day1') titleString = "🩸 Day 01 : Peak Contraction Matrix";
+                if(dayKey === 'day2') titleString = "🌊 Day 02 : Maximum Heavy Flow Stream";
+                if(dayKey === 'day3') titleString = "🍫 Day 03 : Hormonal Deprivation Mood Shift";
+                if(dayKey === 'day4') titleString = "🌿 Day 04 : Internal System Stabilization Phase";
+                if(dayKey === 'day5') titleString = "✨ Day 05 : Estrogen Surge Renaissance";
+                if(dayKey === 'day6') titleString = "🏃‍♀️ Day 06 : Fully Recharged Battery Capacity";
+                if(dayKey === 'day7') titleString = "🕊️ Day 07 : System Loop Reset Success";
+
+                panel.innerHTML = `<div style="font-size:20px; font-weight:700; margin-bottom:15px; font-family:'Playfair Display', serif; font-style:italic;">${titleString}</div>
+                                   <textarea class="clean-inline-input" style="background:rgba(255,255,255,0.6); line-height:1.7; height:90px; border-radius:14px; border:1px dashed var(--border-light); resize:none;" onblur="db.ref('cycleCarePlanData/${dayKey}/desc').set(this.value.trim())">${dayData.desc || ""}</textarea>
+                                   <div class="care-checklist-grid">
+                                        <div class="care-action-card">
+                                            <input type="checkbox" ${dayData.done1 ? 'checked' : ''} onclick="db.ref('cycleCarePlanData/${dayKey}/done1').set(${!(dayData.done1 || false)})">
+                                            <input type="text" class="clean-inline-input" style="padding:0; font-size:13px; font-weight:600;" value="${dayData.task1 || ''}" onblur="db.ref('cycleCarePlanData/${dayKey}/task1').set(this.value.trim())">
+                                        </div>
+                                        <div class="care-action-card">
+                                            <input type="checkbox" ${dayData.done2 ? 'checked' : ''} onclick="db.ref('cycleCarePlanData/${dayKey}/done2').set(${!(dayData.done2 || false)})">
+                                            <input type="text" class="clean-inline-input" style="padding:0; font-size:13px; font-weight:600;" value="${dayData.task2 || ''}" onblur="db.ref('cycleCarePlanData/${dayKey}/task2').set(this.value.trim())">
+                                        </div>
+                                        <div class="care-action-card">
+                                            <input type="checkbox" ${dayData.done3 ? 'checked' : ''} onclick="db.ref('cycleCarePlanData/${dayKey}/done3').set(${!(dayData.done3 || false)})">
+                                            <input type="text" class="clean-inline-input" style="padding:0; font-size:13px; font-weight:600;" value="${dayData.task3 || ''}" onblur="db.ref('cycleCarePlanData/${dayKey}/task3').set(this.value.trim())">
+                                        </div>
+                                        <div class="care-action-card">
+                                            <input type="checkbox" ${dayData.done4 ? 'checked' : ''} onclick="db.ref('cycleCarePlanData/${dayKey}/done4').set(${!(dayData.done4 || false)})">
+                                            <input type="text" class="clean-inline-input" style="padding:0; font-size:13px; font-weight:600;" value="${dayData.task4 || ''}" onblur="db.ref('cycleCarePlanData/${dayKey}/task4').set(this.value.trim())">
+                                        </div>
+                                   </div>`;
+                chassis.appendChild(panel);
+            });
+        }
+
+        // MOOD TRACK METRICS ACTIONS
         function triggerMoodTextInput(user) {
-            const field = document.getElementById(`status-${user}`);
-            const val = field.value.trim();
+            const field = document.getElementById(`status-${user}`); const val = field.value.trim();
             if(val !== "") {
                 db.ref(`status/${user}`).set(val);
                 db.ref(`moodLogs/${user}`).push({ text: val, date: new Date().toLocaleDateString('id-ID') });
             }
         }
-
         function selectMoodEmoji(user, idx, emojiChar) {
             db.ref(`status/emoji${user === 'syallu' ? 'Syallu' : 'Ghatan'}Idx`).set(idx);
             const inputField = document.getElementById(`status-${user}`);
@@ -880,19 +935,17 @@
             if(activeIdx && document.getElementById(prefix + activeIdx)) document.getElementById(prefix + activeIdx).classList.add('active-emoji');
         }
 
-        // LOCAL MEMORY FILE PAYLOAD READER (BASE64 IMAGE INJECTION)
+        // BASE64 IMAGE INJECT SYSTEM
         function handleLocalImageUpload(inputElement) {
             const file = inputElement.files[0];
             if (file) {
                 const reader = new FileReader();
-                reader.onload = function(e) {
-                    temporaryBase64Str = e.target.result; 
-                };
+                reader.onload = function(e) { temporaryBase64Str = e.target.result; };
                 reader.readAsDataURL(file);
             }
         }
 
-        // PUSH NODES FIXED ACTIONS
+        // PUSH SYSTEM ARRAY NODES 
         function pushNewPolaroidFrameNode() {
             const cap = document.getElementById('gallery-input-cap'); const url = document.getElementById('gallery-input-url'); const date = document.getElementById('gallery-input-date');
             let finalImagePayload = temporaryBase64Str || reformatUrlLink(url.value);
@@ -941,20 +994,18 @@
             }
         }
 
-        // SHARED SYSTEM LOGICS
+        // SHARED UTILITIES
         function sendDirectField(element, path) { const cleanVal = element.value.trim(); if(cleanVal !== "") db.ref(path).set(cleanVal); }
         function sendDateDirect(element) { const cleanVal = element.value.trim(); if(cleanVal !== "") { db.ref('nextPlan/date').set(cleanVal); computeTargetCountdown(cleanVal); } }
         function invertBucketState(fullPath, currentStatus) { db.ref(`${fullPath}`).set(!currentStatus); }
         function purgeNode(fullPath) { db.ref(fullPath).remove(); }
         function handleFieldEnter(evt, element) { if (evt.key === "Enter") element.blur(); }
 
-        // AUTOMATED LISTENERS ON ENTER SHORTCUTS
         function setupEnterKeyListeners() {
             document.getElementById('bucket-input-field')?.addEventListener('keypress', function(e) { if(e.key === 'Enter') pushBucketNode(); });
             document.getElementById('roulette-input-field')?.addEventListener('keypress', function(e) { if(e.key === 'Enter') pushRouletteOptionNode(); });
         }
 
-        // TELEMETRY LATENCY METRICS COMPILER
         function listenToLatencyHealth() {
             const healthText = document.getElementById('sync-health-value');
             db.ref('.info/connected').on('value', function(snap) {
