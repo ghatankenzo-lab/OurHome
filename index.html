@@ -17,7 +17,7 @@
     <style>
         :root {
             --bg-base: #ecf4f9; /* Strict Premium Baby Blue */
-            --bg-glass: rgba(255, 255, 255, 0.88); 
+            --bg-glass: rgba(255, 255, 255, 0.91); 
             --bg-panel: #ffffff; 
             --accent-blue: #bcd4e6; 
             --text-primary: #2c3e50; 
@@ -192,31 +192,11 @@
         .progress-bar-fill { background: var(--text-primary); height: 100%; width: 0%; transition: width 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
         .gamify-level-tag { font-size: 10px; background: var(--text-primary); color: white; padding: 3px 8px; border-radius: 8px; font-weight: 700; margin-left: 10px; }
 
-        /* 8. Polaroid Framing Layout (RESPONSIVE NON-DESTRUCTIVE RATIO CONTAINERS) */
+        /* 8. RESTORED POLAROID LAYOUT (CLASSIC ESTETIK FULL-FRAME CARD) */
         .polaroid-editorial-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 35px; }
         .luxury-polaroid-node { background: var(--bg-panel); padding: 18px 18px 30px 18px; border: 1px solid var(--border-light); border-radius: 16px; box-shadow: 0 15px 40px rgba(44,62,80,0.04); text-align: center; position: relative; overflow: hidden; transition: var(--transition-bounce); }
         .luxury-polaroid-node:hover { transform: scale(1.02) rotate(0.5deg); }
-        
-        /* New explicit non-crop image framework core container */
-        .polaroid-img-container {
-            width: 100%;
-            height: 240px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background-color: #fafbfc;
-            border-radius: 12px;
-            margin-bottom: 18px;
-            border: 1px solid rgba(0,0,0,0.02);
-            overflow: hidden;
-        }
-        .polaroid-img-container img { 
-            max-width: 100%; 
-            max-height: 100%; 
-            object-fit: contain; /* Automatically centers and fits landscape/portrait flawlessly */
-            border-radius: 4px; 
-            margin-bottom: 0 !important;
-        }
+        .luxury-polaroid-node img { width: 100%; height: 240px; object-fit: cover; border-radius: 12px; margin-bottom: 18px; background-color: #fafbfc; border: 1px solid rgba(0,0,0,0.02); }
 
         /* 9. Timeline Snake Layout */
         .timeline-snake-container { display: flex; flex-direction: column; gap: 30px; padding: 20px 0; position: relative; width: 100%; }
@@ -680,7 +660,7 @@
         let arrayDecider = [];
         let temporaryBase64Str = ""; 
         
-        // Dynamic state tracker to protect active panel from data sync defaults
+        // Dynamic active state tracker
         let currentActiveCareTab = 'day1';
 
         // Spin Wheel Variable Nodes
@@ -738,17 +718,6 @@
                 document.getElementById("vault-dropdown").style.display = "none";
             }
         });
-
-        function reformatUrlLink(url) {
-            let src = url.trim();
-            if (src.includes("drive.google.com")) {
-                let id = "";
-                if (src.includes("/d/")) id = src.split('/d/')[1].split('/')[0];
-                else if (src.includes("id=")) id = src.split('id=')[1].split('&')[0];
-                if(id) return `https://drive.google.com/uc?export=view&id=${id}`;
-            }
-            return src;
-        }
 
         function runEcosystemDashboard() {
             setInterval(calculateTimeMetrics, 1000);
@@ -842,9 +811,7 @@
                 const dataset = snap.val() || {}; let total = 0; let done = 0;
                 for (let key in dataset) {
                     total++; if(dataset[key].done) done++;
-                    
                     const textValue = dataset[key].text || dataset[key].title || (typeof dataset[key] === 'string' ? dataset[key] : 'Objective Node');
-                    
                     const row = document.createElement('li'); row.className = "item-row-node";
                     row.innerHTML = `<input type="checkbox" ${dataset[key].done ? 'checked' : ''} onclick="invertBucketState('bucketList/${key}', ${dataset[key].done})"> 
                                     <span style="${dataset[key].done ? 'text-decoration: line-through; color: var(--text-muted);' : ''}">${textValue}</span>
@@ -862,16 +829,14 @@
                 document.getElementById('gamify-level').innerText = tier.toUpperCase();
             });
 
-            // 8. Infinite Photo Album Module (EQUIPPED WITH INTEGRATED NON-DESTRUCTIVE PHOTO FRAMES)
+            // 8. RESTORED INLINE ALBUM LAYOUT WITH DIRECT COVER RENDERING
             db.ref('polaroidGallery').on('value', snap => {
                 const grid = document.getElementById('polaroid-infinite-grid'); grid.innerHTML = "";
                 const dataset = snap.val() || {};
                 for(let key in dataset) {
                     let frame = document.createElement('div'); frame.className = "luxury-polaroid-node";
                     frame.innerHTML = `<div class="node-erasure" style="position:absolute; top:12px; right:15px; z-index:5;" onclick="purgeNode('polaroidGallery/${key}')">❌</div>
-                                       <div class="polaroid-img-container">
-                                           <img src="${dataset[key].img}" alt="Polaroid Memory Card" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1518156677180-95a2893f3e9f?w=500';">
-                                       </div>
+                                       <img src="${dataset[key].img}" alt="Polaroid Memory Card" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1518156677180-95a2893f3e9f?w=500';">
                                        <div class="polaroid-inputs">
                                             <input type="text" class="clean-inline-input" style="font-weight:700; text-align:center; font-size:14px; padding:4px;" value="${dataset[key].cap || 'Captured Moment'}" onblur="db.ref('polaroidGallery/${key}/cap').set(this.value.trim())">
                                             <div style="font-size:11px; color:var(--text-muted); margin-bottom:5px;">Date Context: ${dataset[key].date || 'Unspecified'}</div>
@@ -904,54 +869,6 @@
             });
         }
 
-        // CRASH PROTECTION EDITCARE PROTOCOLS ENGINE (LOCKS CORRECT PANEL STATE SECURELY)
-        function renderEditableCarePanels(matrix) {
-            const chassis = document.getElementById('care-panels-chassis'); chassis.innerHTML = "";
-            const daysKeys = ['day1', 'day2', 'day3', 'day4', 'day5', 'day6', 'day7'];
-            
-            daysKeys.forEach(dayKey => {
-                const dayData = (matrix && matrix[dayKey]) ? matrix[dayKey] : (defaultCarePlanMatrix[dayKey] || {});
-                
-                let panel = document.createElement('div');
-                panel.id = dayKey; 
-                
-                // Matches the strict runtime state key instead of defaulting back to day1 on data sync
-                panel.className = `cycle-view-panel ${dayKey === currentActiveCareTab ? 'active-panel' : ''}`;
-                
-                let titleString = `Day 0${dayKey.replace('day','')}`;
-                if(dayKey === 'day1') titleString = "🩸 Day 01 : Peak Contraction Matrix";
-                if(dayKey === 'day2') titleString = "🌊 Day 02 : Maximum Heavy Flow Stream";
-                if(dayKey === 'day3') titleString = "🍫 Day 03 : Hormonal Deprivation Mood Shift";
-                if(dayKey === 'day4') titleString = "🌿 Day 04 : Internal System Stabilization Phase";
-                if(dayKey === 'day5') titleString = "✨ Day 05 : Estrogen Surge Renaissance";
-                if(dayKey === 'day6') titleString = "🏃‍♀️ Day 06 : Fully Recharged Battery Capacity";
-                if(dayKey === 'day7') titleString = "🕊️ Day 07 : System Loop Reset Success";
-
-                panel.innerHTML = `<div style="font-size:20px; font-weight:700; margin-bottom:15px; font-family:'Playfair Display', serif; font-style:italic;">${titleString}</div>
-                                   <textarea class="clean-inline-input" style="background:rgba(255,255,255,0.6); line-height:1.7; height:90px; border-radius:14px; border:1px dashed var(--border-light); resize:none;" onblur="db.ref('cycleCarePlanData/${dayKey}/desc').set(this.value.trim())">${dayData.desc || ""}</textarea>
-                                   <div class="care-checklist-grid">
-                                        <div class="care-action-card">
-                                            <input type="checkbox" ${dayData.done1 ? 'checked' : ''} onclick="db.ref('cycleCarePlanData/${dayKey}/done1').set(${!(dayData.done1 || false)})">
-                                            <input type="text" class="clean-inline-input" style="padding:0; font-size:13px; font-weight:600;" value="${dayData.task1 || ''}" onblur="db.ref('cycleCarePlanData/${dayKey}/task1').set(this.value.trim())">
-                                        </div>
-                                        <div class="care-action-card">
-                                            <input type="checkbox" ${dayData.done2 ? 'checked' : ''} onclick="db.ref('cycleCarePlanData/${dayKey}/done2').set(${!(dayData.done2 || false)})">
-                                            <input type="text" class="clean-inline-input" style="padding:0; font-size:13px; font-weight:600;" value="${dayData.task2 || ''}" onblur="db.ref('cycleCarePlanData/${dayKey}/task2').set(this.value.trim())">
-                                        </div>
-                                        <div class="care-action-card">
-                                            <input type="checkbox" ${dayData.done3 ? 'checked' : ''} onclick="db.ref('cycleCarePlanData/${dayKey}/done3').set(${!(dayData.done3 || false)})">
-                                            <input type="text" class="clean-inline-input" style="padding:0; font-size:13px; font-weight:600;" value="${dayData.task3 || ''}" onblur="db.ref('cycleCarePlanData/${dayKey}/task3').set(this.value.trim())">
-                                        </div>
-                                        <div class="care-action-card">
-                                            <input type="checkbox" ${dayData.done4 ? 'checked' : ''} onclick="db.ref('cycleCarePlanData/${dayKey}/done4').set(${!(dayData.done4 || false)})">
-                                            <input type="text" class="clean-inline-input" style="padding:0; font-size:13px; font-weight:600;" value="${dayData.task4 || ''}" onblur="db.ref('cycleCarePlanData/${dayKey}/task4').set(this.value.trim())">
-                                        </div>
-                                   </div>`;
-                chassis.appendChild(panel);
-            });
-        }
-
-        // MOOD TRACK METRICS ACTIONS
         function triggerMoodTextInput(user) {
             const field = document.getElementById(`status-${user}`); const val = field.value.trim();
             if(val !== "") {
@@ -986,7 +903,6 @@
             if(activeIdx && document.getElementById(prefix + activeIdx)) document.getElementById(prefix + activeIdx).classList.add('active-emoji');
         }
 
-        // BASE64 IMAGE ENCODING INJECTOR
         function handleLocalImageUpload(inputElement) {
             const file = inputElement.files[0];
             if (file) {
@@ -996,7 +912,6 @@
             }
         }
 
-        // PUSH SYSTEM ARRAY NODES 
         function pushNewPolaroidFrameNode() {
             const cap = document.getElementById('gallery-input-cap'); const url = document.getElementById('gallery-input-url'); const date = document.getElementById('gallery-input-date');
             let finalImagePayload = temporaryBase64Str || reformatUrlLink(url.value);
@@ -1128,9 +1043,9 @@
             requestAnimationFrame(animateWheel);
         }
 
-        // FIXED TAB SWITCH MATRIX (LOCKS SECURE ACTIVE VARIABLE PARAMETERS STATE)
+        // COMFORT LOCKED PLAN SWITCH CHASSIS
         function switchCareTab(evt, matrixId) {
-            currentActiveCareTab = matrixId; // Lock selected index runtime parameters securely
+            currentActiveCareTab = matrixId; 
             const targetPanels = document.getElementsByClassName("cycle-view-panel");
             for (let i = 0; i < targetPanels.length; i++) targetPanels[i].classList.remove("active-panel");
             const controllerBtns = document.getElementsByClassName("cycle-tab-btn");
