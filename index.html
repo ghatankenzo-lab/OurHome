@@ -66,6 +66,7 @@
             width: 100%; padding: 18px; margin-bottom: 20px; border: 1px solid var(--border-light);
             border-radius: 16px; outline: none; text-align: center; font-size: 16px; background: #f7fafc;
         }
+        .login-box input:focus { border-color: var(--accent-blue); background: #ffffff; }
         .login-box button {
             background: var(--text-primary); color: #ffffff; border: none; padding: 18px;
             width: 100%; border-radius: 16px; cursor: pointer; font-size: 13px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase;
@@ -192,7 +193,7 @@
         .progress-bar-fill { background: var(--text-primary); height: 100%; width: 0%; transition: width 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
         .gamify-level-tag { font-size: 10px; background: var(--text-primary); color: white; padding: 3px 8px; border-radius: 8px; font-weight: 700; margin-left: 10px; }
 
-        /* 8. RESTORED POLAROID LAYOUT (CLASSIC ESTETIK FULL-FRAME CARD) */
+        /* 8. Polaroid Framing Layout */
         .polaroid-editorial-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 35px; }
         .luxury-polaroid-node { background: var(--bg-panel); padding: 18px 18px 30px 18px; border: 1px solid var(--border-light); border-radius: 16px; box-shadow: 0 15px 40px rgba(44,62,80,0.04); text-align: center; position: relative; overflow: hidden; transition: var(--transition-bounce); }
         .luxury-polaroid-node:hover { transform: scale(1.02) rotate(0.5deg); }
@@ -235,7 +236,8 @@
         .node-erasure:hover { opacity: 1; color: #c0392b; }
 
         /* FEATURE INSTRUCTION FOOTERS */
-        .feature-instruction-footer { max-width: 100%; margin-top: 50px; padding: 25px 35px; background: #ffffff; border-radius: 24px; border: 1px solid var(--border-light); font-size: 13px; line-height: 1.7; color: var(--text-primary); box-shadow: 0 10px 30px rgba(188,212,230,0.05); }
+        .feature-instruction-footer { max-width: 100%; margin-top: 50px; padding: 25px 35px; background: #ffffff; border-radius: 24px; border: 1px solid var(--border-light); font-size: 13px; line-height: 1.7; color: var(--text-primary); box-shadow: 0 10px 30px rgba(188,212,230,0.05); position: relative; overflow: hidden; }
+        .feature-instruction-footer::after { content: "☁️🧸"; position: absolute; right: 15px; bottom: 10px; font-size: 16px; opacity: 0.2; }
         .feature-instruction-footer b { color: var(--text-primary); font-weight: 700; text-transform: uppercase; font-size: 11px; letter-spacing: 1px; display: block; margin-bottom: 8px; }
         
         @keyframes softEntrance { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
@@ -685,7 +687,7 @@
                             inputUser.split('').every((char, idx) => char.charCodeAt(0) === gateKey[idx]);
 
             if (isMatch) {
-                // EXPLICIT FIXED ACCESS PREVENT FOR PERMISSION CRASH : ANONYMOUS AUTHENTICATION HANDSHAKE
+                // FIXED PERMISSION BYPASS FOR SHALU'S LAPTOP SCRIPT THREAD
                 firebase.auth().signInAnonymously()
                     .then(() => {
                         document.getElementById("login-screen").style.opacity = "0";
@@ -696,7 +698,7 @@
                         }, 500);
                     })
                     .catch(error => {
-                        console.log("Auth handshake restricted, launching fallback viewer mode:", error);
+                        console.log("Handshake secure rule restricted, launching fallback initialization:", error);
                         document.getElementById("login-screen").style.opacity = "0";
                         setTimeout(() => {
                             document.getElementById("login-screen").style.display = "none";
@@ -744,20 +746,23 @@
         }
 
         function runEcosystemDashboard() {
+            // IMMEDIATE IN-MEMORY RENDER FOR SHALU'S CHASSIS BEFORE NETWORK HANDSHAKE
+            renderEditableCarePanels(defaultCarePlanMatrix);
+
             setInterval(calculateTimeMetrics, 1000);
             listenToLatencyHealth();
             setupEnterKeyListeners();
             
-            // Sync Realtime Inputs
-            db.ref('status/shalu').on('value', snap => { document.getElementById('status-shalu').value = snap.val() || ""; });
-            db.ref('status/ghatan').on('value', snap => { document.getElementById('status-ghatan').value = snap.val() || ""; });
-            db.ref('status/batShalu').on('value', snap => { document.getElementById('battery-shalu').value = snap.val() || ""; });
-            db.ref('status/batGhatan').on('value', snap => { document.getElementById('battery-ghatan').value = snap.val() || ""; });
-            db.ref('status/emojiShaluIdx').on('value', snap => { resetEmojiSelection('shalu', snap.val()); });
-            db.ref('status/emojiGhatanIdx').on('value', snap => { resetEmojiSelection('ghatan', snap.val()); });
+            // CATCH PROTECTION TO ALL PERSISTENT REALTIME PIPELINES
+            db.ref('status/shalu').on('value', snap => { document.getElementById('status-shalu').value = snap.val() || ""; }, e => {});
+            db.ref('status/ghatan').on('value', snap => { document.getElementById('status-ghatan').value = snap.val() || ""; }, e => {});
+            db.ref('status/batShalu').on('value', snap => { document.getElementById('battery-shalu').value = snap.val() || ""; }, e => {});
+            db.ref('status/batGhatan').on('value', snap => { document.getElementById('battery-ghatan').value = snap.val() || ""; }, e => {});
+            db.ref('status/emojiShaluIdx').on('value', snap => { resetEmojiSelection('shalu', snap.val()); }, e => {});
+            db.ref('status/emojiGhatanIdx').on('value', snap => { resetEmojiSelection('ghatan', snap.val()); }, e => {});
 
-            db.ref('moodLogs/shalu').limitToLast(5).on('value', snap => { renderMoodHistoryList('mood-history-shalu', snap.val(), 'shalu'); });
-            db.ref('moodLogs/ghatan').limitToLast(5).on('value', snap => { renderMoodHistoryList('mood-history-ghatan', snap.val(), 'ghatan'); });
+            db.ref('moodLogs/shalu').limitToLast(5).on('value', snap => { renderMoodHistoryList('mood-history-shalu', snap.val(), 'shalu'); }, e => {});
+            db.ref('moodLogs/ghatan').limitToLast(5).on('value', snap => { renderMoodHistoryList('mood-history-ghatan', snap.val(), 'ghatan'); }, e => {});
 
             // 3. Adventure Countdown Cards
             db.ref('countdownAgendas').on('value', snap => {
@@ -775,7 +780,7 @@
                                       <div style="font-size:12px; color:var(--text-muted); margin-top:5px;">Target: ${dataset[key].date}</div>`;
                     wrapper.appendChild(card);
                 }
-            });
+            }, e => {});
 
             // 4. Sticky Board Notes Canvas
             db.ref('stickyNotesGrid').on('value', snap => {
@@ -798,7 +803,7 @@
                                       <textarea class="sticky-card-textarea" onblur="sendDirectField(this, 'stickyNotesGrid/${key}/text')">${dataset[key].text || ""}</textarea>`;
                     wrapper.appendChild(note);
                 }
-            });
+            }, e => {});
 
             // 5. Roulette Options List Engine
             db.ref('rouletteOptions').on('value', snap => {
@@ -811,7 +816,7 @@
                     wrapper.appendChild(li);
                 }
                 drawWheel();
-            });
+            }, e => {});
 
             // 6. Audio Soundtrack Sync
             db.ref('musicTracks').on('value', snap => {
@@ -827,9 +832,9 @@
                                     <div style="font-size:12px; color:var(--text-muted); margin-top:4px;">Memo Context: ${dataset[key].note}</div>`;
                     wrapper.appendChild(li);
                 }
-            });
+            }, e => {});
 
-            // 7. Bucket List (SMART FALLBACKS PATHWAY RE-FIXED)
+            // 7. Bucket List Progress Engine
             db.ref('bucketList').on('value', snap => {
                 const listWrapper = document.getElementById('bucket-list-frame'); listWrapper.innerHTML = "";
                 const dataset = snap.val() || {}; let total = 0; let done = 0;
@@ -851,9 +856,9 @@
                 if(ratio >= 70) tier = "Level 3 Master Adventurers";
                 if(ratio === 100 && total > 0) tier = "Level 4 Eternal Soulmates Legend";
                 document.getElementById('gamify-level').innerText = tier.toUpperCase();
-            });
+            }, e => {});
 
-            // 8. RESTORED INLINE ALBUM LAYOUT WITH DIRECT COVER RENDERING
+            // 8. Infinite Photo Album Module
             db.ref('polaroidGallery').on('value', snap => {
                 const grid = document.getElementById('polaroid-infinite-grid'); grid.innerHTML = "";
                 const dataset = snap.val() || {};
@@ -867,7 +872,7 @@
                                        </div>`;
                     grid.appendChild(frame);
                 }
-            });
+            }, e => {});
 
             // 9. Chronological Snake Path Timelines
             db.ref('timeline').on('value', snap => {
@@ -883,18 +888,15 @@
                                      </div>`;
                     container.appendChild(row);
                 }
-            });
+            }, e => {});
 
-            // 10. Cycle Care Plan 7 Days (CRASH PROTECTION ENGINE INTERSTRUCTED)
+            // 10. Cycle Care Plan 7 Days (FAIL SAFE PROTECTED ENGINE)
             db.ref('cycleCarePlanData').on('value', snap => {
                 let data = snap.val();
-                if (!data) {
-                    try { db.ref('cycleCarePlanData').set(defaultCarePlanMatrix); } catch(e) { console.log("Read-only mode bypassed seed."); }
-                    data = defaultCarePlanMatrix;
-                }
+                if(!data) data = defaultCarePlanMatrix;
                 renderEditableCarePanels(data);
             }, error => {
-                console.log("Firebase block active, executing secure local profile template rendering:", error);
+                console.log("Firebase database restricted read mode, falling back onto static memory templates:", error);
                 renderEditableCarePanels(defaultCarePlanMatrix);
             });
         }
@@ -903,16 +905,20 @@
         function triggerMoodTextInput(user) {
             const field = document.getElementById(`status-${user}`); const val = field.value.trim();
             if(val !== "") {
-                db.ref(`status/${user}`).set(val);
-                db.ref(`moodLogs/${user}`).push({ text: val, date: new Date().toLocaleDateString('id-ID') });
+                try {
+                    db.ref(`status/${user}`).set(val);
+                    db.ref(`moodLogs/${user}`).push({ text: val, date: new Date().toLocaleDateString('id-ID') });
+                } catch(e) {}
             }
         }
         function selectMoodEmoji(user, idx, emojiChar) {
-            db.ref(`status/emoji${user === 'shalu' ? 'Shalu' : 'Ghatan'}Idx`).set(idx);
-            const inputField = document.getElementById(`status-${user}`);
-            const textValue = inputField.value.trim() || `Feeling ${emojiChar}`;
-            db.ref(`status/${user}`).set(textValue);
-            db.ref(`moodLogs/${user}`).push({ text: textValue, date: new Date().toLocaleDateString('id-ID') });
+            try {
+                db.ref(`status/emoji${user === 'shalu' ? 'Shalu' : 'Ghatan'}Idx`).set(idx);
+                const inputField = document.getElementById(`status-${user}`);
+                const textValue = inputField.value.trim() || `Feeling ${emojiChar}`;
+                db.ref(`status/${user}`).set(textValue);
+                db.ref(`moodLogs/${user}`).push({ text: textValue, date: new Date().toLocaleDateString('id-ID') });
+            } catch(e){}
         }
         function promptCustomEmoji(user) {
             let emoji = prompt("Enter single custom emoji character text node:");
@@ -927,7 +933,7 @@
                 list.insertBefore(li, list.firstChild);
             }
         }
-        function clearAllMoodHistory(user) { if(confirm("Purge total mood logs database for this user?")) db.ref(`moodLogs/${user}`).remove(); }
+        function clearAllMoodHistory(user) { if(confirm("Purge total mood logs database for this user?")) purgeNode(`moodLogs/${user}`); }
         function resetEmojiSelection(user, activeIdx) {
             const prefix = user === 'shalu' ? 'emoji-s-' : 'emoji-g-';
             for(let i=1; i<=4; i++) { if(document.getElementById(prefix + i)) document.getElementById(prefix + i).classList.remove('active-emoji'); }
@@ -950,49 +956,51 @@
             let finalImagePayload = temporaryBase64Str || reformatUrlLink(url.value);
             
             if(cap.value.trim() && finalImagePayload) {
-                db.ref('polaroidGallery').push({ img: finalImagePayload, cap: cap.value.trim(), date: date.value.trim() || 'Today' });
-                cap.value = ""; url.value = ""; date.value = ""; document.getElementById('gallery-file-uploader').value = "";
-                temporaryBase64Str = ""; 
+                try {
+                    db.ref('polaroidGallery').push({ img: finalImagePayload, cap: cap.value.trim(), date: date.value.trim() || 'Today' });
+                    cap.value = ""; url.value = ""; date.value = ""; document.getElementById('gallery-file-uploader').value = "";
+                    temporaryBase64Str = ""; 
+                } catch(e) { alert("You don't have write permissions to save changes."); }
             } else {
                 alert("Please select a file or paste a web URL image link before deploying.");
             }
         }
-        function pushNewStickyCard() { db.ref('stickyNotesGrid').push({ text: "Type direct to write message node...", pinned: false }); }
-        function togglePinSticky(key, currentState) { db.ref(`stickyNotesGrid/${key}/pinned`).set(!currentState); }
-        function changeStickyColor(key, hexColor) { db.ref(`stickyNotesGrid/${key}/color`).set(hexColor); }
+        function pushNewStickyCard() { try{ db.ref('stickyNotesGrid').push({ text: "Type direct to write message node...", pinned: false }); }catch(e){} }
+        function togglePinSticky(key, currentState) { try{ db.ref(`stickyNotesGrid/${key}/pinned`).set(!currentState); }catch(e){} }
+        function changeStickyColor(key, hexColor) { try{ db.ref(`stickyNotesGrid/${key}/color`).set(hexColor); }catch(e){} }
 
         function pushCountdownCardNode() {
             const title = document.getElementById('countdown-input-title'); const date = document.getElementById('countdown-input-date');
             const tpl = document.getElementById('countdown-input-tpl'); const auth = document.getElementById('countdown-input-author');
             if(title.value.trim() && date.value.trim()) {
-                db.ref('countdownAgendas').push({ title: title.value.trim(), date: date.value.trim(), color: tpl.value, author: auth.value });
+                try{ db.ref('countdownAgendas').push({ title: title.value.trim(), date: date.value.trim(), color: tpl.value, author: auth.value }); }catch(e){}
                 title.value = ""; date.value = "";
             }
         }
         function pushRouletteOptionNode() {
             const field = document.getElementById('roulette-input-field');
-            if(field.value.trim()) { db.ref('rouletteOptions').push({ text: field.value.trim() }); field.value = ""; }
+            if(field.value.trim()) { try{ db.ref('rouletteOptions').push({ text: field.value.trim() }); }catch(e){} field.value = ""; }
         }
         function pushMusicTrackNode() {
             const track = document.getElementById('music-input-track'); const url = document.getElementById('music-input-url'); const note = document.getElementById('music-input-note');
             if(track.value.trim() && url.value.trim()) {
-                db.ref('musicTracks').push({ track: track.value.trim(), url: url.value.trim(), note: note.value.trim() });
+                try{ db.ref('musicTracks').push({ track: track.value.trim(), url: url.value.trim(), note: note.value.trim() }); }catch(e){}
                 track.value = ""; url.value = ""; note.value = "";
             }
         }
         function pushBucketNode() {
             const field = document.getElementById('bucket-input-field');
-            if (field.value.trim()) { db.ref('bucketList').push({ text: field.value.trim(), done: false }); field.value = ""; }
+            if (field.value.trim()) { try{ db.ref('bucketList').push({ text: field.value.trim(), done: false }); }catch(e){} field.value = ""; }
         }
         function pushTimelineNode() {
             const dateNode = document.getElementById('milestone-date-field'); const descNode = document.getElementById('milestone-desc-field');
             if (dateNode.value.trim() && descNode.value.trim()) {
-                db.ref('timeline').push({ date: dateNode.value.trim(), text: descNode.value.trim() });
+                try{ db.ref('timeline').push({ date: dateNode.value.trim(), text: descNode.value.trim() }); }catch(e){}
                 dateNode.value = ""; descNode.value = "";
             }
         }
 
-        // CRASH COMPILER SINK SAFE PROTECTORS
+        // SHARED SYSTEM PROTECTED SINK SCRIPT OPERATIONS
         function invertBucketState(fullPath, currentStatus) { try { db.ref(fullPath + '/done').set(!currentStatus); } catch(e){} }
         function sendDirectField(element, path) { const cleanVal = element.value.trim(); if(cleanVal !== "") try{ db.ref(path).set(cleanVal); }catch(e){} }
         function sendDateDirect(element) { const cleanVal = element.value.trim(); if(cleanVal !== "") { try{ db.ref('nextPlan/date').set(cleanVal); }catch(e){} computeTargetCountdown(cleanVal); } }
@@ -1006,13 +1014,15 @@
 
         function listenToLatencyHealth() {
             const healthText = document.getElementById('sync-health-value');
-            db.ref('.info/connected').on('value', function(snap) {
-                if (snap.val() === true) {
-                    healthText.innerText = "100% Stable Connection"; healthText.style.color = "#27ae60";
-                } else {
-                    healthText.innerText = "Offline Drifting Connection"; healthText.style.color = "#e67e22";
-                }
-            });
+            try {
+                db.ref('.info/connected').on('value', function(snap) {
+                    if (snap.val() === true) {
+                        healthText.innerText = "100% Stable Connection"; healthText.style.color = "#27ae60";
+                    } else {
+                        healthText.innerText = "Offline Drifting Connection"; healthText.style.color = "#e67e22";
+                    }
+                });
+            } catch(e) { healthText.innerText = "Local Environment Standalone"; healthText.style.color = "#27ae60"; }
         }
 
         function calculateTimeMetrics() {
@@ -1074,7 +1084,7 @@
             requestAnimationFrame(animateWheel);
         }
 
-        // COMFORT SEAMLESS STATE RETENTION CORE PANEL TAB GENERATOR
+        // COMFORT LOCKED PLAN SWITCH CHASSIS
         function switchCareTab(evt, matrixId) {
             currentActiveCareTab = matrixId; 
             const targetPanels = document.getElementsByClassName("cycle-view-panel");
